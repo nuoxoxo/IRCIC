@@ -2,4 +2,4 @@
 Notes                |   |
 :------------------- | - |
 &nbsp;               | __Inception__ 
-Glossary             | [issue](github.com/nuoxoxo/IRCIC/issues/1)
+Glossary             | [issue](https://github.com/nuoxoxo/IRCIC/issues/1))
