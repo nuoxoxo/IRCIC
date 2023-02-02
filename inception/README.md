@@ -16,3 +16,6 @@
   - bridge instead of tail -f, bash, sleep infinity, while true, host, --link, links
 - {\*} container must reboot in case of crash
 - {\**} what are daemons, how to use and whether we should use 'em
+- In wordpress there must be 2 users
+  - one of them is admin but w/o admin in their username
+- all volumes will be available <kbd> /home/{login}/data </kbd>
