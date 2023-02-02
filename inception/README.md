@@ -26,8 +26,14 @@
 - the nginx container must be the only entrypoint into the infrastructure 
   - via the port 443 only
   - using the TLSv1.2 or TLSv1.3 protocol
+
+# Host
+
+![](https://i.imgur.com/9kAq2av.png)
+
 # Folder structure
-```sc
+
+```
 $> ls -alR
 total XX
 drwxrwxr-x 3 wil wil 4096 avril 42 20:42 .
