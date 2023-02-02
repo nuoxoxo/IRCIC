@@ -1,1 +1,18 @@
-
+# Subject
+- choose btw Alpine or Debian
+- write 3 Dockerfile, one per service
+  - call these Dockerfiles one by one in Makefile via _docker-compose.yml_ 
+- set up the following 3 Docker containers:
+  - nginx (choose btw TLSv1.2 or TLSv1.3)
+  - wordpress + php-fpm (installation + configuration)
+  - mariadb (w/o nginx)
+- set up the following 2 volumes:
+  - 1st volume for wordpress database
+  - 2nd volume for wordpress website files
+- set up _docker-network_
+  - goal: establish connection btw containers
+- learn the forbidden patches:
+  - `tail -f` 
+  - bridge instead of tail -f, bash, sleep infinity, while true, host, --link, links
+- {\*} container must reboot in case of crash
+- {\**} what are daemons, how to use and whether we should use 'em
