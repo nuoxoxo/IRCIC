@@ -14,7 +14,7 @@ docker-compose up -d
 docker-compose down
 docker exec -it nginx_simple sh
 ```
-# :yellow_circle: First 5 lines
+# :yellow_circle: First 5 lines of a Dockerfile 
 ```dockerfile
 # syntax=docker/dockerfile:1
 FROM    alpine:3.15
