@@ -10,4 +10,4 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
-    container_name: demo_docker_nginx_html
+    container_name: demo_docker-nginx-html
