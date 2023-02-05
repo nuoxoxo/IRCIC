@@ -1,24 +1,26 @@
 name	:= demo_docker-nginx-html
 
 all	:
-	@ echo "Launch configuration ${name}... "
+	@ echo "launch $(name)... "
 	@ docker-compose -f ./docker-compose.yml up -d
 
 build	:
-	@ echo "Building configuration ${name}... "
+	@ echo "building $(name)... "
 	@ docker-compose -f ./docker-compose.yml up -d --build
 
 down	:
-	@ echo "Stopping configuration ${name}... "
+	@ echo "stopping ${name}... "
 	@ docker-compose -f ./docker-compose.yml down
 
 re	: down
-	@ echo "Rebuild configuration ${name}... "
+	@ echo "rebuild $(name)... "
 	@ docker-compose -f ./docker-compose.yml up -d --build
 
 clean	: down
-	@ echo "Cleaning configuration ${name}... "
+	@ echo "cleaning $(name)... "
 	@ docker system prune -a
+
+f	: fclean
 
 fclean	:
 	@ echo "Total clean of all configurations docker "
