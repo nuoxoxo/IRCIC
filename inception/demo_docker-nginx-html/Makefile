@@ -1,4 +1,4 @@
-name = docker_compose_nginx_html
+name	:= demo_docker-nginx-html
 
 all	:
 	@ echo "Launch configuration ${name}... "
