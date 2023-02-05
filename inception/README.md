@@ -159,7 +159,6 @@ mkdir project/srcs/requirements/nginx/tools
 mkdir project/srcs/requirements/nginx/conf
 touch project/srcs/requirements/nginx/conf/nginx.conf
 ```
-___mariadb___ and ___wordpress___ will have only one config each :yellow_circle:
 ```sh
 # mariadb
 
