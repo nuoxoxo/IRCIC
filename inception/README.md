@@ -355,7 +355,7 @@ $ docker-compose up -d
 	
 # 6 - Makefile
 
-```sh
+```j
 name	:= demo_docker-nginx-html
 
 all	:
