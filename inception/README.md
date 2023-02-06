@@ -121,7 +121,6 @@ StartX ... :red_circle:
   - _http-server_ :: html
 - Demo 2 
   - _docker-compose_ :: nginx, html
-  - to retry and flip this red ball :red_circle:
 - make_dir.sh
   - remember to `chmod +x make_dir.sh`
 ```sh
