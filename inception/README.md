@@ -410,3 +410,29 @@ f	: fclean
 
 .PHONY	: all build down re clean fclean
 ```
+
+
+# 7 - $\color {BurntOrange} \text { Dockerfile - nginx } $
+
+Dockerfile
+- Edit `~/project/srcs/requirements/nginx/Dockerfile`
+
+FROM
+```sh
+FROM	alpine:3.16
+```
+RUN
+```sh
+RUN	apk update && apk upgrade && apk add --no-cache nginx
+```
+Container Port
+```sh
+EXPOSE	443
+```
+CMD
+```sh
+CMD	["nginx", "-g", "daemon off;"]
+```
+
+Dockerfile won't work withou a config file
+- Edit `~/project/srcs/requirements/nginx/conf/nginx.conf`
