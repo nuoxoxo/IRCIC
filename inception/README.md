@@ -446,3 +446,6 @@ server {
 	# }
 }
 ```
+
+## Certificate recap
+- cp  ~/project/srcs/requirements/tools/*  ~/project/srcs/requirements/nginx/tools/
