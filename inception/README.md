@@ -1,3 +1,22 @@
+```
+
+                                             { WWW }     
+                                                |
+(Host computer)                                 |
+                                                |
+  | (Docker network)                            |
+  |                                             v
+  | Container <- 3306 -> Container <- 9000 -> Container
+  | DB                     wordpress          nginx
+  |     |                     php            /
+  |     |                      |           /
+  |     |                      |         /
+  |     v                      v       /
+  |     DB                  WordPress
+
+
+```
+
 # 1 - download debian
 no code
 # 2 - setup
