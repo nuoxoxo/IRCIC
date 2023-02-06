@@ -1,34 +1,28 @@
 name	:= demo_docker-nginx-html
 
 all	:
-	@ echo "Launch configuration ${name}... "
+	@ echo " ➜ Build and launch ${name} ... "
 	@ docker-compose -f ./docker-compose.yml up -d
 
-build	:
-	@ echo "Building configuration ${name}... "
-	@ docker-compose -f ./docker-compose.yml up -d --build
+build	: all
 
 down	:
-	@ echo "Stopping configuration ${name}... "
+	@ echo " ➜ Stopping ${name} ... "
 	@ docker-compose -f ./docker-compose.yml down
 
 re	: down
-	@ echo "Rebuild configuration ${name}... "
+	@ echo " ➜ Re-launch ${name} ... "
 	@ docker-compose -f ./docker-compose.yml up -d --build
 
 clean	: down
-	@ echo "Cleaning configuration ${name}... "
+	@ echo " ➜ Cleaning up ${name} ... "
 	@ docker system prune -a
 
 fclean	:
-	@ echo "Total clean of all configurations docker "
-	@ if [  = "test" ]; then\
-        echo "Hello world";\
-    fi
-	
-	ifneq ($$(docker ps -qa),)
-		@ docker stop $$(docker ps -qa)
-	endif
+	@ echo " ➜ Cleaning up "
+	@ if [ `docker ps -qa` = "" ]; then \
+		docker stop `docker ps -qa` \
+	  endif
 	@ docker system prune --all --force --volumes
 	@ docker network prune --force
 	@ docker volume prune --force
