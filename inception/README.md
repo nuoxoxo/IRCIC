@@ -392,7 +392,7 @@ f	: fclean
 
 # 7 - $\color {BurntOrange} \text { Dockerfile - nginx } $
 
-Dockerfile
+#### __Dockerfile__
 - Edit `~/project/srcs/requirements/nginx/Dockerfile`
 
 FROM
@@ -412,7 +412,8 @@ CMD
 CMD	["nginx", "-g", "daemon off;"]
 ```
 
-Dockerfile won't work withou a config file
+#### __nginx.conf__ \
+(Dockerfile won't work withou a config file)
 - Edit `~/project/srcs/requirements/nginx/conf/nginx.conf`
 ```
 server {
