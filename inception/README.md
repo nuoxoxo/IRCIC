@@ -204,4 +204,150 @@ echo ".git" > project/srcs/requirements/wordpress/.dockerignore
 echo ".env" >> project/srcs/requirements/wordpress/.dockerignore
 ```
 
+# Subject dictates
+- Install a self-signed SSL certificate 
+  - Why? - For local development, self-signed certificates are usually used
+  - How? - Use ___mkcert___ 
+- Run the app on port 443
+- Use domain name <Username>.42.fr
+
 # 5 - Certificates & local domain
+
+Modify local domain
+```
+$ vi /etc/hosts
+> 127.0.0.1    uxn.42.fr localhost
+
+$ cd ~/demo_docker_compose && docker-compose up -d
+
+(in vm window) 
+> sudo startx
+```
+Get mkcert
+```sh
+$ sudo apt update -y
+$ sudo apt install -y libnss3-tools
+$ curl -s https://api.github.com/repos/FiloSottile/mkcert/releases/latest \
+ | grep browser_download_url  | grep linux-amd64 \
+ | cut -d '"' -f 4 | wget -qi - 
+
+# On success
+
+$ mv mkcert-v*-linux-amd64 mkcert
+$ chmod a+x mkcert
+$ sudo mv mkcert /usr/local/bin/
+
+# Verify
+
+$ mkcert --version
+```
+Get SSL Certificate
+```
+$ cd ~/project/srcs/requirements/tools/
+$ mkcert Uxn.42.fr
+```
+Change extensions for nginx server
+```sh
+$ mv Uxn.42.fr-key.pem  Uxn.42.fr.key
+$ mv Uxn.42.fr.pem      Uxn.42.fr.crt
+```
+Reconfigure container to adapt HTTPS
+- Edit ~/demo_docker_compose/nginx/conf.d/nginx.conf
+- [Previous]
+```sh
+server {
+    root    /var/www/public/html;
+    location / {
+        try_files $uri /index.html;
+    }
+}
+```
+- [Edit]
+```sh
+server {
+
+	### Listen on http port
+	### Listen on https port - ssl
+
+	listen	80;
+	listen	443 ssl;
+
+	### Set domain of our site
+	### Set root directory of our project
+
+	root		/var/www/public/html;
+	server_name	Uxn.42.fr www.Uxn.42.fr;
+
+	### If redirection is needed (http -> https)
+
+	#if ($scheme = 'http') {
+	#    return 301 https://Uxn.42.fr$request_uri;
+	#}
+
+	### Paths to certificates and keys
+
+	ssl_certificate		/etc/nginx/ssl/Uxn.42.fr.crt;
+	ssl_certificate_key	/etc/nginx/ssl/Uxn.42.fr.key;
+
+	### Supported TLS Protocols
+
+	ssl_protocols		TLSv1.2 TLSv1.3;
+
+	### Caching options & timeouts
+
+	ssl_session_timeout	10m;
+	keepalive_timeout	70;
+
+	### File extension that Server needs to find in ~/ (root)
+
+	location / {
+		try_files $uri /index.html;
+	}
+}
+
+# note the 5 spots with username added in
+```
+Add another section with the keys
+```
+$ cd ~/simple_docker_compose/
+$ docker-compose down
+$ vi docker-compose.yml
+```
+- [Previous]
+```
+version: '3'
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    volumes:
+      - ./public:/var/www/public
+      - ./nginx/conf.d:/etc/nginx/conf.d/
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    container_name: simple_nginx_html
+```
+- [Edit]
+```j
+version: '3'
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    volumes:
+      - ./public:/var/www/public
+      - ./nginx/conf.d:/etc/nginx/conf.d/
+      - /home/${USER}/project/srcs/requirements/tools:/etc/nginx/ssl/  <--- 
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    container_name: demo_docker_nginx_html
+```
+Run docker-compose again
+```
+$ docker-compose up -d
+
+(in vm window) 
+> sudo startx
+```
