@@ -1,25 +1,3 @@
-```
-
-                                             { WWW }     
-                                                |
-(Host computer)                                 |
-                                                |
-   ______                                       |
-  |                                             |
-  | (Docker network)                            |
-  |                                             v
-  | Container <- 3306 -> Container <- 9000 -> Container
-  |     DB               wordpress            nginx
-  |     |                   php               /
-  |     |                    |             /
-  |     |                    |          /
-  |     v                    v       /
-  |     DB                  WordPress
-  |
-  |______
-
-```
-
 # 1 - download debian
 no code
 # 2 - setup
@@ -436,3 +414,34 @@ CMD	["nginx", "-g", "daemon off;"]
 
 Dockerfile won't work withou a config file
 - Edit `~/project/srcs/requirements/nginx/conf/nginx.conf`
+```
+server {
+
+	listen	443 ssl;
+
+	server_name	nuoxoxo.42.fr www.nuoxoxo.42.fr;
+	root		/var/www/;
+	index index.php index.html;
+
+	ssl_certificate		/etc/nginx/ssl/nuoxoxo.42.fr.crt;
+	ssl_certificate_key	/etc/nginx/ssl/nuoxoxo.42.fr.key;
+	ssl_protocols		TLSv1.2 TLSv1.3;	
+	ssl_session_timeout	10m;
+	keepalive_timeout	70;
+
+	### TESTING ...
+	location / {
+		try_files $uri /index.php?$args /index.html;
+		add_header Last-Modified $date_gmt;
+		add_header Cache-Control 'no-store, no-cache';
+		if_modified_since off;
+		expires off;
+		etag off;
+	}
+	### (TESTING...)
+
+
+	# location ~ \.php$ {
+	# }
+}
+```
