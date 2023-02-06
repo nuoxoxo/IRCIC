@@ -9,11 +9,11 @@
   | (Docker network)                            |
   |                                             v
   | Container <- 3306 -> Container <- 9000 -> Container
-  | DB                     wordpress          nginx
-  |     |                     php            /
-  |     |                      |           /
-  |     |                      |         /
-  |     v                      v       /
+  |     DB               wordpress            nginx
+  |     |                   php               /
+  |     |                    |             /
+  |     |                    |          /
+  |     v                    v       /
   |     DB                  WordPress
   ______
 
