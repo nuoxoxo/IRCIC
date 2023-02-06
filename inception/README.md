@@ -47,10 +47,10 @@ uxn    ALL(ALL:ALL) ALL
 
 Sudo - _join sudo group_
 ```
-$ groups UXN
-$ usermod -aG docker UXN
-$ groups UXN
-$ su UXN
+$ groups Uxn
+$ usermod -aG docker Uxn
+$ groups Uxn
+$ su Uxn
 ```
 
 SSH - _/etc/ssh/sshd_config_
@@ -111,15 +111,16 @@ $ exit
 
 StartX ... :red_circle:
 ```
-% run startx
-% startx run {?????????????????}
+% sudo startx
 ```
 
 ### 3 _(none)_
 # 4 - Docker preconfiguration
 
-- Demo 1 - _http-server_ :: html
-- Demo 2 - _docker-compose_ :: nginx, html
+- Demo 1 
+  - _http-server_ :: html
+- Demo 2 
+  - _docker-compose_ :: nginx, html
   - to retry and flip this red ball :red_circle:
 - make_dir.sh
   - remember to `chmod +x make_dir.sh`
@@ -139,9 +140,9 @@ touch project/srcs/docker-compose.yml
 ```
 ```
 touch project/srcs/.env
-echo "DOMAIN_NAME=<UXN>.42.fr" > project/srcs/.env
-echo "CERT_=./requirements/tools/<UXN>.42.fr.crt" >> project/srcs/.env
-echo "KEY_=./requirements/tools/<UXN>.42.fr.key" >> project/srcs/.env
+echo "DOMAIN_NAME=<Uxn>.42.fr" > project/srcs/.env
+echo "CERT_=./requirements/tools/<Uxn>.42.fr.crt" >> project/srcs/.env
+echo "KEY_=./requirements/tools/<Uxn>.42.fr.key" >> project/srcs/.env
 echo "DB_NAME=wordpress" >> project/srcs/.env
 echo "DB_ROOT=rootpass" >> project/srcs/.env
 echo "DB_USER=wpuser" >> project/srcs/.env
