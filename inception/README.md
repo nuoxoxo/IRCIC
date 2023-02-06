@@ -4,6 +4,8 @@
                                                 |
 (Host computer)                                 |
                                                 |
+   ______                                       |
+  |                                             |
   | (Docker network)                            |
   |                                             v
   | Container <- 3306 -> Container <- 9000 -> Container
@@ -13,7 +15,7 @@
   |     |                      |         /
   |     v                      v       /
   |     DB                  WordPress
-
+  ______
 
 ```
 
