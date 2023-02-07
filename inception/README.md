@@ -1,5 +1,5 @@
 ## $\color {CarnationPink} \text { Progress } $
-- mariaDB <kbd> draft fi. </kbd> - snapshot 8, __Tests Needed__
+- mariaDB <kbd> draft fi. </kbd> - snapshot 8 _not created_, __Tests Needed__
   - \+ Dockerfile 
   - \+ conf/generate_db.sh
   - _mod._ srcs/docker-compose.yml
