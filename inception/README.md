@@ -1,3 +1,8 @@
+# Snapshot state:
+DO
+- <kbd> https://127.0.0.1 </kbd> (browser)
+- <kbd> https://nuoxoxo.42.fr </kbd> (startx gui)
+
 # 1 - download debian
 no code
 # 2 - setup
