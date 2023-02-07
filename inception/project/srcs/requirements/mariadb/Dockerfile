@@ -16,14 +16,17 @@ RUN		mkdir /var/run/mysqld; \
 			echo 'bind-address=0.0.0.0'; \
 		} \
 		| tee /etc/my.cnf.d/docker.cnf; 
-		sed -i "s|skip-networking|skip-networking=0|g" /etc/my.cnf.d/mariadb-server.cnf
+		sed -i	"s|skip-networking|skip-networking=0|g" \
+			/etc/my.cnf.d/mariadb-server.cnf
 
 # tee : send output of echo to a file
 # why use `skip-networking=0` ??
 
 
-# Second layer : generate a Database and set its path based on layer-1
-RUN		mysql_install_db --user=mysql --datadir=/var/lib/mysql
+# Second layer : create DB and set its path based on Layer 1
+RUN		mysql_install_db	\
+		--user=mysql		\
+		--datadir=/var/lib/mysql
 
 
 # open mariaDB working port
