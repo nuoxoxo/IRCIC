@@ -1,7 +1,6 @@
 ```dockerfile
 # syntax=docker/dockerfile:1
 FROM node:18-alpine
-	# -> download the node:18-alpine image
 WORKDIR /app
 COPY . .
 	# -> why
