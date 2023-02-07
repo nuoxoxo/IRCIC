@@ -10,9 +10,9 @@
 
 ## $\color{Goldenrod } \text { Misc. } $
 - inception [Git](https://github.com/nuoxoxo/ircci/tree/main/inception)
-- :star: Eval :: to read
 - DEMO
   - _Demo_ - http-server
   - _Demo_ - <kbd> php -S localhost:8080 -t . </kbd>
   - _Demo using docker-compose_ - ngx, html & .YML
   - sandbox for Dockerfile(s)
+- :star: Eval :: to read
