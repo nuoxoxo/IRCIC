@@ -28,13 +28,17 @@ RUN		mysql_install_db	\
 		--user=mysql		\
 		--datadir=/var/lib/mysql
 
-
 # open mariaDB working port
 EXPOSE		3306
 USER		mysql
 
 
 # under previously created `mysql` we start up the DB
-COPY		tools/db.sh .
-ENTRYPOINT	["sh", "db.sh"]
+
+COPY		requirements/mariadb/conf/generate_db.sh . 
+		# ⤷ changed
+
+RUN		sh generate_db.sh && rm create_db.sh
+		# ⤷ added
+
 CMD		["/usr/bin/mysqld", "--skip-log-error"]
