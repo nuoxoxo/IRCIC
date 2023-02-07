@@ -1,34 +1,11 @@
-# Snapshot state:
-DO
-- <kbd> https://<span>127.0.0.1:443</span> </kbd> browser
-- <kbd> https://<span>nuoxoxo.42.fr</span> </kbd> startx gui
-- `restart: always` (compose.yml)
-  - Subject dictates that we must restart in case of crash
-- `ports: "443:443"` (compose.yml)
-  - What: Port Mapping 
-  - Goal: to access the services inside Container
-  - How: all requests made to the host port are
-redirected to the Container
-  - Syantax: `Host port` `:` `corresponding port in the docker Container`
-  
-```rs
-$ docker run -d -p 81:80 --name demo_container Demo
-```
-The _Demo_ container is launched with this docker command.
-We can use Port 81 on the host machine to access the app.
-The Demo server listens on port 80.
-```bash
-  # On the Host machine
-$ curl http://localhost:81
-
-# host port 81 to mapped to port 80 inside that container.
-```
-
-
-
 # 1 - download debian
+
 no code
+
+
+
 # 2 - setup
+
 Update `apt` & get everything
 ```
 $ su -
