@@ -17,8 +17,7 @@ Do
 - ---> browser: http://localhost:443
 
 Syntax
-- -t : --tag
-- .  : look for Dockerfile in the current directory
-
-- -d : --detached
-- -p : port mapping btw host's port 443 to container’s port 443
+- `-t` : --tag
+- `.`  : look for Dockerfile in the current directory
+- `-d` : --detached
+- `-p` : port mapping btw host's port 443 to container’s port 443
