@@ -38,7 +38,7 @@ USER		mysql
 COPY		requirements/mariadb/conf/generate_db.sh . 
 		# ⤷ changed
 
-RUN		sh generate_db.sh && rm create_db.sh
+RUN		sh generate_db.sh && rm generate_db.sh
 		# ⤷ added
 
 CMD		["/usr/bin/mysqld", "--skip-log-error"]
