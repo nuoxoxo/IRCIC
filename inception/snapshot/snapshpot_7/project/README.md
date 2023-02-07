@@ -76,10 +76,10 @@ uxn    ALL(ALL:ALL) ALL
 
 Sudo - _join sudo group_
 ```
-$ groups Uxn
-$ usermod -aG docker Uxn
-$ groups Uxn
-$ su Uxn
+$ groups uxn
+$ usermod -aG docker uxn
+$ groups uxn
+$ su uxn
 ```
 
 SSH - _/etc/ssh/sshd_config_
@@ -168,9 +168,9 @@ touch project/srcs/docker-compose.yml
 ```
 ```
 touch project/srcs/.env
-echo "DOMAIN_NAME=<Uxn>.42.fr" > project/srcs/.env
-echo "CERT_=./requirements/tools/<Uxn>.42.fr.crt" >> project/srcs/.env
-echo "KEY_=./requirements/tools/<Uxn>.42.fr.key" >> project/srcs/.env
+echo "DOMAIN_NAME=<uxn>.42.fr" > project/srcs/.env
+echo "CERT_=./requirements/tools/<uxn>.42.fr.crt" >> project/srcs/.env
+echo "KEY_=./requirements/tools/<uxn>.42.fr.key" >> project/srcs/.env
 echo "DB_NAME=wordpress" >> project/srcs/.env
 echo "DB_ROOT=rootpass" >> project/srcs/.env
 echo "DB_USER=wpuser" >> project/srcs/.env
@@ -272,12 +272,12 @@ $ mkcert --version
 Get SSL Certificate
 ```
 $ cd ~/project/srcs/requirements/tools/
-$ mkcert Uxn.42.fr
+$ mkcert uxn.42.fr
 ```
 Change extensions for nginx server
 ```sh
-$ mv Uxn.42.fr-key.pem  Uxn.42.fr.key
-$ mv Uxn.42.fr.pem      Uxn.42.fr.crt
+$ mv uxn.42.fr-key.pem  uxn.42.fr.key
+$ mv uxn.42.fr.pem      uxn.42.fr.crt
 ```
 Reconfigure container to adapt HTTPS
 - Edit ~/demo_docker_compose/nginx/conf.d/nginx.conf
@@ -304,18 +304,18 @@ server {
 	### Set root directory of our project
 
 	root		/var/www/public/html;
-	server_name	Uxn.42.fr www.Uxn.42.fr;
+	server_name	uxn.42.fr www.uxn.42.fr;
 
 	### If redirection is needed (http -> https)
 
 	#if ($scheme = 'http') {
-	#    return 301 https://Uxn.42.fr$request_uri;
+	#    return 301 https://uxn.42.fr$request_uri;
 	#}
 
 	### Paths to certificates and keys
 
-	ssl_certificate		/etc/nginx/ssl/Uxn.42.fr.crt;
-	ssl_certificate_key	/etc/nginx/ssl/Uxn.42.fr.key;
+	ssl_certificate		/etc/nginx/ssl/uxn.42.fr.crt;
+	ssl_certificate_key	/etc/nginx/ssl/uxn.42.fr.key;
 
 	### Supported TLS Protocols
 

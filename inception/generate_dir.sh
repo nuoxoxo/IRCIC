@@ -11,9 +11,9 @@ touch project/srcs/docker-compose.yml
 
 # .env
 touch project/srcs/.env
-echo "DOMAIN_NAME=<Uxn>.42.fr" > project/srcs/.env
-echo "CERT_=./requirements/tools/<Uxn>.42.fr.crt" >> project/srcs/.env
-echo "KEY_=./requirements/tools/<Uxn>.42.fr.key" >> project/srcs/.env
+echo "DOMAIN_NAME=<uxn>.42.fr" > project/srcs/.env
+echo "CERT_=./requirements/tools/<uxn>.42.fr.crt" >> project/srcs/.env
+echo "KEY_=./requirements/tools/<uxn>.42.fr.key" >> project/srcs/.env
 echo "DB_NAME=wordpress" >> project/srcs/.env
 echo "DB_ROOT=rootpass" >> project/srcs/.env
 echo "DB_USER=wpuser" >> project/srcs/.env
