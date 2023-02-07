@@ -25,6 +25,7 @@ $ curl http://localhost:81
 ```
 
 
+<!---
 
 # 1 - download debian
 no code
@@ -477,3 +478,5 @@ server {
 
 ## Certificate recap
 - cp  ~/project/srcs/requirements/tools/*  ~/project/srcs/requirements/nginx/tools/
+
+--->
