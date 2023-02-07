@@ -1,12 +1,12 @@
 ## $\color {CarnationPink} \text { Progress } $
 - mariaDB <kbd> done draft </kbd> 
-  - snapshot 8 _not created_ - __Tests Needed__
+  - snapshot 8 _not created_ - __test:__ <kbd> needed </kbd>
   - _logs_
     - \+ Dockerfile 
     - \+ conf/generate_db.sh
     - _mod._ srcs/docker-compose.yml
 - nginx <kbd> fi. </kbd> 
-  - snapshot 7 - _tested __OK___
+  - snapshot 7 - __test:__ <kbd> OK </kbd>
   - _logss_
     - \+ ngx Dockerfile (7)
     - \+ Makefile (6)
