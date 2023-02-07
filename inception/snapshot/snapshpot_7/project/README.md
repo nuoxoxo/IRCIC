@@ -11,7 +11,7 @@ DO
 redirected to the Container
   - Syantax: `Host port` `:` `corresponding port in the docker Container`
   
-```rs
+```j
 $ docker run -d -p 81:80 --name demo_container Demo
 ```
 The _Demo_ container is launched with this docker command.
