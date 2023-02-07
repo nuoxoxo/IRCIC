@@ -1,3 +1,29 @@
+# Snapshot state:
+DO
+- <kbd> https://127.0.0.1:443 </kbd> (browser)
+- <kbd> https://nuoxoxo.42.fr </kbd> (startx gui)
+- in compose.yml - `restart: always`
+  - Subject dictates that we must restart in case of crash
+- in compose.yml - `ports: "443:443"`
+  - Port mapping is used to access the services inside a Container
+  - `a host port` `:` `the corresponding port in the docker Container`
+  - Through above mapping, all requests made to the host port 
+  are redirected to the Container
+```j
+$ docker run -d -p 81:80 --name demo_container Demo
+```
+The _Demo_ container is launched with this docker command.
+We can use Port 81 on the host machine to access the app.
+The Demo server listens on port 80.
+```sh
+# On the Host machine
+$ curl http://localhost:81
+
+# host port 81 to mapped to port 80 inside that container.
+```
+
+
+
 # 1 - download debian
 no code
 # 2 - setup

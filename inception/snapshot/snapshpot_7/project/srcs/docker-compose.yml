@@ -6,13 +6,13 @@ services:
       context: .
       dockerfile: requirements/nginx/Dockerfile
     container_name: nginx
-    depends_on:
-        - wordpress # wait for wp to finish then build
+    # depends_on:
+    #    - wordpress # wait for wp to finish then build
     ports:
       - "443:443"
     volumes:
       - ./requirements/nginx/conf/:/etc/nginx/http.d/
       - ./requirements/nginx/tools:/etc/nginx/ssl/
       - /home/${USER}/simple_docker_nginx_html/public/html:/var/www/
-    # restart: unless-stopped # not allowed in subj
+    # restart: unless-stopped # subj dictates restart in case of crash
     restart: always
