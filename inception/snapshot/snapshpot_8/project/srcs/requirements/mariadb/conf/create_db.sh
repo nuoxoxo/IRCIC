@@ -15,7 +15,7 @@ fi
 
 if [ ! -d "/var/lib/mysql/wordpress" ]; then
 
-        cat << EOF > /tmp/generate_db.sql
+        cat << EOF > /tmp/db_autogen_command.sql
 USE mysql;
 FLUSH PRIVILEGES;
 DELETE FROM     mysql.user WHERE User='';
@@ -29,7 +29,7 @@ GRANT ALL PRIVILEGES ON wordpress.* TO '${DB_USER}'@'%';
 FLUSH PRIVILEGES;
 EOF
         # run init.sql
-        /usr/bin/mysqld --user=mysql --bootstrap < /tmp/generate_db.sql
-        rm -f /tmp/generate_db.sql
+        /usr/bin/mysqld --user=mysql --bootstrap < /tmp/db_autogen_command.sql
+        rm -f /tmp/db_autogen_command.sql
 fi
 
