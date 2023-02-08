@@ -1,6 +1,11 @@
 FROM		alpine:3.16
 
+ARG		DB_NAME \
+		DB_USER \
+		DB_PASS
+
 RUN		apk update && apk add --no-cache  mariadb  mariadb-client
+
 # no caching
 # each RUN directive creates a `layer` in docker image
 	# -> so, don't do unnecessary RUNs
@@ -30,15 +35,24 @@ RUN		mysql_install_db	\
 
 # open mariaDB working port
 EXPOSE		3306
-USER		mysql
 
 
 # under previously created `mysql` we start up the DB
 
-COPY		requirements/mariadb/conf/generate_db.sh . 
+#USER		mysql
+#COPY		requirements/mariadb/conf/create_db.sh . 
 		# ⤷ changed
-
-RUN		sh generate_db.sh && rm generate_db.sh
+#RUN		sh create_db.sh && rm create_db.sh
 		# ⤷ added
 
-CMD		["/usr/bin/mysqld", "--skip-log-error"]
+COPY requirements/mariadb/conf/create_db.sh .
+RUN sh create_db.sh && rm create_db.sh
+USER mysql
+CMD ["/usr/bin/mysqld", "--skip-log-error"]
+
+#EXPOSE		3306
+#USER		mysql
+#COPY		requirements/mariadb/conf/create_db.sh .
+# COPY		conf/create_db.sh . 
+#ENTRYPOINT	["sh", "create_db.sh"]
+#CMD		["/usr/bin/mysqld", "--skip-log-error"]

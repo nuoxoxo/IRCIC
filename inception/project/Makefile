@@ -2,17 +2,17 @@ name	:= inception
 
 all	:
 	@ echo " ➜ Build and launch ${name} ... "
-	@ docker-compose -f ./srcs/docker-compose.yml up -d
+	@ docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d
 
 build	: all
 
 down	:
 	@ echo " ➜ Stopping ${name} ... "
-	@ docker-compose -f ./srcs/docker-compose.yml down
+	@ docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env down
 
 re	: down
 	@ echo " ➜ Re-launch ${name} ... "
-	@ docker-compose -f ./srcs/docker-compose.yml up -d --build
+	@ docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d --build
 
 clean	: down
 	@ echo " ➜ Cleaning up ${name} ... "
@@ -25,6 +25,7 @@ fclean	:
 	@ docker system prune --all --force --volumes
 	@ docker network prune --force
 	@ docker volume prune --force
+	@ docker ps
 
 f	: fclean
 
