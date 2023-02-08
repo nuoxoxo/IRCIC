@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+
+  nginx:
+    build:
+      context: .
+      dockerfile: requirements/nginx/Dockerfile
+    container_name: nginx
+    env_file:
+      - .env
+    #depends_on:
+    #    - wordpress # wait for wp to finish then build
+    ports:
+      - "443:443"
+    volumes:
+      - ./requirements/nginx/conf/:/etc/nginx/http.d/
+      # - ./requirements/nginx/tools:/etc/nginx/ssl/
+      - /home/${USER}/simple_docker_nginx_html/public/html:/var/www/
+    # restart: unless-stopped # not allowed in subj
+    restart: always
+
+  mariadb:
+    build:
+      context: .
+      dockerfile: requirements/mariadb/Dockerfile
+      args:
+        DB_ROOT: ${DB_ROOT}
+        DB_USER: ${DB_USER}
+        DB_NAME: ${DB_NAME}
+        DB_PASS: ${DB_PASS}
+        # These env vars are not present in the image
+        # therefore they can only be passed here
+        # But for ENV vars which can be found in the env section
+        # they are already inside the service
+    container_name: mariadb
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    restart: always
