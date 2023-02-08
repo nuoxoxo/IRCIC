@@ -31,18 +31,18 @@ RUN     apk update && apk upgrade && \
             /etc/php8/php-fpm.d/www.conf && \
         && rm -f /var/cache/apk/*
 
-WORKDIR /var/www
+WORKDIR		/var/www
 # WORKDIR defines the working directory of a container at any given time.
 
-RUN     wget https://wordpress.org/latest.zip && \
-        unzip latest.zip && \
-        cp -rf wordpress/* . && \
-        rm -rf wordpress latest.zip
+RUN		wget https://wordpress.org/latest.zip && \
+		unzip latest.zip && \
+		cp -rf wordpress/* . && \
+		rm -rf wordpress latest.zip
 
-COPY    ./requirements/wordpress/conf/config_wordpress.sh . 
+COPY		./requirements/wordpress/conf/config_wordpress.sh . 
 
-RUN     sh config_wordpress.sh && \
-        rm config_wordpress.sh && \
-        chmod -R 0777 wp-content/
+RUN		sh config_wordpress.sh && \
+		rm config_wordpress.sh && \
+		chmod -R 0777 wp-content/
 
-CMD     ["/usr/sbin/php-fpm8", "-F"]
+CMD		["/usr/sbin/php-fpm8", "-F"]
