@@ -2,17 +2,17 @@ name	:= inception
 
 all	:
 	@ echo " ➜ Build and launch ${name} ... "
-	@ docker-compose -f /docker-compose.yml up -d
+	@ docker-compose -f ./srcs/docker-compose.yml up -d
 
 build	: all
 
 down	:
 	@ echo " ➜ Stopping ${name} ... "
-	@ docker-compose -f ./docker-compose.yml down
+	@ docker-compose -f ./srcs/docker-compose.yml down
 
 re	: down
 	@ echo " ➜ Re-launch ${name} ... "
-	@ docker-compose -f ./docker-compose.yml up -d --build
+	@ docker-compose -f ./srcs/docker-compose.yml up -d --build
 
 clean	: down
 	@ echo " ➜ Cleaning up ${name} ... "
