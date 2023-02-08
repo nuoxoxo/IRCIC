@@ -20,9 +20,8 @@ clean	: down
 
 fclean	:
 	@ echo " ➜ Cleaning up "
-	@ if [ `docker ps -qa` = "" ]; then \
-		docker stop `docker ps -qa` \
-	  endif
+	@# if [ `docker ps -qa` = "" ]; then docker stop `docker ps -qa`; endif
+	@ docker stop `docker ps -qa`
 	@ docker system prune --all --force --volumes
 	@ docker network prune --force
 	@ docker volume prune --force
