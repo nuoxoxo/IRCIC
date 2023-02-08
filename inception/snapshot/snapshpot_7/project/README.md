@@ -1,7 +1,7 @@
 # Snapshot state:
 DO
 - <kbd> https://<span>127.0.0.1:443</span> </kbd> browser
-- <kbd> https://<span>nuoxoxo.42.fr</span> </kbd> startx gui
+- <kbd> https://<span>nuxu.42.fr</span> </kbd> startx gui
 - `restart: always` (compose.yml)
   - Subject dictates that we must restart in case of crash
 - `ports: "443:443"` (compose.yml)
@@ -449,12 +449,12 @@ server {
 
 	listen	443 ssl;
 
-	server_name	nuoxoxo.42.fr www.nuoxoxo.42.fr;
+	server_name	nuxu.42.fr www.nuxu.42.fr;
 	root		/var/www/;
 	index index.php index.html;
 
-	ssl_certificate		/etc/nginx/ssl/nuoxoxo.42.fr.crt;
-	ssl_certificate_key	/etc/nginx/ssl/nuoxoxo.42.fr.key;
+	ssl_certificate		/etc/nginx/ssl/nuxu.42.fr.crt;
+	ssl_certificate_key	/etc/nginx/ssl/nuxu.42.fr.key;
 	ssl_protocols		TLSv1.2 TLSv1.3;	
 	ssl_session_timeout	10m;
 	keepalive_timeout	70;
