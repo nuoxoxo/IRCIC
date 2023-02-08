@@ -7,8 +7,8 @@ services:
       context: .
       dockerfile: requirements/nginx/Dockerfile
     container_name: nginx
-    depends_on:
-        - wordpress # wait for wp to finish then build
+    #depends_on:
+    #    - wordpress # wait for wp to finish then build
     ports:
       - "443:443"
     volumes:
