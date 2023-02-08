@@ -9,8 +9,8 @@ services:
     container_name: nginx
     env_file:
       - .env
-    #depends_on:
-    #    - wordpress # wait for wp to finish then build
+    depends_on:
+      - wordpress # wait for wp to finish then build
     ports:
       - "443:443"
     volumes:
@@ -38,4 +38,13 @@ services:
       - .env
     ports:
       - "3306:3306"
+    restart: always
+
+  wordpress:
+    build:
+      context: .
+      dockerfile: requirements/wordpress/Dockerfile
+    container_name: wordpress
+    depends_on:
+      - mariadb
     restart: always
