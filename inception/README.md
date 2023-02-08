@@ -1,3 +1,5 @@
+![](https://i.imgur.com/B26PCcR.png)
+
 ## $\color {CarnationPink} \text { Progress } $
 - mariaDB <kbd> done draft </kbd> 
   - snapshot 8 _not created_ - __test:__ <kbd> needed </kbd>
@@ -20,3 +22,4 @@
   - _Demo using docker-compose_ - ngx, html & .YML
   - sandbox for Dockerfile(s)
 - :star: Eval :: to read
+
