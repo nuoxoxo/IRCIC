@@ -14,9 +14,13 @@ re	: down
 	@ echo " ➜ Re-launch ${name} ... "
 	@ docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d --build
 
+
 clean	: down
 	@ echo " ➜ Cleaning up ${name} ... "
 	@ docker system prune -a
+	@#@ sudo rm -rf ~/data/wordpress/*
+	@#@ sudo rm -rf ~/data/mariadb/*
+
 
 fclean	:
 	@ echo " ➜ Cleaning up "
@@ -26,6 +30,9 @@ fclean	:
 	@ docker network prune --force
 	@ docker volume prune --force
 	@ docker ps
+	@#@ sudo rm -rf ~/data/wordpress/*
+	@#@ sudo rm -rf ~/data/mariadb/*
+
 
 f	: fclean
 
