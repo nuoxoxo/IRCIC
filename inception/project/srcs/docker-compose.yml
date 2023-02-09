@@ -3,6 +3,7 @@ version: '3'
 services:
 
   nginx:
+    image: nginx:v1
     build:
       context: .
       dockerfile: requirements/nginx/Dockerfile
@@ -11,19 +12,24 @@ services:
       - .env
     depends_on:
       - wordpress # wait for wp to finish then build
+    networks:
+      - inception
     ports:
       - "443:443"
     volumes:
-      - ./requirements/nginx/conf/:/etc/nginx/http.d/
       # - ./requirements/nginx/tools:/etc/nginx/ssl/
+      - ./requirements/nginx/conf/:/etc/nginx/http.d/
       # - /home/${USER}/simple_docker_nginx_html/public/html:/var/www/
-    # restart: unless-stopped # not allowed in subj
+      - wp-volume:/var/www
     restart: always
+    # restart: unless-stopped # not allowed in subj
 
   mariadb:
+    image: mariadb:v1
     build:
       context: .
       dockerfile: requirements/mariadb/Dockerfile
+      # not sure about this args part below
       args:
         DB_ROOT: ${DB_ROOT}
         DB_USER: ${DB_USER}
@@ -36,8 +42,12 @@ services:
     container_name: mariadb
     env_file:
       - .env
+    networks:
+      - inception
     ports:
       - "3306:3306"
+    volumes:
+      - db-volume:/var/lib/mysql
     restart: always
 
   wordpress:
@@ -54,3 +64,19 @@ services:
     restart: always
     volumes:
       - wp-volume:/var/www/
+
+networks:
+  inception:
+    driver: bridge
+
+volumes:
+  wp-volume:
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/qxia/data/wordpress
+  db-volume:
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/qxia/data/mariadb
