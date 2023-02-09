@@ -5,13 +5,9 @@ ARG		DB_NAME \
 		DB_PASS
 
 RUN		apk update && apk add --no-cache  mariadb  mariadb-client
+		# --no-cache means no caching
 
-# no caching
-# each RUN directive creates a `layer` in docker image
-	# -> so, don't do unnecessary RUNs
-
-
-# First layer - normalize the config
+		# First layer - normalize the config
 RUN		mkdir /var/run/mysqld; \
 		chmod 777 /var/run/mysqld; \
 		{ \
@@ -20,21 +16,20 @@ RUN		mkdir /var/run/mysqld; \
 			echo 'skip-name-resolve'; \
 			echo 'bind-address=0.0.0.0'; \
 		} \
-		| tee /etc/my.cnf.d/docker.cnf; \
+		| \
+		tee /etc/my.cnf.d/docker.cnf; \
 		sed -i	"s|skip-networking|skip-networking=0|g" \
 			/etc/my.cnf.d/mariadb-server.cnf
+		# tee : send output of echo to a file
+		# (??) why use `skip-networking=0`
 
-# tee : send output of echo to a file
-# why use `skip-networking=0` ??
-
-
-# Second layer : create DB and set its path based on Layer 1
+		# Second layer : create DB, set path based on Layer 1
 RUN		mysql_install_db	\
 		--user=mysql		\
 		--datadir=/var/lib/mysql
 
-# open mariaDB working port
 EXPOSE		3306
+		# open mariaDB working port
 
 
 # under previously created `mysql` we start up the DB
