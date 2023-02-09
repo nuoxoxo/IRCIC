@@ -64,3 +64,19 @@ services:
     restart: always
     volumes:
       - wp-volume:/var/www/
+
+networks:
+  inception:
+    driver: bridge
+
+volumes:
+  wp-volume:
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/qxia/data/wordpress
+  db-volume:
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/qxia/data/mariadb
