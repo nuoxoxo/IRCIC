@@ -12,7 +12,7 @@ services:
       - "443:443"
     volumes:
       - ./requirements/nginx/conf/:/etc/nginx/http.d/
-      - ./requirements/nginx/tools:/etc/nginx/ssl/
+      - ./requirements/tools:/etc/nginx/ssl/
       - ./../../demo_docker-compose/public/html:/var/www/
     # restart: unless-stopped # subj dictates restart in case of crash
     restart: always
