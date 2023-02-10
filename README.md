@@ -1,6 +1,6 @@
-__.env__  
+__needed at EVAL__  
 ```sh
-# needed at EVAL
+# .env
 
 DOMAIN_NAME=nuxu.42.fr
 
