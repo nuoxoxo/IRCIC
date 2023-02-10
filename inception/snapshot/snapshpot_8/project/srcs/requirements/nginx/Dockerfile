@@ -9,7 +9,7 @@ RUN		mkdir -p /etc/nginx/ssl && \
 		-sha256 \
 		-days 365 \
 		-nodes \
-		-subj "/C=FR/ST=Paris/L=Paris/O=Ecole42/CN=localhost" \
+		-subj "/C=FR/ST=Paris/L=Paris/O=School42/CN=localhost" \
 		-keyout /etc/nginx/ssl/nuxu.42.fr.key \
 		-out /etc/nginx/ssl/nuxu.42.fr.crt
 
