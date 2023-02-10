@@ -1,0 +1,33 @@
+turn in:
+	- Makefile
+	- stack
+		- using: ft:vector
+	- vector
+		- except: vector<bool>
+	- map
+		- using: pair (written by us)
+	- set 
+		~ {bonus, red-black tree}
+
+to implement:
+	std::iterator_traits
+	std::reverse_iterator
+	std::enable_if
+		- feature since c++11, but here we do it using c++98 only
+	std::is_integral
+	std::pair
+	std::make_pair
+	std::equal
+		Or
+	std::lexicographical_compare
+
+perks:
+	Implement more methods that STL
+	Must use original naming for everything
+	Must use std::allocator
+	`friend` is allowed for non-member overloading
+	`friend` is allowed for std::map::value_compare
+
+tests:
+	Makefile should produce 2 bins, one for ft:: the other for std::
+	Test performance (may use a tester)
