@@ -18,9 +18,9 @@ services:
       - "443:443"
     volumes:
       - ./requirements/nginx/conf/:/etc/nginx/http.d/
+      - wp-volume:/var/www
       # - ./requirements/nginx/tools:/etc/nginx/ssl/
       # - /home/${USER}/simple_docker_nginx_html/public/html:/var/www/
-      - wp-volume:/var/www
     restart: always
     # restart: unless-stopped # not allowed in subj
 
@@ -67,10 +67,6 @@ services:
     volumes:
       - wp-volume:/var/www/
 
-networks:
-  inception:
-    driver: bridge
-
 volumes:
   wp-volume:
     driver_opts:
@@ -82,3 +78,7 @@ volumes:
       o: bind
       type: none
       device: /home/${USER}/data/mariadb
+
+networks:
+  inception:
+    driver: bridge
