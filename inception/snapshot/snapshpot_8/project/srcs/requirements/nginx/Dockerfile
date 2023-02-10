@@ -13,6 +13,9 @@ RUN		mkdir -p /etc/nginx/ssl && \
 		-keyout /etc/nginx/ssl/nuxu.42.fr.key \
 		-out /etc/nginx/ssl/nuxu.42.fr.crt
 
+RUN		apk add openrc
+RUN		rc-update add nginx default
+
 EXPOSE	443
 
 CMD	["nginx", "-g", "daemon off;"]
