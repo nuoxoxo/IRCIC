@@ -17,7 +17,7 @@ services:
     volumes:
       - ./requirements/nginx/conf/:/etc/nginx/http.d/
       # - ./requirements/nginx/tools:/etc/nginx/ssl/
-      - ./index.html:/var/www/
+      # - ./index.html:/var/www/
     # restart: unless-stopped # not allowed in subj
     restart: always
 
