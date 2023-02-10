@@ -1,7 +1,7 @@
 # Subject
 - choose btw Alpine or Debian
 - write 3 Dockerfile, one per service
-  - call these Dockerfiles one by one in Makefile via _docker-compose.yml_ 
+  - call these Dockerfiles one by one via docker-compose.yml called in Makefile
 - set up the following 3 Docker containers:
   - nginx (choose btw TLSv1.2 or TLSv1.3)
   - wordpress + php-fpm (installation + configuration)
