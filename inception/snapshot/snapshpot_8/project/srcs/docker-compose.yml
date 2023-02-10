@@ -25,6 +25,8 @@ services:
     build:
       context: .
       dockerfile: requirements/mariadb/Dockerfile
+    #env_file:
+      #- .env
       args:
         DB_ROOT: ${DB_ROOT}
         DB_USER: ${DB_USER}
@@ -35,8 +37,6 @@ services:
         # But for ENV vars which can be found in the env section
         # they are already inside the service
     container_name: mariadb
-    env_file:
-      - .env
     ports:
       - "3306:3306"
     restart: always
