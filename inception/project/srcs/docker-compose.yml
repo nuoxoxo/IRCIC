@@ -11,14 +11,14 @@ services:
     env_file:
       - .env
     depends_on:
-      - wordpress # wait for wp to finish then build
+      - wordpress   # wait for wp to finish then build
     networks:
       - inception
     ports:
       - "443:443"
     volumes:
-      # - ./requirements/nginx/tools:/etc/nginx/ssl/
       - ./requirements/nginx/conf/:/etc/nginx/http.d/
+      # - ./requirements/nginx/tools:/etc/nginx/ssl/
       # - /home/${USER}/simple_docker_nginx_html/public/html:/var/www/
       - wp-volume:/var/www
     restart: always
@@ -59,6 +59,8 @@ services:
         DB_USER: ${DB_USER}
         DB_PASS: ${DB_PASS}
     container_name: wordpress
+    env_file:
+      - .env
     depends_on:
       - mariadb
     restart: always
@@ -74,9 +76,9 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /home/qxia/data/wordpress
+      device: /home/${USER}/data/wordpress
   db-volume:
     driver_opts:
       o: bind
       type: none
-      device: /home/qxia/data/mariadb
+      device: /home/${USER}/data/mariadb
