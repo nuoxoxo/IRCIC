@@ -1,3 +1,11 @@
+- Learn "Things to learn" session below
+- red black tree
+	- principle
+	- implementation
+
+
+
+
 # Stack
 ## <cstddef> : what's inside
 ## what is 2nd param: `typename Container = vector<T>`
@@ -28,6 +36,21 @@ todolist
   - fn: templ<typename X,typename Y> pair<X,Y> make_pair(X x, Y y)
   -> pair<X, Y>(x, y)
 
+
+
+
+# Things to learn
+```
+std::iterator_traits
+std::reverse_iterator
+std::enable_if	{c++11}
+std::is_integral
+std::pair
+std::make_pair
+std::equal
+  or/and
+std::lexicographical_compare
+```
 
 
 
