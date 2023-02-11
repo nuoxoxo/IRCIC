@@ -1,5 +1,7 @@
 FROM    alpine:3.16
 
+EXPOSE  9000
+
 ARG     VER=8 \
         DB_NAME \
         DB_USER \
