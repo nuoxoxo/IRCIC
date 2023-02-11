@@ -5,7 +5,7 @@ __test list__
 - <kbd>RUN</kbd> docker exec -it wordpress php -m
 - <kbd>TRY</kbd> `https://127.0.0.1`
 - <kbd>RUN</kbd> docker exec -it mariadb mysql -u root
-  - <kbd>RUN IN SQL</kbd> show databases;
+  - <kbd>SQL</kbd> show databases;
 
 __needed at EVAL__  
 ```sh
