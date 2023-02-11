@@ -2,6 +2,10 @@ FROM    alpine:3.16
 
 EXPOSE  9000
 
+RUN     wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN     chmod +x wp-cli.phar
+RUN     mv wp-cli.phar /usr/local/bin/wp
+
 ARG     VER=8 \
         DB_NAME \
         DB_USER \
@@ -41,7 +45,7 @@ RUN		wget https://wordpress.org/latest.zip && \
 		cp -rf wordpress/* . && \
 		rm -rf wordpress latest.zip
 
-COPY		./requirements/wordpress/conf/config_wordpress.sh . 
+COPY	./requirements/wordpress/conf/config_wordpress.sh . 
 
 RUN		sh config_wordpress.sh && \
 		rm config_wordpress.sh && \
