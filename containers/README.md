@@ -24,7 +24,9 @@ todolist
 - occf
   - beware of copy constr
 - operators == != < <= > >=
-
+- make_pair
+  - fn: templ<typename X,typename Y> pair<X,Y> make_pair(X x, Y y)
+  -> pair<X, Y>(x, y)
 
 
 
