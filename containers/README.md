@@ -18,12 +18,20 @@ stack(container_type const& c = container_type()) : c(c)
 
 
 
+# Pair (unrel. to stack/vector yet ez to do)
+todolist
+- class pair only has public mems
+- occf
+  - beware of copy constr
+- operators == != < <= > >=
+
+
+
+
+
 # Vector
 ## what is 2nd param: `typename Allocator = std::allocator<T>`
 - template<typename T, typename Allocator = std::allocator<T>>
-
-
-
 
 
 
