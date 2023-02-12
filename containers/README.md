@@ -61,7 +61,7 @@ what is 2nd param: `typename Allocator = std::allocator<T>`
 
 
 
-# Vector . vector_iterator - (Virtual Class)
+# vector_iterator - (Virtual Class)
 \<iterator> : what's inside
 
 std::random_access_iterator_tag
@@ -91,7 +91,7 @@ virtual ~vector_iterator(void) {
 
 
 
-# Vector . vector_const_iterator - (Virtual Class)
+# vector_const_iterator - (Virtual Class)
 explicit
 ```
 public:
