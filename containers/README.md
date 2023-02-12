@@ -21,7 +21,7 @@ std::lexicographical_compare
 \<cstddef> : what's inside
 
 what is 2nd param: `typename Container = vector<T>`
-- template<typename T, typename Container = vecotr<T>>
+- `template<typename T, typename Container = vector<T>>`
 
 explicit
 ```
