@@ -1,7 +1,18 @@
-- Learn "Things to learn" session below
-- red black tree
-	- principle
-	- implementation
+# Things to learn
+```
+std::iterator_traits
+std::reverse_iterator
+std::enable_if	{c++11}
+std::is_integral
+std::pair
+std::make_pair
+std::equal
+std::lexicographical_compare
+```
+
+# Red black tree
+- principle
+- implementation
 
 
 
@@ -21,7 +32,7 @@ stack(container_type const& c = container_type()) : c(c)
 ```
 
 friend in Non-member fn overloads
-- friend bool operator == (stack const & l, stack const & r)
+- `friend bool operator == (stack const & l, stack const & r)`
 
 container_type
 - protected: container_type c;
@@ -35,24 +46,12 @@ todolist
   - beware of copy constr
 - operators == != < <= > >=
 - make_pair
-  - fn: templ<typename X,typename Y> pair<X,Y> make_pair(X x, Y y)
-  -> pair<X, Y>(x, y)
+  - fn: 
+`templ<typename X,typename Y> pair<X,Y> make_pair(X x, Y y) -> pair<X, Y>(x, y)`
 
 
 
 
-# Things to learn
-```
-std::iterator_traits
-std::reverse_iterator
-std::enable_if	{c++11}
-std::is_integral
-std::pair
-std::make_pair
-std::equal
-  or/and
-std::lexicographical_compare
-```
 
 
 
