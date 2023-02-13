@@ -1,0 +1,20 @@
+for snapshot 9::fixed
+```
+DOMAIN_NAME=nuxu.42.fr
+
+DB_HOST=mariadb
+DB_NAME=wordpress
+DB_ROOT_PASSWORD=4242
+
+DB_ADMIN=mariadb
+DB_ADMIN_PASSWORD=4242
+
+WP_ADMIN=nuxu
+WP_ADMIN_MAIL=nuxu@42.fr
+WP_ADMIN_PASSWORD=4242
+
+WP_USER=user
+WP_USER_PASSWORD=4242
+WP_MAIL=user@42.fr
+
+```
