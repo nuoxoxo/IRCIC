@@ -71,7 +71,6 @@ reload/**/includes/
 reload/**/srcs/
 
 game*/*.md
-sandbox
 *venv*
 *trip*
 
