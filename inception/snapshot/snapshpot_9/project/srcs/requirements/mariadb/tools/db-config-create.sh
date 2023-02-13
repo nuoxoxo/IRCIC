@@ -1,36 +1,32 @@
-#!bin/sh
+#!/bin/bash
 
-if [ ! -d "/var/lib/mysql/mysql" ]; then
+if [ -d "/var/lib/mysql/$DB_NAME" ]; then
+	echo "MariaDB config done. "
+else
+	touch	file
+	chmod	755 file
+	mysql_install_db 2> /dev/null
 
-        chown -R mysql:mysql /var/lib/mysql
+# -> Create db
+# -> Grand privileges to root across all databases on the server from localhost
+# -> Create a user2 and give privileges on DB_NAME from any host (remote, local...)
+# -> Flush privileges to update modif
 
-        # init database
-        mysql_install_db --basedir=/usr --datadir=/var/lib/mysql --user=mysql --rpm
-
-        tfile=`mktemp`
-        if [ ! -f "$tfile" ]; then
-                return 1
-        fi
-fi
-
-if [ ! -d "/var/lib/mysql/wordpress" ]; then
-
-        cat << EOF > /tmp/db_autogen_command.sql
-USE mysql;
+	cat << EOF > file
+CREATE DATABASE $DB_NAME;
 FLUSH PRIVILEGES;
-DELETE FROM     mysql.user WHERE User='';
-DROP DATABASE test;
-DELETE FROM mysql.db WHERE Db='test';
-DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
-ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT}';
-CREATE DATABASE ${DB_NAME} CHARACTER SET utf8 COLLATE utf8_general_ci;
-CREATE USER '${DB_USER}'@'%' IDENTIFIED by '${DB_PASS}';
-GRANT ALL PRIVILEGES ON wordpress.* TO '${DB_USER}'@'%';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '$DB_ROOT_PASSWORD' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+CREATE USER '$DB_ADMIN'@'%' IDENTIFIED BY '$DB_ADMIN_PASSWORD';
+GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_ADMIN'@'%';
+DROP DATABASE IF EXISTS test;
 FLUSH PRIVILEGES;
 EOF
 
-        # run init.sql
-        /usr/bin/mysqld --user=mysql --bootstrap < /tmp/db_autogen_command.sql
-        rm -f /tmp/db_autogen_command.sql
+# `--bootstrap` -> execute sql script before any privileges exist
+
+	mysqld --bootstrap < file 2> /dev/null
+	rm file
 fi
 
+mysqld 2> /dev/null
