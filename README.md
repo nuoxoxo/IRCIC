@@ -18,7 +18,7 @@ DB_ROOT=rootpass
 DB_USER=wpuser
 DB_PASS=wppass
 ```
-__needed for snapshot 7__  
+__deprecated, snapshot 7__  
 ```sh
 # .env
 
