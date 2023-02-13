@@ -10,12 +10,12 @@ RUN		apt-get update -y && apt-get -y install \
 		mkdir -p /run/php /var/www/html
 
 COPY		./conf/www.conf /etc/php/7.3/fpm/pool.d
-COPY		./wp_script.sh /etc/
+COPY		./make_dir.sh /etc/
 
-RUN		chmod +x /etc/wp_script.sh
+RUN		chmod +x /etc/make_dir.sh
 RUN		chmod -R 777 /var/www/html
 WORKDIR		/var/www/html
 
 EXPOSE		9000
 
-CMD		["sh", "/etc/wp_script.sh"]
+CMD		["sh", "/etc/make_dir.sh"]
