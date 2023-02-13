@@ -46,24 +46,23 @@ DB_PASS=wppass
 
 __makefile sampler__
 ```
-all :
-		mkdir -p /home/${USER}/data/wordpress /home/${USER}/data/mariadb
-		docker compose -f srcs/docker-compose.yml up --build -d
+all	:
+	@ mkdir -p /home/${USER}/data/wordpress /home/${USER}/data/mariadb
+	@ docker compose -f srcs/docker-compose.yml up --build -d
 
-down :
-		docker compose -f srcs/docker-compose.yml down
+down	:
+	@ docker compose -f srcs/docker-compose.yml down
 
-clean :	down
-		docker system prune -af --volumes
-		docker volume rm $$(docker volume ls -q)
+clean	: down
+	@ docker system prune -af --volumes
+	@ docker volume rm $$(docker volume ls -q)
 
-fclean : clean
-		sudo rm -rf /home/${USER}/data
+fclean	: clean
+	@ sudo rm -rf /home/${USER}/data
 
-f :		fclean
+f	: fclean
 
-re : fclean all
+re	: fclean all
 
-.PHONY:	all down clean fclean re
-
+.PHONY	: all down clean fclean re
 ```
