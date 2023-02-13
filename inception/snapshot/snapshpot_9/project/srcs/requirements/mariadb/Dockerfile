@@ -1,10 +1,12 @@
-FROM		alpine:3.16
+# FROM		alpine:3.16
+FROM		debian:buster
+
+RUN		apk update && apk add --no-cache  mariadb  mariadb-client
 
 ARG		DB_NAME \
 		DB_USER \
 		DB_PASS
 
-RUN		apk update && apk add --no-cache  mariadb  mariadb-client
 
 # no caching
 # each RUN directive creates a `layer` in docker image
