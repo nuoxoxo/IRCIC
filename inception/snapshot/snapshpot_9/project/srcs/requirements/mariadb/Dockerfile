@@ -1,17 +1,19 @@
 # FROM		alpine:3.16
 FROM		debian:buster
 
-RUN		apk update && apk add --no-cache  mariadb  mariadb-client
+RUN		apk update && \
+		apk add --no-cache  mariadb  mariadb-client mariadb-server
 
-ARG		DB_NAME \
-		DB_USER \
-		DB_PASS
+# RUN		apt-get update && \
+#		apt-get install -y mariadb-server mariadb-client && \
+#		apt-get clean && rm -rf /var/lib/apt/lists/*
 
+#ARG		DB_NAME \
+#		DB_USER \
+#		DB_PASS
 
-# no caching
-# each RUN directive creates a `layer` in docker image
-	# -> so, don't do unnecessary RUNs
-
+COPY		./conf/mysql.cnf /etc/mysql/mysql.cnf
+COPY		./tools/db-config-create.sh /etc/
 
 # First layer - normalize the config
 RUN		mkdir /var/run/mysqld; \
