@@ -7,7 +7,7 @@ __test list__
 - <kbd>RUN</kbd> docker exec -it mariadb mysql -u root
   - <kbd>SQL</kbd> show databases;
 
-for snapshot 9::fixed
+__for snapshot 9::fixed__
 ```
 DOMAIN_NAME=nuxu.42.fr
 
@@ -44,7 +44,7 @@ DB_USER=wpuser
 DB_PASS=wppass
 ```
 
-makefile sampler
+__makefile sampler__
 ```
 all :
 		mkdir -p /home/${USER}/data/wordpress /home/${USER}/data/mariadb
