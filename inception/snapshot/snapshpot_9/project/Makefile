@@ -11,11 +11,11 @@ build	: all
 
 down	:
 	@ echo " ➜ Stopping ${name} ... "
-	@ docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env down
+	@ docker-compose -f ./srcs/docker-compose.yml down
 
 re	: down
 	@ echo " ➜ Re-launch ${name} ... "
-	@ docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d --build
+	@ docker-compose -f ./srcs/docker-compose.yml up -d --build
 
 clean	: down
 	@ echo " ➜ Cleaning up ${name} ... "
