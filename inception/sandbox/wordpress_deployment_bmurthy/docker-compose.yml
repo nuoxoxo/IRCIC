@@ -1,0 +1,48 @@
+version: '3'
+  services:
+    mysql:
+      image: mariadb
+      volumes:
+        - /data/mysql:/var/lib/mysql
+        #  mounts the host machine path /data/mysql 
+        #  in the container path /var/lib/mysql
+      environment:
+        MYSQL_DATABASE: db_name
+        MYSQL_ROOT_PASSWORD: mysql_root_pass
+        MYSQL_USER: user_name
+        MYSQL_PASSWORD: user_pass
+      restart: always
+
+# todo outside this .yml
+# $ sudo userdel mysql
+# $ sudo useradd -u 999 mysql
+# $ sudo mkdir -p /data/mysql
+# $ sudo chown -R mysql:mysql /data/mysql
+
+    wordpress:
+      image: wordpress:php7.3-fpm-alpine
+      volumes:
+        - /data/html:/var/www/html
+      depends_on:
+        - mysql
+      environment:
+        WORDPRESS_DB_HOST: mysql
+        MYSQL_ROOT_PASSWORD: mysql_root_pass
+        WORDPRESS_DB_NAME: db_name
+        WORDPRESS_DB_USER: user_name
+        WORDPRESS_DB_PASSWORD: user_pass
+        WORDPRESS_TABLE_PREFIX: wp_
+      links:
+        - mysql
+      restart: always
+
+# $ sudo userdel www-data
+# $ sudo useradd -u 82 www-data
+# $ sudo mkdir -p /data/html
+# $ sudo chown -R www-data:www-data /data/html
+
+
+
+
+
+
