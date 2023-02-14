@@ -51,6 +51,6 @@ version: '3'
     links:
       - wordpress
 
-
-
-
+  ### Update to latest version of ngx or wp docker images
+# $ sudo docker-compose down --rmi all
+# $ sudo docker-compose up -d
