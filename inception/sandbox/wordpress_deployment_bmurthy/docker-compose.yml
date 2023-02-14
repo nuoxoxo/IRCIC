@@ -41,7 +41,15 @@ version: '3'
 # $ sudo mkdir -p /data/html
 # $ sudo chown -R www-data:www-data /data/html
 
-
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - nginx:/etc/nginx/conf.d
+      - /data/html:/var/www/html
+    ports:
+      - 8080:80
+    links:
+      - wordpress
 
 
 
