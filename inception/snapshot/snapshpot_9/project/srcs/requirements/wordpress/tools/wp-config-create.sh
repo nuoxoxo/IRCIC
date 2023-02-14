@@ -22,7 +22,7 @@ if [ ! -f wp-config.php ]; then
 		--allow-root
 
 	wp core install \
-		--url="$DOMAIN_NAME" --title="nuxu inception" \
+		--url="$DOMAIN_NAME" --title="inception by nuoxoxo" \
 		--admin_user="$WP_ADMIN" \
 		--admin_password="$WP_ADMIN_PASSWORD"\
 		--admin_email="$WP_ADMIN_MAIL" --skip-email \

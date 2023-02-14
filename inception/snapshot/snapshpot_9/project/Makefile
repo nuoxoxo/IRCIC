@@ -4,7 +4,6 @@ all	:
 	@ echo " ➜ Build and launch ${name} ... "
 	@ mkdir -p /home/${USER}/data/mariadb
 	@ mkdir -p /home/${USER}/data/wordpress
-	@ sh srcs/requirements/wordpress/tools/wp-config-create.sh
 	@ docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d
 
 build	: all
@@ -19,7 +18,7 @@ re	: down
 
 clean	: down
 	@ echo " ➜ Cleaning up ${name} ... "
-	@ docker system prune -a
+	@ docker system prune -af --volumes
 	@ sudo rm -rf ~/data/wordpress/*
 	@ sudo rm -rf ~/data/mariadb/*
  

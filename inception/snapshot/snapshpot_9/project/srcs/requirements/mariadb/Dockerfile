@@ -2,7 +2,7 @@
 FROM		debian:buster
 
 RUN		apk update && \
-		apk add --no-cache mariadb mariadb-client mariadb-server
+		apk install --no-cache mariadb mariadb-client mariadb-server
 
 # RUN		apt-get update && \
 #		apt-get install -y mariadb-server mariadb-client && \
