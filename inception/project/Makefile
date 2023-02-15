@@ -1,42 +1,44 @@
 project		:= inception
-compose_fil	:= ./srcs/docker-compose.yml
+compose_file	:= ./srcs/docker-compose.yml
+env_file	:= ./srcs/.env
 
 all	:
 	@ echo " ➜ Build and launch ${project} ... "
 	@ mkdir -p /home/${USER}/data/wordpress /home/${USER}/data/mariadb
-	@ docker-compose -f ./srcs/docker-compose.yml up --env-file ./srcs/.env --build -d
+	@ docker-compose -f $(compose_file) up --env-file $(env_file) --build -d
 
 down	:
 	@ echo " ➜ Stopping ${project} ... "
-	@ docker-compose -f ./srcs/docker-compose.yml down
+	@ docker-compose -f $(compose_file) down
 
 re	: fclean all
 
 ls	:
-	@ echo "\timages ...\n"
-	docker image ls -a
-	@ echo "    containers ...\n"
-	docker container ls
-	@ echo "    volumes ...\n"
-	docker volume ls -q
-	@ echo "    network...\n"
-	docker network ls
+	@ echo "\t< images >\n"
+	@ docker image ls -a
+	@ echo "\t< containers >\n"
+	@ docker container ls
+	@ echo "\t< volumes >\n"
+	@ docker volume ls -q
+	@ echo "\t< network >\n"
+	@ docker network ls
 
 clean	: down
 	@ echo " ➜ Cleaning up ... "
-	@docker-compose -f $(COMPOSE_FILE) down
-	@-docker stop `docker ps -qa`
-	@-docker rm `docker ps -qa`
-	@echo "$(RED)Deleting all images ... $(RESET)"
-	@-docker rmi -f `docker images -qa`
-	@echo "$(RED)Deleting all volumes ... $(RESET)"
-	@-docker volume rm `docker volume ls -q`
-	@echo "$(RED)Deleting all network ... $(RESET)"
-	@-docker network rm `docker network ls -q`
-	# @echo "$(RED)Deleting all data ... $(RESET)"
-	# @sudo rm -rf /home/nuxu/data/wordpress
-	# @sudo rm -rf /home/nuxu/data/mysql
-	# @echo "$(RED)Deleting all $(RESET)"
-f	: fclean
+	@-docker-compose -f $(compose_file) down
+	@ docker stop `docker ps -qa`
+	@ docker rm `docker ps -qa`
+	@ echo " ➜ Delete all images ... "
+	@ docker rmi -f `docker images -qa`
+	@ echo " ➜ Delete all volumes ... "
+	@ docker volume rm `docker volume ls -q`
+	@ echo " ➜ Delete all network ... "
+	@ docker network rm `docker network ls -q`
+	@ echo " ➜ Delete all data ... "
+	@ sudo rm -rf /home/$(USER)/data/wordpress
+	@ sudo rm -rf /home/$(USER)/data/mysql
+	@ echo " ➜ Cleanup completed. "
 
-.PHONY	: all re ls down clean fclean
+f	: clean
+
+.PHONY	: all re ls down clean 
