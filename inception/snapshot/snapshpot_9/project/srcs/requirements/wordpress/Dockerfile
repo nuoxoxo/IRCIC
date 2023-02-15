@@ -10,14 +10,14 @@ RUN	apt-get update -y && \
 	mkdir -p /run/php /var/www/html
 
 COPY	./conf/www.conf /etc/php/8.0/fpm/pool.d
-COPY	./tools/setup_wp.sh /etc/
+COPY	./tools/wp-setup.sh /etc/
 
-RUN	chmod +x /etc/setup_wp.sh
+RUN	chmod +x /etc/wp-setup.sh
 RUN	chmod -R 777 /var/www/html
 
 WORKDIR		/var/www/html
 
 EXPOSE 9000
 
-CMD	["sh", "/etc/setup_wp.sh"]
+CMD	["sh", "/etc/wp-setup.sh"]
 
