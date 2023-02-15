@@ -1,4 +1,4 @@
-:pencil: - What is docker-compose
+:phone: - What is docker-compose
 
 - docker-compose is a cli tool
 - Compose is written in Python
