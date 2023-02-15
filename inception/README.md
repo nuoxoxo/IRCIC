@@ -1,6 +1,3 @@
-![](https://i.imgur.com/B26PCcR.png)
-
-
 ## $\color {CarnationPink} \text { Cleanup } $
 
 ```sh
@@ -70,7 +67,7 @@ WP_MAIL=nuxu@42.fr
 
 
 
-
+![](https://i.imgur.com/B26PCcR.png)
 
 
 
