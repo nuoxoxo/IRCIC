@@ -18,28 +18,7 @@ WP_USER_PASSWORD=4242
 WP_MAIL=nuxu@42.fr
 ```
 
-## $\color {Cerulean} \text { Latest } $
-- "Welcome to nginx" homepage problem 
-  - [stof](https://stackoverflow.com/questions/70454890/running-wordpress-on-docker-compose-nginx-mysql-and-php)
-- About - version: '[3](https://docs.docker.com/compose/compose-file/compose-file-v3/)'
-
-
-
-## $\color {Goldenrod} \text { Cleanup } $
-
-```sh
-# oneline
-docker stop $(docker ps -qa); docker rm $(docker ps -qa); docker rmi $(docker images -qa); docker volume rm $(docker volume ls -q); docker network rm $(docker network ls -q) 2>/dev/null 
-
-# spread
-docker stop $(docker ps -qa)
-docker rm $(docker ps -qa)
-docker rmi $(docker images -qa)
-docker volume rm $(docker volume ls -q)
-docker network rm $(docker network ls -q) 2>/dev/null 
-```
-
-## $\color {CarnationPink} \text { Progress } $
+## $\color {Yellow} \text { Progress } $
 - mariaDB <kbd> done draft </kbd> 
   - snapshot 8 _not created_ - __test:__ <kbd> needed </kbd>
   - _logs_
@@ -52,6 +31,28 @@ docker network rm $(docker network ls -q) 2>/dev/null
     - \+. ngx Dockerfile (7)
     - \+. Makefile (6)
     - \+. certificate & local domain (5)
+
+
+## $\color {Goldenrod} \text { Latest } $
+- "Welcome to nginx" homepage problem 
+  - [stof](https://stackoverflow.com/questions/70454890/running-wordpress-on-docker-compose-nginx-mysql-and-php)
+- About - version: '[3](https://docs.docker.com/compose/compose-file/compose-file-v3/)'
+
+
+
+## $\color {CarnationPink} \text { Cleanup } $
+
+```sh
+# oneline
+docker stop $(docker ps -qa); docker rm $(docker ps -qa); docker rmi $(docker images -qa); docker volume rm $(docker volume ls -q); docker network rm $(docker network ls -q) 2>/dev/null 
+
+# spread
+docker stop $(docker ps -qa)
+docker rm $(docker ps -qa)
+docker rmi $(docker images -qa)
+docker volume rm $(docker volume ls -q)
+docker network rm $(docker network ls -q) 2>/dev/null 
+```
 
 
 
