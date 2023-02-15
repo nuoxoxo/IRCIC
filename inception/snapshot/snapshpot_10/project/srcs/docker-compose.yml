@@ -13,7 +13,7 @@ services:
     #ports: ### ??
     #  - "3306:3306" ### ??
     volumes:
-      - db_volume:/var/lib/mysql
+      - volume_mariadb:/var/lib/mysql
     restart: always
 
   wordpress:
@@ -27,7 +27,7 @@ services:
     networks:
       - inception
     volumes:
-      - wp_volume:/var/www/html
+      - volume_wordpress:/var/www/html
     restart: always
 
   nginx:
@@ -35,28 +35,26 @@ services:
     container_name: nginx
     build: ./requirements/nginx
     depends_on:
-      - wordpress   # wait for wp to finish then build
+      - wordpress
     networks:
       - inception
     ports:
       - "443:443"
     volumes:
       - ./requirements/nginx/conf/:/etc/nginx/http.d/
-      - wp-volume:/var/www
-      # - ./requirements/nginx/tools:/etc/nginx/ssl/
-      # - /home/${USER}/simple_docker_nginx_html/public/html:/var/www/
+      - volume_wordpress:/var/www/html
     restart: always
     # restart: unless-stopped # not allowed in subj
 
-
-
 volumes:
-  wp-volume:
+  volume_wordpress:
+    driver: local
     driver_opts:
-      o: bind
+      o: bind # bind mount, for path in host machine & outside docker volume, 
       type: none
       device: /home/${USER}/data/wordpress
-  db-volume:
+  volume_mariadb:
+    driver: local
     driver_opts:
       o: bind
       type: none
