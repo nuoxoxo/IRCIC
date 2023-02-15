@@ -19,16 +19,16 @@ services:
   wordpress:
     image: wordpress:v1
     container_name: wordpress
-    build: ./requirements/wordpress/Dockerfile
+    build: ./requirements/wordpress
+    depends_on:
+      - mariadb
     env_file:
       - .env
     networks:
       - inception
-    depends_on:
-      - mariadb
-    restart: always
     volumes:
-      - wp-volume:/var/www/
+      - wp_volume:/var/www/html
+    restart: always
 
   nginx:
     image: nginx:v1
