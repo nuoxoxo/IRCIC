@@ -1,9 +1,9 @@
-name	:= inception
+project	:= inception
 
 all	:
-	@ echo " ➜ Build and launch ${name} ... "
-	@ sh srcs/requirements/wordpress/tools/make_dir.sh
-	@ docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d
+	@ echo " ➜ Build and launch ${project} ... "
+	@ mkdir -p /home/${USER}/data/wordpress /home/${USER}/data/mariadb
+	@ docker-compose -f ./srcs/docker-compose.yml --build -d
 
 build	: all
 
