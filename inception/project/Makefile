@@ -1,44 +1,44 @@
-project	:= inception
+project		:= inception
+compose_file	:= ./srcs/docker-compose.yml
+env_file	:= ./srcs/.env
 
 all	:
 	@ echo " ➜ Build and launch ${project} ... "
 	@ mkdir -p /home/${USER}/data/wordpress /home/${USER}/data/mariadb
-	@ docker-compose -f ./srcs/docker-compose.yml up --env-file ./srcs/.env --build -d
+	@ docker-compose -f $(compose_file) up --env-file $(env_file) --build -d
 
 down	:
 	@ echo " ➜ Stopping ${project} ... "
-	@ docker-compose -f ./srcs/docker-compose.yml down
+	@ docker-compose -f $(compose_file) down
 
 re	: fclean all
 
 ls	:
-	@ echo "\timages ...\n"
-	docker image ls -a
-	@ echo "    containers ...\n"
-	docker container ls
-	@ echo "    volumes ...\n"
-	docker volume ls -q
-	@ echo "    network...\n"
-	docker network ls
+	@ echo "\t< images >\n"
+	@ docker image ls -a
+	@ echo "\t< containers >\n"
+	@ docker container ls
+	@ echo "\t< volumes >\n"
+	@ docker volume ls -q
+	@ echo "\t< network >\n"
+	@ docker network ls
 
 clean	: down
 	@ echo " ➜ Cleaning up ... "
-	@ docker system prune -af --volumes
-	@ docker volume rm $$(docker volume ls -q)
-	@#@ sudo rm -rf ~/data/wordpress/*
-	@#@ sudo rm -rf ~/data/mariadb/*
- 
-fclean	: clean
-	@ echo " ➜ Cleaning up ..."
-	@#@ docker stop `docker ps -qa`
-	@#@ docker system prune --all --force --volumes
-	@#@ docker network prune --force
-	@#@ docker volume prune --force
-	@#@ sudo rm -rf ~/data/wordpress/*
-	@#@ sudo rm -rf ~/data/mariadb/*
-	@ sudo rm -rf /home/${USER}
-	@ docker ps
+	@-docker-compose -f $(compose_file) down
+	@ docker stop `docker ps -qa`
+	@ docker rm `docker ps -qa`
+	@ echo " ➜ Delete all images ... "
+	@ docker rmi -f `docker images -qa`
+	@ echo " ➜ Delete all volumes ... "
+	@ docker volume rm `docker volume ls -q`
+	@ echo " ➜ Delete all network ... "
+	@ docker network rm `docker network ls -q`
+	@ echo " ➜ Delete all data ... "
+	@ sudo rm -rf /home/$(USER)/data/wordpress
+	@ sudo rm -rf /home/$(USER)/data/mysql
+	@ echo " ➜ Cleanup completed. "
 
-f	: fclean
+f	: clean
 
-.PHONY	: all re ls down clean fclean
+.PHONY	: all re ls down clean 
