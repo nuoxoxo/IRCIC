@@ -26,6 +26,9 @@ else
 	wp user create $WP_USER $WP_MAIL \
 		--user_pass=$WP_USER_PASSWORD \
 		--role=author --allow-root
+
+	wp theme install twentysixteen \
+		--activate
 	
 fi
 
