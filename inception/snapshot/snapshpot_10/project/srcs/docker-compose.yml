@@ -4,12 +4,8 @@ services:
 
   nginx:
     image: nginx:v1
-    build:
-      context: .
-      dockerfile: requirements/nginx/Dockerfile
     container_name: nginx
-    env_file:
-      - .env
+    build: ./requirements/nginx
     depends_on:
       - wordpress   # wait for wp to finish then build
     networks:
