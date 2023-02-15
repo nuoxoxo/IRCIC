@@ -1,3 +1,23 @@
+## $\color {CarnationPink} \text { Cleanup } $
+
+```sh
+# oneline
+docker stop $(docker ps -qa); docker rm $(docker ps -qa); docker rmi $(docker images -qa); docker volume rm $(docker volume ls -q); docker network rm $(docker network ls -q) 2>/dev/null 
+
+# spread
+docker stop $(docker ps -qa)
+docker rm $(docker ps -qa)
+docker rmi $(docker images -qa)
+docker volume rm $(docker volume ls -q)
+docker network rm $(docker network ls -q) 2>/dev/null 
+```
+
+
+
+![](https://i.imgur.com/LeybD6x.png)
+
+
+
 ## $\color {Apricot} \text { .env } $
 ```coffee
 DOMAIN_NAME=nuxu.42.fr
@@ -18,6 +38,12 @@ WP_USER_PASSWORD=4242
 WP_MAIL=nuxu@42.fr
 ```
 
+
+
+![](https://i.imgur.com/EFKvFLx.png)
+
+
+
 ## $\color {Yellow} \text { Progress } $
 - mariaDB <kbd> done draft </kbd> 
   - snapshot 8 _not created_ - __test:__ <kbd> needed </kbd>
@@ -33,26 +59,15 @@ WP_MAIL=nuxu@42.fr
     - \+. certificate & local domain (5)
 
 
+
+
 ## $\color {Goldenrod} \text { Latest } $
-- "Welcome to nginx" homepage problem 
-  - [stof](https://stackoverflow.com/questions/70454890/running-wordpress-on-docker-compose-nginx-mysql-and-php)
+- "Welcome to nginx" homepage problem: [stoflow](https://stackoverflow.com/questions/70454890/running-wordpress-on-docker-compose-nginx-mysql-and-php)
 - About - version: '[3](https://docs.docker.com/compose/compose-file/compose-file-v3/)'
 
 
 
-## $\color {CarnationPink} \text { Cleanup } $
 
-```sh
-# oneline
-docker stop $(docker ps -qa); docker rm $(docker ps -qa); docker rmi $(docker images -qa); docker volume rm $(docker volume ls -q); docker network rm $(docker network ls -q) 2>/dev/null 
-
-# spread
-docker stop $(docker ps -qa)
-docker rm $(docker ps -qa)
-docker rmi $(docker images -qa)
-docker volume rm $(docker volume ls -q)
-docker network rm $(docker network ls -q) 2>/dev/null 
-```
 
 
 
