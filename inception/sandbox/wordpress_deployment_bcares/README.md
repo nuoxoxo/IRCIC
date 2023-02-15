@@ -1,4 +1,4 @@
-What is docker-compose
+:pencil: - What is docker-compose
 
 - docker-compose is a cli tool
 - Compose is written in Python
@@ -6,37 +6,37 @@ What is docker-compose
 - Compose runs multiple Docker containers as a single device
 - Each container is a service
 
-Set up environment \
-_( - see bottom)_
+:memo: - Set up environment \
+_&nbsp;&nbsp;&nbsp;&nbsp;see [bottom](#bottom)_
 
-Set up WordPress 
+:closed_book: - Set up WordPress 
 
-_Goal_
-- Set up a compose environment for a WordPress project)_
+- _Goal_
+  - Set up a compose environment for a WordPress project)_
 
-_Plan_
-- Deploy the 'WordPress' PHP application as a device of docker containers
-- This application is run by Compose, with supports from 2 other apps
-- Web server : Nginx
-- MySQL database : MariaDB
-- Each app is run on its own container
+- _Plan_
+  - Deploy the 'WordPress' PHP application as a device of docker containers
+  - This application is run by Compose, with supports from 2 other apps
+  - Web server : Nginx
+  - MySQL database : MariaDB
+  - Each app is run on its own container
 
-_Scheme_ 
-- -nginx : Use the official 'nginx: latest' docker image
-- -MySQL : Use the most recent version of official MariaDB container
-- -WordPress : Use latest wordpress with latest PHP-FPM from docker-hub
-- Use a regular linux user for the setup -> won't run docker as root
+- _Scheme_ 
+  - -nginx : Use the official 'nginx: latest' docker image
+  - -MySQL : Use the most recent version of official MariaDB container
+  - -WordPress : Use latest wordpress with latest PHP-FPM from docker-hub
+  - Use a regular linux user for the setup -> won't run docker as root
 
 
-Create a linux user, add user to docker group
-```sh
+:speak_no_evil: - Create a linux user, add user to docker group
+```
 useradd -m -s /bin/bash nuoxoxo passwd 4242
 usermod -a -G docker nuoxoxo systemctl restart docker
+
 su - nuoxoxo 
 ```
-Create the project directory
-```sh
-# Pre
+:open_file_folder: - Create the project directory
+```
 mkdir -p wordpress-compose 
 cd wordpress-compose/
 touch docker-compose.yml
@@ -45,8 +45,8 @@ mkdir -p db-data/
 mkdir -p logs/nginx/
 mkdir -p wordpress/
 ```
-_Scheme_ 
-- docker-compose.yml : - the Brain
+:incoming_envelope: -_Scheme_ 
+- docker-compose.yml : the Brain
 - -nginx : Contains ngx.conf, virtual host, ...
 - -db-data : Mount all '/var/lib/mysql' data here
 - -wordpress : Contain all WordPress files
@@ -56,8 +56,8 @@ _Scheme_
 
 
 --- 
-
-Set up environment 
+<a name="bottom"></a>
+##### Set up environment 
 - 1st, install docker
 ```sh
 # Upd. Ubuntu repo
@@ -69,7 +69,7 @@ systemctl start docker systemctl enable docker
 docker run hello-world
 ```
 - then, install compose
-```sh
+```
 sudo apt-get install -y python python-pip
 pip install docker-compose
 docker-compose -v
