@@ -3,13 +3,11 @@ project	:= inception
 all	:
 	@ echo " ➜ Build and launch ${project} ... "
 	@ mkdir -p /home/${USER}/data/wordpress /home/${USER}/data/mariadb
-	@ docker-compose -f ./srcs/docker-compose.yml up --build -d
-
-build	: all
+	@ docker-compose -f ./srcs/docker-compose.yml up --env-file ./srcs/.env --build -d
 
 down	:
-	@ echo " ➜ Stopping ${name} ... "
-	@ docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env down
+	@ echo " ➜ Stopping ${project} ... "
+	@ docker-compose -f ./srcs/docker-compose.yml down
 
 re	: down
 	@ echo " ➜ Re-launch ${name} ... "
