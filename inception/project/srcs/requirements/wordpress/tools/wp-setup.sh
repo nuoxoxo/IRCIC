@@ -27,7 +27,8 @@ else
 		--user_pass=$WP_USER_PASSWORD \
 		--role=author --allow-root
 
-	wp theme install twentysixteen \
+	# wp theme install twentysixteen \
+	wp theme install oceanwp \
 		--activate
 	
 fi
