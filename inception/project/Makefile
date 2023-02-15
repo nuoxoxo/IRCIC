@@ -1,4 +1,5 @@
-project	:= inception
+project		:= inception
+compose_fil	:= ./srcs/docker-compose.yml
 
 all	:
 	@ echo " ➜ Build and launch ${project} ... "
@@ -23,22 +24,19 @@ ls	:
 
 clean	: down
 	@ echo " ➜ Cleaning up ... "
-	@ docker system prune -af --volumes
-	@ docker volume rm $$(docker volume ls -q)
-	@#@ sudo rm -rf ~/data/wordpress/*
-	@#@ sudo rm -rf ~/data/mariadb/*
- 
-fclean	: clean
-	@ echo " ➜ Cleaning up ..."
-	@#@ docker stop `docker ps -qa`
-	@#@ docker system prune --all --force --volumes
-	@#@ docker network prune --force
-	@#@ docker volume prune --force
-	@#@ sudo rm -rf ~/data/wordpress/*
-	@#@ sudo rm -rf ~/data/mariadb/*
-	@ sudo rm -rf /home/${USER}
-	@ docker ps
-
+	@docker-compose -f $(COMPOSE_FILE) down
+	@-docker stop `docker ps -qa`
+	@-docker rm `docker ps -qa`
+	@echo "$(RED)Deleting all images ... $(RESET)"
+	@-docker rmi -f `docker images -qa`
+	@echo "$(RED)Deleting all volumes ... $(RESET)"
+	@-docker volume rm `docker volume ls -q`
+	@echo "$(RED)Deleting all network ... $(RESET)"
+	@-docker network rm `docker network ls -q`
+	# @echo "$(RED)Deleting all data ... $(RESET)"
+	# @sudo rm -rf /home/nuxu/data/wordpress
+	# @sudo rm -rf /home/nuxu/data/mysql
+	# @echo "$(RED)Deleting all $(RESET)"
 f	: fclean
 
 .PHONY	: all re ls down clean fclean
