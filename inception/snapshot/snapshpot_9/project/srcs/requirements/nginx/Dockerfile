@@ -9,8 +9,8 @@ RUN	apt-get update -y && \
 COPY	./conf/nginx.conf /etc/nginx/conf.d
 
 RUN	openssl req -x509 -newkey rsa:4096 -sha256 -nodes -days 365 \
-	-keyout /etc/nginx/ssl/nginx-selfsigned.key \
-	-out /etc/nginx/ssl/nginx-selfsigned.crt \
+	-keyout	/etc/nginx/ssl/nuxu.42.fr.key \
+	-out	/etc/nginx/ssl/nuxu.42.fr.crt \
 	-subj "/C=FR/ST=IdF/L=Paris/O=42Paris/OU=stud/CN=nuxu.42.fr"
 
 EXPOSE	443
