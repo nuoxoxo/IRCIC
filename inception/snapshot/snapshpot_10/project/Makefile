@@ -9,27 +9,36 @@ down	:
 	@ echo " ➜ Stopping ${project} ... "
 	@ docker-compose -f ./srcs/docker-compose.yml down
 
-re	: down
-	@ echo " ➜ Re-launch ${name} ... "
-	@ docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d --build
+re	: fclean all
+
+ls	:
+	@ echo "\timages ...\n"
+	docker image ls -a
+	@ echo "    containers ...\n"
+	docker container ls
+	@ echo "    volumes ...\n"
+	docker volume ls -q
+	@ echo "    network...\n"
+	docker network ls
 
 clean	: down
-	@ echo " ➜ Cleaning up ${name} ... "
-	@ docker system prune -a
+	@ echo " ➜ Cleaning up ... "
+	@ docker system prune -af --volumes
+	@ docker volume rm $$(docker volume ls -q)
 	@#@ sudo rm -rf ~/data/wordpress/*
 	@#@ sudo rm -rf ~/data/mariadb/*
  
-fclean	:
-	@ echo " ➜ Cleaning up "
-	@# if [ `docker ps -qa` = "" ]; then docker stop `docker ps -qa`; endif
-	@ docker stop `docker ps -qa`
-	@ docker system prune --all --force --volumes
-	@ docker network prune --force
-	@ docker volume prune --force
+fclean	: clean
+	@ echo " ➜ Cleaning up ..."
+	@#@ docker stop `docker ps -qa`
+	@#@ docker system prune --all --force --volumes
+	@#@ docker network prune --force
+	@#@ docker volume prune --force
 	@#@ sudo rm -rf ~/data/wordpress/*
 	@#@ sudo rm -rf ~/data/mariadb/*
+	@ sudo rm -rf /home/${USER}
 	@ docker ps
 
 f	: fclean
 
-.PHONY	: all build down re clean fclean
+.PHONY	: all re ls down clean fclean
