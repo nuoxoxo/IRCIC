@@ -2,83 +2,64 @@ version: '3'
 
 services:
 
-  nginx:
-    image: nginx:v1
-    build:
-      context: .
-      dockerfile: requirements/nginx/Dockerfile
-    container_name: nginx
+  mariadb:
+    image: mariadb:v1
+    container_name: mariadb
+    build: ./requirements/mariadb
     env_file:
       - .env
+    networks:
+      - inception
+    #ports: ### ??
+    #  - "3306:3306" ### ??
+    volumes:
+      - volume_mariadb:/var/lib/mysql
+    restart: always
+
+  wordpress:
+    image: wordpress:v1
+    container_name: wordpress
+    build: ./requirements/wordpress
     depends_on:
-      - wordpress   # wait for wp to finish then build
+      - mariadb
+    env_file:
+      - .env
+    networks:
+      - inception
+    volumes:
+      - volume_wordpress:/var/www/html
+    restart: always
+
+  nginx:
+    image: nginx:v1
+    container_name: nginx
+    build: ./requirements/nginx
+    depends_on:
+      - wordpress
     networks:
       - inception
     ports:
       - "443:443"
     volumes:
       - ./requirements/nginx/conf/:/etc/nginx/http.d/
-      # - ./requirements/nginx/tools:/etc/nginx/ssl/
-      # - /home/${USER}/simple_docker_nginx_html/public/html:/var/www/
-      - wp-volume:/var/www
+      - volume_wordpress:/var/www/html
     restart: always
     # restart: unless-stopped # not allowed in subj
 
-  mariadb:
-    image: mariadb:v1
-    build:
-      context: .
-      dockerfile: requirements/mariadb/Dockerfile
-      # not sure about this args part below
-      args:
-        DB_ROOT: ${DB_ROOT}
-        DB_USER: ${DB_USER}
-        DB_NAME: ${DB_NAME}
-        DB_PASS: ${DB_PASS}
-        # These env vars are not present in the image
-        # therefore they can only be passed here
-        # But for ENV vars which can be found in the env section
-        # they are already inside the service
-    container_name: mariadb
-    env_file:
-      - .env
-    networks:
-      - inception
-    ports:
-      - "3306:3306"
-    volumes:
-      - db-volume:/var/lib/mysql
-    restart: always
-
-  wordpress:
-    build:
-      context: .
-      dockerfile: requirements/wordpress/Dockerfile
-      args:
-        DB_NAME: ${DB_NAME}
-        DB_USER: ${DB_USER}
-        DB_PASS: ${DB_PASS}
-    container_name: wordpress
-    env_file:
-      - .env
-    depends_on:
-      - mariadb
-    restart: always
-    volumes:
-      - wp-volume:/var/www/
-
-networks:
-  inception:
-    driver: bridge
-
 volumes:
-  wp-volume:
+  volume_wordpress:
+    driver: local
     driver_opts:
-      o: bind
+      o: bind # bind mount, for path in host machine & outside docker volume, 
       type: none
       device: /home/${USER}/data/wordpress
-  db-volume:
+  volume_mariadb:
+    driver: local
     driver_opts:
       o: bind
       type: none
       device: /home/${USER}/data/mariadb
+
+networks:
+  inception:
+    driver: bridge
