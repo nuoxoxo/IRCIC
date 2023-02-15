@@ -1,3 +1,13 @@
+## Latest
+- "Welcome to nginx" homepage problem 
+  - [stof](https://stackoverflow.com/questions/70454890/running-wordpress-on-docker-compose-nginx-mysql-and-php)
+- About - version: '[3](https://docs.docker.com/compose/compose-file/compose-file-v3/)'
+- sandboxes
+  - [bmurth](https://medium.com/swlh/wordpress-deployment-with-nginx-php-fpm-and-mariadb-using-docker-compose-55f59e5c1a)
+  - [bcares](https://bobcares.com/blog/docker-compose-nginx-php-fpm-mysql-wordpress/)
+  - [kjuell](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose)
+
+
 ## $\color {Goldenrod} \text { Cleanup } $
 
 ```sh
@@ -26,16 +36,7 @@ docker network rm $(docker network ls -q) 2>/dev/null
     - \+. Makefile (6)
     - \+. certificate & local domain (5)
 
-## $\color {Goldenrod} \text { Latest } $
 
-- "Welcome to nginx" homepage problem 
-  - [stof](https://stackoverflow.com/questions/70454890/running-wordpress-on-docker-compose-nginx-mysql-and-php)
-- About `version: '3'`
-  - [ref.](https://docs.docker.com/compose/compose-file/compose-file-v3/)
-- sandboxes
-  - [bmurth](https://medium.com/swlh/wordpress-deployment-with-nginx-php-fpm-and-mariadb-using-docker-compose-55f59e5c1a)
-  - [bcares](https://bobcares.com/blog/docker-compose-nginx-php-fpm-mysql-wordpress/)
-  - [kjuell](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose)
 
 __test list__
 - todo...
