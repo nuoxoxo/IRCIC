@@ -3,7 +3,7 @@ project	:= inception
 all	:
 	@ echo " ➜ Build and launch ${project} ... "
 	@ mkdir -p /home/${USER}/data/wordpress /home/${USER}/data/mariadb
-	@ docker-compose -f ./srcs/docker-compose.yml --build -d
+	@ docker-compose -f ./srcs/docker-compose.yml up --build -d
 
 build	: all
 
