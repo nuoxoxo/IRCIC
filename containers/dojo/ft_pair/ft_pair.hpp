@@ -1,3 +1,7 @@
+#include "iostream"
+
+#define nl "nl"
+
 namespace	ft
 {
 
@@ -29,5 +33,10 @@ namespace	ft
 	}
 
 	// operators
+}
 
+template<typename X, typename Y>
+void	print_pair(ft::pair<X, Y> p)
+{
+	std::cout << p.first << ' ' << p.second << nl;
 }
