@@ -25,7 +25,6 @@ ls	:
 
 clean	: down
 	@ echo " ➜ Cleaning up ... "
-	@-docker-compose -f $(compose_file) down
 	@ docker stop `docker ps -qa`
 	@ docker rm `docker ps -qa`
 	@ echo " ➜ Delete all images ... "

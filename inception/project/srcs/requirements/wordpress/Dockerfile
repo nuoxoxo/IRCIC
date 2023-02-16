@@ -15,8 +15,7 @@ RUN	chmod +x /etc/wp-setup.sh
 RUN	chmod -R 777 /var/www/html
 
 WORKDIR		/var/www/html
+EXPOSE		9000
 
-EXPOSE 9000
-
-CMD	["sh", "/etc/wp-setup.sh"]
+CMD		["sh", "/etc/wp-setup.sh"]
 
