@@ -1,64 +1,59 @@
 version: '3'
 
 services:
-
-  mariadb:
-    image: mariadb:v1
-    container_name: mariadb
-    build: ./requirements/mariadb
-    env_file:
-      - .env
+  nginx:
+    build: ./requirements/nginx
+    image: nginx:v1
+    container_name: nginx
+    depends_on:
+      - wordpress
+    ports:
+      - "443:443"
+    volumes:
+      - wp_volume:/var/www/html
+    restart: always
     networks:
       - inception
-    #ports: ### ??
-    #  - "3306:3306" ### ??
-    volumes:
-      - volume_mariadb:/var/lib/mysql
-    restart: always
 
   wordpress:
+    build: ./requirements/wordpress
     image: wordpress:v1
     container_name: wordpress
-    build: ./requirements/wordpress
     depends_on:
       - mariadb
     env_file:
       - .env
+    volumes:
+      - wp_volume:/var/www/html
+    restart: always
     networks:
       - inception
-    volumes:
-      - volume_wordpress:/var/www/html
-    restart: always
 
-  nginx:
-    image: nginx:v1
-    container_name: nginx
-    build: ./requirements/nginx
-    depends_on:
-      - wordpress
+  mariadb:
+    build: ./requirements/mariadb
+    image: mariadb:v1
+    container_name: mariadb
+    env_file:
+      - .env
+    volumes:
+      - db_volume:/var/lib/mysql
+    restart: always
     networks:
       - inception
-    ports:
-      - "443:443"
-    volumes:
-      - ./requirements/nginx/conf/:/etc/nginx/http.d/
-      - volume_wordpress:/var/www/html
-    restart: always
-    # restart: unless-stopped # not allowed in subj
 
 volumes:
-  volume_wordpress:
+  db_volume:
     driver: local
     driver_opts:
-      o: bind # bind mount, for path in host machine & outside docker volume, 
-      type: none
-      device: /home/${USER}/data/wordpress
-  volume_mariadb:
-    driver: local
-    driver_opts:
-      o: bind
       type: none
       device: /home/${USER}/data/mariadb
+      o: bind
+  wp_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/${USER}/data/wordpress
+      o: bind
 
 networks:
   inception:
