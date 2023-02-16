@@ -13,6 +13,7 @@ namespace	ft
 		T_1	first;
 		T_2	second;
 	public:
+		// canon
 		pair() : first(), second() {}
 		~pair() {}
 		
@@ -21,6 +22,7 @@ namespace	ft
 		template<typename L, typename R>
 		pair(const pair<L, R> & p) : first(p.first), second(p.second) {}
 
+		// operator
 		pair & operator = (const pair & dummy)
 		{
 			if (this != & dummy)
@@ -30,9 +32,11 @@ namespace	ft
 			}
 			return (*this);
 		}
+
 	};
 
-	// operators
+	template<typename L, typename R>
+	pair<L, R> make_pair(L l, R r) { return (pair<L, R>(l, r)); }
 };
 
 template<typename X, typename Y>
