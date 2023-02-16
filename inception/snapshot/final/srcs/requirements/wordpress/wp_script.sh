@@ -14,6 +14,7 @@ if [ ! -f wp-config.php ]; then
 		--admin_email="$WP_ADMIN_MAIL" --skip-email --allow-root
 
 	wp user create $WP_USER $WP_MAIL --user_pass=$WP_USER_PASSWORD --role=author --allow-root
+	wp theme install twentysixteen --activate
 	echo "Wordpress installed and configured with a user"
 else
 	echo "Wordpress is already configured"
