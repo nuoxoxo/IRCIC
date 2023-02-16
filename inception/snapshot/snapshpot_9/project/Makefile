@@ -28,7 +28,7 @@ clean	: down
  
 fclean	: clean
 	@ echo " ➜ Cleaning up ..."
-	@ sudo rm -rf /home/${USER}
+	@ sudo rm -rf /home/${USER}/data
 	@ docker ps
 
 f	: fclean
