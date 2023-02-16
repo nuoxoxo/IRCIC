@@ -1,6 +1,6 @@
 #include "iostream"
 
-#define nl "nl"
+#define nl "\n"
 
 namespace	ft
 {
@@ -21,7 +21,7 @@ namespace	ft
 		template<typename L, typename R>
 		pair(const pair<L, R> & p) : first(p.first), second(p.second) {}
 
-		pair & operator = (const pair & p)
+		pair & operator = (const pair & dummy)
 		{
 			if (this != & dummy)
 			{
@@ -30,10 +30,10 @@ namespace	ft
 			}
 			return (*this);
 		}
-	}
+	};
 
 	// operators
-}
+};
 
 template<typename X, typename Y>
 void	print_pair(ft::pair<X, Y> p)
