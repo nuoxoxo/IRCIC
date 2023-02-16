@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [ -d "/var/lib/mysql/$DB_NAME" ]; then
-	echo "DB is already configured"
+	echo "Database exists."
 else
-	echo "Start DB configuration"
+	echo "Configuriing database ... "
 	touch file
 	chmod 755 file
 	mysql_install_db 2> /dev/null

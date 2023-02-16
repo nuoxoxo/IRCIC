@@ -14,8 +14,6 @@ if [ ! -f wp-config.php ]; then
 		--admin_email="$WP_ADMIN_MAIL" --skip-email --allow-root
 
 	wp user create $WP_USER $WP_MAIL --user_pass=$WP_USER_PASSWORD --role=author --allow-root
-	wp theme install twentysixteen --activate
-else
 fi
 
 echo "\nVisit https://nuxu.42.fr"
