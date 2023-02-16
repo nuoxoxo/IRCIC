@@ -25,14 +25,8 @@ ls	:
 
 clean	: down
 	@ echo " ➜ Cleaning up ... "
-	@ docker stop `docker ps -qa`
-	@ docker rm `docker ps -qa`
-	@ echo " ➜ Delete all images ... "
-	@ docker rmi -f `docker images -qa`
-	@ echo " ➜ Delete all volumes ... "
-	@ docker volume rm `docker volume ls -q`
-	@ echo " ➜ Delete all network ... "
-	@ docker network rm `docker network ls -q`
+	@ docker system prune -af --volumes
+	@ docker volume rm $$(docker volume ls -q)
 	@ echo " ➜ Delete all data ... "
 	@ sudo rm -rf /home/$(USER)/data/wordpress
 	@ sudo rm -rf /home/$(USER)/data/mysql
