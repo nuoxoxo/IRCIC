@@ -15,7 +15,7 @@ re	: fclean all
 
 ls	:
 	@ echo "\t... images ..."
-	@ docker image ls -a
+	@ docker image ls
 	@ echo "\t... containers ..."
 	@ docker container ls
 	@ echo "\t... volumes ..."
