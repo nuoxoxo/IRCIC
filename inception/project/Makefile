@@ -1,6 +1,6 @@
 project		:= inception
-compose_file	:= ./srcs/docker-compose.yml
 env_file	:= ./srcs/.env
+compose_file	:= ./srcs/docker-compose.yml
 
 all	:
 	@ echo " ➜ Build and launch ${project} ... "
@@ -14,13 +14,13 @@ down	:
 re	: fclean all
 
 ls	:
-	@ echo "\t< images >\n"
+	@ echo "\t< images >"
 	@ docker image ls -a
-	@ echo "\t< containers >\n"
+	@ echo "\t< containers >"
 	@ docker container ls
-	@ echo "\t< volumes >\n"
+	@ echo "\t< volumes >"
 	@ docker volume ls -q
-	@ echo "\t< network >\n"
+	@ echo "\t< network >"
 	@ docker network ls
 
 clean	: down
