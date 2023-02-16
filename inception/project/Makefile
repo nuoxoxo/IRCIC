@@ -11,7 +11,7 @@ down	:
 	@ echo " ➜ Stopping ${project} ... "
 	@ docker-compose -f $(compose_file) down
 
-re	: fclean all
+re	: f all
 
 ls	:
 	@ echo "\t... images ..."
