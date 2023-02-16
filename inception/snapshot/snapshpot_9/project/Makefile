@@ -13,7 +13,7 @@ re	: fclean all
 
 ls	:
 	@ echo "\timages ...\n"
-	docker image ls -a
+	docker image ls
 	@ echo "    containers ...\n"
 	docker container ls
 	@ echo "    volumes ...\n"
