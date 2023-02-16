@@ -25,17 +25,9 @@ clean	: down
 	@ echo " ➜ Cleaning up ... "
 	@ docker system prune -af --volumes
 	@ docker volume rm $$(docker volume ls -q)
-	@#@ sudo rm -rf ~/data/wordpress/*
-	@#@ sudo rm -rf ~/data/mariadb/*
  
 fclean	: clean
 	@ echo " ➜ Cleaning up ..."
-	@#@ docker stop `docker ps -qa`
-	@#@ docker system prune --all --force --volumes
-	@#@ docker network prune --force
-	@#@ docker volume prune --force
-	@#@ sudo rm -rf ~/data/wordpress/*
-	@#@ sudo rm -rf ~/data/mariadb/*
 	@ sudo rm -rf /home/${USER}
 	@ docker ps
 
