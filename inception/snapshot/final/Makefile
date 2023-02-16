@@ -18,7 +18,7 @@ fclean : clean
 re : fclean all
 
 ls :
-	docker image ls -a
+	docker image ls
 	@echo "------------------\n"
 	docker container ls
 	@echo "------------------\n"
