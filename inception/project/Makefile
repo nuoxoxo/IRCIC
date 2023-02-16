@@ -5,7 +5,7 @@ env_file	:= ./srcs/.env
 all	:
 	@ echo " ➜ Build and launch ${project} ... "
 	@ mkdir -p /home/${USER}/data/wordpress /home/${USER}/data/mariadb
-	@ docker-compose -f $(compose_file) up --env-file $(env_file) --build -d
+	@ docker-compose -f $(compose_file) up --build -d
 
 down	:
 	@ echo " ➜ Stopping ${project} ... "
