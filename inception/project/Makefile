@@ -28,8 +28,9 @@ clean	: down
 	@ docker system prune -af --volumes
 	@ docker volume rm $$(docker volume ls -q)
 	@ echo " ➜ Delete all data ... "
-	@ sudo rm -rf /home/$(USER)/data/wordpress
-	@ sudo rm -rf /home/$(USER)/data/mysql
+	@ sudo rm -rf /home/$(USER)/data
+	@#@ sudo rm -rf /home/$(USER)/data/wordpress
+	@#@ sudo rm -rf /home/$(USER)/data/mariadb
 	@ echo " ➜ Cleanup completed. "
 
 f	: clean
