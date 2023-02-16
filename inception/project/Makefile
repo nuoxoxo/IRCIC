@@ -14,13 +14,13 @@ down	:
 re	: fclean all
 
 ls	:
-	@ echo "\t< images >"
+	@ echo "\t... images ..."
 	@ docker image ls -a
-	@ echo "\t< containers >"
+	@ echo "\t... containers ..."
 	@ docker container ls
-	@ echo "\t< volumes >"
+	@ echo "\t... volumes ..."
 	@ docker volume ls -q
-	@ echo "\t< network >"
+	@ echo "\t... network ..."
 	@ docker network ls
 
 clean	: down
