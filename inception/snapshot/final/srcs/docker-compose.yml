@@ -47,7 +47,6 @@ volumes:
     driver_opts:
       type: none
       device: /home/${USER}/data/mariadb
-      # bind mount, because is a special path outside volume docker area, can access from host machine
       o: bind
   wp_volume:
     driver: local
