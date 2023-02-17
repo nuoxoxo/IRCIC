@@ -8,9 +8,7 @@ else
 	chmod 755 file
 	mysql_install_db 2> /dev/null
 
-# Create db, give privileges to root across all databases on the server from localhost,
-# Create a user and give privileges on DB_NAME from any host (remote, local...)
-# Flush privileges to update modif
+
 	cat << EOF > file
 CREATE DATABASE $DB_NAME;
 FLUSH PRIVILEGES;
@@ -22,7 +20,6 @@ DROP DATABASE IF EXISTS test;
 FLUSH PRIVILEGES;
 EOF
 
-# --bootstrap to execute sql script before any privileges exits
 	mysqld --bootstrap < file 2> /dev/null
 	rm file
 fi
