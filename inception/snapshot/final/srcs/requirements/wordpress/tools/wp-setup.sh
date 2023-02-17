@@ -1,6 +1,7 @@
 #!/bin/bash
+
 while ! mariadb -h$DB_HOST -u$DB_ADMIN -p$DB_ADMIN_PASSWORD; do
-	echo "Waiting to connect to MariaDB"
+	echo "connecting to MariaDB ... "
 	sleep 2
 done
 
@@ -15,19 +16,11 @@ if [ ! -f wp-config.php ]; then
 
 	wp user create $WP_USER $WP_MAIL --user_pass=$WP_USER_PASSWORD --role=author --allow-root
 	wp theme install twentysixteen --activate
-	echo "Wordpress installed and configured with a user"
+	echo "wordpress exists. "
 else
-	echo "Wordpress is already configured"
+	echo ""
 fi
 
-echo "\nVisit https://nuxu.42.fr"
+echo	"\nVisit https://nuxu.42.fr"
 
-# Launch wp in foreground
 php-fpm7.3 -F
-
-# show user db wp : conect to mariadb container, mysql with db_admin (mysql -u mariadb -p)
-# show databases, use wordpress, show tables, show columns from wp_users
-# select user_login from wp_users
-# Connect to wp container, try "mysql -h DB_HOST -u DB_ADMIN -p", it must works
-# From host machine "mysql -h 127.0.0.1 -u root -p", it must not works
-# From host machine "mysql -h 127.0.0.1 -u DB_ADMIN -p", it must not works

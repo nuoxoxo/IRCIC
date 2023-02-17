@@ -26,4 +26,5 @@ EOF
 	mysqld --bootstrap < file 2> /dev/null
 	rm file
 fi
+
 mysqld 2> /dev/null
