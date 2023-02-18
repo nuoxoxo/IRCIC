@@ -1,3 +1,24 @@
+
+# Containers
+Iterator traits
+Member type | Definition
+:-- | :--
+difference_type | Iter::difference_type
+value_type | Iter::value_type
+pointer | Iter::pointer
+reference | Iter::reference
+iterator_category | Iter::iterator_category
+
+5 main types of iterators
+- Random-access iterators 
+- Bidirectional iterator
+- Forward iterator 
+- Input iterators
+- Output iterator 
+
+lvalue \
+rvalue
+
 # Things to learn
 ```
 std::iterator_traits
