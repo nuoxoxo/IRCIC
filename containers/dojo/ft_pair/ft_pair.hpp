@@ -23,12 +23,12 @@ namespace	ft
 		pair(const pair<L, R> & p) : first(p.first), second(p.second) {}
 
 		// operator
-		pair & operator = (const pair & dummy)
+		pair & operator = (const pair & p)
 		{
-			if (this != & dummy)
+			if (this != & p)
 			{
-				first = dummy.first;
-				second = dummy.second;
+				first = p.first;
+				second = p.second;
 			}
 			return (*this);
 		}
