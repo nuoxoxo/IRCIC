@@ -1,12 +1,13 @@
 #!/bin/bash
 
 if [ -d "/var/lib/mysql/$DB_NAME" ]; then
-	echo "DB exists"
+	echo "DB is already configured"
 else
-	echo "Setting up DB"
+	echo "Start DB configuration"
 	touch file
 	chmod 755 file
 	mysql_install_db 2> /dev/null
+
 
 	cat << EOF > file
 CREATE DATABASE $DB_NAME;
@@ -19,11 +20,8 @@ DROP DATABASE IF EXISTS test;
 FLUSH PRIVILEGES;
 EOF
 
-# --bootstrap to execute sql script before any privileges exits
 	mysqld --bootstrap < file 2> /dev/null
 	rm file
-
 fi
 
 mysqld 2> /dev/null
-
