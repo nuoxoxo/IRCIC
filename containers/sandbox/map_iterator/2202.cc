@@ -1,26 +1,20 @@
 #include "iostream"
 #include "map"
+#include "print.tpp"
 
 using	namespace std;
 
 int	main()
 {
-	map<string, int>::iterator	it;
-	map<string, int>		D;
+	map<string, int>	D;
 	string			s;
 
-	while (!cin.eof() && getline(cin, s))
-		D[s]++;
-	it = D.begin();
-	while (it != D.end())
+	while (cin >> s)
 	{
-		cout << "\"" << it->first << "\" : " << it->second
-		// << " : " << & it
-		<< "\n";
-		it++;
+		D[s]++;
 	}
-
 	
-
+	print(D);
+	print(D, 1);
+	print(D, 3);
 }
-

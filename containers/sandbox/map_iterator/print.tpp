@@ -11,7 +11,12 @@ using	namespace std;
 template<typename T>
 void	print(map<T, int>& D, int n = 0)
 {
-	map<int, int>::iterator	it;
+	if (std::is_same<T, int>::value)
+		map<int, int>::iterator	it;
+	else if (std::is_same<T, string>::value)
+		map<string, int>::iterator	it;
+	else
+		return ;
 
 	it = D.begin();
 	
