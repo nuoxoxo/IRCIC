@@ -19,14 +19,14 @@ void	map_printer(map<int, int>& D, int n = 0)
 	}
 	else if (n)
 	{
-		cout << RED "error: adding " << n
+		cout << RED "Error: adding " << n
 		<< " to bidirectional iterator. \n\n" << RESET;
 		return ;
 	}
 	while (it != D.end())
 	{
 		cout << it->first << " : " << it->second
-		<< " : " << & it
+		// << " : " << & it
 		<< "\n";
 		it++;
 	}
@@ -44,8 +44,8 @@ void	map_printer(map<string, int>& D, int n = 0)
 	}
 	else if (n)
 	{
-		cout << RED "error: adding " << n
-		<< " to bidirectional iterator. \n\n" << RESET;
+		cout << RED "Error: adding " << n
+		<< " to bidirectional iterator \n\n" << RESET;
 		return ;
 	}
 	while (it != D.end())
