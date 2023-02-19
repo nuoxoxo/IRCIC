@@ -1,6 +1,6 @@
 #include "iostream"
 #include "map"
-#include "print.tpp"
+#include "print.hpp"
 
 using	namespace std;
 
@@ -14,7 +14,7 @@ int	main()
 		D[s]++;
 	}
 	
-	print(D);
-	print(D, 1);
-	print(D, 3);
+	map_printer(D);
+	map_printer(D, 1);
+	map_printer(D, 3);
 }
