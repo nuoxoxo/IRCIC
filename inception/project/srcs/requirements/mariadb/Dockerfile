@@ -14,4 +14,3 @@ RUN	chmod +x /etc/db-setup.sh && \
 EXPOSE	3306
 
 CMD	["sh", "/etc/db-setup.sh"]
-

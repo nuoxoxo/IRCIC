@@ -1,29 +1,18 @@
 project		:= inception
-env_file	:= ./srcs/.env
 compose_file	:= ./srcs/docker-compose.yml
+# env_file	:= /srcs/.env
 
-all	:
-	@ echo " ➜ Build and launch ${project} ... "
-	@ mkdir -p /home/${USER}/data/wordpress /home/${USER}/data/mariadb
-	@ docker-compose -f $(compose_file) up --build -d
+all :
+	mkdir -p /home/${USER}/data/wordpress /home/${USER}/data/mariadb
+	docker-compose -f $(compose_file) up --build -d
 
-down	:
-	@ echo " ➜ Stopping ${project} ... "
-	@ docker-compose -f $(compose_file) down
+up :
+	docker-compose -f $(compose_file) up -d
 
-re	: f all
+down :
+	docker-compose -f $(compose_file) down
 
-ls	:
-	@ echo "\t... images ..."
-	@ docker image ls
-	@ echo "\t... containers ..."
-	@ docker container ls
-	@ echo "\t... volumes ..."
-	@ docker volume ls -q
-	@ echo "\t... network ..."
-	@ docker network ls
-
-clean	: down
+clean :	down
 	@ echo " ➜ Cleaning up ... "
 	@ docker system prune -af --volumes
 	@ docker volume rm $$(docker volume ls -q)
@@ -35,4 +24,17 @@ clean	: down
 
 f	: clean
 
-.PHONY	: all re ls down clean 
+re : f all
+
+ls :
+	@ echo "\t... images ..."
+	@ docker image ls
+	@ echo "\t... containers ..."
+	@ docker container ls
+	@ echo "\t... volumes ..."
+	@ docker volume ls -q
+	@ echo "\t... network ..."
+	@ docker network ls
+
+
+.PHONY:	all down clean fclean re
