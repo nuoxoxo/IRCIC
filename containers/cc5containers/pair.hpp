@@ -1,6 +1,8 @@
-#include "iostream"
+#ifndef __PAIR_HPP__
+# define __PAIR_HPP__
+# define nl "\n"
 
-#define nl "\n"
+// TODO - comparison operators 
 
 namespace	ft
 {
@@ -34,9 +36,10 @@ namespace	ft
 	pair<L, R> make_pair(L l, R r) { return (pair<L, R>(l, r)); }
 };
 
-template<typename X, typename Y>
-void	print_pair(ft::pair<X, Y> p)
+template<typename L, typename R>
+void	print_pair(ft::pair<L, R> p)
 {
 	std::cout << p.first << ' ' << p.second << nl;
 }
 
+#endif
