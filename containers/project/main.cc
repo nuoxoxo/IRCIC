@@ -1,8 +1,13 @@
 #include "iostream"
 #include "pair.hpp"
 
+void	print_boolean_operator_test_result(ft::pair<int, int>&, ft::pair<int, int>&);
+
 int	main()
 {
+	int	i = -1;
+
+	std::cout << nl LOWKEY "Test :: " << ++i << " :: testing types" nl2reset;
 	// same or different types
 	{
 		ft::pair<int, int>	ii;
@@ -23,6 +28,7 @@ int	main()
 		print_pair(fi);
 		print_pair(is);
 	}
+	std::cout << nl LOWKEY "Test :: " << ++i << " :: testing make_pair() " nl2reset;
 	// testing make_pair
 	{
 		ft::pair<int, int> pii;
@@ -35,22 +41,48 @@ int	main()
 		print_pair(psi);
 	}
 	// boolean operators
+	std::cout << nl LOWKEY "Test :: " << ++i << " :: testing boolean operators " nl2reset;
 	{
 		ft::pair<int, int> p1, p2;
+
 		p1 = ft::make_pair<int, int>(10, 20);
 		p2 = ft::make_pair<int, int>(11, 20);
+		print_boolean_operator_test_result(p1, p2);
 
-		std::cout << "current pair: "
-		<< p1.first << ", " << p1.second << " - ";
-		<< p2.first << ", " << p2.second << std::endl;
+		p1 = ft::make_pair<int, int>(11, 20);
+		p2 = ft::make_pair<int, int>(10, 0);
+		print_boolean_operator_test_result(p1, p2);
 
-		std::cout << " < : " << p1 < p2 << std::boolalpha << std::endl;
-		std::cout << " > : " << p1 > p2 << std::boolalpha << std::endl;
-		std::cout << " == : " << p1 == p2 << std::boolalpha << std::endl;
-		std::cout << " != : " << p1 != p2 << std::boolalpha << std::endl;
-		std::cout << " <= : " << p1 <= p2 << std::boolalpha << std::endl;
-		std::cout << " >= : " << p1 >= p2 << std::boolalpha << std::endl;
+		p1 = ft::make_pair<int, int>(42, 1024);
+		p2 = ft::make_pair<int, int>(42, 1024);
+		print_boolean_operator_test_result(p1, p2);
+
+		p1 = ft::make_pair<int, int>(42, 1024);
+		p2 = ft::make_pair<int, int>(42, 1999);
+		print_boolean_operator_test_result(p1, p2);
+
+		p1 = ft::make_pair<int, int>(42, 1999);
+		p2 = ft::make_pair<int, int>(42, 1024);
+		print_boolean_operator_test_result(p1, p2);
+
 	}
+}
+
+void	print_boolean_operator_test_result(ft::pair<int, int> & p1, ft::pair<int, int> & p2)
+{
+	std::cout << GREEN "current pair: \n"
+	<< p1.first << ", " << p1.second << "\n"
+	<< p2.first << ", " << p2.second << "\n" RESET;
+
+	std::cout << std::boolalpha;
+	std::cout << " < : " << (p1 < p2) << nl;
+	std::cout << " > : " << (p1 > p2) << nl;
+	std::cout << " == : " << (p1 == p2) << nl;
+	std::cout << " != : " << (p1 != p2) << nl;
+	std::cout << " <= : " << (p1 <= p2) << nl;
+	std::cout << " >= : " << (p1 >= p2) << nl2;
+	std::cout << std::noboolalpha;
+
 }
 
 /********************************************
