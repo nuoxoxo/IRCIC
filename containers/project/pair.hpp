@@ -36,41 +36,50 @@ namespace	ft
 	pair<L, R> make_pair(L l, R r) { return (pair<L, R>(l, r)); }
 };
 
+// == . !=
+
 template<typename T_1, typename T_2>
-bool	operator == (pair<T_1, T_2> const & L, pair<T_1, T_2> const& rhs)
+bool	operator == (const pair<T_1, T_2> & L, const pair<T_1, T_2> & R)
 {
-	return (lhs.first == rhs.first && lhs.second == rhs.second);
+	return (L.first == R.first && L.second == R.second);
 }
 
-template <typename T_1, typename T_2>
-bool operator!=(pair<T_1, T_2> const& lhs, pair<T_1, T_2> const& rhs)
+template<typename T_1, typename T_2>
+bool	operator != (const pair<T_1, T_2> & L, const pair<T_1, T_2> & R)
 {
-	return !(lhs == rhs);
+	return (L.first != R.first || L.second != R.second);
 }
 
-template <typename T_1, typename T_2>
-bool operator<(pair<T_1, T_2> const& lhs, pair<T_1, T_2> const& rhs)
+
+template<typename T_1, typename T_2>
+bool	operator < (const pair<T_1, T_2> & L, const pair<T_1, T_2> & R)
 {
-	return (lhs.first < rhs.first || (!(rhs.first < lhs.first) && lhs.second < rhs.second));
+	if (L.first == R.first)
+		return L.second < R.second;
+	return L.first < R.first;
 }
 
-template <typename T_1, typename T_2>
-bool operator<=(pair<T_1, T_2> const& lhs, pair<T_1, T_2> const& rhs)
+template<typename T_1, typename T_2>
+bool	operator > (const pair<T_1, T_2> & L, const pair<T_1, T_2> & R)
 {
-	return !(rhs < lhs);
+	if (L.first == R.first)
+		return L.second > R.second;
+	return L.first > R.first;
 }
 
-template <typename T_1, typename T_2>
-bool operator>(pair<T_1, T_2> const& lhs, pair<T_1, T_2> const& rhs)
-{
-	return (rhs < lhs);
-}
 
 template <typename T_1, typename T_2>
-bool operator>=(pair<T_1, T_2> const& lhs, pair<T_1, T_2> const& rhs)
+bool	operator <= (const pair<T_1, T_2> & L, const pair<T_1, T_2> & R)
 {
-	return !(lhs < rhs);
+	return (L < R || L == R);
 }
+
+template<typename T_1, typename T_2>
+bool	operator >= (const pair<T_1, T_2> & L, const pair<T_1, T_2> & R)
+{
+	return (L > R || L == R);
+}
+
 
 template<typename L, typename R>
 void	print_pair(ft::pair<L, R> p)
