@@ -34,7 +34,23 @@ int	main()
 		print_pair(pii);
 		print_pair(psi);
 	}
+	// boolean operators
+	{
+		ft::pair<int, int> p1, p2;
+		p1 = ft::make_pair<int, int>(10, 20);
+		p2 = ft::make_pair<int, int>(11, 20);
 
+		std::cout << "current pair: "
+		<< p1.first << ", " << p1.second << " - ";
+		<< p2.first << ", " << p2.second << std::endl;
+
+		std::cout << " < : " << p1 < p2 << std::boolalpha << std::endl;
+		std::cout << " > : " << p1 > p2 << std::boolalpha << std::endl;
+		std::cout << " == : " << p1 == p2 << std::boolalpha << std::endl;
+		std::cout << " != : " << p1 != p2 << std::boolalpha << std::endl;
+		std::cout << " <= : " << p1 <= p2 << std::boolalpha << std::endl;
+		std::cout << " >= : " << p1 >= p2 << std::boolalpha << std::endl;
+	}
 }
 
 /********************************************

@@ -50,6 +50,7 @@ bool	operator != (const pair<T_1, T_2> & L, const pair<T_1, T_2> & R)
 	return (L.first != R.first || L.second != R.second);
 }
 
+// < >
 
 template<typename T_1, typename T_2>
 bool	operator < (const pair<T_1, T_2> & L, const pair<T_1, T_2> & R)
@@ -67,6 +68,7 @@ bool	operator > (const pair<T_1, T_2> & L, const pair<T_1, T_2> & R)
 	return L.first > R.first;
 }
 
+// <= >=
 
 template <typename T_1, typename T_2>
 bool	operator <= (const pair<T_1, T_2> & L, const pair<T_1, T_2> & R)
