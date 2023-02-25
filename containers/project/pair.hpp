@@ -36,6 +36,42 @@ namespace	ft
 	pair<L, R> make_pair(L l, R r) { return (pair<L, R>(l, r)); }
 };
 
+template<typename T_1, typename T_2>
+bool	operator == (pair<T_1, T_2> const & L, pair<T_1, T_2> const& rhs)
+{
+	return (lhs.first == rhs.first && lhs.second == rhs.second);
+}
+
+template <typename T_1, typename T_2>
+bool operator!=(pair<T_1, T_2> const& lhs, pair<T_1, T_2> const& rhs)
+{
+	return !(lhs == rhs);
+}
+
+template <typename T_1, typename T_2>
+bool operator<(pair<T_1, T_2> const& lhs, pair<T_1, T_2> const& rhs)
+{
+	return (lhs.first < rhs.first || (!(rhs.first < lhs.first) && lhs.second < rhs.second));
+}
+
+template <typename T_1, typename T_2>
+bool operator<=(pair<T_1, T_2> const& lhs, pair<T_1, T_2> const& rhs)
+{
+	return !(rhs < lhs);
+}
+
+template <typename T_1, typename T_2>
+bool operator>(pair<T_1, T_2> const& lhs, pair<T_1, T_2> const& rhs)
+{
+	return (rhs < lhs);
+}
+
+template <typename T_1, typename T_2>
+bool operator>=(pair<T_1, T_2> const& lhs, pair<T_1, T_2> const& rhs)
+{
+	return !(lhs < rhs);
+}
+
 template<typename L, typename R>
 void	print_pair(ft::pair<L, R> p)
 {
