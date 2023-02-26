@@ -4,6 +4,7 @@
 
 # include "iostream"
 # include "colors.hpp"
+# include "typeinfo" // - typeid
 
 namespace	ft
 {
@@ -16,6 +17,7 @@ void	printer_cleaner_stack(T & st)
 	while ( !st.empty())
 	{
 		std::cout << ' ' << st.top() << '\n';
+		// std::cout << typeid(st.top()).name() << '\n';
 		st.pop();
 	}
 	std::cout << "(size : " << GREEN << st.size() << RESET << ") \n\n";

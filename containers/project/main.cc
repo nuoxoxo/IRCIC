@@ -14,6 +14,15 @@ int	main()
 		S.push(43);
 		printer_cleaner_stack(S);
 	}
+	{
+		std::stack<std::string>	S;
+		S.push("= = = = = = = = = = = = =");
+		S.push("= = = = = = = = = = ");
+		S.push("= = = = = = =");
+		S.push("= = = =");
+		S.push("= ");
+		printer_cleaner_stack(S);
+	}
 }
 
 /********************************************
