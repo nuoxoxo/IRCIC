@@ -12,6 +12,22 @@ int	main()
 *  the main should test the following shit  *
 *********************************************/
 
+/* stack */
+
+// = . assign value to container adaptor
+//  empty
+//  size
+//  top
+//  push
+//  pop
+// Member objects: Container C . underlying container
+//  ==
+//  != 
+//  < . <=
+//  > . >=
+//  emplace . constructs element in-place at the top . XXX
+
+
 /* pair */
 
 // = . assign contents
@@ -21,19 +37,4 @@ int	main()
 //  < . <=
 //  > . >=
 
-
-/* stack */
-
-// = . assign value to container adaptor
-//  empty
-//  size
-//  top
-//  push
-//  pop
-//  XXX emplace . constructs element in-place at the top
-// Member objects: Container C . underlying container
-//  ==
-//  != 
-//  < . <=
-//  > . >=
 
