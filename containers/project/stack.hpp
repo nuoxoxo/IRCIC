@@ -2,13 +2,37 @@
 #ifndef __STACK_HPP__
 # define __STACK_HPP__
 
+/// #include "vector.hpp"
+# include "vector"
+
 # include "iostream"
 # include "colors.hpp"
 # include "typeinfo" // - typeid
 
 namespace	ft
 {
-	// to be stuffed
+	// TODO
+	template < typename T, typename Container = std::vector<T> > // std
+	class	Stack
+	{
+	protected:
+		Container	C;
+	public:
+		// Canon // TODO
+		/*
+		pair() : first(), second() {}
+		~pair() {}
+
+		pair(const T_1 & l, const T_2 & r) : first(l), second(r) {}
+
+		template<typename L, typename R>
+		pair(const pair<L, R> & p) : first(p.first), second(p.second) {}
+		*/
+
+		// operator // TODO
+	}
+
+	// non-member func // TODO
 }
 
 template<typename T>
@@ -24,11 +48,12 @@ void	printer_cleaner_stack(T & st)
 	std::cout << "(size : " << GREEN << st.size() << RESET << ") \n\n";
 }
 
-// tests to call in main
 
-/********************************************
-*  the main should test the following shit  *
-*********************************************/
+// :D
+
+/****************************************************
+*      the main should test the following shit      *
+****************************************************/
 
 // = . assign value to container adaptor
 //  empty
@@ -62,7 +87,7 @@ void	stack_test(bool isft)
 		S.push(43);
 		printer_cleaner_stack(S);
 		// S.pop(); // ----> should segfault with std::stack
-		// ----> to configure in ft::stack
+		// ----> to config in ft::stack
 	}
 	std::cout << LOWKEY "\nTest " << ++i << " :: stack<string>"nl2reset;
 	{
