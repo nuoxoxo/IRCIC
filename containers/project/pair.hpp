@@ -3,14 +3,7 @@
 # define __PAIR_HPP__
 
 # include "iostream"
-
-// color tags
-# define nl "\n"
-# define nl2 "\n\n"
-# define nl2reset " \n\n" RESET
-# define LOWKEY "\033[0;2m"
-# define GREEN "\033[0;32m"
-# define RESET "\033[0;0m"
+# include "colors.hpp"
 
 namespace	ft
 {

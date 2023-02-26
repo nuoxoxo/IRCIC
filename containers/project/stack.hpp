@@ -1,8 +1,9 @@
 #pragma once
-#ifndef __PAIR_HPP__
-# define __PAIR_HPP__
+#ifndef __STACK_HPP__
+# define __STACK_HPP__
 
 # include "iostream"
+# include "colors.hpp"
 
 namespace	ft
 {
@@ -11,11 +12,13 @@ namespace	ft
 template<typename T>
 void	printer_cleaner_stack(T & st)
 {
+	std::cout << "(size : " << GREEN << st.size() << RESET << ") \n";
 	while ( !st.empty())
 	{
-		cout << st.top() << '\n';
+		std::cout << ' ' << st.top() << '\n';
 		st.pop();
 	}
+	std::cout << "(size : " << GREEN << st.size() << RESET << ") \n\n";
 }
 
 #endif
