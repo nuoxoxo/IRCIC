@@ -9,6 +9,7 @@
 # include "colors.hpp"
 # include "typeinfo" // - typeid
 
+
 namespace	ft
 {
 	template < typename T, typename Container = std::vector<T> > // std //XXX
@@ -18,11 +19,11 @@ namespace	ft
 		Container	C;
 
 	public:
-
 		// canon
-		explicit stack( const Container & C = Container() );
-		// explicit stack( const Container & C = Container() ) : C(C) {}
-		~stack();
+		// explicit stack( const Container& cont = Container() ); // qx
+		// explicit stack( const Container & C = Container() ) {}
+		explicit stack( const Container & C = Container() ) : C(C) {}
+		~stack() {}
 
 
 		stack & operator = (const stack & dummy)
@@ -48,70 +49,93 @@ namespace	ft
 		void	pop(void) { C.pop_back(); }
 
 
-		// friend
+		// friend . 1st way
+
+		friend bool operator == (const stack & L, const stack & R)
+		{
+			return (L.C == R.C); // compare the core .C otherwise warning "all paths call itself"
+		}
+
+		friend bool operator != (const stack & L, const stack & R)
+		{
+			return (L.C != R.C);
+		}
+
+		friend bool operator < (const stack & L, const stack & R)
+		{
+			return (L.C < R.C);
+		}
+
+		friend bool operator <= (const stack & L, const stack & R)
+		{
+			return (L.C <= R.C);
+		}
+
+		friend bool operator > (const stack & L, const stack & R)
+		{
+			return (L.C > R.C);
+		}
+
+		friend bool operator >= (const stack & L, const stack & R)
+		{
+			return (L.C >= R.C);
+		}
+
+		// friend . 2nd way (1/2)
+
+		/*
 		friend bool operator == (const stack &, const stack &);
-		friend bool operator != (const stack&, const stack &);
+		friend bool operator != (const stack &, const stack &);
 		friend bool operator < (const stack &, const stack &);
 		friend bool operator <= (const stack &, const stack &);
 		friend bool operator > (const stack &, const stack &);
-		friend bool operator >= (const stack&, const stack &);
+		friend bool operator >= (const stack &, const stack &);
+		*/
+
 	};
 
+
+	// friend . 2nd way (2/2)
+
+	/*
 	// define friend func
 	template<typename T>
-	bool operator == (
-		const stack<T> & L, 
-		const stack<T> & R
-	)
+	bool operator == (const stack<T> & L, const stack<T> & R)
 	{
 		return (L == R);
 	}
 
 	template<typename T>
-	bool operator != (
-		const stack<T> & L, 
-		const stack<T> & R
-	)
+	bool operator != (const stack<T> & L, const stack<T> & R)
 	{
 		return (L != R);
 	}
 
 	template<typename T>
-	bool operator < (
-		const stack<T> & L, 
-		const stack<T> & R
-	)
+	bool operator < (const stack<T> & L, const stack<T> & R)
 	{
 		return (L < R);
 	}
 
 	template<typename T>
-	bool operator <= (
-		const stack<T> & L, 
-		const stack<T> & R
-	)
+	bool operator <= (const stack<T> & L, const stack<T> & R)
 	{
 		return (L <= R);
 	}
 
 	template<typename T>
-	bool operator > (
-		const stack<T> & L, 
-		const stack<T> & R
-	)
+	bool operator > (const stack<T> & L, const stack<T> & R)
 	{
 		return (L > R);
 	}
 
 	template<typename T>
-	bool operator >= (
-		const stack<T> & L, 
-		const stack<T> & R
-	)
+	bool operator >= (const stack<T> & L, const stack<T> & R)
 	{
 		return (L >= R);
 	}
 
+	*/
 
 };
 
@@ -148,13 +172,15 @@ void	printer_cleaner_stack(T & st)
 //  > . >=
 //  emplace . constructs element in-place at the top . XXX
 
+
+
 # include "stack"
 
 void	stack_test_isstd()
 {
 	int	i = -1;
 
-	std::cout << LOWKEY "\nTest " << ++i << " :: stack<int>"nl2reset;
+	std::cout << LOWKEY "\nTest " << ++i << " :: std::stack<int>"nl2reset;
 	{
 		std::stack<int>	S;
 		S.push(41);
@@ -164,7 +190,7 @@ void	stack_test_isstd()
 		// S.pop(); // ----> should segfault with std::stack
 		// ----> to config in ft::stack
 	}
-	std::cout << LOWKEY "\nTest " << ++i << " :: stack<string>"nl2reset;
+	std::cout << LOWKEY "\nTest " << ++i << " :: std::stack<string>"nl2reset;
 	{
 		std::stack<std::string>	S;
 		S.push("= = = = = = = = = = = = = world");
@@ -174,7 +200,7 @@ void	stack_test_isstd()
 		S.push("= ");
 		printer_cleaner_stack(S);
 	}
-	std::cout << LOWKEY "\nTest " << ++i << " :: stack<double>"nl2reset;
+	std::cout << LOWKEY "\nTest " << ++i << " :: std::stack<double>"nl2reset;
 	{
 		std::stack<double>	S;
 		S.push(21.21);
@@ -251,7 +277,10 @@ void	stack_test_isft()
 {
 	int	i = -1;
 
-	std::cout << LOWKEY "\nTest " << ++i << " :: stack<int>"nl2reset;
+	std::cout << LOWKEY "\nTest " << ++i << " ::  ft::stack<int>"nl2reset;
+	
+	ft::stack<int>	S;
+
 	{
 		ft::stack<int>	S;
 		S.push(41);
@@ -261,7 +290,7 @@ void	stack_test_isft()
 		// S.pop(); // ----> should segfault with std::stack
 		// ----> to config in ft::stack
 	}
-	std::cout << LOWKEY "\nTest " << ++i << " :: stack<string>"nl2reset;
+	std::cout << LOWKEY "\nTest " << ++i << " ::  ft::stack<string>"nl2reset;
 	{
 		ft::stack<std::string>	S;
 		S.push("= = = = = = = = = = = = = world");
@@ -271,7 +300,7 @@ void	stack_test_isft()
 		S.push("= ");
 		printer_cleaner_stack(S);
 	}
-	std::cout << LOWKEY "\nTest " << ++i << " :: stack<double>"nl2reset;
+	std::cout << LOWKEY "\nTest " << ++i << " ::  ft::stack<double>"nl2reset;
 	{
 		ft::stack<double>	S;
 		S.push(21.21);
@@ -350,7 +379,7 @@ void	stack_test(bool isft)
 	{
 		std::cout
 		<< YELLOW "\n ::: ft::stack ::: push pop empty size :::" nlreset;
-		// stack_test_isft();
+		stack_test_isft();
 		return ;
 	}
 
