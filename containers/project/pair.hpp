@@ -101,7 +101,7 @@ void	print_pair(ft::pair<L, R> p)
  *  type test, operator test              *
  * ****************************************/
 
-void	print_boolean_operator_test_result(ft::pair<int, int>&, ft::pair<int, int>&);
+void	printer_boolean_operator_test(ft::pair<int, int>&, ft::pair<int, int>&);
 
 // int	main() // i just move main body here
 void	pair_test(void)
@@ -148,28 +148,28 @@ void	pair_test(void)
 
 		p1 = ft::make_pair<int, int>(10, 20);
 		p2 = ft::make_pair<int, int>(11, 20);
-		print_boolean_operator_test_result(p1, p2);
+		printer_boolean_operator_test(p1, p2);
 
 		p1 = ft::make_pair<int, int>(11, 20);
 		p2 = ft::make_pair<int, int>(10, 0);
-		print_boolean_operator_test_result(p1, p2);
+		printer_boolean_operator_test(p1, p2);
 
 		p1 = ft::make_pair<int, int>(42, 1024);
 		p2 = ft::make_pair<int, int>(42, 1024);
-		print_boolean_operator_test_result(p1, p2);
+		printer_boolean_operator_test(p1, p2);
 
 		p1 = ft::make_pair<int, int>(42, 1024);
 		p2 = ft::make_pair<int, int>(42, 1999);
-		print_boolean_operator_test_result(p1, p2);
+		printer_boolean_operator_test(p1, p2);
 
 		p1 = ft::make_pair<int, int>(42, 1999);
 		p2 = ft::make_pair<int, int>(42, 1024);
-		print_boolean_operator_test_result(p1, p2);
+		printer_boolean_operator_test(p1, p2);
 
 	}
 }
 
-void	print_boolean_operator_test_result(ft::pair<int, int> & p1, ft::pair<int, int> & p2)
+void	printer_boolean_operator_test(ft::pair<int, int> & p1, ft::pair<int, int> & p2)
 {
 	std::cout << GREEN "current pair: \n"
 	<< p1.first << ", " << p1.second << "\n"

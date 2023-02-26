@@ -1,10 +1,12 @@
 #include "iostream"
 #include "pair.hpp"
+#include "stack" // - to delete
 
 int	main()
 {
+	{pair_test();} // hey
 	{
-		pair_test();
+
 	}
 }
 
