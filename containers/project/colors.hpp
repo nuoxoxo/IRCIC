@@ -11,5 +11,11 @@
 # define GREEN "\033[0;32m"
 # define CYAN "\033[0;36m"
 # define MAG "\033[0;35m"
+# define ITAL "\033[3m"
 # define RESET "\033[0;0m"
+
+# define TICK	GREEN" ✓"RESET
+# define CROSS	RED" ✘"RESET
+
+
 #endif
