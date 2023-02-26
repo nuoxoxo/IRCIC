@@ -44,6 +44,8 @@ void	printer_cleaner_stack(T & st)
 //  emplace . constructs element in-place at the top . XXX
 
 # include "stack"
+# include "stdexcept"
+
 void	stack_test(void)
 {
 	std::cout << GREEN "\npush pop empty size" nl2reset;
@@ -58,6 +60,7 @@ void	stack_test(void)
 		S.push(43);
 		printer_cleaner_stack(S);
 		// S.pop(); // ----> should segfault with std::stack
+		// ----> to configure in ft::stack
 	}
 	std::cout << LOWKEY "\nTest " << ++i << " :: stack<string>"nl2reset;
 	{
