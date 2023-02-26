@@ -97,6 +97,14 @@ void	print_pair(ft::pair<L, R> p)
  *  type test, operator test              *
  * ****************************************/
 
+/* test list */
+// = . assign contents
+// make_pair()
+//  ==
+//  != 
+//  < . <=
+//  > . >=
+
 void	printer_boolean_operator_test(ft::pair<int, int>&, ft::pair<int, int>&);
 
 // int	main() // i just move main body here
@@ -104,7 +112,7 @@ void	pair_test(void)
 {
 	int	i = -1;
 
-	std::cout << nl LOWKEY "Test :: " << ++i << " :: testing types" nl2reset;
+	std::cout << nl LOWKEY "Test " << ++i << " :: testing types" nl2reset;
 	// same or different types
 	{
 		ft::pair<int, int>	ii;
@@ -125,7 +133,7 @@ void	pair_test(void)
 		print_pair(fi);
 		print_pair(is);
 	}
-	std::cout << nl LOWKEY "Test :: " << ++i << " :: testing make_pair() " nl2reset;
+	std::cout << nl LOWKEY "Test " << ++i << " :: testing make_pair() " nl2reset;
 	// testing make_pair
 	{
 		ft::pair<int, int> pii;
@@ -138,7 +146,7 @@ void	pair_test(void)
 		print_pair(psi);
 	}
 	// boolean operators
-	std::cout << nl LOWKEY "Test :: " << ++i << " :: testing boolean operators " nl2reset;
+	std::cout << nl LOWKEY "Test " << ++i << " :: testing boolean operators " nl2reset;
 	{
 		ft::pair<int, int> p1, p2;
 
@@ -182,5 +190,5 @@ void	printer_boolean_operator_test(ft::pair<int, int> & p1, ft::pair<int, int> &
 
 }
 
-
 #endif
+
