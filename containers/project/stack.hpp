@@ -1,13 +1,21 @@
+#pragma once
 #ifndef __PAIR_HPP__
 # define __PAIR_HPP__
+
+# include "iostream"
 
 namespace	ft
 {
 }
 
-void	clear_(ft::pair<int, int> & p1, ft::pair<int, int> & p2)
+template<typename T>
+void	printer_cleaner_stack(T & st)
+{
+	while ( !st.empty())
+	{
+		cout << st.top() << '\n';
+		st.pop();
+	}
+}
 
-
-#include "stack"
-
-
+#endif
