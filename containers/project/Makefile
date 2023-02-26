@@ -2,11 +2,11 @@ comp	:=	c++ -Wall -Werror -Wextra -std=c++98
 rmv	:=	rm -rf
 
 name	:=	out
-src	:=	main.cpp
+src	:=	main.cc
 
-bud	:=	$(src:%.cpp=%.o)
+bud	:=	$(src:%.cc=%.o)
 
-%.o	:	%.cpp
+%.o	:	%.cc
 		@ echo "compiling [$^] "
 		@ $(comp) -c $^ -o $@
 
