@@ -1,6 +1,14 @@
 #ifndef __PAIR_HPP__
 # define __PAIR_HPP__
 
+// color tags
+# define nl "\n"
+# define nl2 "\n\n"
+# define nl2reset " \n\n" RESET
+# define LOWKEY "\033[0;2m"
+# define GREEN "\033[0;32m"
+# define RESET "\033[0;0m"
+
 namespace	ft
 {
 	template<typename T_1, typename T_2>
@@ -90,16 +98,8 @@ void	print_pair(ft::pair<L, R> p)
 }
 
 /* ****************************************
- *  type test, operator test, color tags  *
+ *  type test, operator test              *
  * ****************************************/
-
-// color tags
-# define nl "\n"
-# define nl2 "\n\n"
-# define nl2reset " \n\n" RESET
-# define LOWKEY "\033[0;2m"
-# define GREEN "\033[0;32m"
-# define RESET "\033[0;0m"
 
 void	print_boolean_operator_test_result(ft::pair<int, int>&, ft::pair<int, int>&);
 
