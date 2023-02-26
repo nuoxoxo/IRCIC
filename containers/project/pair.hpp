@@ -85,13 +85,14 @@ namespace	ft
 		return (L > R || L == R);
 	}
 
-};
 
-template<typename L, typename R>
-void	print_pair(ft::pair<L, R> p)
-{
-	std::cout << p.first << ' ' << p.second << nl;
-}
+	// Printer
+	template<typename L, typename R>
+	void	print_pair(ft::pair<L, R> p)
+	{
+		std::cout << p.first << ' ' << p.second << nl;
+	}
+};
 
 /* ****************************************
  *  type test, operator test              *
@@ -110,6 +111,8 @@ void	printer_boolean_test(ft::pair<int, int>&, ft::pair<int, int>&);
 // int	main() // i just move main body here
 void	pair_test(void)
 {
+	std::cout << YELLOW "\n ::: Pair ::: types make_pair compare :::" nlreset;
+
 	int	i = -1;
 
 	std::cout << nl LOWKEY "Test " << ++i << " :: testing types" nl2reset;
@@ -146,7 +149,7 @@ void	pair_test(void)
 		print_pair(psi);
 	}
 	// boolean operators
-	std::cout << nl LOWKEY "Test " << ++i << " :: testing boolean operators " nl2reset;
+	std::cout << nl LOWKEY "Test " << ++i << " :: testing operators " nl2reset;
 	{
 		ft::pair<int, int> p1, p2;
 
