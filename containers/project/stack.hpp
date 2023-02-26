@@ -46,9 +46,11 @@ void	printer_cleaner_stack(T & st)
 # include "stack"
 # include "stdexcept"
 
-void	stack_test(void)
+void	stack_test(bool isft)
 {
-	std::cout << GREEN "\npush pop empty size" nl2reset;
+	if (isft) return ;
+
+	std::cout << YELLOW "\n ::: Stack ::: push pop empty size :::" nlreset;
 
 	int	i = -1;
 
