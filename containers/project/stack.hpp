@@ -20,8 +20,8 @@ namespace	ft
 
 	public:
 		// canon
-		// explicit stack( const Container& cont = Container() ); // qx
-		// explicit stack( const Container & C = Container() ) {}
+		// explicit stack( const Container & C = Container() ); // qx
+		// explicit stack( const Container- & C = Container() ) {} // mine
 		explicit stack( const Container & C = Container() ) : C(C) {}
 		~stack() {}
 
@@ -53,7 +53,8 @@ namespace	ft
 
 		friend bool operator == (const stack & L, const stack & R)
 		{
-			return (L.C == R.C); // compare the core .C otherwise warning "all paths call itself"
+			return (L.C == R.C);
+			// compare the m_C otherwise warning "all paths call itself"
 		}
 
 		friend bool operator != (const stack & L, const stack & R)
@@ -134,7 +135,6 @@ namespace	ft
 	{
 		return (L >= R);
 	}
-
 	*/
 
 };
