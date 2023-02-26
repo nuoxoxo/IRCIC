@@ -50,24 +50,69 @@ namespace	ft
 
 		// friend
 		friend bool operator == (const stack &, const stack &);
-		friend bool operator != (const stack &, const stack &);
+		friend bool operator != (const stack&, const stack &);
 		friend bool operator < (const stack &, const stack &);
 		friend bool operator <= (const stack &, const stack &);
 		friend bool operator > (const stack &, const stack &);
 		friend bool operator >= (const stack&, const stack &);
-	};/*
+	};
 
 	// define friend func
-	friend bool operator == (const stack & L, const stack & R)
+	template<typename T>
+	bool operator == (
+		const stack<T> & L, 
+		const stack<T> & R
+	)
 	{
 		return (L == R);
 	}
-	friend bool operator != (const stack & L, const stack & R)
-	friend bool operator < (const stack & L, const stack & R)
-	friend bool operator <= (const stack & L, const stack & R)
-	friend bool operator > (const stack & L, const stack & R)
-	friend bool operator >= (const stack & L, const stack & R)
-*/
+
+	template<typename T>
+	bool operator != (
+		const stack<T> & L, 
+		const stack<T> & R
+	)
+	{
+		return (L != R);
+	}
+
+	template<typename T>
+	bool operator < (
+		const stack<T> & L, 
+		const stack<T> & R
+	)
+	{
+		return (L < R);
+	}
+
+	template<typename T>
+	bool operator <= (
+		const stack<T> & L, 
+		const stack<T> & R
+	)
+	{
+		return (L <= R);
+	}
+
+	template<typename T>
+	bool operator > (
+		const stack<T> & L, 
+		const stack<T> & R
+	)
+	{
+		return (L > R);
+	}
+
+	template<typename T>
+	bool operator >= (
+		const stack<T> & L, 
+		const stack<T> & R
+	)
+	{
+		return (L >= R);
+	}
+
+
 };
 
 template<typename T>
@@ -105,12 +150,8 @@ void	printer_cleaner_stack(T & st)
 
 # include "stack"
 
-void	stack_test(bool isft)
+void	stack_test_isstd()
 {
-	if (isft) return ;
-
-	std::cout << YELLOW "\n ::: stack ::: push pop empty size :::" nlreset;
-
 	int	i = -1;
 
 	std::cout << LOWKEY "\nTest " << ++i << " :: stack<int>"nl2reset;
@@ -203,5 +244,121 @@ void	stack_test(bool isft)
 		printer_cleaner_stack(T);
 	}
 }
+
+
+
+void	stack_test_isft()
+{
+	int	i = -1;
+
+	std::cout << LOWKEY "\nTest " << ++i << " :: stack<int>"nl2reset;
+	{
+		ft::stack<int>	S;
+		S.push(41);
+		S.push(42);
+		S.push(43);
+		printer_cleaner_stack(S);
+		// S.pop(); // ----> should segfault with std::stack
+		// ----> to config in ft::stack
+	}
+	std::cout << LOWKEY "\nTest " << ++i << " :: stack<string>"nl2reset;
+	{
+		ft::stack<std::string>	S;
+		S.push("= = = = = = = = = = = = = world");
+		S.push("= = = = = = = = = = hello ");
+		S.push("= = = = = = =");
+		S.push("= = = =");
+		S.push("= ");
+		printer_cleaner_stack(S);
+	}
+	std::cout << LOWKEY "\nTest " << ++i << " :: stack<double>"nl2reset;
+	{
+		ft::stack<double>	S;
+		S.push(21.21);
+		S.push(42.43);
+		S.push(196.883);
+		printer_cleaner_stack(S);
+	}
+	std::cout << LOWKEY "\nTest " << ++i << " :: comparison " nl2reset;
+	{
+		ft::stack<double>	S, T;
+		S.push(21.21);
+		S.push(42.43);
+		S.push(196.883);
+		T.push(21.21);
+		T.push(42.43);
+		T.push(196.883);
+		
+
+		std::cout << std::boolalpha
+		<< (S == T) << " ==, " 
+		<< (S != T) << " !=, "
+		<< (S < T) << " <, "
+		<< (S > T) << " > " << std::noboolalpha << nl2;
+		printer_cleaner_stack(S);
+		printer_cleaner_stack(T);
+	}
+	std::cout << LOWKEY "\nTest " << ++i << " :: comparison :: 2˚ "nl2reset;
+	{
+		ft::stack<double>	S, T;
+		S.push(21.21);
+		S.push(42.43);
+		S.push(196.883);
+		T.push(21.21);
+		T.push(42.43);
+		T.push(196.883);
+
+		S.top() = 0;
+
+		std::cout << std::boolalpha
+		<< (S == T) << " ==, " 
+		<< (S != T) << " !=, "
+		<< (S < T) << " <, "
+		<< (S > T) << " > " << std::noboolalpha << nl2;
+		printer_cleaner_stack(S);
+		printer_cleaner_stack(T);
+	}
+	std::cout << LOWKEY "\nTest " << ++i << " :: comparison :: 3˚ "nl2reset;
+	{
+		ft::stack<double>	S, T;
+
+		S.push(21.21);
+		S.push(42.43);
+		S.top() = 1000;
+		S.push(196.883);
+
+		T.push(21.21);
+		T.push(42.43);
+		T.push(196.883);
+
+
+		std::cout << std::boolalpha
+		<< (S == T) << " ==, " 
+		<< (S != T) << " !=, "
+		<< (S < T) << " <, "
+		<< (S > T) << " > " << std::noboolalpha << nl2;
+		printer_cleaner_stack(S);
+		printer_cleaner_stack(T);
+	}
+}
+
+
+
+void	stack_test(bool isft)
+{
+	if (isft)
+	{
+		std::cout
+		<< YELLOW "\n ::: ft::stack ::: push pop empty size :::" nlreset;
+		// stack_test_isft();
+		return ;
+	}
+
+	std::cout
+	<< YELLOW "\n ::: std::stack ::: push pop empty size :::" nlreset;
+	stack_test_isstd();
+}
+
+
 
 #endif
