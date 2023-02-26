@@ -1,5 +1,8 @@
+#pragma once
 #ifndef __PAIR_HPP__
 # define __PAIR_HPP__
+
+# include "iostream"
 
 // color tags
 # define nl "\n"
