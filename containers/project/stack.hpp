@@ -11,25 +11,50 @@
 
 namespace	ft
 {
-	// TODO
-	template < typename T, typename Container = std::vector<T> > // std
+	template < typename T, typename Container = std::vector<T> > // std //XXX
 	class	Stack
 	{
 	protected:
 		Container	C;
+
 	public:
-		// Canon // TODO
-		/*
-		pair() : first(), second() {}
-		~pair() {}
 
-		pair(const T_1 & l, const T_2 & r) : first(l), second(r) {}
+		// canon
+		explicit stack( const Container & C = Container() ) {}
+		// explicit stack( const Container & C = Container() ) : C(C) {}
+		~stack() {}
 
-		template<typename L, typename R>
-		pair(const pair<L, R> & p) : first(p.first), second(p.second) {}
-		*/
 
-		// operator // TODO
+		stack & operator = (const stack & dummy)
+		{
+			if (this != & dummy)
+				C = dummy.C;
+			return (*this);
+		}
+
+
+		// the only accessor : top
+		T const	& top() const { return C.back(); }
+		T	& top()	{ return C.back(); }
+
+
+		// size
+		bool	empty() const { return C.empty(); }
+		size_t	size() const { return C.size(); }
+
+
+		// operation
+		void	push(const T & item) { C.push_back(item); }
+		void	pop(void) { C.pop_back(); }
+
+
+		// friend
+		friend bool operator == (const stack &, const stack &);
+		friend bool operator != (const stack &, const stack &);
+		friend bool operator < (const stack &, const stack &);
+		friend bool operator <= (const stack &, const stack &);
+		friend bool operator > (const stack &, const stack &);
+		friend bool operator >= (const stack&, const stack &);
 	}
 
 	// non-member func // TODO
