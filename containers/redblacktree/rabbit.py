@@ -14,6 +14,21 @@ class tree :
         self.nil = ndoe(0)
         self.root = self.nil
 
+    def Rotate_Right(self, x):
+        y = x.left
+        x.left = y.right
+        if y.right != self.nil:
+            y.right.parent = x
+        y.parent = x.parent
+        if x.parent == None:
+            self.root = y
+        elif x == x.parent.right:
+            x.parent.right = y
+        else:
+            x.parent.left = y
+        y.right = x
+        x.parent = y
+
     def Fix(self, node):
         while node != self.root and node.parent.red == True:
             
