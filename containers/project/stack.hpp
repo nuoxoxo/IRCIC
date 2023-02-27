@@ -152,6 +152,16 @@ void	printer_cleaner_stack(T & st)
 	std::cout << "(size : " << GREEN << st.size() << RESET << ") \n\n";
 }
 
+template<typename T>
+void	printer_compare_boolalpha(const T & s, const T & t)
+{
+	std::cout << std::boolalpha
+	<< (s == t) << " ==, " 
+	<< (s != t) << " !=, "
+	<< (s < t) << " <, "
+	<< (s > t) << " > " << std::noboolalpha << nl2;
+}
+
 
 // :D
 
@@ -173,8 +183,8 @@ void	printer_cleaner_stack(T & st)
 //  emplace . constructs element in-place at the top . XXX
 
 
-
 # include "stack"
+
 
 void	stack_test_isstd()
 {
@@ -239,11 +249,7 @@ void	stack_test_isstd()
 
 		S.top() = 0;
 
-		std::cout << std::boolalpha
-		<< (S == T) << " ==, " 
-		<< (S != T) << " !=, "
-		<< (S < T) << " <, "
-		<< (S > T) << " > " << std::noboolalpha << nl2;
+		printer_compare_boolalpha(S, T);
 		printer_cleaner_stack(S);
 		printer_cleaner_stack(T);
 	}
@@ -253,6 +259,7 @@ void	stack_test_isstd()
 
 		S.push(21.21);
 		S.push(42.43);
+
 		S.top() = 1000;
 		S.push(196.883);
 
@@ -260,12 +267,7 @@ void	stack_test_isstd()
 		T.push(42.43);
 		T.push(196.883);
 
-
-		std::cout << std::boolalpha
-		<< (S == T) << " ==, " 
-		<< (S != T) << " !=, "
-		<< (S < T) << " <, "
-		<< (S > T) << " > " << std::noboolalpha << nl2;
+		printer_compare_boolalpha(S, T);
 		printer_cleaner_stack(S);
 		printer_cleaner_stack(T);
 	}
@@ -319,11 +321,7 @@ void	stack_test_isft()
 		T.push(196.883);
 		
 
-		std::cout << std::boolalpha
-		<< (S == T) << " ==, " 
-		<< (S != T) << " !=, "
-		<< (S < T) << " <, "
-		<< (S > T) << " > " << std::noboolalpha << nl2;
+		printer_compare_boolalpha(S, T);
 		printer_cleaner_stack(S);
 		printer_cleaner_stack(T);
 	}
@@ -339,11 +337,7 @@ void	stack_test_isft()
 
 		S.top() = 0;
 
-		std::cout << std::boolalpha
-		<< (S == T) << " ==, " 
-		<< (S != T) << " !=, "
-		<< (S < T) << " <, "
-		<< (S > T) << " > " << std::noboolalpha << nl2;
+		printer_compare_boolalpha(S, T);
 		printer_cleaner_stack(S);
 		printer_cleaner_stack(T);
 	}
@@ -361,11 +355,7 @@ void	stack_test_isft()
 		T.push(196.883);
 
 
-		std::cout << std::boolalpha
-		<< (S == T) << " ==, " 
-		<< (S != T) << " !=, "
-		<< (S < T) << " <, "
-		<< (S > T) << " > " << std::noboolalpha << nl2;
+		printer_compare_boolalpha(S, T);
 		printer_cleaner_stack(S);
 		printer_cleaner_stack(T);
 	}
