@@ -14,9 +14,19 @@ class tree :
         self.nil = ndoe(0)
         self.root = self.nil
 
-    def fix(self, node):
+    def Fix(self, node):
+        while node != self.root and node.parent.red == True:
+            uncle = node.parent.parent.left
+            
+            if uncle.red == True:
+                uncle.red = False
+                node.parent.red = False
+                node.parent.parent.red = True
+                node = node.parent.parent
+            else:
+                if # ...
 
-    def insert(self, val):
+    def Insert(self, val):
 
         # make a node
         node = treenode(val)
@@ -25,7 +35,7 @@ class tree :
         node.left = self.nil
         node.right = self.nil
         
-        # class bst insertion ---> find the currect parent
+        # class bst Insertion ---> find the currect parent
         parent = None
         current = self.root
         while current != self.nil:
@@ -44,8 +54,8 @@ class tree :
         else:
             self.root = node
 
-        # fixing the tree
-        self.fix(node)
+        # Fixing the tree
+        self.Fix(node)
 
 
 
