@@ -1,3 +1,5 @@
+import random
+
 class treenode :
     def __init__(self, val) :
         self.parent = None
@@ -8,18 +10,23 @@ class treenode :
 
 class tree :
     def __init__(self) :
-        self.nil.red = False # ie. black
-        self.nil.left = None
-        self.nil.right = None
-        self.nil = ndoe(0)
-        self.root = self.nil
+        self.null = treenode(0)
+        self.null.red = False # ie. black
+        self.null.left = None
+        self.null.right = None
+        self.root = self.null
+
+    def __repr__(self) :
+        a = []
+        Inorder_Printer(self.root, a)
+        return '\n'.join(a)
 
     def Rotate_Right(self, x):
         y = x.left
         x.left = y.right
-        if y.right != self.nil:
+        if y.right != self.null:
             y.right.parent = x
-        y.parent = x.parent
+        y.parent = x.parent # idem
         if x.parent == None:
             self.root = y
         elif x == x.parent.right:
@@ -27,6 +34,21 @@ class tree :
         else:
             x.parent.left = y
         y.right = x
+        x.parent = y
+
+    def Rotate_Left(self, x):
+        y = x.right
+        x.right = y.left
+        if y.left != self.null:
+            y.left.parent = x
+        y.parent = x.parent # idem
+        if x.parent == None:
+            self.root = y
+        elif x == x.parent.left:
+            x.parent.left = y
+        else:
+            x.parent.right = y
+        y.left = x
         x.parent = y
 
     def Fix(self, node):
@@ -70,13 +92,13 @@ class tree :
         node = treenode(val)
         node.red = True # new node has to be red
         node.parent = None
-        node.left = self.nil
-        node.right = self.nil
+        node.left = self.null
+        node.right = self.null
         
         # class bst Insertion ---> find the currect parent
         parent = None
         current = self.root
-        while current != self.nil:
+        while current != self.null:
             parent = current
             if current.val == parent.val:
                 return
@@ -85,21 +107,41 @@ class tree :
             else:
                 current = current.right
         node.parent = parent
-        if parent.val > node.val:
+        if parent == None:
+            self.root = node
+        elif parent.val > node.val:
             parent.left = node
         elif parent.val < node.val:
-            parent.right = ndoe
-        else:
-            self.root = node
-
+            parent.right = node
         # Fixing the tree
         self.Fix(node)
 
+def Inorder_Printer(node, a, level = 0):
+    if node.val != 0:
+        Inorder_Printer(node.left, a, level + 1)
+        a.append('-' * 4 * level + 
+                '> ' + str(node.val) + 
+                ' ' + ('r' if node.red else 'b'))
+        Inorder_Printer(node.right, a, level + 1)
+
+def Number_Generator(bound):
+    random.seed(1)
+    res = []
+    for _ in range(bound):
+        res.append(random.randint(1, bound - 1))
+    return res
 
 
+def main():
+    bound = 256
+    random.seed(1)
+    tree_no_1 = tree()
+    for _ in range(bound):
+        tree_no_1.Insert(random.randint(1, bound + 1))
+    print(tree_no_1)
 
 
-
+main()
 
 
 
