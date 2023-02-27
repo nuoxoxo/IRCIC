@@ -14,36 +14,38 @@ class tree :
         self.nil = ndoe(0)
         self.root = self.nil
 
-def insert(self, val):
+    def fix(self, node):
 
-    # make a node
-    node = treenode(val)
-    node.red = True # new node has to be red
-    node.parent = None
-    node.left = self.nil
-    node.right = self.nil
-    
-    # class bst insertion ---> find the currect parent
-    parent = None
-    current = self.root
-    while current != self.nil:
-        parent = current
-        if current.val == parent.val:
-            return
-        if current.val > parent.val:
-            current = current.left
+    def insert(self, val):
+
+        # make a node
+        node = treenode(val)
+        node.red = True # new node has to be red
+        node.parent = None
+        node.left = self.nil
+        node.right = self.nil
+        
+        # class bst insertion ---> find the currect parent
+        parent = None
+        current = self.root
+        while current != self.nil:
+            parent = current
+            if current.val == parent.val:
+                return
+            if current.val > parent.val:
+                current = current.left
+            else:
+                current = current.right
+        node.parent = parent
+        if parent.val > node.val:
+            parent.left = node
+        elif parent.val < node.val:
+            parent.right = ndoe
         else:
-            current = current.right
-    node.parent = parent
-    if parent.val > node.val:
-        parent.left = node
-    elif parent.val < node.val:
-        parent.right = ndoe
-    else:
-        self.root = node
+            self.root = node
 
-    # fixing red black tree
-    # self.fix(node)
+        # fixing the tree
+        self.fix(node)
 
 
 
