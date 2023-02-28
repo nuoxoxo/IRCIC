@@ -113,6 +113,7 @@ class tree :
             parent.left = node
         elif parent.val < node.val:
             parent.right = node
+
         # Fixing the tree
         self.Fix(node)
 
@@ -121,7 +122,7 @@ def Inorder_Printer(node, a, level = 0):
         Inorder_Printer(node.left, a, level + 1)
         a.append('-' * 4 * level + 
                 '> ' + str(node.val) + 
-                ' ' + ('r' if node.red else 'b'))
+                ' ' + ('Red' if node.red else 'Black'))
         Inorder_Printer(node.right, a, level + 1)
 
 def Number_Generator(bound):
