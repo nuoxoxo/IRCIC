@@ -18,6 +18,23 @@ public:
 		using pointer		= int *;
 		using reference		= int &;
 
+		reference operator * () const { return (*m_ptr); }
+		pointer operator -> () { return (m_ptr); }
+
+		// pre ++
+		Iterator & operator ++ () { m_ptr++; return (*this); }
+
+		// post ++
+		Iterator operator ++ (int)
+		{ Iterator tmp = *this; ++(*this); return (tmp); }
+
+		friend bool operator == (const Iterator & l, const Iterator & r)
+		{ return (l.m_ptr == r.m_ptr); }
+
+		friend bool operator != (const Iterator & l, const Iterator & r)
+		{ return (l.m_ptr != r.m_ptr); }
+
+
 	};
 	
 };
