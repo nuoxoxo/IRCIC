@@ -18,6 +18,12 @@ public:
 		using pointer		= int *;
 		using reference		= int &;
 
+		Iterator begin()
+		{ return Iterator( & m_data[0] ); }
+		
+		Iterator end()
+		{ return Iterator( & m_data[200] ); } // 1st invalid memory zone
+
 		reference operator * () const { return (*m_ptr); }
 		pointer operator -> () { return (m_ptr); }
 
@@ -33,6 +39,7 @@ public:
 
 		friend bool operator != (const Iterator & l, const Iterator & r)
 		{ return (l.m_ptr != r.m_ptr); }
+
 
 
 	};
