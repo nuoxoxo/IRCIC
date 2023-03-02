@@ -30,11 +30,11 @@ namespace	ft
 	Iterator_Vector(const Iterator_Vector & it) : m_current(it.m_current) {}
 
 	template<typename Iter>	// const iterator conversion
-	Iterator_Vector(const Iterator_Vector<Iter> & it) : m_current(it.base()) {}
+	Iterator_Vector(const Iterator_Vector<Iter> & it) : m_current(it.current()) {}
 
 
-	// base (?)
-	Iter_T base() const { return (m_current); }
+	// base
+	Iter_T	current() const { return (m_current); }
 
 
 	// assignment
@@ -47,22 +47,38 @@ namespace	ft
 	}
 
 
-	// random access
-
-	reference operator [] (difference_type const & _steps_) cons
+	// random access []
+	reference operator [] (difference_type const & _steps_) const
 	{ return (*(m_current + _steps_)); }
 
 
 	// ptr & dereferencer
-
 	reference	operator * () const { return (*m_current); }
 	pointer		operator -> () const { return (m_current); }
 
 
-	// ++  +=  --  -=
-
+	// pre  ++  +=
 	Iterator_Vector	& operator ++ () { m_current++; return (*this); }
 	Iterator_Vector	& operator -- () { m_current--; return (*this); }
+
+
+	// --  -=
+	Iterator_Vector	& operator += (difference_type _steps_)
+	{ m_current += _steps_; return *this; }
+
+	Iterator_Vector	& operator -= (difference_type _steps_)
+	{ m_current -= _steps_; return *this; }
+
+
+	// +  -
+	Iterator_Vector	operator + (difference_type _steps_) const
+	{ return (Iterator_Vector(m_current + _steps_);) }
+
+	Iterator_Vector	operator - (difference_type _steps_) const
+	{ return (Iterator_Vector(m_current - _steps_);) }
+
+
+	// post  ++  +=
 
 	Iterator_Vector	operator ++ ()
 	{
