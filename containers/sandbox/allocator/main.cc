@@ -4,6 +4,7 @@
 int	main()
 {
 	int			Size = 10, i;
+
 	std::cout << "::: testing int ::: \n\n";
 	{
 		std::allocator<int>	at;
@@ -16,8 +17,7 @@ int	main()
 			std::cout << i << ": " << a[i]
 			<< (i ^ Size - 1 ? "\n" : "\n\n");
 
-		// cleanup
-
+		// important
 		at.deallocate(a, Size);
 	}
 	std::cout << "::: testing string ::: \n\n";
@@ -40,7 +40,6 @@ int	main()
 			at.destroy(a + i);
 
 		// cleanup
-
 		at.deallocate(a, Size);
 	}
 	std::cout << "::: testing float ::: \n\n";
@@ -57,8 +56,7 @@ int	main()
 			<< (i ^ Size - 1 ? "\n" : "\n\n");
 		
 		// cleanup
-
-		at.destroy(a + i);
+		at.destroy(a + i); // destroy what you construct
 		at.deallocate(a, Size);
 	}
 	std::cout << "::: testing double ::: \n\n";
@@ -75,8 +73,7 @@ int	main()
 			<< (i ^ Size - 1 ? "\n" : "\n\n");
 
 		// cleanup
-
-		at.destroy(a + 2);
+		at.destroy(a + 2); // destroy what you construct
 		at.deallocate(a, Size);
 	}
 }
