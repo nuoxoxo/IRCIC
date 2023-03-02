@@ -1,6 +1,7 @@
 #include "iostream"
 #include "iterator" // iterator_tag
 #include "cstddef"  // ptrdiff_t
+#include "algorithm" // fill
 
 #define SIZE 12
 
@@ -65,15 +66,40 @@ public:
 	{ return Iterator( & m_data[ SIZE ] ); } // 1st invalid memory zone
 };
 
+template<class T>
+void	FILL(T &);
 
 int	main()
 {
 	Integers	integers;
 
+	// print object using auto
 	for (auto i: integers)	std::cout << i << "\n";
 	std::cout << "\n";
+
+	// print object using begin/end
 	for (auto it = integers.begin(), end = integers.end(); it != end; ++it) {
 		const auto i = *it;
 		std::cout << i << "\n";
 	}
+
+	// print an object filled with 42
+	std::cout << "\n";
+	srand(time(0));
+	std::fill(integers.begin(), integers.end(), 42);
+	for (auto i: integers)	std::cout << i << "\n";
+
+	// print an object with random integers
+	std::cout << "\n";
+	srand(time(0));
+	FILL(integers);
+	for (auto i: integers)	std::cout << i << "\n";
 }
+
+template<class T>
+void	FILL(T & m)
+{
+	for (auto it = m.begin(); it != m.end(); ++it)
+		*it = rand() % 100;
+}
+
