@@ -34,7 +34,13 @@ namespace	ft
 	// base (?)
 	Iter_T base() const { return (m_current); }
 
-
+	// assignment
+	Iterator_Vector	operator = (Iterator_Vector const & it)
+	{
+		if (*this == it) return (*this);
+		m_current = it._current;
+		return (*this);
+	}
 
 
 
