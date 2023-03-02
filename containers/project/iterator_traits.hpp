@@ -17,18 +17,23 @@ namespace	ft
 	 * different operations supported by different iterator types.
 	 */
 
+
 	///  Marking input iterators.
 	struct input_iterator_tag {};
+
 
 	///  Marking output iterators.
 	struct output_iterator_tag {};
 
+
 	/// Forward iterators support a superset of input iterator operations.
 	struct forward_iterator_tag : public input_iterator_tag {};
+
 
 	/// Bidirectional iterators support a superset of forward iterator
 	/// operations.
 	struct bidirectional_iterator_tag : public forward_iterator_tag {};
+
 
 	/// Random-access iterators support a superset of bidirectional iterator
 	/// operations.
@@ -48,19 +53,33 @@ namespace	ft
 	};
 
 
-	// 	template <class Category, class T, class Distance = ptrdiff_t, class Pointer = T*, class Reference = T&>
-		struct iterator
-		{
-			typedef T			value_type;
-			typedef Distance	difference_type;
-			typedef Pointer		pointer;
-			typedef Reference	reference;
-			typedef Category	iterator_category;
-		};
+	// Iterator - as in vector<T>::iterator
+	template<class T, class Category, class Distance = ptrdiff_t, 
+		class Reference = T &, class Pointer = T *>
+	class	iterator
+	{
+	public:
+		typedef	T		value_type;
+		typedef Category	iterator_category;
+		typedef Distance	difference_type;
+		typedef Reference	reference;
+		typedef Pointer		pointer;
+	};
 
 
+	// you'll also need vector-specific pointers for * and const *
 
+	template<class T>
+	class	iterator_traits<T*>
+	{
+		//
+	}
 
+	template<class T>
+	class	iterator_traits<const T*>
+	{
+		// 
+	}
 
 // 
 
