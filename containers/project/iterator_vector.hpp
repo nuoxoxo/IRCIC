@@ -20,6 +20,7 @@ namespace	ft
 		typedef typename ft::iterator_traits<Iter_T>::pointer		pointer;
 	};
 
+
 	// canon
 
 	explicit Iterator_Vector(Iter_T it) : m_current(it) {}
@@ -31,8 +32,10 @@ namespace	ft
 	template<typename Iter>	// const iterator conversion
 	Iterator_Vector(const Iterator_Vector<Iter> & it) : m_current(it.base()) {}
 
+
 	// base (?)
 	Iter_T base() const { return (m_current); }
+
 
 	// assignment
 	Iterator_Vector	operator = (Iterator_Vector const & it)
@@ -41,6 +44,43 @@ namespace	ft
 		m_current = it._current;
 		return (*this);
 	}
+
+
+	// ptr & dereferencer
+
+	reference	operator * () const { return (*m_current); }
+	pointer		operator -> () const { return (m_current); }
+
+
+	// pre/post ++ -- 
+
+	Iterator_Vector	& operator ++ () { m_current++; return (*this); }
+	Iterator_Vector	& operator -- () { m_current++; return (*this); }
+
+	Iterator_Vector	operator ++ ()
+	{
+		Iterator_Vector	dummy(*this);
+
+		m_current++;
+		return (dummy);
+	}
+
+	Iterator_Vector	operator -- ()
+	{
+		Iterator_Vector	dummy(*this);
+
+		m_current--;
+		return (dummy);
+	}
+
+
+
+
+
+
+
+
+
 
 
 
