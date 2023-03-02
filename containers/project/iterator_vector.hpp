@@ -38,6 +38,7 @@ namespace	ft
 
 
 	// assignment
+
 	Iterator_Vector	operator = (Iterator_Vector const & it)
 	{
 		if (*this == it) return (*this);
@@ -46,20 +47,26 @@ namespace	ft
 	}
 
 
+	// random access
+
+	reference operator [] (difference_type const & _steps_) cons
+	{ return (*(m_current + _steps_)); }
+
+
 	// ptr & dereferencer
 
 	reference	operator * () const { return (*m_current); }
 	pointer		operator -> () const { return (m_current); }
 
 
-	// pre/post ++ -- 
+	// ++  +=  --  -=
 
 	Iterator_Vector	& operator ++ () { m_current++; return (*this); }
-	Iterator_Vector	& operator -- () { m_current++; return (*this); }
+	Iterator_Vector	& operator -- () { m_current--; return (*this); }
 
 	Iterator_Vector	operator ++ ()
 	{
-		Iterator_Vector	dummy(*this);
+		Iterator_Vector		dummy(*this);
 
 		m_current++;
 		return (dummy);
@@ -67,7 +74,7 @@ namespace	ft
 
 	Iterator_Vector	operator -- ()
 	{
-		Iterator_Vector	dummy(*this);
+		Iterator_Vector		dummy(*this);
 
 		m_current--;
 		return (dummy);
