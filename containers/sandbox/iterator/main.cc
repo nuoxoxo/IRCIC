@@ -7,13 +7,17 @@
 
 class	Integers
 {
+
 private:
 	int	m_data[ SIZE ];
+
 public:
+	// constr . is a filler by defautl
 	Integers() { for (int i = 0; i < SIZE; i++) m_data[i] = 0; }
-	// class Iterator
-	struct	Iterator
+
+	class Iterator
 	{
+	public:
 		using iterator_category	= std::forward_iterator_tag;
 		using difference_type	= std::ptrdiff_t;
 		using value_type	= int;
