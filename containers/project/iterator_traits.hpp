@@ -54,7 +54,7 @@ namespace	ft
 
 
 	// Iterator - as in vector<T>::iterator
-	template<class T, class Category, class Distance = ptrdiff_t, 
+	template<class T, class Category, class Distance = std::ptrdiff_t, 
 		class Reference = T &, class Pointer = T *>
 	class	iterator
 	{
@@ -72,8 +72,24 @@ namespace	ft
 	template<class T>
 	class	iterator_traits<T*>
 	{
-		//
+		typedef std::random_access_iterator_tag	iterator_category;
+		typedef ptrdiff_t			difference_type;
+		typedef	T				value_type;
+		typedef T *				pointer;
+		typedef T &				reference;
 	}
+
+
+	template<class T>
+	struct	iterator_traits<const T*>
+	{
+		typedef T	value_type;
+		typedef ptrdiff_t			difference_type;
+		typedef const T*					pointer;
+		typedef const T&					reference;
+		typedef random_acess_iterator_tag	iterator_category;
+	};
+
 
 	template<class T>
 	class	iterator_traits<const T*>
