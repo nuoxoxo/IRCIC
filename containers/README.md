@@ -1,5 +1,12 @@
 # Todo
-[Iter traits](https://www.codeproject.com/Articles/36530/An-Introduction-to-Iterator-Traits)
+
+[@](https://m.cplusplus.com/reference/iterator/iterator) cplusplus/iterator  
+[@](https://m.cplusplus.com/reference/iterator/iterator_traits) cplusplus/iterator_traits  \
+[@](https://m.cplusplus.com/reference/iterator/RandomAccessIterator) cplusplus/RandomAccessIter  
+
+[@](https://gcc.gnu.org/onlinedocs/gcc-4.6.2/libstdc++/api/a01052_source.html) gcc.gnu.stl_iterator.h  \
+[@](https://www.codeproject.com/Articles/36530/An-Introduction-to-Iterator-Traits) iterator_traits w/ distance() example 
+
 
 # Containers
 Iterator traits
