@@ -6,18 +6,35 @@
 namespace	ft
 {
 	// Default struct for iterator_traits
-	template< typename Iterator_T >
-	class	Iterator_Vector : public ft::iterator< Iterator_T, ft::random_access_iterator_tag >
+
+	template< typename Iter_T >
+	class	Iterator_Vector : public ft::iterator< Iter_T, ft::random_access_iterator_tag >
 	{
 
 	protected:
-		Iterator_T	m_current;
+		Iter_T	m_current;
 
 	public:
-		typedef typename ft::iterator_traits<Iterator_T>::difference_type  difference_type;
-		typedef typename ft::iterator_traits<Iterator_T>::reference	reference;
-		typedef typename ft::iterator_traits<Iterator_T>::pointer	pointer;
+		typedef typename ft::iterator_traits<Iter_T>::difference_type	difference_type;
+		typedef typename ft::iterator_traits<Iter_T>::reference		reference;
+		typedef typename ft::iterator_traits<Iter_T>::pointer		pointer;
 	};
+
+	// canon
+
+	explicit Iterator_Vector(Iter_T it) : m_current(it) {}
+
+	Iterator_Vector() : m_current() {}
+
+	Iterator_Vector(const Iterator_Vector & it) : m_current(it.m_current) {}
+
+	template<typename Iter>	// const iterator conversion
+	Iterator_Vector(const Iterator_Vector<Iter> & it) : m_current(it.base()) {}
+
+	// base (?)
+	Iter_T base() const { return (m_current); }
+
+
 
 
 
