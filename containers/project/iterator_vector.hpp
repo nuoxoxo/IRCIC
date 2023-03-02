@@ -24,14 +24,16 @@ namespace	ft
 	// canon
 
 	explicit Iterator_Vector(Iter_T it) : m_current(it) {}
+	explicit Iterator_Vector(pointer ptr) : m_current(ptr) {}
 
 	Iterator_Vector() : m_current() {}
 
-	Iterator_Vector(const Iterator_Vector & it) : m_current(it.m_current) {}
+	Iterator_Vector(const Iterator_Vector & it) : m_current(it.current()) {}
 
 	template<typename Iter>	// const iterator conversion
 	Iterator_Vector(const Iterator_Vector<Iter> & it) : m_current(it.current()) {}
 
+	virtual	~Iterator_vector() {}
 
 	// base
 	Iter_T	current() const { return (m_current); }
@@ -39,10 +41,11 @@ namespace	ft
 
 	// assignment
 
-	Iterator_Vector	operator = (Iterator_Vector const & it)
+	Iterator_Vector operator = (Iterator_Vector const & it)
+	// Iterator_Vector & operator = (Iterator_Vector const & it)
 	{
-		if (*this == it) return (*this);
-		m_current = it._current;
+		if (*this != it)
+			m_current = it._current;
 		return (*this);
 	}
 
@@ -74,7 +77,7 @@ namespace	ft
 	Iterator_Vector	operator + (difference_type _steps_) const
 	{ return (Iterator_Vector(m_current + _steps_);) }
 
-	Iterator_Vector	operator - (difference_type _steps_) const
+	difference_type	operator - (difference_type _steps_) const
 	{ return (Iterator_Vector(m_current - _steps_);) }
 
 
@@ -97,8 +100,16 @@ namespace	ft
 	}
 
 
+	// boolean operators
 
+	bool operator == (Iterator_Vector const & it) const { return m_current == it.current(); }
+	bool operator != (Iterator_Vector const & it) const { return m_current != it.current(); }
 
+	bool operator <= (Iterator_Vector const & it) const { return m_current <= it.current(); }
+	bool operator >= (Iterator_Vector const & it) const { return m_current >= it.current(); }
+
+	bool operator < (Iterator_Vector const & it) const { return m_current < it.current(); }
+	bool operator > (Iterator_Vector const & it) const { return m_current > it.current(); }
 
 
 
