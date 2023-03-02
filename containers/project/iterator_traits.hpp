@@ -79,36 +79,15 @@ namespace	ft
 		typedef T &				reference;
 	}
 
-
 	template<class T>
 	struct	iterator_traits<const T*>
 	{
-		typedef T	value_type;
+		typedef std::random_access_iterator_tag	iterator_category;
 		typedef ptrdiff_t			difference_type;
-		typedef const T*					pointer;
-		typedef const T&					reference;
-		typedef random_acess_iterator_tag	iterator_category;
+		typedef const T *			pointer;
+		typedef const T &			reference;
+		typedef T				value_type;
 	};
-
-
-	template<class T>
-	class	iterator_traits<const T*>
-	{
-		// 
-	}
-
-// 
-
-
-
-
-
-
-
-
-
-
-
 
 
 
