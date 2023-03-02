@@ -6,7 +6,7 @@
 
 namespace	ft
 {
-	// 5 Iter categories defined for STL in file named : 
+	// 5 Iter categories :: defined for STL in file named : 
 	// 	stl_iterator_base_types.hpp
 
 	/**
@@ -35,6 +35,7 @@ namespace	ft
 	struct random_access_iterator_tag : public bidirectional_iterator_tag {};
 
 
+	// Default struct for iterator_traits
 	template<typename T>
 	class	iterator_traits
 	{
@@ -46,7 +47,31 @@ namespace	ft
 		typedef typename T::reference	reference;
 	};
 
-	
+
+	// 	template <class Category, class T, class Distance = ptrdiff_t, class Pointer = T*, class Reference = T&>
+		struct iterator
+		{
+			typedef T			value_type;
+			typedef Distance	difference_type;
+			typedef Pointer		pointer;
+			typedef Reference	reference;
+			typedef Category	iterator_category;
+		};
+
+
+
+
+
+// 
+
+
+
+
+
+
+
+
+
 
 
 
