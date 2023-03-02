@@ -35,6 +35,7 @@ namespace	ft
 
 	virtual	~Iterator_vector() {}
 
+
 	// base
 	Iter_T	current() const { return (m_current); }
 
