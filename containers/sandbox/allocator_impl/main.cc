@@ -73,6 +73,25 @@ namespace	MyLibrary
 		}
 
 
+		// initialize elements of allocated storage p with value value
+		void	construct (pointer p, const T & value) { new((void *) p) T(value); }  // initialize memory with placement new
+
+
+		// destroy elements of initialized storage p
+		void destroy (pointer p) { p->~T(); } // destroy objects by calling their destructor
+
+
+		// deallocate storage p of deleted elements
+		void	deallocate (pointer p, size_type num) //deallocate memory with global delete
+		{
+			std::cerr
+			<< "deallocate " << num << " element(s)"
+			<< " of size " << sizeof(T)
+			<< " at: " << (void*)p << std::endl;
+			::operator delete((void*)p);
+		}
+
+
 	};
 
 
