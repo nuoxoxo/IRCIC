@@ -50,7 +50,7 @@ namespace	MyLibrary
 
 
 		/* constructors and destructor
-		 * - nothing to do because the allocator has no state
+		 *  - nothing to do because the allocator has no state
 		 */
 
 		MyAllocator() throw() {}
@@ -122,13 +122,15 @@ namespace	MyLibrary
 
 	// return that all specializations of this allocator are interchangeable
 
-	template<class T1, class T2>
+	template <class T1, class T2>
 	bool	operator == (const MyAllocator<T1> &, const MyAllocator<T2> &) 
 		throw() { return true; }
 
-	template<class T1, class T2>
+	template <class T1, class T2>
 	bool	operator != (const MyAllocator<T1> &, const MyAllocator<T2> &)
 		throw() { return false; }
+
+
 }
 
 #endif

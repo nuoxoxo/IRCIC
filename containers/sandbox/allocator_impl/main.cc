@@ -10,6 +10,7 @@ void	push(T n1, Types... n2)
 	std::cout << n1 << nl ;
 	push(n2...);
 }
+
 int	main()
 {
 	/* use	MyLibrary::MyAlloc< T >
