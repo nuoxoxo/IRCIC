@@ -11,9 +11,9 @@ int	main()
 	// insert elements
 	// - causes reallocations
 	v.push_back(42);
-	v.push_back(56);
-	v.push_back(11);
-	v.push_back(22);
-	v.push_back(33);
-	v.push_back(44);
+	v.push_back(21);
+	v.push_back(1024);
+	v.push_back(64);
+	v.push_back(196883);
+	v.push_back((int) 1e9);
 }
