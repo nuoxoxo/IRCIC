@@ -4,8 +4,14 @@
  *
  */
 
-#include "iostream"
-#include "limits"
+#ifndef __MYALLOCATOR_HH__
+# define __MYALLOCATOR_HH__
+# pragma once
+
+# include "iostream"
+# include "limits"
+
+# define nl2 "\n\n"
 
 namespace	MyLibrary
 {
@@ -24,22 +30,18 @@ namespace	MyLibrary
 
 
 		// rebind allocator to type U
-		templat <class U>
+		template<class U>
 		class	rebind
 		{
 		public:
-		   typedef MyAllocator<U>	other;
+			typedef MyAllocator<U>	other;
 		};
 
 
 		// return address of values
-		pointer address (reference value) const
-		{ return & value; }
+		pointer address (reference value) const { return & value; }
 
-		const_pointer address (const_reference value) const
-		{
-			return & value;
-		}
+		const_pointer address (const_reference value) const { return & value; }
 
 
 		/* constructors and destructor
@@ -47,7 +49,7 @@ namespace	MyLibrary
 		 */
 
 		MyAllocator() throw() {}
-		MyAllocator(const MyAllocator&) throw() {}
+		MyAllocator(const MyAllocator &) throw() {}
 
 		template<class U>
 		MyAllocator (const MyAllocator<U> &) throw() {}
@@ -68,7 +70,9 @@ namespace	MyLibrary
 			<< " of size " << sizeof(T) << std::endl;
 
 			pointer	res = (pointer) (::operator new (num * sizeof(T)));
-			std::cerr << " allocated at: " << (void *) res << std::endl;
+
+			std::cerr << " allocated at: " << (void *) res << nl2;
+
 			return (res);
 		}
 
@@ -78,7 +82,7 @@ namespace	MyLibrary
 
 
 		// destroy elements of initialized storage p
-		void destroy (pointer p) { p->~T(); } // destroy objects by calling their destructor
+		void	destroy (pointer p) { p->~T(); } // destroy objects by calling their destructor
 
 
 		// deallocate storage p of deleted elements
@@ -87,8 +91,9 @@ namespace	MyLibrary
 			std::cerr
 			<< "deallocate " << num << " element(s)"
 			<< " of size " << sizeof(T)
-			<< " at: " << (void*)p << std::endl;
-			::operator delete((void*)p);
+			<< " at: " << (void*)p << nl2;
+
+			::operator delete((void*)p); // del.
 		}
 
 
@@ -103,3 +108,5 @@ namespace	MyLibrary
 	template<class T1, class T2>
 	bool	operator != (const MyAllocator<T1> &, const MyAllocator<T2> &) throw() { return false; }
 }
+
+#endif
