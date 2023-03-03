@@ -21,7 +21,7 @@ namespace	ft
 	public:
 		// canon
 		// explicit stack( const Container & C = Container() ); // qx
-		// explicit stack( const Container- & C = Container() ) {} // mine
+		// explicit stack( const Container & C = Container() ) {} // mine
 		explicit stack( const Container & C = Container() ) : C(C) {}
 		~stack() {}
 
