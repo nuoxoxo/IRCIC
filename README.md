@@ -1,10 +1,8 @@
-IRC
 
 ![](https://i.imgur.com/NKUmw2h.jpg)
 
 
 
-Containers
 
 ![](https://i.imgur.com/IYQ9WYt.jpg)
 &nbsp;
