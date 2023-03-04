@@ -8,7 +8,7 @@
 [@](https://www.codeproject.com/Articles/36530/An-Introduction-to-Iterator-Traits) iterator_traits w/ distance() example 
 
 
-# ASCII Art
+# Rotate a rabbit
 ```
 /*      y   right rotate     x
 /      / \  ------------>   / \ 
