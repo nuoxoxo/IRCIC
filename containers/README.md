@@ -13,7 +13,7 @@
 /*      y   right rotate     x
 /      / \  ------------>   / \ 
 /     x	  c                a   y 
-/    / \     left rotate       / \ 
+/    / \     left rotate      / \ 
 /   a   b   <------------    b   c
 */
 ```
