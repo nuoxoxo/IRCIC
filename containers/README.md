@@ -8,6 +8,16 @@
 [@](https://www.codeproject.com/Articles/36530/An-Introduction-to-Iterator-Traits) iterator_traits w/ distance() example 
 
 
+# ASCII Art
+```
+/*      y   right rotate     x
+/      / \  ------------>   / \ 
+/     x	  c                 a   y 
+/    / \     left rotate       / \ 
+/   a   b   <------------     b   c
+*/
+```
+
 # Containers
 Iterator traits
 Member type | Definition
