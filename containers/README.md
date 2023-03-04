@@ -12,9 +12,9 @@
 ```
 /*      y   right rotate     x
 /      / \  ------------>   / \ 
-/     x	  c                 a   y 
+/     x	  c                a   y 
 /    / \     left rotate       / \ 
-/   a   b   <------------     b   c
+/   a   b   <------------    b   c
 */
 ```
 
