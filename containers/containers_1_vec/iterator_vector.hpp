@@ -11,7 +11,7 @@ namespace ft
 	class VectorIterator : public ft::iterator<ft::random_access_iterator_tag, Iterator>
 	{
 		protected:
-			Iterator _current;
+			Iterator m_current;
 
 		public:
 			typedef Iterator													iterator_type;
@@ -21,31 +21,31 @@ namespace ft
 			typedef typename ft::iterator_traits<Iterator>::pointer				pointer;
 			typedef typename ft::iterator_traits<Iterator>::reference			reference;
 
-			VectorIterator() : _current() {}
+			VectorIterator() : m_current() {}
 
-			explicit VectorIterator(Iterator x) : _current(x) {}
+			explicit VectorIterator(Iterator x) : m_current(x) {}
 
-			VectorIterator(const VectorIterator &x) : _current(x._current) {}
+			VectorIterator(const VectorIterator &x) : m_current(x.m_current) {}
 
 			template<typename Iter> // Allow it to const_it conversion
-			VectorIterator(const VectorIterator<Iter> &x) : _current(x.base()) {}
+			VectorIterator(const VectorIterator<Iter> &x) : m_current(x.base()) {}
 
 			VectorIterator	operator=(VectorIterator const &src)
 			{
 				if (*this == src)
 					return *this;
-				_current = src._current;
+				m_current = src.m_current;
 				return *this;
 			}
 
 			iterator_type base() const
 			{
-				return _current;
+				return m_current;
 			}
 
 			reference	operator*() const
 			{
-				Iterator tmp = _current;
+				Iterator tmp = m_current;
 				return (*tmp);
 			}
 
@@ -56,55 +56,55 @@ namespace ft
 
 			VectorIterator	&operator++() // ++n
 			{
-				_current++;
+				m_current++;
 				return *this;
 			}
 
 			VectorIterator	operator++(int) // n++
 			{
 				VectorIterator tmp(*this);
-				_current++;
+				m_current++;
 				return tmp;
 			}
 
 			VectorIterator	&operator--() // --n
 			{
-				_current--;
+				m_current--;
 				return *this;
 			}
 
 			VectorIterator	operator--(int) // n--
 			{
 				VectorIterator tmp(*this);
-				_current--;
+				m_current--;
 				return tmp;
 			}
 
 			VectorIterator	operator+(difference_type _n) const
 			{
-				return VectorIterator(_current + _n);
+				return VectorIterator(m_current + _n);
 			}
 
 			VectorIterator	operator-(difference_type _n) const
 			{
-				return VectorIterator(_current - _n);
+				return VectorIterator(m_current - _n);
 			}
 
 			VectorIterator	&operator+=(difference_type _n)
 			{
-				_current += _n;
+				m_current += _n;
 				return *this;
 			}
 
 			VectorIterator	&operator -=(difference_type _n)
 			{
-				_current -= _n;
+				m_current -= _n;
 				return *this;
 			}
 
 			reference	operator[](difference_type const &_n) const
 			{
-				return *(_current + _n);
+				return *(m_current + _n);
 			}
 	};
 

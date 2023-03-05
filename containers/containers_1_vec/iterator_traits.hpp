@@ -1,7 +1,3 @@
-// https://m.cplusplus.com/reference/iterator/iterator/
-// https://m.cplusplus.com/reference/iterator/iterator_traits/
-// page 516 iso c++ 98
-
 #ifndef __ITERATOR_TRAITS_HPP__
 # define __ITERATOR_TRAITS_HPP__
 
