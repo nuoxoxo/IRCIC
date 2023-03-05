@@ -6,6 +6,24 @@
 
 ## _Ressources_
 
+Misc.
+- 	// https://m.cplusplus.com/reference/iterator/iterator/
+	// https://m.cplusplus.com/reference/iterator/iterator_traits/
+https://m.cplusplus.com/reference/iterator/reverse_iterator/
+// https://gcc.gnu.org/onlinedocs/gcc-4.6.2/libstdc++/api/a01052_source.html
+https://m.cplusplus.com/reference/iterator/RandomAccessIterator/
+	// https://gcc.gnu.org/onlinedocs/gcc-4.6.2/libstdc++/api/a01052_source.html
+
+enable if
+// https://en.cppreference.com/w/cpp/types/enable_if
+// SFINAE https://www.developpez.com/actu/94611/SFINAE-Interlude-moins-Cplusplus-avance-exemple-d-implementation/
+// https://eli.thegreenplace.net/2014/sfinae-and-enable_if/
+
+is integral
+// https://cplusplus.com/reference/type_traits/is_integral/?kw=is_integral
+// https://cplusplus.com/reference/type_traits/integral_constant/		is_integral dep of integral_constant
+// https://dev.to/sandordargo/what-are-type-traits-in-c-18j5
+
 
 BST and algorithms
 
@@ -17,6 +35,13 @@ BST and algorithms
 ... Expl. & impl. - [LMU](https://cs.lmu.edu/~ray/notes/redblacktrees) \
 ... Visualizer - [visualizer](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html) \
 ... Java impl. - [JAVA](https://www.happycoders.eu/algorithms/red-black-tree-java)
+
+// INTRO : https://www.geeksforgeeks.org/red-black-tree-set-1-introduction-2/?ref=gcse
+// INSERT : https://www.geeksforgeeks.org/c-program-red-black-tree-insertion/
+// ERASE : https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/
+// REBIND : https://stackoverflow.com/questions/14148756/what-does-template-rebind-do
+// https://www.programiz.com/dsa/insertion-in-a-red-black-tree
+// ROTATION : https://www.codesdope.com/course/data-structures-red-black-trees-insertion/
 
 
 Iterators
@@ -50,6 +75,11 @@ General
 ... [gcc mirror](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/bits/stl_set.h)
 - C++ named requirements: Compare \
 ... [HERE](https://en.cppreference.com/w/cpp/named_req/Compare)
+
+
+Stack
+// https://cplusplus.com/reference/stack/stack/?kw=stack
+// page 181 ISO 1998
 
 
 ## _Rules_
