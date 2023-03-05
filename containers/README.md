@@ -4,22 +4,23 @@
 -->
 
 
+
 ## _Ressources_
 
-enable if \
-... [cppreference](https://en.cppreference.com/w/cpp/types/enable_if)
+___enable_if___
+- [cppreference](https://en.cppreference.com/w/cpp/types/enable_if)
 
-is integral \
-... type_traits - [HERE](https://cplusplus.com/reference/type_traits/is_integral/?kw=is_integral)\
-... type_traits/const - [HERE](https://cplusplus.com/reference/type_traits/integral_constant)\
-(is_integral dep of integral_constant) \
-... what are type traits in C - [HERE](https://dev.to/sandordargo/what-are-type-traits-in-c-18j5) \
-... sfinae & enable_if - [eli](https://eli.thegreenplace.net/2014/sfinae-and-enable_if)
-
-
+___is_integral______
+- what are type traits in C - [HERE](https://dev.to/sandordargo/what-are-type-traits-in-c-18j5) 
+- type_traits - [HERE](https://cplusplus.com/reference/type_traits/is_integral/?kw=is_integral)
+- type_traits/const - [HERE](https://cplusplus.com/reference/type_traits/integral_constant)\
+(is_integral dep of integral_constant) 
+- sfinae & enable_if - [eli](https://eli.thegreenplace.net/2014/sfinae-and-enable_if)
 
 
-BST and algorithms
+
+
+___BST and algorithms___
 
 - Introduction to Algorithms - 3th [ed.](https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf) \
 ... deletion algorithm : _cf. page 315_
@@ -39,7 +40,7 @@ BST and algorithms
 
 
 
-Iterators
+___Iterators___
 
 
 - libstdc++ api - [stl_iterator.h](https://gcc.gnu.org/onlinedocs/gcc-4.6.2/libstdc++/api/a01052_source.html)
@@ -55,7 +56,7 @@ Iterators
 ... random [ ] - [HERE](https://m.cplusplus.com/reference/iterator/RandomAccessIterator)
 
 
-General
+___General___
 
 - C++ ISO 14882 - [ISO](https://kaltofen.math.ncsu.edu/courses/Languages/C++Examples/iso14882.pdf)
 - Comprendre ___enable_if___ - [FR.](https://h-deb.clg.qc.ca/Sujets/TrucsScouts/Comprendre_enable_if.html)
@@ -78,9 +79,9 @@ General
 ... [HERE](https://en.cppreference.com/w/cpp/named_req/Compare)
 
 
-Stack
-// https://cplusplus.com/reference/stack/stack/?kw=stack
-// page 181 ISO 1998
+___Stack___
+- [cpluspluc](https://cplusplus.com/reference/stack/stack/?kw=stack) \
+... page 181 ISO 1998
 
 
 ## _Rules_
