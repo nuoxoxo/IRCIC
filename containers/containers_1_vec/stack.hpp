@@ -22,7 +22,7 @@ namespace	ft
 		// canon
 		// explicit stack( const Container & C = Container() ); // qx
 		// explicit stack( const Container- & C = Container() ) {} // mine
-		explicit stack( const Container & _C = Container() ) : C(_C) {}
+		explicit stack( const Container & C = Container() ) : C(C) {}
 		~stack() {}
 
 
