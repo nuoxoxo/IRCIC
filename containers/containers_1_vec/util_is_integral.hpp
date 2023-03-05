@@ -1,17 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   is_integral.hpp                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nuoxo <nuoxo@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/22 11:44:17 by nuoxo             #+#    #+#             */
-/*   Updated: 2022/09/22 10:32:22 by nuoxo            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 // https://cplusplus.com/reference/type_traits/is_integral/?kw=is_integral
-// https://cplusplus.com/reference/type_traits/integral_constant/		is_integral dep of integral_constant
+// https://cplusplus.com/reference/type_traits/integral_constant/
+	// is_integral dep of integral_constant
 // https://dev.to/sandordargo/what-are-type-traits-in-c-18j5
 
 #ifndef IS_INTEGRAL_HPP
