@@ -101,7 +101,7 @@ container_type
 
 
 
-## _Pair_ (unrel. to stack/vector yet ez to do)
+## _Pair (unrel. to stack/vector yet ez to do)_
 todolist
 - class pair only has public mems
 - occf
