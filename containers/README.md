@@ -4,7 +4,7 @@
 -->
 
 
-## Ressources
+## _Ressources_
 
 
 BST and algorithms
