@@ -23,7 +23,7 @@ Iterators
 
 - Implement stl style iterators & avoid common pitfalls \
 ... std::tag, etc. [HERE](https://stackoverflow.com/questions/8054273/how-to-implement-an-stl-style-iterator-and-avoid-common-pitfalls)
-- Defining C++ Iterators for Containers - [HERE](https://users.cs.northwestern.edu/~riesbeck/programming/c++/stl-iterator-define.html)
+- Define Iterators for Containers - [HERE](https://users.cs.northwestern.edu/~riesbeck/programming/c++/stl-iterator-define.html)
 - Tag dispatching - [HERE](https://www.fluentcpp.com/2018/04/27/tag-dispatching)
 - Iterator Traits - [HERE](https://www.codeproject.com/Articles/36530/An-Introduction-to-Iterator-Traits)
 
