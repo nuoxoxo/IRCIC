@@ -40,8 +40,8 @@ General
 ... Understand ___SFINAE___ - [Lecture 1](https://www.fluentcpp.com/2018/05/18/make-sfinae-pretty-2-hidden-beauty-sfinae) 
 - Containers library \
 ... 🟢 Super Useful - [containers](http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2011/n3242.pdf#page=731&zoom=100,96,712)\
-... implementation specific size_type - [size_type](http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2011/n3242.pdf#page=789&zoom=100,96,712) \
-... Chapter 11 : memory & vector example - [Vec](https://tfetimes.com/wp-content/uploads/2015/11/Accelerated_C-_Practical_Programming_by_Example_-_Andrew_Koenig_Barbara_E._Moo_-_Addison-Wesley_-_2000.pdf#page=250) 
+... Chapter 11 : memory & vector example - [Vec](https://tfetimes.com/wp-content/uploads/2015/11/Accelerated_C-_Practical_Programming_by_Example_-_Andrew_Koenig_Barbara_E._Moo_-_Addison-Wesley_-_2000.pdf#page=250) \
+... implementation specific size_type - [size_type](http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2011/n3242.pdf#page=789&zoom=100,96,712)
 - most readable STL implementation by Alexander Stepanov & Meng Lee \
 ... [stof](https://stackoverflow.com/questions/2127612/is-there-a-readable-implementation-of-the-stl) \
 ... [butler](http://stepanovpapers.com/butler.hpl.hp/stl/stl)
