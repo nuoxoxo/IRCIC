@@ -38,7 +38,7 @@
  */
 ```
 
-## _General rotation_
+## _Rotation_
 
 ```c
 /*      y   right rotate     x
