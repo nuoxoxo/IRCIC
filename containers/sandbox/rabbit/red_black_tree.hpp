@@ -1,3 +1,6 @@
+#ifndef __RED_BLACK_TREE__
+#define __RED_BLACK_TREE__
+
 /**
  *  rules
  * 
@@ -30,3 +33,18 @@
  *  ** Longest path: alernating red and black
  *
  */
+
+
+
+
+/*	Rotation rules		*/
+
+
+/*      y   right rotate     x
+/      / \  ------------>   / \ 	// 
+/     x	  c                a   y 
+/    / \     left rotate      / \ 	//
+/   a   b   <------------    b   c
+*/
+
+#endif
