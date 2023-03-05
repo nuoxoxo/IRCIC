@@ -39,16 +39,16 @@ General
 ... Understand ___SFINAE___ - [Lecture 1](https://www.fluentcpp.com/2018/05/15/make-sfinae-pretty-1-what-value-sfinae-brings-to-code) \
 ... Understand ___SFINAE___ - [Lecture 1](https://www.fluentcpp.com/2018/05/18/make-sfinae-pretty-2-hidden-beauty-sfinae) 
 - Containers library \
-... (🟢) Super Useful - [containers](http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2011/n3242.pdf#page=731&zoom=100,96,712)\
+... 🟢 Super Useful - [containers](http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2011/n3242.pdf#page=731&zoom=100,96,712)\
 ... impl. specific size_type - [size_type](http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2011/n3242.pdf#page=789&zoom=100,96,712) \
 ... Chapter 11 : memory & vector example - [Vec](https://tfetimes.com/wp-content/uploads/2015/11/Accelerated_C-_Practical_Programming_by_Example_-_Andrew_Koenig_Barbara_E._Moo_-_Addison-Wesley_-_2000.pdf#page=250) 
-- most readable STL implementation by Alexander Stepanov and Meng Lee \
-... [stof](https://stackoverflow.com/questions/2127612/is-there-a-readable-implementation-of-the-stl)
-- same STL release found at Alexander A. Stepanov \
+- most readable STL implementation by Alexander Stepanov & Meng Lee \
+... [stof](https://stackoverflow.com/questions/2127612/is-there-a-readable-implementation-of-the-stl) \
 ... [butler](http://stepanovpapers.com/butler.hpl.hp/stl/stl)
 - Set impl. at GCC official github \
 ... [gcc mirror](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/bits/stl_set.h)
-- C++ named requirements: Compare - [HERE]https://en.cppreference.com/w/cpp/named_req/Compare
+- C++ named requirements: Compare \
+... [HERE](https://en.cppreference.com/w/cpp/named_req/Compare)
 
 
 ## _Rules_
