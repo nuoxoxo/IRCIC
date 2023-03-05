@@ -1,8 +1,12 @@
+# __Mar Updates__
+
+
+<!--
 ![](https://i.imgur.com/tJx6k1V.jpg)
+-->
 
 
-
-# Rabbit rotates
+## Rabbit rotates
 ```
 /*      y   right rotate     x
 /      / \  ------------>   / \ 
@@ -13,7 +17,11 @@
 ```
 
 
-# Todo
+# __Feb Updates__
+
+
+
+## Todo
 
 
 
@@ -25,10 +33,13 @@
 [@](https://www.codeproject.com/Articles/36530/An-Introduction-to-Iterator-Traits) iterator_traits w/ distance() example 
 
 
-
+<!--
 ![](https://i.imgur.com/3znf2g8.jpg)
+-->
 
-# Containers
+
+## Containers
+
 Iterator traits
 Member type | Definition
 :-- | :--
@@ -48,7 +59,8 @@ iterator_category | Iter::iterator_category
 lvalue \
 rvalue
 
-# Things to learn
+## Things to learn
+
 ```
 std::iterator_traits
 std::reverse_iterator
@@ -60,14 +72,14 @@ std::equal
 std::lexicographical_compare
 ```
 
-# Red black tree
+## Red black tree
 - principle
 - implementation
 
 
 
 
-# Stack
+## Stack
 \<cstddef> : what's inside
 
 what is 2nd param: `typename Container = vector<T>`
@@ -89,7 +101,7 @@ container_type
 
 
 
-# Pair (unrel. to stack/vector yet ez to do)
+## Pair (unrel. to stack/vector yet ez to do)
 todolist
 - class pair only has public mems
 - occf
@@ -105,13 +117,13 @@ todolist
 
 
 
-# Vector
+## Vector
 what is 2nd param: `typename Allocator = std::allocator<T>`
 - template<typename T, typename Allocator = std::allocator<T>>
 
 
 
-# vector_iterator - (Virtual Class)
+## vector_iterator - (Virtual Class)
 \<iterator> : what's inside
 
 std::random_access_iterator_tag
@@ -141,7 +153,7 @@ virtual ~vector_iterator(void) {
 
 
 
-# vector_const_iterator - (Virtual Class)
+## vector_const_iterator - (Virtual Class)
 explicit
 ```
 public:
@@ -152,9 +164,5 @@ explicit vector_const_iterator(pointer ptr) : m_ptr(ptr){
 virtual ~vector_const_iterator(void) {
 }
 ```
-
-
-
-
 
 
