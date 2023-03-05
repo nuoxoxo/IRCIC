@@ -13,8 +13,8 @@ BST and algorithms
 ... deletion algorithm : _cf. page 315_
 - ___Binary Search Tree___ - insert, [etc.](https://www.cs.dartmouth.edu/~thc/cs10/lectures/0428/0428.html)
 - ___Red Black Tree___ \
-... Expl. & Impl. - [LMU](https://cs.lmu.edu/~ray/notes/redblacktrees) \
 ... Pseudocode - [programiz](https://www.programiz.com/dsa/red-black-tree) \
+... Expl. & impl. - [LMU](https://cs.lmu.edu/~ray/notes/redblacktrees) \
 ... Visualizer - [visualizer](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html) \
 ... Java impl. - [JAVA](https://www.happycoders.eu/algorithms/red-black-tree-java)
 
