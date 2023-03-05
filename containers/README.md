@@ -6,23 +6,17 @@
 
 ## _Ressources_
 
-Misc.
-- 	// https://m.cplusplus.com/reference/iterator/iterator/
-	// https://m.cplusplus.com/reference/iterator/iterator_traits/
-https://m.cplusplus.com/reference/iterator/reverse_iterator/
-// https://gcc.gnu.org/onlinedocs/gcc-4.6.2/libstdc++/api/a01052_source.html
-https://m.cplusplus.com/reference/iterator/RandomAccessIterator/
-	// https://gcc.gnu.org/onlinedocs/gcc-4.6.2/libstdc++/api/a01052_source.html
+enable if \
+... [cppreference](https://en.cppreference.com/w/cpp/types/enable_if)
 
-enable if
-// https://en.cppreference.com/w/cpp/types/enable_if
-// SFINAE https://www.developpez.com/actu/94611/SFINAE-Interlude-moins-Cplusplus-avance-exemple-d-implementation/
-// https://eli.thegreenplace.net/2014/sfinae-and-enable_if/
+is integral \
+... type_traits - [HERE](https://cplusplus.com/reference/type_traits/is_integral/?kw=is_integral)\
+... type_traits/const - [HERE](https://cplusplus.com/reference/type_traits/integral_constant)\
+(is_integral dep of integral_constant) \
+... what are type traits in C - [HERE](https://dev.to/sandordargo/what-are-type-traits-in-c-18j5) \
+... sfinae & enable_if - [eli](https://eli.thegreenplace.net/2014/sfinae-and-enable_if)
 
-is integral
-// https://cplusplus.com/reference/type_traits/is_integral/?kw=is_integral
-// https://cplusplus.com/reference/type_traits/integral_constant/		is_integral dep of integral_constant
-// https://dev.to/sandordargo/what-are-type-traits-in-c-18j5
+
 
 
 BST and algorithms
@@ -35,16 +29,18 @@ BST and algorithms
 ... Expl. & impl. - [LMU](https://cs.lmu.edu/~ray/notes/redblacktrees) \
 ... Visualizer - [visualizer](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html) \
 ... Java impl. - [JAVA](https://www.happycoders.eu/algorithms/red-black-tree-java)
+- INTRO : [intro](https://www.geeksforgeeks.org/red-black-tree-set-1-introduction-2/?ref=gcse)
+- INSERT : C [implementation](https://www.geeksforgeeks.org/c-program-red-black-tree-insertion)
+- INSERT : [programiz](https://www.programiz.com/dsa/insertion-in-a-red-black-tree)
+- ROTATE : [data structure](https://www.codesdope.com/course/data-structures-red-black-trees-insertion)
+- ERASE : [delete](https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2)
+- REBIND : [stof](https://stackoverflow.com/questions/14148756/what-does-template-rebind-do)
 
-// INTRO : https://www.geeksforgeeks.org/red-black-tree-set-1-introduction-2/?ref=gcse
-// INSERT : https://www.geeksforgeeks.org/c-program-red-black-tree-insertion/
-// ERASE : https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/
-// REBIND : https://stackoverflow.com/questions/14148756/what-does-template-rebind-do
-// https://www.programiz.com/dsa/insertion-in-a-red-black-tree
-// ROTATION : https://www.codesdope.com/course/data-structures-red-black-trees-insertion/
+
 
 
 Iterators
+
 
 - libstdc++ api - [stl_iterator.h](https://gcc.gnu.org/onlinedocs/gcc-4.6.2/libstdc++/api/a01052_source.html)
 - Implement stl style iterators & avoid common pitfalls \
@@ -52,7 +48,11 @@ Iterators
 - Define Iterators for Containers - [HERE](https://users.cs.northwestern.edu/~riesbeck/programming/c++/stl-iterator-define.html)
 - Tag dispatching - [HERE](https://www.fluentcpp.com/2018/04/27/tag-dispatching)
 - Iterator Traits - [HERE](https://www.codeproject.com/Articles/36530/An-Introduction-to-Iterator-Traits)
-
+- iterators on `cplusplus.com` \
+... iterator - [HERE](https://m.cplusplus.com/reference/iterator/iterator) \
+... traits - [HERE](https://m.cplusplus.com/reference/iterator/iterator_traits)\
+... reverse_it - [HERE](https://m.cplusplus.com/reference/iterator/reverse_iterator)\
+... random [ ] - [HERE](https://m.cplusplus.com/reference/iterator/RandomAccessIterator)
 
 
 General
@@ -64,6 +64,7 @@ General
 ... Comprendre ___SFINAE___ (Substitution Failure is not an Error) - [FR.](https://h-deb.clg.qc.ca/Sujets/Divers--cplusplus/SFINAE.html) \
 ... Understand ___SFINAE___ - [Lecture 1](https://www.fluentcpp.com/2018/05/15/make-sfinae-pretty-1-what-value-sfinae-brings-to-code) \
 ... Understand ___SFINAE___ - [Lecture 1](https://www.fluentcpp.com/2018/05/18/make-sfinae-pretty-2-hidden-beauty-sfinae) 
+... SFINAE en francais - [moins](https://www.developpez.com/actu/94611/SFINAE-Interlude-moins-Cplusplus-avance-exemple-d-implementation)
 - Containers library \
 ... 🟢 Super Useful - [containers](http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2011/n3242.pdf#page=731&zoom=100,96,712)\
 ... Chapter 11 : memory & vector example - [Vec](https://tfetimes.com/wp-content/uploads/2015/11/Accelerated_C-_Practical_Programming_by_Example_-_Andrew_Koenig_Barbara_E._Moo_-_Addison-Wesley_-_2000.pdf#page=250) \
