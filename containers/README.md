@@ -1,9 +1,54 @@
 # __Mar Updates__
-
-
 <!--
 ![](https://i.imgur.com/tJx6k1V.jpg)
 -->
+
+
+## Ressources
+
+
+BST and algorithms
+
+- Introduction to Algorithms - 3th [ed.](https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf) \
+... deletion algorithm : _cf. page 315_
+- ___Binary Search Tree___ - insert, [etc.](https://www.cs.dartmouth.edu/~thc/cs10/lectures/0428/0428.html)
+- ___Red Black Tree___ \
+... Expl. & Impl. - [LMU](https://cs.lmu.edu/~ray/notes/redblacktrees) \
+... Pseudocode - [programiz](https://www.programiz.com/dsa/red-black-tree) \
+... Visualizer - [visualizer](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html) \
+... Java impl. - [JAVA](https://www.happycoders.eu/algorithms/red-black-tree-java)
+
+
+Iterators
+
+- Implement stl style iterators & avoid common pitfalls \
+... std::tag, etc. [HERE](https://stackoverflow.com/questions/8054273/how-to-implement-an-stl-style-iterator-and-avoid-common-pitfalls)
+- Defining C++ Iterators for Containers - [HERE](https://users.cs.northwestern.edu/~riesbeck/programming/c++/stl-iterator-define.html)
+- Tag dispatching - [HERE](https://www.fluentcpp.com/2018/04/27/tag-dispatching)
+- Iterator Traits - [HERE](https://www.codeproject.com/Articles/36530/An-Introduction-to-Iterator-Traits)
+
+
+
+General
+
+- C++ ISO 14882 - [ISO](https://kaltofen.math.ncsu.edu/courses/Languages/C++Examples/iso14882.pdf)
+- Comprendre ___enable_if___ - [FR.](https://h-deb.clg.qc.ca/Sujets/TrucsScouts/Comprendre_enable_if.html)
+- Custom STL-Like Containers and Iterators - [HERE](https://web.stanford.edu/class/cs107l/handouts/04-Custom-Iterators.pdf)
+- ___SFINAE___ \
+... Comprendre ___SFINAE___ (Substitution Failure is not an Error) - [FR.](https://h-deb.clg.qc.ca/Sujets/Divers--cplusplus/SFINAE.html) \
+... Understand ___SFINAE___ - [Lecture 1](https://www.fluentcpp.com/2018/05/15/make-sfinae-pretty-1-what-value-sfinae-brings-to-code) \
+... Understand ___SFINAE___ - [Lecture 1](https://www.fluentcpp.com/2018/05/18/make-sfinae-pretty-2-hidden-beauty-sfinae) 
+- Containers library \
+... (🟢) Super Useful - [containers](http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2011/n3242.pdf#page=731&zoom=100,96,712)\
+... impl. specific size_type - [size_type](http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2011/n3242.pdf#page=789&zoom=100,96,712) \
+... Chapter 11 : memory & vector example - [Vec](https://tfetimes.com/wp-content/uploads/2015/11/Accelerated_C-_Practical_Programming_by_Example_-_Andrew_Koenig_Barbara_E._Moo_-_Addison-Wesley_-_2000.pdf#page=250) 
+- most readable STL implementation by Alexander Stepanov and Meng Lee \
+... [stof](https://stackoverflow.com/questions/2127612/is-there-a-readable-implementation-of-the-stl)
+- same STL release found at Alexander A. Stepanov \
+... [butler](http://stepanovpapers.com/butler.hpl.hp/stl/stl)
+- Set impl. at GCC official github \
+... [gcc mirror](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/bits/stl_set.h)
+- C++ named requirements: Compare - [HERE]https://en.cppreference.com/w/cpp/named_req/Compare
 
 
 ## _Rules_
