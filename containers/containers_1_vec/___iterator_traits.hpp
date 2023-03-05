@@ -4,48 +4,20 @@
 # include "iterator" // iterator_tag
 # include "cstddef" // ptrdiff_t
 
-
 namespace	ft
 {
-
-	template<typename T>
-	class	iterator_traits
-	{
-
-	public:
-
-		typedef typename T::value_type value_type;
-		typedef typename T::difference_type difference_type;
-		typedef typename T::iterator_category iterator_category;
-		typedef typename T::pointer pointer;
-		typedef typename T::reference reference;
-
-	};
-
-
-	/*
-	 * ****************************************************************
-	 * ************************ separator *****************************
-	 * ****************************************************************
-	*/
-
-
 	// 5 Iter categories :: defined for STL in file named : 
 	// 	stl_iterator_base_types.hpp
 
-	/*
-	 * 
-	 * how to:
-	 * @ defgroup  iterator_tags  Iterator Tags
-	 * 
-	 * 
+	/**
+	 * @defgroup iterator_tags Iterator Tags
 	 * These are empty types, used to distinguish different iterators.  The
 	 * distinction is not made by what they contain, but simply by what they
 	 * are.  Different underlying algorithms can then be used based on the
 	 * different operations supported by different iterator types.
 	 */
 
-	/*
+
 	///  Marking input iterators.
 	struct input_iterator_tag {};
 
@@ -105,7 +77,7 @@ namespace	ft
 		typedef	T				value_type;
 		typedef T *				pointer;
 		typedef T &				reference;
-	};
+	}
 
 	template<class T>
 	struct	iterator_traits<const T*>
@@ -116,7 +88,9 @@ namespace	ft
 		typedef const T &			reference;
 		typedef T				value_type;
 	};
-	*/
+
+
+
 }
 
 #endif
