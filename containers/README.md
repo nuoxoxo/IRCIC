@@ -39,7 +39,8 @@
 ```
 
 ## _General rotation_
-```
+
+```c
 /*      y   right rotate     x
 /      / \  ------------>   / \ 
 /     x	  c                a   y 
