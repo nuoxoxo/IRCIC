@@ -21,6 +21,7 @@ BST and algorithms
 
 Iterators
 
+- libstdc++ api - [stl_iterator.h](https://gcc.gnu.org/onlinedocs/gcc-4.6.2/libstdc++/api/a01052_source.html)
 - Implement stl style iterators & avoid common pitfalls \
 ... std::tag, etc. [HERE](https://stackoverflow.com/questions/8054273/how-to-implement-an-stl-style-iterator-and-avoid-common-pitfalls)
 - Define Iterators for Containers - [HERE](https://users.cs.northwestern.edu/~riesbeck/programming/c++/stl-iterator-define.html)
