@@ -9,9 +9,13 @@
 
 int	main()
 {
-	pair_test();
-	stack_test(STD);
-	stack_test(FT);
 
+	// TODO
+
+
+//	pair_test();
+//	stack_test(STD);
+//	stack_test(FT);
 //	ft::stack<int>	S;
+
 }

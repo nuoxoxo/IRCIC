@@ -11,8 +11,7 @@ namespace ft
 	class	vector_iterator
 	{
 
-	private:
-		pointer m_ptr;
+
 
 	public:
 		typedef std::random_access_iterator_tag iterator_category; // ***
@@ -107,7 +106,8 @@ namespace ft
 		{
 			return m_ptr - x.m_ptr;
 		}
-
+	private:
+		pointer m_ptr;
 	};
 }
 

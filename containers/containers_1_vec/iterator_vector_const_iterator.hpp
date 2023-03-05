@@ -1,5 +1,5 @@
 #ifndef __ITERATOR_VECTOR_CONST_ITERATOR_HPP__
-#d efine __ITERATOR_VECTOR_CONST_ITERATOR_HPP__
+# define __ITERATOR_VECTOR_CONST_ITERATOR_HPP__
 
 # include "iterator"
 # include "cstddef"
@@ -10,8 +10,7 @@ namespace   ft
 	class   vector_const_iterator
 	{
 
-	private:
-		pointer m_ptr;
+
 
 	public:
 		typedef std::random_access_iterator_tag iterator_category;
@@ -101,7 +100,8 @@ namespace   ft
 		{
 			return m_ptr - x.m_ptr;
 		}
-
+	private:
+		pointer m_ptr;
 
 	};
 }
