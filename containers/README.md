@@ -35,7 +35,7 @@ ___is_integral______
 (is_integral dep of integral_constant) 
 - sfinae & enable_if - [eli](https://eli.thegreenplace.net/2014/sfinae-and-enable_if)
 
-___is_integral AND the -pedantic flag___ 
+___is_integral AND the `-pedantic` flag___ 
 - _def._ - excessively concerned with minor details or rules; overscrupulous.
 - [source](http://wrigstad.com/ioopm/compiling.html#:~:text=The%20%2Dpedantic%20flag%20turns%20on,do%20not%20follow%20ISO%20C%2B.) :: `-pedantic` turns on warnings demanded by strict ISO C and reject all programs that use forbidden extensions, and some other programs that do not follow ISO C+
 
