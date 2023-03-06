@@ -1,10 +1,10 @@
 #ifndef IS_INTEGRAL_HPP
-#define IS_INTEGRAL_HPP
+# define IS_INTEGRAL_HPP
 
-namespace ft
+namespace	ft
 {
 	template<class T, T val>
-	struct integral_constant
+	struct	integral_constant
 	{
 		static const T					value = val;
 		typedef T						value_type;
@@ -18,7 +18,8 @@ namespace ft
 
 	// Default type = false
 	template<class T>
-	struct is_integral : public false_type {};
+	struct is_integral : public false_type
+	{};
 
 	template<>
 	struct is_integral<bool> : public true_type {};
@@ -54,10 +55,14 @@ namespace ft
 	struct is_integral<unsigned long int> : public true_type {};
 
 	// template<>
-	// struct is_integral<long long int> : public true_type {}; C++98 doesnt support long long with -pedantic
+	// struct is_integral<long long int> : public true_type {};
+	/// 
+	/// C++98 doesnt support long long with -pedantic
 
 	// template<>
-	// struct is_integral<unsigned long long int> : public true_type {}; C++98 doesnt support long long with -pedantic
+	// struct is_integral<unsigned long long int> : public true_type {};
+	/// 
+	/// C++98 doesnt support long long with -pedantic
 }
 
 #endif

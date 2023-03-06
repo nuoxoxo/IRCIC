@@ -4,7 +4,7 @@
 namespace ft
 {
 	template<typename T>
-	void	_swap(T & x, T &y)
+	void	swap(T & x, T &y)
 	{
 		T tmp = x;
 
