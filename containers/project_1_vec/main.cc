@@ -91,5 +91,34 @@ int	main()
 			std::cout << *rb << nl, ++rb;
 		std::cout << nl;
 	}
+
+	print_session_head(++i, "begin::reverse_it--, end::reverse_it--");
+	{
+		ft::vector<float>	A(7, 999.1);
+		ft::vector<std::string>	B(9, "R");
+
+		A[0] = 0.1;
+		A[(int)A.size() / 2] = 10.55;
+
+		int	i = -1;
+		while (++i < (int) B.size())
+			B[i][0] += i;
+
+		print_vector(A);
+		print_vector(B);
+
+		ft::vector<float>::reverse_iterator		ra = A.rend();
+		ft::vector<std::string>::reverse_iterator	rb = B.rend();
+
+		print_vector_head(A);
+		while (--ra != A.rbegin() - 1)
+			std::cout << *ra << nl;
+		std::cout << nl;
+
+		print_vector_head(B);
+		while (--rb != B.rbegin() - 1)
+			std::cout << *rb << nl;
+		std::cout << nl;
+	}
 }
 
