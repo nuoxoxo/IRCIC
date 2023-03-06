@@ -10,7 +10,7 @@
 
 
 ___What is wchar_t?___
-- _idem._
+- idem.
 
 
 ___enable_if___
@@ -24,6 +24,11 @@ ___is_integral______
 - type_traits/const - [HERE](https://cplusplus.com/reference/type_traits/integral_constant)\
 (is_integral dep of integral_constant) 
 - sfinae & enable_if - [eli](https://eli.thegreenplace.net/2014/sfinae-and-enable_if)
+
+___is_integral_AND_-pedantic___ 
+- ... [src](http://wrigstad.com/ioopm/compiling.html#:~:text=The%20%2Dpedantic%20flag%20turns%20on,do%20not%20follow%20ISO%20C%2B.)
+- The -pedantic flag turns on warnings demanded by strict ISO C and reject all programs that use forbidden extensions, and some other programs that do not follow ISO C+
+
 ```c
 // template<>
 // struct is_integral<long long int> : public true_type {};
