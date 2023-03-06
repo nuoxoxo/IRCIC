@@ -9,7 +9,8 @@
 
 ___throw( ) vs. noexcept___ 
 - _def._ - throw() is just an alias for noexcept(true)
-- samples ons [rollbar](https://rollbar.com/blog/error-exceptions-in-c/#:~:text=An%20exception%20in%20C%2B%2B%20is,immediately%20after%20the%20try%20block.)
+- throw in function signature [bikulocv](https://bikulov.org/blog/2013/11/23/throw-in-function-signature-in-c-/)
+- simple samples ons [rollbar](https://rollbar.com/blog/error-exceptions-in-c/#:~:text=An%20exception%20in%20C%2B%2B%20is,immediately%20after%20the%20try%20block.)
 
 ___std::vector::operator == (___ 
 - _def._ - The C++ function `std::vector::operator ==` first checks the size of both container, if sizes are same then it compares elements sequentially and comparison stops at first mismatch.
