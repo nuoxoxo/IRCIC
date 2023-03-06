@@ -37,7 +37,7 @@ void	print(const std::string & w, const T & item)
 { std::cout << CYAN << w << ": " GREEN << item << nlreset; }
 
 template<typename T>
-void	printer_vector(T & v)
+void	print_vector(T & v)
 {
 	int	i = -1;
 	std::cout << "(size : " << GREEN << v.size() << RESET << ") \n";
@@ -47,11 +47,11 @@ void	printer_vector(T & v)
 }
 
 template<typename T>
-void	printer_vector_head(T & v)
+void	print_vector_head(T & v)
 {
 	std::cout << "(size : " << GREEN << v.size() << RESET << ") \n";
 	std::cout << "(cpct : " << GREEN << v.capacity() << RESET << ") \n";
-	std::cout << v[0] << nl2;
+	std::cout << YELLOW << "head : " << v[0] << nl2reset;
 }
 
 void	print_session_head(int & i, const std::string & message)
