@@ -8,6 +8,11 @@
 # _Resources_
 
 
+
+___What is wchar_t?___
+- _idem._
+
+
 ___enable_if___
 - [cppreference](https://en.cppreference.com/w/cpp/types/enable_if)
 
