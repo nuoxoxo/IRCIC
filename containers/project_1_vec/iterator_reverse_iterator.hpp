@@ -22,6 +22,9 @@ namespace ft
 		typedef typename ft::iterator_traits<Iterator>::pointer		pointer;
 		typedef typename ft::iterator_traits<Iterator>::reference	reference;
 
+
+		// canon
+
 		explicit reverse_iterator(Iterator x) : m_current(x) {}
 
 		reverse_iterator() : m_current() {}	
@@ -29,6 +32,9 @@ namespace ft
 
 		template<typename Iter> // .. convert to const_iter
 		reverse_iterator(const reverse_iterator<Iter> & it) : m_current(it.base()) {}
+
+
+		// operators
 
 		reverse_iterator & operator = (reverse_iterator const & it)
 		{
