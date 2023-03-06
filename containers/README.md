@@ -5,14 +5,13 @@
 
 
 
-## _Ressources_
+# _Resources_
 
-___BinaryPredicate___
-- named requirements : BinaryPredicate - [cppreference](https://en.cppreference.com/w/cpp/named_req/BinaryPredicate)
-- STL sort() function, BinaryPredicate - [stof](https://stackoverflow.com/questions/7372132/c-stl-sort-function-binary-predicate)
 
 ___enable_if___
 - [cppreference](https://en.cppreference.com/w/cpp/types/enable_if)
+
+
 
 ___is_integral______
 - what are type traits in C - [HERE](https://dev.to/sandordargo/what-are-type-traits-in-c-18j5) 
@@ -21,6 +20,11 @@ ___is_integral______
 (is_integral dep of integral_constant) 
 - sfinae & enable_if - [eli](https://eli.thegreenplace.net/2014/sfinae-and-enable_if)
 
+
+
+___BinaryPredicate___
+- named requirements : BinaryPredicate - [cppreference](https://en.cppreference.com/w/cpp/named_req/BinaryPredicate)
+- STL sort() function, BinaryPredicate - [stof](https://stackoverflow.com/questions/7372132/c-stl-sort-function-binary-predicate)
 
 
 
@@ -46,7 +50,6 @@ ___BST and algorithms___
 
 ___Iterators___
 
-
 - libstdc++ api - [stl_iterator.h](https://gcc.gnu.org/onlinedocs/gcc-4.6.2/libstdc++/api/a01052_source.html)
 - Implement stl style iterators & avoid common pitfalls \
 ... std::tag, etc. [HERE](https://stackoverflow.com/questions/8054273/how-to-implement-an-stl-style-iterator-and-avoid-common-pitfalls)
@@ -58,6 +61,7 @@ ___Iterators___
 ... traits - [HERE](https://m.cplusplus.com/reference/iterator/iterator_traits)\
 ... reverse_it - [HERE](https://m.cplusplus.com/reference/iterator/reverse_iterator)\
 ... random [ ] - [HERE](https://m.cplusplus.com/reference/iterator/RandomAccessIterator)
+
 
 
 ___General___
@@ -83,12 +87,15 @@ ___General___
 ... [HERE](https://en.cppreference.com/w/cpp/named_req/Compare)
 
 
+
 ___Stack___
 - [cpluspluc](https://cplusplus.com/reference/stack/stack/?kw=stack) \
 ... page 181 ISO 1998
 
 
-## _Rules_
+
+# _Rules_
+
 
 ```c
 /**
@@ -120,7 +127,7 @@ ___Stack___
  */
 ```
 
-## _Rotations_
+# _How to rotate_
 
 ```c
 /*      y   right rotate     x
@@ -138,7 +145,7 @@ ___Stack___
 
 
 
-## _Todo_
+# _Resources_
 
 
 
@@ -153,7 +160,7 @@ ___Stack___
 
 
 
-## _Containers_
+# _To know_
 
 Iterator traits
 Member type | Definition
@@ -174,7 +181,7 @@ iterator_category | Iter::iterator_category
 lvalue \
 rvalue
 
-## _Things to learn_
+# _Things to learn_
 
 ```
 std::iterator_traits
@@ -187,14 +194,14 @@ std::equal
 std::lexicographical_compare
 ```
 
-## _Red black tree_
+# _Red black tree_
 - principle
 - implementation
 
 
 
 
-## _Stack_
+# _Stack_
 \<cstddef> : what's inside
 
 what is 2nd param: `typename Container = vector<T>`
@@ -216,7 +223,7 @@ container_type
 
 
 
-## _Pair (unrel. to stack/vector yet ez to do)_
+# _Pair (unrel. to stack/vector yet ez to do)_
 todolist
 - class pair only has public mems
 - occf
@@ -232,13 +239,13 @@ todolist
 
 
 
-## _Vector_
+# _Vector_
 what is 2nd param: `typename Allocator = std::allocator<T>`
 - template<typename T, typename Allocator = std::allocator<T>>
 
 
 
-## _vector_iterator - (Virtual Class)_
+# _vector_iterator - (Virtual Class)_
 \<iterator> : what's inside
 
 std::random_access_iterator_tag
@@ -268,7 +275,7 @@ virtual ~vector_iterator(void) {
 
 
 
-## _vector_const_iterator - (Virtual Class)_
+# _vector_const_iterator - (Virtual Class)_
 explicit
 ```
 public:
