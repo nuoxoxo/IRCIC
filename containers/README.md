@@ -8,6 +8,11 @@
 # _Resources_
 
 
+
+___What is wchar_t?___
+- idem.
+
+
 ___enable_if___
 - [cppreference](https://en.cppreference.com/w/cpp/types/enable_if)
 
@@ -20,6 +25,21 @@ ___is_integral______
 (is_integral dep of integral_constant) 
 - sfinae & enable_if - [eli](https://eli.thegreenplace.net/2014/sfinae-and-enable_if)
 
+___is_integral AND the -pedantic flag___ 
+- _def._ - excessively concerned with minor details or rules; overscrupulous.
+- [source](http://wrigstad.com/ioopm/compiling.html#:~:text=The%20%2Dpedantic%20flag%20turns%20on,do%20not%20follow%20ISO%20C%2B.) :: `-pedantic` turns on warnings demanded by strict ISO C and reject all programs that use forbidden extensions, and some other programs that do not follow ISO C+
+
+```c
+// template<>
+// struct is_integral<long long int> : public true_type {};
+/// 
+/// C++98 doesnt support long long with -pedantic
+
+// template<>
+// struct is_integral<unsigned long long int> : public true_type {};
+/// 
+/// C++98 doesnt support long long with -pedantic
+```
 
 
 ___BinaryPredicate___
@@ -76,7 +96,7 @@ ___General___
 ... SFINAE en francais - [moins](https://www.developpez.com/actu/94611/SFINAE-Interlude-moins-Cplusplus-avance-exemple-d-implementation)
 - Containers library \
 ... 🟢 Super Useful - [containers](http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2011/n3242.pdf#page=731&zoom=100,96,712)\
-... Chapter 11 : memory & vector example - [Vec](https://tfetimes.com/wp-content/uploads/2015/11/Accelerated_C-_Practical_Programming_by_Example_-_Andrew_Koenig_Barbara_E._Moo_-_Addison-Wesley_-_2000.pdf#page=250) \
+... Chap. 11 : memory & vector example - [Vec](https://tfetimes.com/wp-content/uploads/2015/11/Accelerated_C-_Practical_Programming_by_Example_-_Andrew_Koenig_Barbara_E._Moo_-_Addison-Wesley_-_2000.pdf#page=250) \
 ... implementation specific size_type - [size_type](http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2011/n3242.pdf#page=789&zoom=100,96,712)
 - most readable STL implementation by Alexander Stepanov & Meng Lee \
 ... [stof](https://stackoverflow.com/questions/2127612/is-there-a-readable-implementation-of-the-stl) \
@@ -90,7 +110,7 @@ ___General___
 
 ___Stack___
 - [cpluspluc](https://cplusplus.com/reference/stack/stack/?kw=stack) \
-... page 181 ISO 1998
+... page 181, ISO 1998
 
 
 
