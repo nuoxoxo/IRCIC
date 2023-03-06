@@ -45,7 +45,7 @@ ___is_integral AND the -pedantic flag___
 ___C++ named requirements___
 - BinaryPredicate \
 ... [cppreference](https://en.cppreference.com/w/cpp/named_req/BinaryPredicate)
-  - ... STL sort() function, BinaryPredicate - [stof](https://stackoverflow.com/questions/7372132/c-stl-sort-function-binary-predicate)
+  - STL sort() function, BinaryPredicate - [stof](https://stackoverflow.com/questions/7372132/c-stl-sort-function-binary-predicate)
 - Compare \
 ... [cppreference](https://en.cppreference.com/w/cpp/named_req/Compare)
 
