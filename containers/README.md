@@ -15,7 +15,9 @@ ___What is wchar_t?___
 
 ___enable_if___
 - [cppreference](https://en.cppreference.com/w/cpp/types/enable_if)
-- _def._ - If `B` is `true`, `std::enable_if` has a public member typedef `type`, equal to `T`; otherwise, there is no member typedef.
+- _def._ - If `B` is `true`, `std::enable_if` has a public member typedef `type`, equal to `T`; otherwise, there is no member typedef
+- _type def._ - either `T` or no such member, depending on the value of `B`
+
 ```c
 // c++ 11 . for ft_containers
 template<bool B, class T = void>
