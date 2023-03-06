@@ -1,12 +1,16 @@
 #include "iostream"
-#include "colors.hpp"
+#include "random"
+
 #include "pair.hpp"
 #include "stack.hpp"
 #include "vector.hpp"
+#include "colors.hpp"
 
 int	main()
 {
 	int	i = 0;
+
+	srand(time(0));
 
 	print_session_head(++i, "swap test :: vector<int>");
 	{
@@ -62,6 +66,45 @@ int	main()
 		print("try shrinking from 4 to 1", B.capacity());
 		print_vector_head(B);
 	}
+	print_session_head(++i, "testing the \".at()\" method :: vector<int>");
+	{
+		int	n = 12, i = -1;
+		int	position;
+
+		ft::vector<int>	vi;
+
+		while (++i < n)
+			vi.push_back(rand() % 100);
+
+		print_vector(vi);
+		position = rand() % n;
+		std::cout << "[" << position << "] : " << vi[position] << nl;
+		std::cout << "at(" << position << ") : " << vi.at(position) << nl;
+	}
+	print_session_head(++i, "testing the \".at()\" method :: vector<string>");
+	{
+		int	n = 10, i = -1;
+		int	position, j;
+
+		ft::vector<std::string>	vs;
+
+		while (++i < n)
+		{
+			std::string	s;
+			j = -1;
+			while (++j < n)
+			{
+				char	c = rand() % 26 + 'A';
+				s += c;
+			}
+			vs.push_back(s);
+		}
+
+		print_vector(vs);
+		position = rand() % n;
+		std::cout << "[" << position << "] : " << vs[position] << nl;
+		std::cout << "at(" << position << ") : " << vs.at(position) << nl;
+	}
 	print_session_head(++i, "rbegin::++, rend::++");
 	{
 		ft::vector<float>	A(7, 42.42);
@@ -91,7 +134,6 @@ int	main()
 			std::cout << *rb << nl, ++rb;
 		std::cout << nl;
 	}
-
 	print_session_head(++i, "begin::reverse_it--, end::reverse_it--");
 	{
 		ft::vector<float>	A(7, 999.1);
@@ -147,6 +189,71 @@ int	main()
 		std::cout << " <= : " << (A <= B) << nl;
 		std::cout << " >= : " << (A >= B) << nl2;
 		std::cout << std::noboolalpha;
+	}
+	print_session_head(++i, "vector<bool>");
+	{
+		int			n = 12;
+		ft::vector<bool>	B(n, true);
+
+		int	position1 = rand() % n;
+		int	position2 = rand() % n;
+
+		B[position1] = !B[position1];
+		B[position2] = !B[position2];
+
+		print_vector(B, true);
+
+		std::cout << std::boolalpha;
+		std::cout << "[" << position1 << "] : " << B[position1] << nl;
+		std::cout << "[" << position2 << "] : " << B[position2] << nl;
+		std::cout << std::noboolalpha;
+	}
+	print_session_head(++i, "testing :: empty()");
+	{
+		int	n = 12, i = -1;
+
+		ft::vector<int>	vi;
+
+		while (++i < n)
+			vi.push_back(rand() % 100);
+		while (!vi.empty())
+		{
+			std::cout << vi[vi.size() - 1] << nl;
+			vi.pop_back();
+		}
+		std::cout
+		<< CYAN "# while(!empty) print, pop_back() " nl2reset;
+	}
+	print_session_head(++i, "testing :: erase()");
+	{
+		std::string	msg = "erase::vi.begin(), vi.begin() + ";
+		int		n = 12, i = -1, offset;
+
+		ft::vector<int>	vi;
+
+		while (++i < n)
+			vi.push_back(rand() % 100);
+
+		print_vector(vi);
+		offset = 3;
+		vi.erase(vi.begin(), vi.begin() + offset);
+		std::cout << YELLOW << msg << offset << nl2reset;
+		print_vector(vi);
+		vi.erase(vi.begin(), vi.begin() + offset);
+		std::cout << YELLOW << msg << offset << nl2reset;
+		print_vector(vi);
+		vi.erase(vi.begin(), vi.begin() + offset);
+		std::cout << YELLOW << msg << offset << nl2reset;
+		print_vector(vi);
+		vi.erase(vi.begin(), vi.begin() + offset);
+		std::cout << YELLOW << msg << offset << nl2reset;
+		print_vector(vi);
+
+		// vector is now empty, trying erase once more -> SegFault
+
+		// vi.erase(vi.begin(), vi.begin() + offset);
+		// std::cout << YELLOW << msg << offset << nl2reset;
+		// print_vector(vi);
 	}
 }
 
