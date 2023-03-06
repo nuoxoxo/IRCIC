@@ -7,7 +7,7 @@
 
 # _Resources_
 
-___throw() vs. noexcept___ 
+___throw( ) vs. noexcept___ 
 - samples ons [rollbar](https://rollbar.com/blog/error-exceptions-in-c/#:~:text=An%20exception%20in%20C%2B%2B%20is,immediately%20after%20the%20try%20block.)
 
 
