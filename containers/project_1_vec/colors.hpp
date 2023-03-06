@@ -16,6 +16,23 @@
 
 # define TICK	GREEN" ✓"RESET
 # define CROSS	RED" ✘"RESET
+// helper
+
+
+template<typename T>
+void	printer_vector(T & v)
+{
+	int	i = -1;
+	std::cout << "(size : " << GREEN << v.size() << RESET << ") \n";
+	while (++i < (int) v.size()) std::cout << v[i] << nl;
+}
+
+template<typename T>
+void	printer_vector_head(T & v)
+{
+	std::cout << "(size : " << GREEN << v.size() << RESET << ") \n";
+	std::cout << v[0] << nl;
+}
 
 
 #endif
