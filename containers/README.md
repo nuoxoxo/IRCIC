@@ -8,8 +8,8 @@
 ## _Ressources_
 
 ___BinaryPredicate___
-- C++ named requirements : BinaryPredicate - [cppreference](https://en.cppreference.com/w/cpp/named_req/BinaryPredicate)
-- C++ STL sort() function, BinaryPredicate - [stof](https://stackoverflow.com/questions/7372132/c-stl-sort-function-binary-predicate)
+- named requirements : BinaryPredicate - [cppreference](https://en.cppreference.com/w/cpp/named_req/BinaryPredicate)
+- STL sort() function, BinaryPredicate - [stof](https://stackoverflow.com/questions/7372132/c-stl-sort-function-binary-predicate)
 
 ___enable_if___
 - [cppreference](https://en.cppreference.com/w/cpp/types/enable_if)
