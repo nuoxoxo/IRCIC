@@ -26,7 +26,7 @@ struct enable_if;
 
 // c++ 14
 template<bool B, class T = void>
-using enable_if_t = typename enable_if<B,T>::type;
+using enable_if_t = typename enable_if<B, T>::type;
 ```
 
 
