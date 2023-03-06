@@ -42,10 +42,12 @@ ___is_integral AND the -pedantic flag___
 ```
 
 
-___BinaryPredicate___
-- named requirements : BinaryPredicate - [cppreference](https://en.cppreference.com/w/cpp/named_req/BinaryPredicate)
-- STL sort() function, BinaryPredicate - [stof](https://stackoverflow.com/questions/7372132/c-stl-sort-function-binary-predicate)
-
+___C++ named requirements___
+- BinaryPredicate \
+... [cppreference](https://en.cppreference.com/w/cpp/named_req/BinaryPredicate)
+  - ... STL sort() function, BinaryPredicate - [stof](https://stackoverflow.com/questions/7372132/c-stl-sort-function-binary-predicate)
+- Compare \
+... [cppreference](https://en.cppreference.com/w/cpp/named_req/Compare)
 
 
 ___BST and algorithms___
@@ -103,8 +105,7 @@ ___General___
 ... [butler](http://stepanovpapers.com/butler.hpl.hp/stl/stl)
 - Set impl. at GCC official github \
 ... [gcc mirror](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/bits/stl_set.h)
-- C++ named requirements: Compare \
-... [HERE](https://en.cppreference.com/w/cpp/named_req/Compare)
+
 
 
 
