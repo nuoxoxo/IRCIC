@@ -34,5 +34,9 @@ void	printer_vector_head(T & v)
 	std::cout << v[0] << nl;
 }
 
+void	print_session_head(int & i, const std::string & message)
+{
+	std::cout << nl << i << " :: " GREEN << message << RESET nl2;
+}
 
 #endif
