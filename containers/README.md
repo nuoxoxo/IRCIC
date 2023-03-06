@@ -1,11 +1,11 @@
 # __Mar Updates__
-<!--
+
 ![](https://i.imgur.com/tJx6k1V.jpg)
--->
 
 
 
-### _Ressources_
+
+## _Ressources_
 
 ___BinaryPredicate___
 - named requirements : BinaryPredicate - [cppreference](https://en.cppreference.com/w/cpp/named_req/BinaryPredicate)
@@ -134,6 +134,8 @@ ___Stack___
 
 # __Feb Updates__
 
+![](https://i.imgur.com/3znf2g8.jpg)
+
 
 
 ## _Todo_
@@ -148,9 +150,7 @@ ___Stack___
 [@](https://www.codeproject.com/Articles/36530/An-Introduction-to-Iterator-Traits) iterator_traits w/ distance() example 
 
 
-<!--
-![](https://i.imgur.com/3znf2g8.jpg)
--->
+
 
 
 ## _Containers_
