@@ -6,20 +6,28 @@ namespace	ft
 	template<class T, T val>
 	struct	integral_constant
 	{
-		static const T					value = val;
-		typedef T						value_type;
+		static const T	value = val;
+		typedef T	value_type;
+
 		typedef integral_constant<T, val>	type;
-		operator T() { return val; }
+
+		operator T () 
+		{
+			return (val);
+		}
 	};
 
+
 	// true and false type implementation
-	typedef integral_constant<bool, true>	true_type;
 	typedef integral_constant<bool, false>	false_type;
+	typedef integral_constant<bool, true>	true_type;
+
 
 	// Default type = false
 	template<class T>
 	struct is_integral : public false_type
 	{};
+
 
 	template<>
 	struct is_integral<bool> : public true_type {};
@@ -54,15 +62,6 @@ namespace	ft
 	template<>
 	struct is_integral<unsigned long int> : public true_type {};
 
-	// template<>
-	// struct is_integral<long long int> : public true_type {};
-	/// 
-	/// C++98 doesnt support long long with -pedantic
-
-	// template<>
-	// struct is_integral<unsigned long long int> : public true_type {};
-	/// 
-	/// C++98 doesnt support long long with -pedantic
 }
 
 #endif
