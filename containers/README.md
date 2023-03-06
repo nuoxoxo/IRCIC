@@ -100,6 +100,7 @@ ___Iterators___
 ... reverse_it - [HERE](https://m.cplusplus.com/reference/iterator/reverse_iterator)\
 ... random [ ] - [HERE](https://m.cplusplus.com/reference/iterator/RandomAccessIterator)
 
+>> ![](https://i.imgur.com/7XeM70S.png)
 
 
 ___General___
