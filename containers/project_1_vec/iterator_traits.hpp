@@ -1,7 +1,8 @@
 #ifndef __ITERATOR_TRAITS_HPP__
 # define __ITERATOR_TRAITS_HPP__
 
-# include "iterator" // iterator_tag
+// # include "iterator" // iterator_tag /// seems omittable
+
 # include "cstddef" // ptrdiff_t
 
 namespace	ft
@@ -40,7 +41,7 @@ namespace	ft
 	struct random_access_iterator_tag : public bidirectional_iterator_tag {};
 
 
-	// Default struct for iterator_traits
+	// Define Iterator struct
 	template<typename T>
 	class	iterator_traits
 	{
@@ -54,39 +55,47 @@ namespace	ft
 
 
 	// Iterator - as in vector<T>::iterator
-	template<class T, class Category, class Distance = std::ptrdiff_t, 
-		class Reference = T &, class Pointer = T *>
+	template<
+		class T, class Category, 
+		class Distance = std::ptrdiff_t, 
+		class Reference = T &, class Pointer = T *
+	>
 	class	iterator
 	{
 	public:
-		typedef	T		value_type;
 		typedef Category	iterator_category;
 		typedef Distance	difference_type;
 		typedef Reference	reference;
 		typedef Pointer		pointer;
+		typedef	T		value_type;
 	};
 
 
 	// you'll also need vector-specific pointers for * and const *
 
 	template<class T>
-	class	iterator_traits<T*>
+	class	iterator_traits<T *>
 	{
+	public:
 		typedef std::random_access_iterator_tag	iterator_category;
-		typedef ptrdiff_t			difference_type;
+
+		typedef ptrdiff_t		difference_type;
 		typedef	T				value_type;
 		typedef T *				pointer;
 		typedef T &				reference;
-	}
+	};
 
 	template<class T>
-	struct	iterator_traits<const T*>
+	struct	iterator_traits<const T *>
 	{
+	public:
 		typedef std::random_access_iterator_tag	iterator_category;
-		typedef ptrdiff_t			difference_type;
-		typedef const T *			pointer;
-		typedef const T &			reference;
-		typedef T				value_type;
+
+		typedef ptrdiff_t	difference_type;
+		typedef T			value_type;
+		typedef const T *	pointer;
+		typedef const T &	reference;
+		
 	};
 
 
