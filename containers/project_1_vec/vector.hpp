@@ -111,7 +111,12 @@ namespace ft
 		}
 
 		template<class InputIterator>
-		void assign(InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = 0) // Check if is_integral, if yes, it's not an Iterator
+		void	assign(
+			InputIterator first,
+			InputIterator last,
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value, 
+			InputIterator>::type* = 0
+		) // Check if is_integral, if yes, it's not an Iterator
 		{
 			clear();
 			for (; first != last; first++)
@@ -120,7 +125,7 @@ namespace ft
 			}
 		}
 
-		void assign(size_type n, const T & val)
+		void	assign(size_type n, const T & val)
 		{
 			clear();
 			for (size_t i = 0; i < n; i++)
@@ -139,42 +144,42 @@ namespace ft
 
 
 		// iterators:
-		iterator begin()
+		iterator	begin()
 		{
 			return iterator(m_vector);
 		}
 
-		const_iterator begin() const
+		const_iterator	begin() const
 		{
 			return const_iterator(m_vector);
 		}
 
-		iterator end()
+		iterator	end()
 		{
 			return iterator(m_vector + size());
 		}
 
-		const_iterator end() const
+		const_iterator	end() const
 		{
 			return const_iterator(m_vector + size());
 		}
 
-		reverse_iterator rbegin()
+		reverse_iterator	rbegin()
 		{
 			return reverse_iterator(end());
 		}
 
-		const_reverse_iterator rbegin() const
+		const_reverse_iterator	rbegin() const
 		{
 			return const_reverse_iterator(end());
 		}
 
-		reverse_iterator rend()
+		reverse_iterator	rend()
 		{
 			return reverse_iterator(begin());
 		}
 
-		const_reverse_iterator rend() const
+		const_reverse_iterator	rend() const
 		{
 			return const_reverse_iterator(begin());
 		}
@@ -185,12 +190,12 @@ namespace ft
 			return m_size;
 		}
 
-		size_type max_size() const
+		size_type	max_size() const
 		{
 			return m_allocator.max_size();
 		}
 
-		void resize(size_type n, T c = T())
+		void	resize(size_type n, T c = T())
 		{
 			if (n > max_size())
 				throw(std::length_error("vector::resize"));
@@ -214,14 +219,14 @@ namespace ft
 			return (m_capacity);
 		}
 
-		bool empty() const
+		bool	empty() const
 		{
 			if (m_size != 0)
 				return false;
 			return true;
 		}
 
-		void reserve(size_type n)
+		void	reserve(size_type n)
 		{
 			if (n > max_size())
 			{
@@ -246,31 +251,39 @@ namespace ft
 			}
 		}
 
-		// element access:
-		reference operator[](size_type n)
+
+		///	Accessors
+
+
+		// []
+		reference operator [] (size_type n)
 		{
 			return (*(m_vector + n));
 		}
 
-		const_reference operator[](size_type n) const
+		const_reference operator [] (size_type n) const
 		{
 			return (*(m_vector + n));
 		}
 
-		const_reference at(size_type n) const
-		{
-			if (n < 0 || n >= size())
-				throw(std::out_of_range("vector::at const"));
-			return (*(m_vector + n));
-		}
 
-		reference at(size_type n)
+		// .at
+		reference	at(size_type n)
 		{
 			if (n < 0 || n >= size())
 				throw(std::out_of_range("vector::at"));
 			return (*(m_vector + n));
 		}
 
+		const_reference	at(size_type n) const
+		{
+			if (n < 0 || n >= size())
+				throw(std::out_of_range("vector::at const"));
+			return (*(m_vector + n));
+		}
+
+
+		// .front & .back
 		reference front()
 		{
 			return (*m_vector);
@@ -290,6 +303,7 @@ namespace ft
 		{
 			return (*(m_vector + (m_size - 1)));
 		}
+
 
 		// modifiers:
 		void push_back(const T & L)
@@ -360,7 +374,13 @@ namespace ft
 		}
 
 		template<class InputIterator>
-		void insert(iterator position, InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = 0)
+		void	insert(
+			iterator position,
+			InputIterator first,
+			InputIterator last,
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value,
+			InputIterator>::type* = 0
+		)
 		{
 			difference_type	dist = 0;
 
@@ -420,7 +440,7 @@ namespace ft
 			return ret;
 		}
 
-		void swap(vector & L)
+		void	swap(vector & L)
 		{
 			if (*this == L)
 				return ;
@@ -429,7 +449,7 @@ namespace ft
 			ft::swap(m_vector, L.m_vector);
 		}
 
-		void clear()
+		void	clear()
 		{
 			for (size_type i = 0; i < m_size; i++)
 				m_allocator.destroy(m_vector + i);
