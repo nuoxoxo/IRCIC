@@ -28,7 +28,7 @@ using enable_if_t = typename enable_if<B,T>::type;
 
 
 
-___is_integral______
+___is_integral___
 - what are type traits in C - [HERE](https://dev.to/sandordargo/what-are-type-traits-in-c-18j5) 
 - type_traits - [HERE](https://cplusplus.com/reference/type_traits/is_integral/?kw=is_integral)
 - type_traits/const - [HERE](https://cplusplus.com/reference/type_traits/integral_constant)\
