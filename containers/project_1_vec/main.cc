@@ -10,12 +10,4 @@
 int	main()
 {
 
-	// TODO
-
-
-//	pair_test();
-//	stack_test(STD);
-//	stack_test(FT);
-//	ft::stack<int>	S;
-
 }
