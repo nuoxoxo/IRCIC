@@ -120,5 +120,33 @@ int	main()
 			std::cout << *rb << nl;
 		std::cout << nl;
 	}
+	print_session_head(++i, "boolean operators :: size 3 vs. 2");
+	{
+		ft::vector<double>	A(3, 21.21);
+		ft::vector<double>	B(2, 42.42);
+
+		std::cout << std::boolalpha;
+		std::cout << " < : " << (A < B) << nl; // tricky part yet nailed it
+		std::cout << " > : " << (A > B) << nl;
+		std::cout << " == : " << (A == B) << nl;
+		std::cout << " != : " << (A != B) << nl;
+		std::cout << " <= : " << (A <= B) << nl;
+		std::cout << " >= : " << (A >= B) << nl2;
+		std::cout << std::noboolalpha;
+	}
+	print_session_head(++i, "boolean operators :: same size");
+	{
+		ft::vector<double>	A(42, 42.42);
+		ft::vector<double>	B(42, 42.42);
+
+		std::cout << std::boolalpha;
+		std::cout << " < : " << (A < B) << nl;
+		std::cout << " > : " << (A > B) << nl;
+		std::cout << " == : " << (A == B) << nl;
+		std::cout << " != : " << (A != B) << nl;
+		std::cout << " <= : " << (A <= B) << nl;
+		std::cout << " >= : " << (A >= B) << nl2;
+		std::cout << std::noboolalpha;
+	}
 }
 
