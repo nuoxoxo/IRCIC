@@ -15,17 +15,27 @@ ___What is wchar_t?___
 
 ___enable_if___
 - [cppreference](https://en.cppreference.com/w/cpp/types/enable_if)
+- _def._ - If `B` is `true`, `std::enable_if` has a public member typedef `type`, equal to `T`; otherwise, there is no member typedef.
+```c
+// c++ 11 . for ft_containers
+template<bool B, class T = void>
+struct enable_if;
+
+// c++ 14
+template<bool B, class T = void>
+using enable_if_t = typename enable_if<B,T>::type;
+```
 
 
 
-___is_integral______
+___is_integral___
 - what are type traits in C - [HERE](https://dev.to/sandordargo/what-are-type-traits-in-c-18j5) 
 - type_traits - [HERE](https://cplusplus.com/reference/type_traits/is_integral/?kw=is_integral)
 - type_traits/const - [HERE](https://cplusplus.com/reference/type_traits/integral_constant)\
 (is_integral dep of integral_constant) 
 - sfinae & enable_if - [eli](https://eli.thegreenplace.net/2014/sfinae-and-enable_if)
 
-___is_integral AND the -pedantic flag___ 
+___is_integral AND the `-pedantic` flag___ 
 - _def._ - excessively concerned with minor details or rules; overscrupulous.
 - [source](http://wrigstad.com/ioopm/compiling.html#:~:text=The%20%2Dpedantic%20flag%20turns%20on,do%20not%20follow%20ISO%20C%2B.) :: `-pedantic` turns on warnings demanded by strict ISO C and reject all programs that use forbidden extensions, and some other programs that do not follow ISO C+
 
@@ -42,10 +52,12 @@ ___is_integral AND the -pedantic flag___
 ```
 
 
-___BinaryPredicate___
-- named requirements : BinaryPredicate - [cppreference](https://en.cppreference.com/w/cpp/named_req/BinaryPredicate)
-- STL sort() function, BinaryPredicate - [stof](https://stackoverflow.com/questions/7372132/c-stl-sort-function-binary-predicate)
-
+___C++ named requirements___
+- BinaryPredicate \
+... [cppreference](https://en.cppreference.com/w/cpp/named_req/BinaryPredicate)
+  - STL sort() function, BinaryPredicate - [stof](https://stackoverflow.com/questions/7372132/c-stl-sort-function-binary-predicate)
+- Compare \
+... [cppreference](https://en.cppreference.com/w/cpp/named_req/Compare)
 
 
 ___BST and algorithms___
@@ -103,8 +115,7 @@ ___General___
 ... [butler](http://stepanovpapers.com/butler.hpl.hp/stl/stl)
 - Set impl. at GCC official github \
 ... [gcc mirror](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/bits/stl_set.h)
-- C++ named requirements: Compare \
-... [HERE](https://en.cppreference.com/w/cpp/named_req/Compare)
+
 
 
 
