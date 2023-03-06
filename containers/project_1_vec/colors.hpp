@@ -18,12 +18,30 @@
 # define CROSS	RED" ✘"RESET
 // helper
 
+// impl. restricted to >= c++std-11
+/*
+void	print() { std::cout << nl2reset; }
+template<typename T, typename... Types>
+void	print(T n1, Types... n2)
+{
+	std::cout << n1 << nl ;
+	print(n2...);
+}
+*/
+
+template<typename T>
+void	print(const T & item) { std::cout << CYAN << item << nl2reset; }
+
+template<typename T>
+void	print(const std::string & w, const T & item)
+{ std::cout << CYAN << w << ": " GREEN << item << nlreset; }
 
 template<typename T>
 void	printer_vector(T & v)
 {
 	int	i = -1;
 	std::cout << "(size : " << GREEN << v.size() << RESET << ") \n";
+	std::cout << "(cpct : " << GREEN << v.capacity() << RESET << ") \n";
 	while (++i < (int) v.size()) std::cout << v[i] << nl;
 	std::cout << nl2reset;
 }
@@ -32,6 +50,7 @@ template<typename T>
 void	printer_vector_head(T & v)
 {
 	std::cout << "(size : " << GREEN << v.size() << RESET << ") \n";
+	std::cout << "(cpct : " << GREEN << v.capacity() << RESET << ") \n";
 	std::cout << v[0] << nl2;
 }
 
