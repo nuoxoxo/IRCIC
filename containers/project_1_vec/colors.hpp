@@ -25,18 +25,19 @@ void	printer_vector(T & v)
 	int	i = -1;
 	std::cout << "(size : " << GREEN << v.size() << RESET << ") \n";
 	while (++i < (int) v.size()) std::cout << v[i] << nl;
+	std::cout << nl2reset;
 }
 
 template<typename T>
 void	printer_vector_head(T & v)
 {
 	std::cout << "(size : " << GREEN << v.size() << RESET << ") \n";
-	std::cout << v[0] << nl;
+	std::cout << v[0] << nl2;
 }
 
 void	print_session_head(int & i, const std::string & message)
 {
-	std::cout << nl << i << " :: " GREEN << message << RESET nl2;
+	std::cout << nl << i << " :: " YELLOW << message << nl2reset;
 }
 
 #endif
