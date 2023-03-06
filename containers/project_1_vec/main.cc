@@ -208,5 +208,21 @@ int	main()
 		std::cout << "[" << position2 << "] : " << vb[position2] << nl;
 		std::cout << std::noboolalpha;
 	}
+	print_session_head(++i, "testing :: empty()");
+	{
+		int	n = 12, i = -1;
+
+		ft::vector<int>	vi;
+
+		while (++i < n)
+			vi.push_back(rand() % 100);
+		while (!vi.empty())
+		{
+			std::cout << vi[vi.size() - 1] << nl;
+			vi.pop_back();
+		}
+		std::cout << CYAN
+		<< "// printed using while(!empty) AND pop_back() " nl2reset;
+	}
 }
 
