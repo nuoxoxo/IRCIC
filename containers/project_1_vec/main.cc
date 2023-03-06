@@ -192,20 +192,20 @@ int	main()
 	}
 	print_session_head(++i, "vector<bool>");
 	{
-		int	n = 12;
-		ft::vector<bool> vb(n, true);
+		int			n = 12;
+		ft::vector<bool>	B(n, true);
 
 		int	position1 = rand() % n;
 		int	position2 = rand() % n;
 
-		vb[position1] = !vb[position1];
-		vb[position2] = !vb[position2];
+		B[position1] = !B[position1];
+		B[position2] = !B[position2];
 
-		print_vector(vb, true);
+		print_vector(B, true);
 
 		std::cout << std::boolalpha;
-		std::cout << "[" << position1 << "] : " << vb[position1] << nl;
-		std::cout << "[" << position2 << "] : " << vb[position2] << nl;
+		std::cout << "[" << position1 << "] : " << B[position1] << nl;
+		std::cout << "[" << position2 << "] : " << B[position2] << nl;
 		std::cout << std::noboolalpha;
 	}
 	print_session_head(++i, "testing :: empty()");
@@ -221,8 +221,39 @@ int	main()
 			std::cout << vi[vi.size() - 1] << nl;
 			vi.pop_back();
 		}
-		std::cout << CYAN
-		<< "// printed using while(!empty) AND pop_back() " nl2reset;
+		std::cout
+		<< CYAN "# while(!empty) print, pop_back() " nl2reset;
+	}
+	print_session_head(++i, "testing :: erase()");
+	{
+		std::string	msg = "erase::vi.begin(), vi.begin() + ";
+		int		n = 12, i = -1, offset;
+
+		ft::vector<int>	vi;
+
+		while (++i < n)
+			vi.push_back(rand() % 100);
+
+		print_vector(vi);
+		offset = 3;
+		vi.erase(vi.begin(), vi.begin() + offset);
+		std::cout << YELLOW << msg << offset << nl2reset;
+		print_vector(vi);
+		vi.erase(vi.begin(), vi.begin() + offset);
+		std::cout << YELLOW << msg << offset << nl2reset;
+		print_vector(vi);
+		vi.erase(vi.begin(), vi.begin() + offset);
+		std::cout << YELLOW << msg << offset << nl2reset;
+		print_vector(vi);
+		vi.erase(vi.begin(), vi.begin() + offset);
+		std::cout << YELLOW << msg << offset << nl2reset;
+		print_vector(vi);
+
+		// vector is now empty, trying erase once more -> SegFault
+
+		// vi.erase(vi.begin(), vi.begin() + offset);
+		// std::cout << YELLOW << msg << offset << nl2reset;
+		// print_vector(vi);
 	}
 }
 

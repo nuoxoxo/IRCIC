@@ -47,9 +47,17 @@ void	print(const std::string & w, const T & item)
 template<typename T>
 void	print_vector(T & v)
 {
-	int	i = -1;
 	std::cout << "(size : " << GREEN << v.size() << RESET << ") \n";
 	std::cout << "(cpct : " << GREEN << v.capacity() << RESET << ") \n";
+
+	if (v.empty())
+	{
+		std::cout << CYAN "(empty vector)" nl2reset;
+		return ;
+	}
+
+	int	i = -1;
+
 	std::cout << CYAN << "(printer starts)" << RESET << " \n";
 	while (++i < (int) v.size()) std::cout << i << " : " << v[i] << nl;
 	std::cout << CYAN << "(printer ends)" << RESET nl2reset;
