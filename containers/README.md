@@ -24,7 +24,17 @@ ___is_integral______
 - type_traits/const - [HERE](https://cplusplus.com/reference/type_traits/integral_constant)\
 (is_integral dep of integral_constant) 
 - sfinae & enable_if - [eli](https://eli.thegreenplace.net/2014/sfinae-and-enable_if)
+```c
+// template<>
+// struct is_integral<long long int> : public true_type {};
+/// 
+/// C++98 doesnt support long long with -pedantic
 
+// template<>
+// struct is_integral<unsigned long long int> : public true_type {};
+/// 
+/// C++98 doesnt support long long with -pedantic
+```
 
 
 ___BinaryPredicate___
