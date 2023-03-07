@@ -8,7 +8,7 @@ using	namespace std;
 int	main ()
 {
 	vector<int>::size_type	z1, z2;
-	std::vector<int>	v1, v2;
+	vector<int>	v1, v2;
 	int	i;
 
 	i = -1;
