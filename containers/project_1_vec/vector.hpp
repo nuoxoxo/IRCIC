@@ -83,8 +83,10 @@ namespace ft
 		vector(const vector & L)
 		{
 			m_allocator = L.m_allocator;
+
 			m_size = L.m_size;
 			m_capacity = L.m_capacity;
+
 			m_vector = m_allocator.allocate(m_capacity);
 
 			for (size_type i = 0; i < m_size; i++)
@@ -100,7 +102,7 @@ namespace ft
 			m_allocator.deallocate(m_vector, m_capacity);
 		}
 
-		vector & operator=(const vector & rhs)
+		vector & operator = (const vector & rhs)
 		{
 			if (*this == rhs)
 				return *this;
@@ -459,10 +461,11 @@ namespace ft
 
 	template<class T, class Allocator>
 	bool	operator == (
-		const vector<T,Allocator> & L, 
-		const vector<T,Allocator> & R
+		const vector<T, Allocator> & L, 
+		const vector<T, Allocator> & R
 	)
 	{
+		/*
 		if (L.size() != R.size())
 			return false;
 		for (size_t i = 0; i < L.size(); i++)
@@ -471,12 +474,22 @@ namespace ft
 				return false;
 		}
 		return (true);
+
+		*/
+
+		typedef typename vector<T, Allocator>::const_iterator it_type;
+
+		if (L.size() ^ R.size())
+			return false;
+		return ft::equal<it_type, it_type>(L.begin(), L.end(), R.begin());
+
+		//*/
 	}
 
 	template<class T, class Allocator>
 	bool operator != (
-		const vector<T,Allocator> & L, 
-		const vector<T,Allocator> & R
+		const vector<T, Allocator> & L, 
+		const vector<T, Allocator> & R
 	)
 	{
 		return (!(L == R));
@@ -484,8 +497,8 @@ namespace ft
 
 	template<class T, class Allocator>
 	bool operator < (
-		const vector<T,Allocator> & L, 
-		const vector<T,Allocator> & R
+		const vector<T, Allocator> & L, 
+		const vector<T, Allocator> & R
 	)
 	{
 		return (ft::lexicographical_compare(L.begin(), L.end(), R.begin(), R.end()));
@@ -493,8 +506,8 @@ namespace ft
 
 	template<class T, class Allocator>
 	bool operator> (
-		const vector<T,Allocator> & L, 
-		const vector<T,Allocator> & R
+		const vector<T, Allocator> & L, 
+		const vector<T, Allocator> & R
 	)
 	{
 		return (R < L);
@@ -502,8 +515,8 @@ namespace ft
 
 	template<class T, class Allocator>
 	bool operator >= (
-		const vector<T,Allocator> & L, 
-		const vector<T,Allocator> & R
+		const vector<T, Allocator> & L, 
+		const vector<T, Allocator> & R
 	)
 	{
 		return (!(L < R));
@@ -511,8 +524,8 @@ namespace ft
 
 	template<class T, class Allocator>
 	bool operator <= (
-		const vector<T,Allocator> & L, 
-		const vector<T,Allocator> & R
+		const vector<T, Allocator> & L, 
+		const vector<T, Allocator> & R
 	)
 	{
 		return (!(R < L));
@@ -520,7 +533,7 @@ namespace ft
 
 	// specialized algorithms:
 	template<class T, class Allocator>
-	void swap(vector<T,Allocator> & L, vector<T,Allocator> & R)
+	void swap(vector<T, Allocator> & L, vector<T, Allocator> & R)
 	{
 		L.swap(R);
 	}
