@@ -11,7 +11,7 @@ namespace	ft
 	// 	stl_iterator_base_types.hpp
 
 	/**
-	 * 		iterator_tags Iterator Tags
+	 * 	iterator_tags Iterator Tags
 	 * 
 	 * These are empty types, used to distinguish different iterators.  The
 	 * distinction is not made by what they contain, but simply by what they
@@ -19,7 +19,7 @@ namespace	ft
 	 * different operations supported by different iterator types.
 	 */
 
-	///		Notes from fellow stud Twagger / Thomas
+	///	Notes from fellow stud Twagger / Thomas
 	// Iterator traits 
 	// is a definition of member types for any iterator 
 	// that let us get iterator types 
@@ -57,9 +57,11 @@ namespace	ft
 	public:
 		typedef typename T::iterator_category	iterator_category;
 		typedef typename T::difference_type	difference_type;
+
 		typedef	typename T::value_type	value_type;
 		typedef typename T::reference	reference;
-		typedef typename T::pointer		pointer;
+
+		typedef typename T::pointer	pointer;
 	};
 
 
@@ -88,10 +90,10 @@ namespace	ft
 	public:
 		typedef std::random_access_iterator_tag	iterator_category;
 
-		typedef ptrdiff_t		difference_type;
-		typedef	T				value_type;
-		typedef T *				pointer;
-		typedef T &				reference;
+		typedef ptrdiff_t	difference_type;
+		typedef	T		value_type;
+		typedef T		* pointer;
+		typedef T		& reference;
 	};
 
 	template<class T>
@@ -101,13 +103,11 @@ namespace	ft
 		typedef std::random_access_iterator_tag	iterator_category;
 
 		typedef ptrdiff_t	difference_type;
-		typedef T			value_type;
-		typedef const T *	pointer;
-		typedef const T &	reference;
+		typedef T		value_type;
+		typedef const T		* pointer;
+		typedef const T		& reference;
 		
 	};
-
-
 
 }
 

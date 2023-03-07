@@ -13,6 +13,7 @@ int	main()
 	srand(time(0));
 
 	print_session_head(++i, "swap test :: vector<int>");
+
 	{
 		ft::vector<int>		A(2, 42);
 		ft::vector<int>		B(9, 196883);
@@ -25,7 +26,9 @@ int	main()
 		print_vector_head(A);
 		print_vector_head(B);
 	}
+
 	print_session_head(++i, "swap test :: vector<string>");
+
 	{
 		ft::vector<std::string>	S(42, "hello, i am a string ... theory");
 		ft::vector<std::string>	T(3, "t h r e e ...");
@@ -36,7 +39,9 @@ int	main()
 		print_vector_head(S);
 		print_vector_head(T);
 	}
+
 	print_session_head(++i, "resizing :: grow & shrink");
+
 	{
 		ft::vector<int>		A(2, 42);
 		ft::vector<int>		B(9, 31415);
@@ -48,7 +53,9 @@ int	main()
 		print_vector_head(A);
 		print_vector_head(B);
 	}
+
 	print_session_head(++i, "reserve :: try shrinking");
+
 	{
 		ft::vector<int>		A(2, 42);
 		ft::vector<int>		B(4, 31415);
@@ -66,7 +73,9 @@ int	main()
 		print("try shrinking from 4 to 1", B.capacity());
 		print_vector_head(B);
 	}
+
 	print_session_head(++i, "testing the \".at()\" method :: vector<int>");
+
 	{
 		int	n = 12, i = -1;
 		int	position;
@@ -81,7 +90,9 @@ int	main()
 		std::cout << "[" << position << "] : " << vi[position] << nl;
 		std::cout << "at(" << position << ") : " << vi.at(position) << nl;
 	}
+
 	print_session_head(++i, "testing the \".at()\" method :: vector<string>");
+
 	{
 		int	n = 10, i = -1;
 		int	position, j;
@@ -105,7 +116,9 @@ int	main()
 		std::cout << "[" << position << "] : " << vs[position] << nl;
 		std::cout << "at(" << position << ") : " << vs.at(position) << nl;
 	}
+
 	print_session_head(++i, "rbegin::++, rend::++");
+
 	{
 		ft::vector<float>	A(7, 42.42);
 		ft::vector<std::string>	B(11, "B");
@@ -134,7 +147,9 @@ int	main()
 			std::cout << *rb << nl, ++rb;
 		std::cout << nl;
 	}
+
 	print_session_head(++i, "begin::reverse_it--, end::reverse_it--");
+
 	{
 		ft::vector<float>	A(7, 999.1);
 		ft::vector<std::string>	B(9, "R");
@@ -162,7 +177,9 @@ int	main()
 			std::cout << *rb << nl;
 		std::cout << nl;
 	}
+
 	print_session_head(++i, "boolean operators :: size 3 vs. 2");
+
 	{
 		ft::vector<double>	A(3, 21.21);
 		ft::vector<double>	B(2, 42.42);
@@ -176,7 +193,9 @@ int	main()
 		std::cout << " >= : " << (A >= B) << nl2;
 		std::cout << std::noboolalpha;
 	}
+
 	print_session_head(++i, "boolean operators :: same size");
+
 	{
 		ft::vector<double>	A(42, 42.42);
 		ft::vector<double>	B(42, 42.42);
@@ -190,7 +209,9 @@ int	main()
 		std::cout << " >= : " << (A >= B) << nl2;
 		std::cout << std::noboolalpha;
 	}
+
 	print_session_head(++i, "vector<bool>");
+
 	{
 		int			n = 12;
 		ft::vector<bool>	B(n, true);
@@ -208,7 +229,9 @@ int	main()
 		std::cout << "[" << position2 << "] : " << B[position2] << nl;
 		std::cout << std::noboolalpha;
 	}
+
 	print_session_head(++i, "testing :: empty()");
+
 	{
 		int	n = 12, i = -1;
 
@@ -224,7 +247,9 @@ int	main()
 		std::cout
 		<< CYAN "# while(!empty) print, pop_back() " nl2reset;
 	}
+
 	print_session_head(++i, "testing :: erase()");
+
 	{
 		std::string	msg = "erase::vi.begin(), vi.begin() + ";
 		int		n = 12, i = -1, offset;
@@ -254,6 +279,122 @@ int	main()
 		// vi.erase(vi.begin(), vi.begin() + offset);
 		// std::cout << YELLOW << msg << offset << nl2reset;
 		// print_vector(vi);
+	}
+
+	print_session_head(++i, "testing :: assign on vector<int>");
+
+	{
+		ft::vector<int>	A, B, C;
+		int		arr[] = { 21, 42, 196883, 22, 43, 1024 };
+
+		A.assign(7, 42); // size: 7
+
+		B.assign(A.begin() + 1, A.end() - 1); // size: 5
+
+		C.assign(arr, arr + 3); // 3
+
+		std::cout << "Size of A: " << A.size() << nl;
+		std::cout << "Size of B: " << B.size() << nl;
+		std::cout << "Size of c: " << C.size() << nl2;
+
+	}
+
+	print_session_head(++i, "testing :: assign on vector<string>");
+
+	{
+		ft::vector<std::string>	A, B, C;
+
+		std::string	arr[] = {
+			"good ", "morning", "!",
+			"hello ", "world", "?"
+		};
+
+		A.assign(7, "\%\% forty-two \%\%"); // size: 7
+
+		B.assign(A.begin() + 1, A.end() - 1); // size: 5
+
+		C.assign(arr, arr + 3); // 3
+
+		std::cout << "Size of A: " << A.size() << nl;
+		std::cout << "Size of B: " << B.size() << nl;
+		std::cout << "Size of C: " << C.size() << nl2;
+
+	}
+
+	print_session_head(++i, "testing :: reserve");
+
+	{
+		// using namespace std;
+
+		ft::vector<int>::size_type	z1, z2;
+		ft::vector<int>	v1, v2;
+		int	SIZE = 100;
+		int	i;
+
+		i = -1;
+		while (++i < SIZE)
+		{
+			v1.push_back(i);
+			if (z1 != v1.capacity())
+			{
+				z1 = v1.capacity();
+				std::cout << "capacity changed: " << z1 << nl;
+			}
+		}
+		std::cout << "size at last: " << v1.size() << nl;
+
+
+		std::cout << "\n👆" 
+		<< CROSS " no reserve :: 👇"
+		<< TICK " with reserve " nl2; 
+
+
+		i = -1;
+		v2.reserve(64); // changed here
+		while (++i < SIZE)
+		{
+			v2.push_back(i);
+			if (z2 != v2.capacity())
+			{
+				z2 = v2.capacity();
+				std::cout << "capacity changed: " << z2 << nl;
+			}
+		}
+		std::cout << "size at last: " << v2.size() << nl2;
+
+	}
+
+	print_session_head(++i, "get_allocator for a *ptr to int[] ");
+
+	{
+		ft::vector<int>	v;
+		int		Size = 12, i;
+		int		*ptr;
+
+		// allocate an array of SIZE elems using vector's own allocator
+
+		ptr = v.get_allocator().allocate(Size);
+
+		// construct values in-place
+		i = -1;
+		while (++i < Size)
+			v.get_allocator().construct( & ptr[i], Size - i + 41);
+
+		// print
+		std::cout << "this allocated array contains: \n";
+		i = -1;
+		while (++i < Size)
+			std::cout << ptr[i] << "\n";
+
+		///	need overload but i don't want to write it
+		// print_vector(ptr);
+
+
+		// destroy and deallocate:
+		i = -1;
+		while (++i < Size)
+			v.get_allocator().destroy (& ptr[i]);
+		v.get_allocator().deallocate(ptr, Size);
 	}
 }
 

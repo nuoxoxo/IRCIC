@@ -29,26 +29,31 @@ namespace ft
 
 	public:
 		// types:
-		typedef typename Allocator::reference			reference;
-		typedef typename Allocator::const_reference		const_reference;
-		typedef typename Allocator::pointer				pointer;
-		typedef typename Allocator::const_pointer		const_pointer;
-		typedef Allocator								allocator_type;
-		typedef size_t									size_type;
-		typedef int										difference_type;
-		typedef T										value_type;
+		typedef typename Allocator::reference	reference;
+		typedef typename Allocator::pointer	pointer;
+
+		typedef typename Allocator::const_reference	const_reference;
+		typedef typename Allocator::const_pointer	const_pointer;
+
+		typedef Allocator	allocator_type;
+		typedef T		value_type;
+		typedef size_t		size_type;
+
+		typedef ptrdiff_t	difference_type;
+		// typedef int		difference_type; // both work fine
 
 
 		///	OLD Way : we don't need vect_iter anymore because of tag dispatching
 
-		// typedef ft::VectorIterator<pointer>				iterator;
-		// typedef ft::VectorIterator<const_pointer>		const_iterator;
+		// typedef ft::VectorIterator<pointer>		iterator;
+		// typedef ft::VectorIterator<const_pointer>	const_iterator;
 
 
 		///	NEW Way : this way 👇 (2 lines)
 
 		typedef pointer			iterator;
 		typedef const_pointer	const_iterator;
+
 
 		///	Subject dictates reverse_iterator
 
@@ -59,8 +64,8 @@ namespace ft
 	private:
 		size_type		m_size;
 		size_type		m_capacity;
-		allocator_type	m_allocator;
 		value_type		* m_vector;
+		allocator_type		m_allocator;
 
 	public:
 		explicit vector(const allocator_type & alloc = allocator_type()) // default
@@ -82,8 +87,15 @@ namespace ft
 				m_allocator.construct(m_vector + i, value);
 		}
 
+
 		template<class InputIterator>
-		vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = 0) // Check if is_integral, if yes, it's not an Iterator
+		vector(
+			InputIterator first,
+			InputIterator last,
+			const allocator_type & alloc = allocator_type(),
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value,\
+				InputIterator>::type* = 0
+		) // Check if is_integral, if yes, it's not an Iterator
 		{
 			m_size = 0;
 			m_capacity = 0;
@@ -93,13 +105,12 @@ namespace ft
 			assign(first, last);
 		}
 
+
 		vector(const vector & L)
 		{
 			m_allocator = L.m_allocator;
-
 			m_size = L.m_size;
 			m_capacity = L.m_capacity;
-
 			m_vector = m_allocator.allocate(m_capacity);
 
 			for (size_type i = 0; i < m_size; i++)
@@ -111,7 +122,6 @@ namespace ft
 		~vector()
 		{
 			clear();
-
 			m_allocator.deallocate(m_vector, m_capacity);
 		}
 
@@ -129,8 +139,8 @@ namespace ft
 		void	assign(
 			InputIterator first,
 			InputIterator last,
-			typename ft::enable_if<!ft::is_integral<InputIterator>::value, 
-			InputIterator>::type* = 0
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value,\
+				InputIterator>::type* = 0
 		) // Check if is_integral, if yes, it's not an Iterator
 		{
 			clear();
@@ -159,6 +169,7 @@ namespace ft
 
 
 		// iterators:
+
 		iterator	begin()
 		{
 			return iterator(m_vector);
@@ -199,7 +210,9 @@ namespace ft
 			return const_reverse_iterator(begin());
 		}
 
+
 		// capacity:
+
 		size_type size() const
 		{
 			return m_size;
@@ -218,14 +231,13 @@ namespace ft
 			if (n <= size())
 			{
 				for (; m_size > n ; m_size--)
-					m_allocator.destroy( & m_vector[m_size - 1]);
+				m_allocator.destroy( & m_vector[m_size - 1]);
 			}
 			else
 			{
 				reserve(n);
-
 				for (; m_size < n; m_size++)
-					m_allocator.construct(m_vector + m_size, c);
+				m_allocator.construct(m_vector + m_size, c);
 			}
 		}
 
@@ -250,7 +262,7 @@ namespace ft
 			if (n > capacity())
 			{
 				size_type	old_capacity = m_capacity;
-				T			*tmp;
+				T		* tmp;
 
 				m_capacity = n;
 				tmp = m_allocator.allocate(m_capacity);
@@ -393,8 +405,8 @@ namespace ft
 			iterator position,
 			InputIterator first,
 			InputIterator last,
-			typename ft::enable_if<!ft::is_integral<InputIterator>::value,
-			InputIterator>::type* = 0
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value,\
+				InputIterator>::type* = 0
 		)
 		{
 			difference_type	dist = 0;
@@ -441,7 +453,6 @@ namespace ft
 					m_allocator.construct(it, *(it + 1));
 					// m_allocator.construct(it.base(), *(it + 1)); // depr
 				}
-
 				m_allocator.destroy(it);
 				// m_allocator.destroy(it.base()); // depr
 
