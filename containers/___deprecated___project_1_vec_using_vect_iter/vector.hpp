@@ -10,7 +10,8 @@
 // # include "algorithm"
 
 # include "iterator_reverse_iterator.hpp"
-// # include "iterator_vector.hpp" /// depr because of tag dispatching 
+
+# include "iterator_vector.hpp"
 // # include "iterator_vector_const_iterator.hpp" /// depr
 
 # include "util_lexicographical_compare.hpp"
@@ -37,24 +38,10 @@ namespace ft
 		typedef size_t									size_type;
 		typedef int										difference_type;
 		typedef T										value_type;
-
-
-		///	OLD Way : we don't need vect_iter anymore because of tag dispatching
-
-		// typedef ft::VectorIterator<pointer>				iterator;
-		// typedef ft::VectorIterator<const_pointer>		const_iterator;
-
-
-		///	NEW Way : this way 👇 (2 lines)
-
-		typedef pointer			iterator;
-		typedef const_pointer	const_iterator;
-
-		///	Subject dictates reverse_iterator
-
+		typedef ft::VectorIterator<pointer>				iterator;
+		typedef ft::VectorIterator<const_pointer>		const_iterator;
 		typedef ft::reverse_iterator<iterator>			reverse_iterator;
 		typedef ft::reverse_iterator<const_iterator>	const_reverse_iterator;
-
 
 	private:
 		size_type		m_size;
@@ -435,16 +422,10 @@ namespace ft
 			{
 				for (; it + 1 != ite; it++)
 				{
-					m_allocator.destroy(it);
-					// m_allocator.destroy(it.base()); // depr
-
-					m_allocator.construct(it, *(it + 1));
-					// m_allocator.construct(it.base(), *(it + 1)); // depr
+					m_allocator.destroy(it.base());
+					m_allocator.construct(it.base(), *(it + 1));
 				}
-
-				m_allocator.destroy(it);
-				// m_allocator.destroy(it.base()); // depr
-
+				m_allocator.destroy(it.base());
 				m_size--;
 			}
 
