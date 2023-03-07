@@ -18,5 +18,5 @@ int	main ()
 
 	cout << "Size of A: " << A.size() << nl;
 	cout << "Size of B: " << B.size() << nl;
-	cout << "Size of B: " << C.size() << nl;
+	cout << "Size of C: " << C.size() << nl;
 }
