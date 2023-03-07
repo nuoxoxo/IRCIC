@@ -4,6 +4,11 @@
 #include "iterator"
 
 
+/* 
+ * 
+ * doesn't work this way 
+ *
+ */
 
 int	main()
 {
