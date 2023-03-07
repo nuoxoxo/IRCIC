@@ -8,7 +8,10 @@
 # _Resources_
 
 ___throw( ) vs. noexcept___ 
-- samples ons [rollbar](https://rollbar.com/blog/error-exceptions-in-c/#:~:text=An%20exception%20in%20C%2B%2B%20is,immediately%20after%20the%20try%20block.)
+- _def._ - throw() is just an alias for noexcept(true)
+- throw in function signature [bikulov](https://bikulov.org/blog/2013/11/23/throw-in-function-signature-in-c-/)
+- Exception specifications [IBM](https://www.ibm.com/docs/en/zos/2.3.0?topic=only-exception-specifications-c)
+- simple samples ons [rollbar](https://rollbar.com/blog/error-exceptions-in-c/#:~:text=An%20exception%20in%20C%2B%2B%20is,immediately%20after%20the%20try%20block.)
 
 ___std::vector::operator == (___ 
 - _def._ - The C++ function `std::vector::operator ==` first checks the size of both container, if sizes are same then it compares elements sequentially and comparison stops at first mismatch.
