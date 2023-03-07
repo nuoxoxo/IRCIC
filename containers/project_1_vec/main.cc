@@ -364,5 +364,37 @@ int	main()
 
 	}
 
+	print_session_head(++i, "get_allocator for a *ptr to int[] ");
+
+	{
+		ft::vector<int>	v;
+		int		Size = 12, i;
+		int		*ptr;
+
+		// allocate an array of SIZE elems using vector's own allocator
+
+		ptr = v.get_allocator().allocate(Size);
+
+		// construct values in-place
+		i = -1;
+		while (++i < Size)
+			v.get_allocator().construct( & ptr[i], Size - i + 41);
+
+		// print
+		std::cout << "this allocated array contains: \n";
+		i = -1;
+		while (++i < Size)
+			std::cout << ptr[i] << "\n";
+
+		///	need overload but i don't want to write it
+		// print_vector(ptr);
+
+
+		// destroy and deallocate:
+		i = -1;
+		while (++i < Size)
+			v.get_allocator().destroy (& ptr[i]);
+		v.get_allocator().deallocate(ptr, Size);
+	}
 }
 
