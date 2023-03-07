@@ -295,7 +295,7 @@ int	main()
 
 		std::cout << "Size of A: " << A.size() << nl;
 		std::cout << "Size of B: " << B.size() << nl;
-		std::cout << "Size of B: " << C.size() << nl2;
+		std::cout << "Size of c: " << C.size() << nl2;
 
 	}
 
@@ -317,16 +317,17 @@ int	main()
 
 		std::cout << "Size of A: " << A.size() << nl;
 		std::cout << "Size of B: " << B.size() << nl;
-		std::cout << "Size of B: " << C.size() << nl2;
+		std::cout << "Size of C: " << C.size() << nl2;
 
 	}
 
-	print_session_head(++i, "testing :: assign on vector<string>");
+	print_session_head(++i, "testing :: reserve");
 
 	{
-		using namespace std;
-		vector<int>::size_type	z1, z2;
-		std::vector<int>	v1, v2;
+		// using namespace std;
+
+		ft::vector<int>::size_type	z1, z2;
+		ft::vector<int>	v1, v2;
 		int	SIZE = 100;
 		int	i;
 
@@ -337,13 +338,15 @@ int	main()
 			if (z1 != v1.capacity())
 			{
 				z1 = v1.capacity();
-				cout << "capacity changed: " << z1 << endl;
+				std::cout << "capacity changed: " << z1 << nl;
 			}
 		}
-		cout << "size at last: " << v1.size() << endl;
+		std::cout << "size at last: " << v1.size() << nl;
 
 
-		cout << "\n👆 test 1 :: 👇 test 2 \n\n"; 
+		std::cout << "\n👆" 
+		<< CROSS " no reserve :: 👇"
+		<< TICK " with reserve " nl2; 
 
 
 		i = -1;
@@ -354,10 +357,10 @@ int	main()
 			if (z2 != v2.capacity())
 			{
 				z2 = v2.capacity();
-				cout << "capacity changed: " << z2 << endl;
+				std::cout << "capacity changed: " << z2 << nl;
 			}
 		}
-		cout << "size at last: " << v2.size() << endl;
+		std::cout << "size at last: " << v2.size() << nl2;
 
 	}
 
