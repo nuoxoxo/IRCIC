@@ -11,13 +11,20 @@ namespace	ft
 	// 	stl_iterator_base_types.hpp
 
 	/**
-	 * @defgroup iterator_tags Iterator Tags
+	 * 		iterator_tags Iterator Tags
+	 * 
 	 * These are empty types, used to distinguish different iterators.  The
 	 * distinction is not made by what they contain, but simply by what they
 	 * are.  Different underlying algorithms can then be used based on the
 	 * different operations supported by different iterator types.
 	 */
 
+	///		Notes from fellow stud Twagger / Thomas
+	// Iterator traits 
+	// is a definition of member types for any iterator 
+	// that let us get iterator types 
+	// from a simple pointer to a certain type (T)
+    // so it can be used properly with algorithms.
 
 	///  Marking input iterators.
 	struct input_iterator_tag {};
@@ -41,16 +48,18 @@ namespace	ft
 	struct random_access_iterator_tag : public bidirectional_iterator_tag {};
 
 
-	// Define Iterator struct
+	//	Define Iterator struct
+	// We use this master template to get types
+	// from the iterator type itself
 	template<typename T>
-	class	iterator_traits
+	class	iterator_traits // Master template
 	{
 	public:
 		typedef typename T::iterator_category	iterator_category;
 		typedef typename T::difference_type	difference_type;
 		typedef	typename T::value_type	value_type;
-		typedef typename T::pointer	pointer;
 		typedef typename T::reference	reference;
+		typedef typename T::pointer		pointer;
 	};
 
 
