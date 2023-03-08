@@ -1,4 +1,4 @@
-# ___UPDATES___
+# __UPDATES__
 
 - Mar 8
   - 🟡 TO SOLVE : cf. commit "found the problem"
