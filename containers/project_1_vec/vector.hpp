@@ -93,7 +93,7 @@ namespace ft
 			InputIterator first,
 			InputIterator last,
 			const allocator_type & alloc = allocator_type(),
-			typename ft::enable_if<!ft::is_integral<InputIterator>::value,\
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value,
 				InputIterator>::type* = 0
 		) // Check if is_integral, if yes, it's not an Iterator
 		{
@@ -139,7 +139,7 @@ namespace ft
 		void	assign(
 			InputIterator first,
 			InputIterator last,
-			typename ft::enable_if<!ft::is_integral<InputIterator>::value,\
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value,
 				InputIterator>::type* = 0
 		) // Check if is_integral, if yes, it's not an Iterator
 		{
@@ -405,7 +405,7 @@ namespace ft
 			iterator position,
 			InputIterator first,
 			InputIterator last,
-			typename ft::enable_if<!ft::is_integral<InputIterator>::value,\
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value,
 				InputIterator>::type* = 0
 		)
 		{

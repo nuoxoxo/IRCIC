@@ -15,8 +15,8 @@
 # define RESET "\033[0;0m"
 # define ITAL "\033[3m"
 
-# define TICK	GREEN" ✓"RESET
-# define CROSS	RED" ✘"RESET
+# define TICK	GREEN " ✓" RESET
+# define CROSS	RED " ✘" RESET
 
 
 // helper

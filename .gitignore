@@ -1,6 +1,7 @@
 *mazoise
 
 .vscode
+*.gch
 
 .DS_Store
 Thumbs.db
