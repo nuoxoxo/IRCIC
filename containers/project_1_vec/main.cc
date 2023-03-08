@@ -8,6 +8,7 @@
 
 #include "cstdlib"
 
+# include "vector" // for mazoise reproduced
 
 int	main()
 {
@@ -398,6 +399,217 @@ int	main()
 		while (++i < Size)
 			v.get_allocator().destroy (& ptr[i]);
 		v.get_allocator().deallocate(ptr, Size);
+	}
+
+	print_session_head(++i, "Mazoise RESIZE test reproduced (1/2) :: ft ");
+
+	{
+		ft::vector<int>	test(12, 12);
+
+		test.resize(72);
+		std::cout << "s: " << test.size() << ", c: " << test.capacity() << std::endl;
+		test.resize(100);
+		std::cout << "s: " << test.size() << ", c: " << test.capacity() << std::endl;
+		test.resize(4170);
+		std::cout << "s: " << test.size() << ", c: " << test.capacity() << std::endl;
+		test.resize(171, 12);
+		std::cout << "s: " << test.size() << ", c: " << test.capacity() << std::endl;
+		test.resize(62);
+		std::cout << "s: " << test.size() << ", c: " << test.capacity() << std::endl;
+	}
+
+	print_session_head(++i, "Mazoise RESIZE test reproduced (2/2) :: std ");
+
+	{
+		std::vector<int>	test(12, 12);
+
+		test.resize(72);
+		std::cout << "s: " << test.size() << ", c: " << test.capacity() << std::endl;
+		test.resize(100);
+		std::cout << "s: " << test.size() << ", c: " << test.capacity() << std::endl;
+		test.resize(4170);
+		std::cout << "s: " << test.size() << ", c: " << test.capacity() << std::endl;
+		test.resize(171, 12);
+		std::cout << "s: " << test.size() << ", c: " << test.capacity() << std::endl;
+		test.resize(62);
+		std::cout << "s: " << test.size() << ", c: " << test.capacity() << std::endl;
+	}
+
+	print_session_head(++i, "Mazoise INSERT test reproduced (1/2) :: ft ");
+
+	{
+		std::cout << std::endl << "INSERT TESTS" << std::endl;
+		ft::vector<int> test(1, 1);
+		ft::vector<int> test2(5, 5);
+
+		test.insert(test.begin(), 200, 12);
+		print_vector_head(test);
+		test.insert(test.begin() + 12, 200, 30);
+		print_vector_head(test);
+		test.insert(test.end(), 12, 50);
+		print_vector_head(test);
+		test.insert(test.end() - 1, 0, 60);
+		print_vector_head(test);
+		test.insert(test.end() - 1, 1, 70);
+		print_vector_head(test);
+		test.insert(test.begin() + 412, test2.begin(), test2.end());
+		print_vector_head(test);
+		test.insert(test.begin() + 6, test2.begin(), test2.end());
+		print_vector_head(test);
+		test.insert(test.end(), test2.begin(), test2.end());
+		print_vector_head(test);
+	}
+
+	print_session_head(++i, "Mazoise INSERT test reproduced (2/2) :: std ");
+
+	{
+		std::vector<int> test(1, 1);
+		std::vector<int> test2(5, 5);
+
+		test.insert(test.begin(), 200, 12);
+		print_vector_head(test);
+		test.insert(test.begin() + 12, 200, 30);
+		print_vector_head(test);
+		test.insert(test.end(), 12, 50);
+		print_vector_head(test);
+		test.insert(test.end() - 1, 0, 60);
+		print_vector_head(test);
+		test.insert(test.end() - 1, 1, 70);
+		print_vector_head(test);
+		test.insert(test.begin() + 412, test2.begin(), test2.end());
+		print_vector_head(test);
+		test.insert(test.begin() + 6, test2.begin(), test2.end());
+		print_vector_head(test);
+		test.insert(test.end(), test2.begin(), test2.end());
+		print_vector_head(test);
+	}
+
+	print_session_head(++i, "Mazoise COPY SWAP test reproduced (1/2) :: ft ");
+
+	{
+		ft::vector<int>		test;
+		ft::vector<int>		test_copy(test);
+
+		for (size_t i = 0; i < 50; i++)
+			test.push_back(i);
+		for (size_t i = 0; i < test_copy.size(); i++)
+			test_copy[i] += 100;
+
+		print_vector_head(test_copy);
+
+		ft::vector<int>		test_range(test.begin() + 20, test.begin() + 30);
+
+		print_vector_head(test_range);
+
+		test_copy.swap(test);
+
+		print_vector(test);
+		print_vector_head(test_copy);
+
+		test_copy.swap(test_range);
+
+		print_vector_head(test_range);
+		print_vector_head(test_copy);
+
+		test.swap(test_copy);
+
+		print_vector(test);
+		print_vector_head(test_copy);
+	}
+
+	print_session_head(++i, "Mazoise COPY SWAP test reproduced (2/2) :: std ");
+
+	{
+		std::vector<int>		test;
+		std::vector<int>		test_copy(test);
+
+		for (size_t i = 0; i < 50; i++)
+			test.push_back(i);
+		for (size_t i = 0; i < test_copy.size(); i++)
+			test_copy[i] += 100;
+
+		print_vector_head(test_copy);
+
+		std::vector<int>		test_range(test.begin() + 20, test.begin() + 30);
+
+		print_vector_head(test_range);
+
+		test_copy.swap(test);
+
+		print_vector(test);
+		print_vector_head(test_copy);
+
+		test_copy.swap(test_range);
+
+		print_vector_head(test_range);
+		print_vector_head(test_copy);
+
+		test.swap(test_copy);
+
+		print_vector(test);
+		print_vector_head(test_copy);
+	}
+
+	print_session_head(++i, " capacity check :: push_back ");
+
+	{
+		int	i;
+
+		std::vector<int>	v;
+
+		i = 33;
+		while (i++ < 43)
+			v.push_back(i);
+		std::cout << v.size() << " (size) - " << v.capacity() << " (capacity) \n";
+
+		std::vector<int>	v2(v);
+		std::cout << v2.size() << " (size) - " << v2.capacity() << " (capacity) \n";
+
+		std::cout << "\n👆" 
+		<< " STD :: 👇"
+		<< " FT " nl2; 
+ 
+		ft::vector<int>		v3 ;
+
+		i = 33;
+		while (i++ < 43)
+			v3.push_back(i);
+		std::cout << v3.size() << " (size) - " << v3.capacity() << " (capacity) \n";
+
+		ft::vector<int>	v4(v3);
+		std::cout << v4.size() << " (size) - " << v4.capacity() << " (capacity) \n";
+	}
+
+	print_session_head(++i, " capacity check :: assignment by = ");
+
+	{
+		int	i;
+
+		std::vector<int>	v(10);
+
+		i = -1;
+		while (i++ < 10)
+			v[i] = 42;
+		std::cout << v.size() << " (size) - " << v.capacity() << " (capacity) \n";
+
+		std::vector<int>	v2(v);
+		std::cout << v2.size() << " (size) - " << v2.capacity() << " (capacity) \n";
+
+		std::cout << "\n👆" 
+		<< " STD :: 👇"
+		<< " FT " nl2; 
+ 
+		ft::vector<int>		v3(10) ;
+
+		i = -1;
+		while (i++ < 10)
+			v3[i] = 42;
+		std::cout << v3.size() << " (size) - " << v3.capacity() << " (capacity) \n";
+
+		ft::vector<int>	v4(v3);
+		std::cout << v4.size() << " (size) - " << v4.capacity() << " (capacity) \n";
+
+		std::cout << "hello, \n";
 	}
 }
 

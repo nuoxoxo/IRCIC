@@ -7,7 +7,8 @@
 
 // # include "cstddef"
 // # include "iterator"
-// # include "algorithm"
+
+# include "algorithm" // max
 
 # include "iterator_reverse_iterator.hpp"
 // # include "iterator_vector.hpp" /// depr because of tag dispatching 
@@ -102,20 +103,21 @@ namespace ft
 			m_allocator = alloc;
 			m_vector = m_allocator.allocate(0);
 
-			assign(first, last);
+			assign(first, last); // XXX
 		}
+ 
 
-
-		vector(const vector & L)
+		vector(const vector & val)
 		{
-			m_allocator = L.m_allocator;
-			m_size = L.m_size;
-			m_capacity = L.m_capacity;
+			m_allocator = val.m_allocator;
+			m_size = val.m_size;
+			m_capacity = val.m_size ;;;;;;
+			// m_capacity = val.m_capacity;
 			m_vector = m_allocator.allocate(m_capacity);
 
 			for (size_type i = 0; i < m_size; i++)
 			{
-				m_allocator.construct(m_vector + i, *(L.m_vector + i));
+				m_allocator.construct(m_vector + i, *(val.m_vector + i));
 			}
 		}
 
@@ -225,10 +227,37 @@ namespace ft
 
 		void	resize(size_type n, T c = T())
 		{
-			if (n > max_size())
-				throw(std::length_error("vector::resize"));
 
-			if (n <= size())
+			size_type	Size;
+
+			Size = size();
+			if (n < Size)
+			{
+				while (size() > n)
+				{
+					m_allocator.destroy( & m_vector[m_size - 1]);
+					m_size--;
+				}
+			}
+			else if (n > m_capacity)
+			{
+				Size = m_capacity * 2 < n ? n : m_capacity * 2;
+
+				reserve(Size);
+			}
+
+
+			while (size() < n)
+			{
+				m_allocator.construct(m_vector + m_size, c);
+				m_size++;
+			}
+
+
+			// Notes Mar 8 :: trying kk's soln, below is mine
+
+			/*
+			if (n < size())
 			{
 				for (; m_size > n ; m_size--)
 				m_allocator.destroy( & m_vector[m_size - 1]);
@@ -239,6 +268,7 @@ namespace ft
 				for (; m_size < n; m_size++)
 				m_allocator.construct(m_vector + m_size, c);
 			}
+			*/
 		}
 
 		size_type capacity() const
@@ -259,6 +289,7 @@ namespace ft
 			{
 				throw(std::length_error("vector::reserve"));
 			}
+
 			if (n > capacity())
 			{
 				size_type	old_capacity = m_capacity;
@@ -333,7 +364,7 @@ namespace ft
 
 
 		// modifiers:
-		void push_back(const T & L)
+		void push_back(const T & val)
 		{
 			if (m_capacity == 0)
 				reserve(1);
@@ -344,7 +375,7 @@ namespace ft
 			T	*end = & m_vector[m_size];
 
 			m_size++;
-			m_allocator.construct(end, L);
+			m_allocator.construct(end, val);
 		}
 
 		void pop_back()
@@ -356,13 +387,21 @@ namespace ft
 			}
 		}
 
-		iterator insert(iterator position, const T & L)
+
+		iterator insert(iterator position, const T & val)
 		{
+
+
+			// std::cout << RED << __FUNCTION__ << " called 1 (single element)" << RESET nl2reset;
+
+
 			size_type	diff = position - begin();
 
 			if (m_size + 1 > m_capacity)
 			{
-				reserve(m_size + 1);
+				reserve(m_size > 0 ? m_size * 2 : 1);
+
+				// reserve(m_size + 1);
 			}
 
 			for (size_type i = m_size; i > diff; i--)
@@ -371,19 +410,23 @@ namespace ft
 				m_allocator.destroy( & m_vector[i - 1]);
 			}
 
-			m_allocator.construct( & m_vector[diff], L);
+			m_allocator.construct( & m_vector[diff], val);
 			m_size++;
 
 			return begin() + diff;
 		}
 
-		void insert(iterator position, size_type n, const T & L)
+
+		void insert(iterator position, size_type n, const T & val)
 		{
+
+			///	Notes Mar 8 :: tyy fixing cf. mazoise tests on Resize and Insert
+			
 			size_type	diff = position - begin();
 
 			if (m_size + n > m_capacity)
 			{
-				reserve(m_size + n);
+				reserve(m_size + std::max(m_size, n));
 			}
 
 			for (size_type i = m_size; i > diff; i--)
@@ -394,10 +437,11 @@ namespace ft
 
 			for (size_type i = 0; i < n; i++)
 			{
-				m_allocator.construct( & m_vector[diff + i], L);
+				m_allocator.construct( & m_vector[diff + i], val);
 			}
 
 			m_size += n;
+
 		}
 
 		template<class InputIterator>
@@ -409,6 +453,11 @@ namespace ft
 				InputIterator>::type* = 0
 		)
 		{
+
+
+			// std::cout << RED << __FUNCTION__ << " called 3 (range)" << RESET nl2reset;
+
+
 			difference_type	dist = 0;
 
 			for (InputIterator tmp = last; tmp != first; tmp--)
@@ -417,7 +466,7 @@ namespace ft
 			difference_type	diff = position - begin();
 
 			if (m_size + dist > m_capacity)
-				reserve(m_size + dist);
+				reserve(m_size + std::max(m_size, (size_type) dist));
 
 			for (difference_type i = m_size; i > diff; i--)
 			{
@@ -472,13 +521,18 @@ namespace ft
 			return ret;
 		}
 
-		void	swap(vector & L)
+		void	swap(vector & val)
 		{
-			if (*this == L)
+
+
+			// std::cout << RED << __FUNCTION__ << " 1 called " nl2reset;
+
+
+			if (*this == val)
 				return ;
-			ft::swap(m_size, L.m_size);
-			ft::swap(m_capacity, L.m_capacity);
-			ft::swap(m_vector, L.m_vector);
+			ft::swap(m_size, val.m_size);
+			ft::swap(m_capacity, val.m_capacity);
+			ft::swap(m_vector, val.m_vector);
 		}
 
 		void	clear()
@@ -561,10 +615,11 @@ namespace ft
 		return (!(R < L));
 	}
 
-	// specialized algorithms:
 	template<class T, class Allocator>
 	void swap(vector<T, Allocator> & L, vector<T, Allocator> & R)
 	{
+		// std::cout << RED << __FUNCTION__ << " 2 called " nl2reset;
+
 		L.swap(R);
 	}
 }
