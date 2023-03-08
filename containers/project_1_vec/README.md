@@ -1,6 +1,7 @@
 # ___UPDATES___
 
 - Mar 8
+  - 🟡 TO SOLVE : cf. commit "found the problem"
   - re-created 3 mazoise tests \
   ... Insert, Resize, Copy-Swap 
   - added `std::max` in both _insert_
