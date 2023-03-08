@@ -586,30 +586,34 @@ int	main()
 		int	i;
 
 		std::vector<int>	v(10);
+		ft::vector<int>		v3(10);
 
 		i = -1;
 		while (i++ < 10)
 			v[i] = 42;
 		std::cout << v.size() << " (size) - " << v.capacity() << " (capacity) \n";
 
+
 		std::vector<int>	v2(v);
 		std::cout << v2.size() << " (size) - " << v2.capacity() << " (capacity) \n";
 
-		std::cout << "\n👆" 
-		<< " STD :: 👇"
-		<< " FT " nl2; 
+
+		std::cout << "\n👆 STD :: 👇 FT " nl2;
  
-		ft::vector<int>		v3(10) ;
 
 		i = -1;
 		while (i++ < 10)
 			v3[i] = 42;
 		std::cout << v3.size() << " (size) - " << v3.capacity() << " (capacity) \n";
 
-		ft::vector<int>	v4(v3);
+		ft::vector<int>		v4(v3);
 		std::cout << v4.size() << " (size) - " << v4.capacity() << " (capacity) \n";
 
-		std::cout << "hello, \n";
+	}
+
+	print_session_head(++i, " ::: ");
+
+	{
 	}
 }
 
