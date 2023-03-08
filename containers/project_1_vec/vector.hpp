@@ -69,7 +69,9 @@ namespace ft
 		allocator_type		m_allocator;
 
 	public:
-		explicit vector(const allocator_type & alloc = allocator_type()) // default
+
+		// default
+		explicit vector(const allocator_type & alloc = allocator_type())
 		{
 			m_size = 0;
 			m_capacity = 0;
@@ -77,7 +79,13 @@ namespace ft
 			m_vector = m_allocator.allocate(0);
 		}
 
-		explicit vector(size_type n, const T & value = T(), const allocator_type& alloc = allocator_type()) // fill
+
+		// fill
+		explicit vector(
+			size_type n,
+			const T & value = T(),
+			const allocator_type& alloc = allocator_type()
+		)
 		{
 			m_size = n;
 			m_capacity = n;
@@ -89,6 +97,7 @@ namespace ft
 		}
 
 
+		// range
 		template<class InputIterator>
 		vector(
 			InputIterator first,
@@ -96,14 +105,22 @@ namespace ft
 			const allocator_type & alloc = allocator_type(),
 			typename ft::enable_if<!ft::is_integral<InputIterator>::value,
 				InputIterator>::type* = 0
-		) // Check if is_integral, if yes, it's not an Iterator
+		) // ... check if is_integral, if yes, it's not an Iterator
 		{
+			m_allocator = alloc;
+
+			/*
 			m_size = 0;
 			m_capacity = 0;
-			m_allocator = alloc;
 			m_vector = m_allocator.allocate(0);
+			assign(first, last); 
+			*/
+			// XXX found the problem cf. mazoise copy-swap test
 
-			assign(first, last); // XXX
+			m_capacity = last - first;
+			m_size = last - first;
+			m_vector = m_allocator.allocate(m_capacity);
+			std::copy(first, last, begin());
 		}
  
 
