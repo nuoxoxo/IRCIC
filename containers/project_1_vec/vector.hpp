@@ -111,7 +111,7 @@ namespace ft
 		{
 			m_allocator = val.m_allocator;
 			m_size = val.m_size;
-			m_capacity = val.m_size ;;;;;;
+			m_capacity = val.m_size ;
 			// m_capacity = val.m_capacity;
 			m_vector = m_allocator.allocate(m_capacity);
 
@@ -127,12 +127,12 @@ namespace ft
 			m_allocator.deallocate(m_vector, m_capacity);
 		}
 
-		vector & operator = (const vector & rhs)
+		vector & operator = (const vector & dummy)
 		{
-			if (*this == rhs)
+			if (*this == dummy)
 				return *this;
 
-			assign(rhs.begin(), rhs.end());
+			assign(dummy.begin(), dummy.end());
 
 			return *this;
 		}
@@ -146,16 +146,20 @@ namespace ft
 		) // Check if is_integral, if yes, it's not an Iterator
 		{
 			clear();
-			for (; first != last; first++)
+			while (first != last)
 			{
 				push_back(*first);
+				first++;
 			}
 		}
 
 		void	assign(size_type n, const T & val)
 		{
+			size_type	i;
+
 			clear();
-			for (size_t i = 0; i < n; i++)
+			i = -1;
+			while (++i < n)
 			{
 				push_back(val);
 			}
