@@ -92,7 +92,10 @@ void	print_vector_head(T & v)
 {
 	std::cout << "(size : " << GREEN << v.size() << RESET << ") \n";
 	std::cout << "(cpct : " << GREEN << v.capacity() << RESET << ") \n";
-	std::cout << CYAN << "head : " << v[0] << nl2reset;
+	if (v.size())
+		std::cout << CYAN << "head : " << v.front() << nl2reset;
+	else
+		std::cout << CYAN << "head : " << "(None)" << nl2reset;
 }
 
 void	print_session_head(int & i, const std::string & message)
