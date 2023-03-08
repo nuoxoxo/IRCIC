@@ -1,10 +1,13 @@
 #include "iostream"
-#include "random"
+// #include "random"
 
 #include "pair.hpp"
 #include "stack.hpp"
 #include "vector.hpp"
 #include "colors.hpp"
+
+#include "cstdlib"
+
 
 int	main()
 {
