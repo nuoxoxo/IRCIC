@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __UTIL_RBTREE_HPP__
-# define __UTIL_RBTREE_HPP__
+#ifndef __RED_BLACK_TREE_HPP__
+# define __RED_BLACK_TREE_HPP__
 
 # include "iostream"
 // function && memory :: obsolete on mac // FIXME
