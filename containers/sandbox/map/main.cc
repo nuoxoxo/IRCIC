@@ -1,10 +1,10 @@
 #include "iostream"
 
-#include "pair.hpp"
-#include "stack.hpp"
-#include "vector.hpp"
-// #include "map.hpp" // <---
+// #include "stack.hpp"
+// #include "vector.hpp"
 #include "colors.hpp"
+#include "pair.hpp"
+#include "map.hpp" // <---
 
 #include "cstdlib" // random
 #include "vector" // for reproducing mazoise
@@ -15,7 +15,7 @@ int	main()
 
 	srand(time(0));
 
-	print_session_head(++i, "swap test :: vector<int>");
+	print_session_head(++i, " map test ");
 
 	{
 		// ft::map<int, int>

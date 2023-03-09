@@ -1,9 +1,9 @@
 #pragma once
-#ifndef __ITERATOR_RBTREE_ITERATOR_HPP__
-# define __ITERATOR_RBTREE_ITERATOR_HPP__
+#ifndef __ITERATOR_RED_BLACK_TREE_ITERATOR_HPP__
+# define __ITERATOR_RED_BLACK_TREE_ITERATOR_HPP__
 
 # include "pair.hpp"
-# include "util_rbtree.hpp"
+# include "red_black_tree.hpp"
 # include "iterator_traits.hpp"
 
 namespace	ft
