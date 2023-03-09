@@ -8,7 +8,7 @@
 
 #include "cstdlib"
 
-# include "vector" // for mazoise reproduced
+# include "vector" // for reproducing mazoise
 
 int	main()
 {
