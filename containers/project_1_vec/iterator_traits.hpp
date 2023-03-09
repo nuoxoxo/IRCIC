@@ -5,10 +5,10 @@
 
 # include "cstddef" // ptrdiff_t
 
-namespace	ft
+namespace ft
 {
-	// 5 Iter categories :: defined for STL in file named : 
-	// 	stl_iterator_base_types.hpp
+	//	5 Iter categories :: defined for STL in file named :
+	// 		stl_iterator_base_types.hpp
 
 	/**
 	 * 	iterator_tags Iterator Tags
@@ -19,12 +19,14 @@ namespace	ft
 	 * different operations supported by different iterator types.
 	 */
 
-	///	Notes from fellow stud Twagger / Thomas
+
+	///	Notes from fellow stud twagger
+
 	// Iterator traits 
 	// is a definition of member types for any iterator 
 	// that let us get iterator types 
 	// from a simple pointer to a certain type (T)
-    // so it can be used properly with algorithms.
+	// so it can be used properly with algorithms.
 
 	///  Marking input iterators.
 	struct input_iterator_tag {};
@@ -67,9 +69,10 @@ namespace	ft
 
 	// Iterator - as in vector<T>::iterator
 	template<
-		class T, class Category, 
-		class Distance = std::ptrdiff_t, 
-		class Reference = T &, class Pointer = T *
+		class T, class Category,
+		class Distance = std::ptrdiff_t,
+		class Reference = T &,
+		class Pointer = T *
 	>
 	class	iterator
 	{
