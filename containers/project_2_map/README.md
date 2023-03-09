@@ -1,8 +1,8 @@
 # __Updates__
 - Mar 9
-  - map : init \
+  - Map : init \
 &nbsp;&nbsp; ... 3 files: RBT, RBT_Iter, Map
 - Mar 8
-  - created symlinks
+  - Created symlinks
 
 ![](https://i.imgur.com/bpr8tqf.jpg)
