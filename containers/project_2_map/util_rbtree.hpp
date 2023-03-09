@@ -10,8 +10,22 @@
 # include "util_rbtree.hpp"
 # include "util_lexicographical_compare.hpp"
 
-namespace	ft
+enum	tree_node_color
 {
+	RED,
+	BLACK
+};
+
+namespace ft
+{
+	// template
+	class red_black_tree
+	{
+	public:
+		// XXX
+	private:
+		// TODO
+	}
 	// make stuff up
 }
 
