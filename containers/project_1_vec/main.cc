@@ -612,6 +612,52 @@ int	main()
 
 	}
 
+	print_session_head(++i, "Mazoise INSERT test reproduced (1/2) :: std ");
 
+	{
+		std::vector<int> test(1, 1);
+		std::vector<int> test2(5, 5);
+
+		test.insert(test.begin(), 200, 12);
+		print_vector_head(test);
+		test.insert(test.begin() + 12, 200, 30);
+		print_vector_head(test);
+		test.insert(test.end(), 12, 50);
+		print_vector_head(test);
+		test.insert(test.end() - 1, 0, 60);
+		print_vector_head(test);
+		test.insert(test.end() - 1, 1, 70);
+		print_vector_head(test);
+		test.insert(test.begin() + 412, test2.begin(), test2.end());
+		print_vector_head(test);
+		test.insert(test.begin() + 6, test2.begin(), test2.end());
+		print_vector_head(test);
+		test.insert(test.end(), test2.begin(), test2.end());
+		print_vector_head(test);
+	}
+
+	print_session_head(++i, "Mazoise INSERT test reproduced (2/2) :: ft ");
+
+	{
+		ft::vector<int> test(1, 1);
+		ft::vector<int> test2(5, 5);
+
+		test.insert(test.begin(), 200, 12);
+		print_vector_head(test);
+		test.insert(test.begin() + 12, 200, 30);
+		print_vector_head(test);
+		test.insert(test.end(), 12, 50);
+		print_vector_head(test);
+		test.insert(test.end() - 1, 0, 60);
+		print_vector_head(test);
+		test.insert(test.end() - 1, 1, 70);
+		print_vector_head(test);
+		test.insert(test.begin() + 412, test2.begin(), test2.end());
+		print_vector_head(test);
+		test.insert(test.begin() + 6, test2.begin(), test2.end());
+		print_vector_head(test);
+		test.insert(test.end(), test2.begin(), test2.end());
+		print_vector_head(test);
+	}
 }
 
