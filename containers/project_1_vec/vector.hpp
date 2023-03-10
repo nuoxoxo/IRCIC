@@ -109,18 +109,16 @@ namespace ft
 		{
 			m_allocator = alloc;
 
-			/*
 			m_size = 0;
 			m_capacity = 0;
 			m_vector = m_allocator.allocate(0);
 			assign(first, last); 
-			*/
 			// XXX found the problem cf. mazoise copy-swap test
 
-			m_capacity = last - first;
+			/*m_capacity = last - first;
 			m_size = last - first;
 			m_vector = m_allocator.allocate(m_capacity);
-			std::copy(first, last, begin());
+			std::copy(first, last, begin());*/
 		}
  
 
