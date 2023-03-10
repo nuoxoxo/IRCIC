@@ -90,8 +90,8 @@ void	print_vector(T & v, bool is_vector_int)
 template<typename T>
 void	print_vector_head(T & v)
 {
-	std::cout << "(size : " << GREEN << v.size() << RESET << ") \n";
-	std::cout << "(cpct : " << GREEN << v.capacity() << RESET << ") \n";
+	std::cout << "(size : " << GREEN << v.size() << RESET << ") " nl;
+	std::cout << "(cpct : " << GREEN << v.capacity() << RESET << ") " nl;
 	if (v.size())
 		std::cout << CYAN << "head : " << v.front() << nl2reset;
 	else

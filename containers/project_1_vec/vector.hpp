@@ -97,7 +97,51 @@ namespace ft
 		}
 
 
-		// range
+		///	Range
+
+
+		// FIXME - Mar 10 :: corr. failed mazoise copy-swap @ Segfault
+
+		/*
+		template<class InputIterator>
+		vector(InputIterator first, InputIterator last, 
+			const allocator_type & alloc = allocator_type(),
+			typename
+			ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = 0
+		) : m_size(last - first), m_capacity(last - first), m_allocator(alloc)
+		{
+			m_vector = m_allocator.allocate(m_capacity);
+			std::copy(first, last, begin());
+		}
+		*/
+
+
+		// FIXME - Mar 10 :: failed mazoise copy-swap test @ 381c381
+
+		///*
+		template<class InputIterator>
+		vector(
+			InputIterator first,
+			InputIterator last,
+			const allocator_type & alloc = allocator_type(),
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value,
+				InputIterator>::type* = 0
+		) // ... check if is_integral, if yes, it's not an Iterator
+		{
+			m_allocator = alloc;
+
+			m_size = std::distance(first, last);
+			m_capacity = std::distance(first, last);
+			m_vector = m_allocator.allocate(m_capacity);
+			std::copy(first, last, begin());
+			// assign(first, last);
+		}
+		//*/
+
+
+		// FIXME - Mar 10 :: failed mazoise copy-swap test @ 381c381
+
+		/*
 		template<class InputIterator>
 		vector(
 			InputIterator first,
@@ -112,22 +156,18 @@ namespace ft
 			m_size = 0;
 			m_capacity = 0;
 			m_vector = m_allocator.allocate(0);
-			assign(first, last); 
-			// XXX found the problem cf. mazoise copy-swap test
+			assign(first, last);
 
-			/*m_capacity = last - first;
-			m_size = last - first;
-			m_vector = m_allocator.allocate(m_capacity);
-			std::copy(first, last, begin());*/
+			// found the problem cf. mazoise copy-swap test ~~
 		}
- 
+		*/
+
 
 		vector(const vector & val)
 		{
 			m_allocator = val.m_allocator;
 			m_size = val.m_size;
 			m_capacity = val.m_size ;
-			// m_capacity = val.m_capacity;
 			m_vector = m_allocator.allocate(m_capacity);
 
 			for (size_type i = 0; i < m_size; i++)
@@ -247,7 +287,7 @@ namespace ft
 		void	resize(size_type n, T c = T())
 		{
 
-			// Notes Mar 10 :: kk's soln, passed resize test
+			// Mar 9 :: kk's soln, passed resize test @ 25c25
 
 			///*
 			size_type	Size;
@@ -276,7 +316,7 @@ namespace ft
 			}
 
 
-			// Notes Mar 8 :: mine, failed resize test @ 25c25
+			// FIXME - Mar 8 :: mine, failed resize test @ 25c25
 
 			/*
 			if (n < size())
