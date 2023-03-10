@@ -1,6 +1,9 @@
 comp	:=	c++ -Wall -Werror -Wextra -std=c++98
 rmv	:=	rm -rf
 
+# vgd	:=	valgrind
+vgd	:=	valgrind --track-origins=yes
+
 name	:=	out
 src	:=	main.cc
 
@@ -24,6 +27,10 @@ run	:	re
 		@ make clean
 
 r	:	run
+
+v	:	re
+		@ $(vgd) ./$(name)
+		@ make clean
 
 all	:	$(name)
 

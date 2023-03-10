@@ -41,7 +41,7 @@ namespace ft
 		typedef size_t		size_type;
 
 		typedef ptrdiff_t	difference_type;
-		// typedef int		difference_type; // both work fine
+		// typedef int		difference_type; // another way works just as fine
 
 
 		///	OLD Way : we don't need vect_iter anymore because of tag dispatching
@@ -97,7 +97,37 @@ namespace ft
 		}
 
 
-		// range
+
+		///	Range
+
+
+		// FIXME - Mar 8 :: failed mazoise copy-swap test @ 381c381
+
+		/*
+		template<class InputIterator>
+		vector(
+			InputIterator first,
+			InputIterator last,
+			const allocator_type & alloc = allocator_type(),
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value,
+				InputIterator>::type* = 0
+		)
+		{
+			m_allocator = alloc;
+			m_size = 0;
+			m_capacity = 0;
+			m_vector = m_allocator.allocate(0);
+			assign(first, last);
+
+			// FIXED : cf. lower
+			// ~~ found the problem cf. mazoise copy-swap test ~~
+		}
+		*/
+
+
+		// FIXME - Mar 9 :: corr. failed mazoise copy-swap @ Segfault
+
+		/*
 		template<class InputIterator>
 		vector(
 			InputIterator first,
@@ -109,25 +139,37 @@ namespace ft
 		{
 			m_allocator = alloc;
 
-			m_size = 0;
-			m_capacity = 0;
-			m_vector = m_allocator.allocate(0);
-			assign(first, last); 
-			// XXX found the problem cf. mazoise copy-swap test
-
-			/*m_capacity = last - first;
-			m_size = last - first;
+			m_size = std::distance(first, last);
+			m_capacity = std::distance(first, last);
 			m_vector = m_allocator.allocate(m_capacity);
-			std::copy(first, last, begin());*/
+			// std::copy(first, last, begin()); // is Segfault caused by std::copy ? No.
+			assign(first, last); // is Segfault caused by std::copy ? No.
 		}
- 
+		*/
+
+
+		// FIXED - Mar 10 :: Fixed mazoise copy-swap test @ 381c381
+
+		template<class InputIterator>
+		vector(InputIterator first, InputIterator last,
+			const allocator_type & alloc = allocator_type(),
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value,
+				InputIterator>::type* = 0
+		) : m_size(0), m_capacity(0), m_allocator(alloc)
+		{
+			m_vector = m_allocator.allocate(0);
+			assign(first, last);
+
+			// Fixed by this line
+			m_capacity = std::distance(first, last);
+		}
+
 
 		vector(const vector & val)
 		{
 			m_allocator = val.m_allocator;
 			m_size = val.m_size;
 			m_capacity = val.m_size ;
-			// m_capacity = val.m_capacity;
 			m_vector = m_allocator.allocate(m_capacity);
 
 			for (size_type i = 0; i < m_size; i++)
@@ -247,6 +289,9 @@ namespace ft
 		void	resize(size_type n, T c = T())
 		{
 
+			// Mar 9 :: kk's soln, passed resize test @ 25c25
+
+			///*
 			size_type	Size;
 
 			Size = size();
@@ -273,7 +318,7 @@ namespace ft
 			}
 
 
-			// Notes Mar 8 :: trying kk's soln, below is mine
+			// FIXME - Mar 8 :: mine, failed resize test @ 25c25
 
 			/*
 			if (n < size())
