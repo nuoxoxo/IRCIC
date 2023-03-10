@@ -85,7 +85,7 @@ void	print_vector(T & v, bool is_vector_int)
 	std::cout << std::noboolalpha;
 }
 
-// print vector head
+// print vector misc.
 
 template<typename T>
 void	print_vector_head(T & v)
@@ -98,9 +98,58 @@ void	print_vector_head(T & v)
 		std::cout << CYAN << "head : " << "(None)" << nl2reset;
 }
 
+template<typename T>
+void	print_vector_tail(T & v, std::string clr = "")
+{
+	std::string	color = CYAN;
+
+	if (clr == YELLOW)
+		color = clr;
+	std::cout << "(size : " << GREEN << v.size() << RESET << ") " nl;
+	std::cout << "(cpct : " << GREEN << v.capacity() << RESET << ") " nl;
+	if (v.size() > 1)
+		std::cout << color << "tail : " << *(v.end() - 2) << " " << v.back() << nl2reset;
+	else if (v.size())
+		std::cout << color << "tail : " << v.back() << nl2reset;
+	else
+		std::cout << color << "tail : " << "(None)" << nl2reset;
+}
+
+
 void	print_session_head(int & i, const std::string & message)
 {
 	std::cout << nl << "No. " << i << " :: " YELLOW << message << nl2reset;
 }
+
+
+//	Awesome class
+
+class	Awesome
+{
+
+private:
+	int m_heart;
+
+public:
+	// canon
+	Awesome( void ) : m_heart( 42 ) {}
+	Awesome( int n ) : m_heart( n ) { (void) n; }
+	Awesome( Awesome const & a ) : m_heart( 42 ) { *this = a;}
+
+	virtual ~Awesome(void) {}
+
+	Awesome & operator = (Awesome const & a)
+	{
+		this->m_heart = a.m_heart;
+		return (*this);
+	}
+
+	// void operator += (int a) { m_heart += a; }
+	int	get() const { return this->m_heart; }
+};
+
+std::ostream & operator << (std::ostream & os, Awesome const & a )
+{ os << a.get(); return os; }
+
 
 #endif
