@@ -41,7 +41,7 @@ namespace ft
 		typedef size_t		size_type;
 
 		typedef ptrdiff_t	difference_type;
-		// typedef int		difference_type; // both work fine
+		// typedef int		difference_type; // another way works just as fine
 
 
 		///	OLD Way : we don't need vect_iter anymore because of tag dispatching
@@ -247,6 +247,9 @@ namespace ft
 		void	resize(size_type n, T c = T())
 		{
 
+			// Notes Mar 10 :: kk's soln, passed resize test
+
+			///*
 			size_type	Size;
 
 			Size = size();
@@ -273,7 +276,7 @@ namespace ft
 			}
 
 
-			// Notes Mar 8 :: trying kk's soln, below is mine
+			// Notes Mar 8 :: mine, failed resize test @ 25c25
 
 			/*
 			if (n < size())

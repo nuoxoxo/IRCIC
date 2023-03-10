@@ -484,6 +484,68 @@ int	main()
 		print_vector_head(test);
 	}
 
+	print_session_head(++i, " capacity check :: push_back ");
+
+	{
+		int	i;
+
+		std::vector<int>	v;
+
+		i = 33;
+		while (i++ < 43)
+			v.push_back(i);
+		std::cout << v.size() << " (size) - " << v.capacity() << " (capacity) \n";
+
+		std::vector<int>	v2(v);
+		std::cout << v2.size() << " (size) - " << v2.capacity() << " (capacity) \n";
+
+		std::cout << "\n👆"
+		<< " STD :: 👇"
+		<< " FT " nl2;
+
+		ft::vector<int>		v3 ;
+
+		i = 33;
+		while (i++ < 43)
+			v3.push_back(i);
+		std::cout << v3.size() << " (size) - " << v3.capacity() << " (capacity) \n";
+
+		ft::vector<int>	v4(v3);
+		std::cout << v4.size() << " (size) - " << v4.capacity() << " (capacity) \n";
+	}
+
+	print_session_head(++i, " capacity check :: assignment by = ");
+
+	{
+
+		int	i;
+
+		std::vector<int>	v(10);
+		ft::vector<int>		v3(10);
+
+		i = -1;
+		while (i++ < 10)
+			v[i] = 42;
+		print_vector_head(v);
+		// std::cout << v.size() << " (size) - " << v.capacity() << " (capacity) \n";
+
+/*
+		std::vector<int>	v2(v);
+		std::cout << v2.size() << " (size) - " << v2.capacity() << " (capacity) \n";
+
+
+		std::cout << "\n👆 STD :: 👇 FT " nl2;
+
+		i = -1;
+		while (i++ < 10)
+			v3[i] = 42;
+		std::cout << v3.size() << " (size) - " << v3.capacity() << " (capacity) \n";
+
+		ft::vector<int>		v4(v3);
+		std::cout << v4.size() << " (size) - " << v4.capacity() << " (capacity) \n";
+*/
+	}
+
 	print_session_head(++i, "Mazoise COPY SWAP test reproduced (1/2) :: ft ");
 
 	{
@@ -550,70 +612,5 @@ int	main()
 		print_vector_head(test_copy);
 	}
 
-	print_session_head(++i, " capacity check :: push_back ");
-
-	{
-		int	i;
-
-		std::vector<int>	v;
-
-		i = 33;
-		while (i++ < 43)
-			v.push_back(i);
-		std::cout << v.size() << " (size) - " << v.capacity() << " (capacity) \n";
-
-		std::vector<int>	v2(v);
-		std::cout << v2.size() << " (size) - " << v2.capacity() << " (capacity) \n";
-
-		std::cout << "\n👆" 
-		<< " STD :: 👇"
-		<< " FT " nl2; 
- 
-		ft::vector<int>		v3 ;
-
-		i = 33;
-		while (i++ < 43)
-			v3.push_back(i);
-		std::cout << v3.size() << " (size) - " << v3.capacity() << " (capacity) \n";
-
-		ft::vector<int>	v4(v3);
-		std::cout << v4.size() << " (size) - " << v4.capacity() << " (capacity) \n";
-	}
-
-	print_session_head(++i, " capacity check :: assignment by = ");
-
-	{
-		int	i;
-
-		std::vector<int>	v(10);
-		ft::vector<int>		v3(10);
-
-		i = -1;
-		while (i++ < 10)
-			v[i] = 42;
-		std::cout << v.size() << " (size) - " << v.capacity() << " (capacity) \n";
-
-
-		std::vector<int>	v2(v);
-		std::cout << v2.size() << " (size) - " << v2.capacity() << " (capacity) \n";
-
-
-		std::cout << "\n👆 STD :: 👇 FT " nl2;
- 
-
-		i = -1;
-		while (i++ < 10)
-			v3[i] = 42;
-		std::cout << v3.size() << " (size) - " << v3.capacity() << " (capacity) \n";
-
-		ft::vector<int>		v4(v3);
-		std::cout << v4.size() << " (size) - " << v4.capacity() << " (capacity) \n";
-
-	}
-
-	print_session_head(++i, " ::: ");
-
-	{
-	}
 }
 
