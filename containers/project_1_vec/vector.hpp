@@ -68,6 +68,17 @@ namespace ft
 		value_type		* m_vector;
 		allocator_type		m_allocator;
 
+		size_type	m_next_size(size_type n)
+		{
+			size_type	res;
+
+			res = n > max_size() / 2 ? max_size() : m_capacity * 2;
+			if (!res)
+				res = 1;
+			if (res < n)
+				return (n);
+			return (res);
+		}
 	public:
 
 		// default
@@ -97,13 +108,9 @@ namespace ft
 		}
 
 
-
-		///	Range
-
-
-		// FIXME - Mar 8 :: failed mazoise copy-swap test @ 381c381
-
+		// FIXME - mar 8 :: failed mazoise copy-swap test @ 381c381
 		/*
+		// range
 		template<class InputIterator>
 		vector(
 			InputIterator first,
@@ -125,9 +132,9 @@ namespace ft
 		*/
 
 
-		// FIXME - Mar 9 :: corr. failed mazoise copy-swap @ Segfault
-
+		// FIXME - mar 9 :: corr. failed mazoise copy-swap @ Segfault
 		/*
+		// range
 		template<class InputIterator>
 		vector(
 			InputIterator first,
@@ -148,8 +155,9 @@ namespace ft
 		*/
 
 
-		// FIXED - Mar 10 :: Fixed mazoise copy-swap test @ 381c381
+		// FIXED - mar 10 :: Fixed mazoise copy-swap test @ 381c381
 
+		// range
 		template<class InputIterator>
 		vector(InputIterator first, InputIterator last,
 			const allocator_type & alloc = allocator_type(),
@@ -288,10 +296,21 @@ namespace ft
 
 		void	resize(size_type n, T c = T())
 		{
+			// mar 10 :: concise++ improvement
 
-			// Mar 9 :: kk's soln, passed resize test @ 25c25
+			if (n > size())
+			{
+				reserve(m_next_size(n));
+				insert(end(), n - size(), c);
+			}
+			else if (n < size())
+			{
+				erase(begin() + n, end());
+			}
 
-			///*
+			// mar 9 :: kk's soln, passed resize test @ 25c25
+
+			/*
 			size_type	Size;
 
 			Size = size();
@@ -309,28 +328,30 @@ namespace ft
 
 				reserve(Size);
 			}
-
-
 			while (size() < n)
 			{
 				m_allocator.construct(m_vector + m_size, c);
 				m_size++;
 			}
+			*/
 
-
-			// FIXME - Mar 8 :: mine, failed resize test @ 25c25
+			// FIXME - mar 8 :: mine, failed resize test @ 25c25
 
 			/*
 			if (n < size())
 			{
-				for (; m_size > n ; m_size--)
-				m_allocator.destroy( & m_vector[m_size - 1]);
+				while (m_size > n)
+				{
+					m_allocator.destroy( & m_vector[m_size - 1]);
+					--m_size;
+				}
+				return ;
 			}
-			else
+			reserve(n);
+			while (m_size < n)
 			{
-				reserve(n);
-				for (; m_size < n; m_size++)
 				m_allocator.construct(m_vector + m_size, c);
+				++m_size;
 			}
 			*/
 		}
@@ -455,9 +476,7 @@ namespace ft
 		iterator insert(iterator position, const T & val)
 		{
 
-
 			// std::cout << RED << __FUNCTION__ << " called 1 (single element)" << RESET nl2reset;
-
 
 			size_type	diff = position - begin();
 
@@ -483,28 +502,37 @@ namespace ft
 
 		void insert(iterator position, size_type n, const T & val)
 		{
+			if (m_capacity < m_size + n)
+			{
+				size_type	diff;
 
-			///	Notes Mar 8 :: tyy fixing cf. mazoise tests on Resize and Insert
-			
+				diff = position - begin();
+				reserve(m_next_size(m_size + n));
+				position = begin() + diff;
+			}
+			for (size_type i = 0; i < n; i++)
+				position = insert(position, val) + 1;
+
+			///	Notes mar 8 :: tyy fixing cf. mazoise tests on Resize and Insert
+
+			/*
 			size_type	diff = position - begin();
 
 			if (m_size + n > m_capacity)
 			{
 				reserve(m_size + std::max(m_size, n));
 			}
-
 			for (size_type i = m_size; i > diff; i--)
 			{
 				m_allocator.construct( & m_vector[i + n - 1], m_vector[i - 1]);
 				m_allocator.destroy( & m_vector[i - 1]);
 			}
-
 			for (size_type i = 0; i < n; i++)
 			{
 				m_allocator.construct( & m_vector[diff + i], val);
 			}
-
 			m_size += n;
+			*/
 
 		}
 
@@ -588,9 +616,7 @@ namespace ft
 		void	swap(vector & val)
 		{
 
-
 			// std::cout << RED << __FUNCTION__ << " 1 called " nl2reset;
-
 
 			if (*this == val)
 				return ;
@@ -631,7 +657,6 @@ namespace ft
 			return false;
 		return ft::equal<it_type, it_type>(L.begin(), L.end(), R.begin());
 
-		//*/
 	}
 
 	template<class T, class Allocator>
