@@ -571,31 +571,28 @@ int	main()
 		std::vector<int> test2(5, 5);
 
 		test.insert(test.begin(), 200, 12);
-		// print_vector_head(test);
 		print_vector_tail(test);
 
 		test.insert(test.begin() + 12, 200, 30);
-		// print_vector_head(test);
 		print_vector_tail(test);
 
 		test.insert(test.end(), 12, 50);
-		// print_vector_head(test);
 		print_vector_tail(test);
 
 		test.insert(test.end() - 1, 0, 60);
-		// print_vector_head(test);
 		print_vector_tail(test);
 
-		/*
 		test.insert(test.end() - 1, 1, 70);
-		print_vector_head(test);
+		print_vector_tail(test);
+
 		test.insert(test.begin() + 412, test2.begin(), test2.end());
-		print_vector_head(test);
+		print_vector_tail(test);
+
 		test.insert(test.begin() + 6, test2.begin(), test2.end());
-		print_vector_head(test);
+		print_vector_tail(test);
+
 		test.insert(test.end(), test2.begin(), test2.end());
-		print_vector_head(test);
-		*/
+		print_vector_tail(test);
 	}
 
 	print_session_head(++i, "Mazoise INSERT test reproduced (2/4) :: ft ");
@@ -605,31 +602,28 @@ int	main()
 		ft::vector<int> test2(5, 5);
 
 		test.insert(test.begin(), 200, 12);
-		// print_vector_head(test);
 		print_vector_tail(test, YELLOW);
 
 		test.insert(test.begin() + 12, 200, 30);
-		// print_vector_head(test);
 		print_vector_tail(test, YELLOW);
 
 		test.insert(test.end(), 12, 50);
-		// print_vector_head(test);
 		print_vector_tail(test, YELLOW);
 
 		test.insert(test.end() - 1, 0, 60);
-		// print_vector_head(test);
 		print_vector_tail(test, YELLOW);
 
-		/*
 		test.insert(test.end() - 1, 1, 70);
-		print_vector_head(test);
+		print_vector_tail(test, YELLOW);
+
 		test.insert(test.begin() + 412, test2.begin(), test2.end());
-		print_vector_head(test);
+		print_vector_tail(test, YELLOW);
+
 		test.insert(test.begin() + 6, test2.begin(), test2.end());
-		print_vector_head(test);
+		print_vector_tail(test, YELLOW);
+
 		test.insert(test.end(), test2.begin(), test2.end());
-		print_vector_head(test);
-		*/
+		print_vector_tail(test, YELLOW);
 	}
 
 	print_session_head(++i, "Mazoise INSERT test reproduced (3/4) :: Side by side ");
@@ -645,21 +639,28 @@ int	main()
 		std::vector<int> test2(5, 5);
 
 		test.insert(test.begin(), 200, 12);
-		// print_vector_head(test);
 		print_vector_tail(test);
 
 		test.insert(test.begin() + 12, 200, 30);
-		// print_vector_head(test);
 		print_vector_tail(test);
 
 		test.insert(test.end(), 12, 50);
-		// print_vector_head(test);
 		print_vector_tail(test);
 
 		test.insert(test.end() - 1, 0, 60);
-		// print_vector_head(test);
 		print_vector_tail(test);
 
+		test.insert(test.end() - 1, 1, 70);
+		print_vector_tail(test);
+
+		test.insert(test.begin() + 412, test2.begin(), test2.end());
+		print_vector_tail(test);
+
+		test.insert(test.begin() + 6, test2.begin(), test2.end());
+		print_vector_tail(test);
+
+		test.insert(test.end(), test2.begin(), test2.end());
+		print_vector_tail(test);
 
 		///		FT
 
@@ -667,21 +668,28 @@ int	main()
 		ft::vector<int> Ftest2(5, 5);
 
 		Ftest.insert(Ftest.begin(), 200, 12);
-		// print_vector_head(Ftest);
 		print_vector_tail(Ftest, YELLOW);
 
 		Ftest.insert(Ftest.begin() + 12, 200, 30);
-		// print_vector_head(test);
 		print_vector_tail(Ftest, YELLOW);
 
 		Ftest.insert(Ftest.end(), 12, 50);
-		// print_vector_head(test);
 		print_vector_tail(test, YELLOW);
 
 		Ftest.insert(Ftest.end() - 1, 0, 60);
-		// print_vector_head(test);
 		print_vector_tail(Ftest, YELLOW);
 
+		Ftest.insert(Ftest.end() - 1, 1, 70);
+		print_vector_tail(Ftest, YELLOW);
+
+		Ftest.insert(Ftest.begin() + 412, Ftest2.begin(), Ftest2.end());
+		print_vector_tail(test, YELLOW);
+
+		Ftest.insert(Ftest.begin() + 6, Ftest2.begin(), Ftest2.end());
+		print_vector_tail(Ftest, YELLOW);
+
+		Ftest.insert(Ftest.end(), Ftest2.begin(), Ftest2.end());
+		print_vector_tail(Ftest, YELLOW);
 	}
 
 	print_session_head(++i, "Mazoise INSERT test reproduced (4/4) :: Intertwined ");
@@ -698,31 +706,44 @@ int	main()
 		ft::vector<int>		Ftest2(5, 5);
 
 		test.insert(test.begin(), 200, 12);
-		// print_vector_head(test);
 		print_vector_tail(test);
 		Ftest.insert(Ftest.begin(), 200, 12);
-		// print_vector_head(Ftest);
 		print_vector_tail(Ftest, YELLOW);
 
 		test.insert(test.begin() + 12, 200, 30);
-		// print_vector_head(test);
 		print_vector_tail(test);
 		Ftest.insert(Ftest.begin() + 12, 200, 30);
-		// print_vector_head(test);
 		print_vector_tail(Ftest, YELLOW);
 
 		test.insert(test.end(), 12, 50);
-		// print_vector_head(test);
 		print_vector_tail(test);
 		Ftest.insert(Ftest.end(), 12, 50);
-		// print_vector_head(test);
 		print_vector_tail(test, YELLOW);
 
 		test.insert(test.end() - 1, 0, 60);
-		// print_vector_head(test);
 		print_vector_tail(test);
 		Ftest.insert(Ftest.end() - 1, 0, 60);
-		// print_vector_head(test);
+		print_vector_tail(Ftest, YELLOW);
+
+
+		test.insert(test.end() - 1, 1, 70);
+		print_vector_tail(test);
+		Ftest.insert(Ftest.end() - 1, 1, 70);
+		print_vector_tail(Ftest, YELLOW);
+
+		test.insert(test.begin() + 412, test2.begin(), test2.end());
+		print_vector_tail(test, YELLOW);
+		Ftest.insert(Ftest.begin() + 412, Ftest2.begin(), Ftest2.end());
+		print_vector_tail(Ftest, YELLOW);
+
+		test.insert(test.begin() + 6, test2.begin(), test2.end());
+		print_vector_tail(test);
+		Ftest.insert(Ftest.begin() + 6, Ftest2.begin(), Ftest2.end());
+		print_vector_tail(Ftest, YELLOW);
+
+		test.insert(test.end(), test2.begin(), test2.end());
+		print_vector_tail(test);
+		Ftest.insert(Ftest.end(), Ftest2.begin(), Ftest2.end());
 		print_vector_tail(Ftest, YELLOW);
 
 	}
@@ -819,7 +840,7 @@ int	main()
 		S.insert(S.end() - 1, 0, 60);
 		print_vector_tail(S);
 
-		/*
+
 		std::cout << "test " << ++i << " - " << "V.insert(V.end() - 1, 1, 70); " nl;
 		S.insert(S.end() - 1, 1, 70);
 		print_vector_tail(S);
@@ -836,7 +857,6 @@ int	main()
 		S.insert(S.end(), S2.begin(), S2.end());
 		print_vector_tail(S);
 
-		*/
 	}
 
 	print_session_head(++i, "Mazoise INSERT <Awesome> test reproduced (B::ft)");
@@ -866,7 +886,6 @@ int	main()
 		F.insert(F.end() - 1, 0, 60);
 		print_vector_tail(F, YELLOW);
 
-		/*
 		std::cout << "test " << ++i << " - " << "V.insert(V.end() - 1, 1, 70); " nl;
 		F.insert(F.end() - 1, 1, 70);
 		print_vector_tail(F, YELLOW);
@@ -883,63 +902,6 @@ int	main()
 		F.insert(F.end(), F2.begin(), F2.end());
 		print_vector_tail(F, YELLOW);
 
-		*/
-	}
-
-	print_session_head(++i, "Duplicated test bcz doubt ( 1 / 2 )");
-
-	{
-		int i = 0;
-		std::vector<Awesome>	S(1, 1);
-		std::vector<Awesome>	S2(5, 5);
-
-		std::cout << CYAN "std::" RESET " vs. " YELLOW "ft::" nl2reset;
-
-		std::cout << "test " << ++i << " - " << "V.insert(V.begin(), 200, 12); " nl;
-		S.insert(S.begin(), 200, 12);
-		print_vector_tail(S);		
-
-		std::cout << "test " << ++i << " - " << "V.insert(V.begin() + 12, 200, 30); " nl;
-		S.insert(S.begin() + 12, 200, 30);
-		print_vector_tail(S);
-
-		std::cout << "test " << ++i << " - " << "V.insert(V.end(), 12, 50); " nl;
-		S.insert(S.end(), 12, 50);
-		print_vector_tail(S);
-
-		std::cout << "test " << ++i << " - " << "V.insert(V.end() - 1, 0, 60); " nl;
-		S.insert(S.end() - 1, 0, 60);
-		print_vector_tail(S);
-
-
-		//
-
-		i = 0;
-		ft::vector<Awesome>	F(1, 1);
-		ft::vector<Awesome>	F2(5, 5);
-
-
-		std::cout << "test " << ++i << " - " << "V.insert(V.begin(), 200, 12); " nl;
-		F.insert(F.begin(), 200, 12);
-		print_vector_tail(F, YELLOW);
-
-		std::cout << "test " << ++i << " - " << "V.insert(V.begin() + 12, 200, 30); " nl;
-		F.insert(F.begin() + 12, 200, 30);
-		print_vector_tail(F, YELLOW);
-
-		std::cout << "test " << ++i << " - " << "V.insert(V.end(), 12, 50); " nl;
-		F.insert(F.end(), 12, 50);
-		print_vector_tail(F, YELLOW);
-
-		std::cout << "test " << ++i << " - " << "V.insert(V.end() - 1, 0, 60); " nl;
-		F.insert(F.end() - 1, 0, 60);
-		print_vector_tail(F, YELLOW);
-	}
-
-	print_session_head(++i, "Duplicated test bcz doubt ( 2 / 2 )");
-
-	{
-		// TODO
 	}
 
 
