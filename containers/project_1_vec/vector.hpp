@@ -68,7 +68,7 @@ namespace ft
 		value_type		* m_vector;
 		allocator_type		m_allocator;
 
-		size_type	next_size(size_type n)
+		size_type	m_next_size(size_type n)
 		{
 			size_type	res;
 
@@ -300,7 +300,7 @@ namespace ft
 
 			if (n > size())
 			{
-				reserve(next_size(n));
+				reserve(m_next_size(n));
 				insert(end(), n - size(), c);
 			}
 			else if (n < size())
@@ -507,7 +507,7 @@ namespace ft
 				size_type	diff;
 
 				diff = position - begin();
-				reserve(next_size(m_size + n));
+				reserve(m_next_size(m_size + n));
 				position = begin() + diff;
 			}
 			for (size_type i = 0; i < n; i++)
