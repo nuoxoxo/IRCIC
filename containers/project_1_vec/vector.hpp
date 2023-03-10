@@ -97,28 +97,37 @@ namespace ft
 		}
 
 
+
 		///	Range
 
 
-		// FIXME - Mar 10 :: corr. failed mazoise copy-swap @ Segfault
+		// FIXME - Mar 8 :: failed mazoise copy-swap test @ 381c381
 
 		/*
 		template<class InputIterator>
-		vector(InputIterator first, InputIterator last, 
+		vector(
+			InputIterator first,
+			InputIterator last,
 			const allocator_type & alloc = allocator_type(),
-			typename
-			ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = 0
-		) : m_size(last - first), m_capacity(last - first), m_allocator(alloc)
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value,
+				InputIterator>::type* = 0
+		)
 		{
-			m_vector = m_allocator.allocate(m_capacity);
-			std::copy(first, last, begin());
+			m_allocator = alloc;
+			m_size = 0;
+			m_capacity = 0;
+			m_vector = m_allocator.allocate(0);
+			assign(first, last);
+
+			// FIXED : cf. lower
+			// ~~ found the problem cf. mazoise copy-swap test ~~
 		}
 		*/
 
 
-		// FIXME - Mar 10 :: failed mazoise copy-swap test @ 381c381
+		// FIXME - Mar 9 :: corr. failed mazoise copy-swap @ Segfault
 
-		///*
+		/*
 		template<class InputIterator>
 		vector(
 			InputIterator first,
@@ -133,34 +142,27 @@ namespace ft
 			m_size = std::distance(first, last);
 			m_capacity = std::distance(first, last);
 			m_vector = m_allocator.allocate(m_capacity);
-			std::copy(first, last, begin());
-			// assign(first, last);
+			// std::copy(first, last, begin()); // is Segfault caused by std::copy ? No.
+			assign(first, last); // is Segfault caused by std::copy ? No.
 		}
-		//*/
+		*/
 
 
-		// FIXME - Mar 10 :: failed mazoise copy-swap test @ 381c381
+		// FIXED - Mar 10 :: Fixed mazoise copy-swap test @ 381c381
 
-		/*
 		template<class InputIterator>
-		vector(
-			InputIterator first,
-			InputIterator last,
+		vector(InputIterator first, InputIterator last,
 			const allocator_type & alloc = allocator_type(),
 			typename ft::enable_if<!ft::is_integral<InputIterator>::value,
 				InputIterator>::type* = 0
-		) // ... check if is_integral, if yes, it's not an Iterator
+		) : m_size(0), m_capacity(0), m_allocator(alloc)
 		{
-			m_allocator = alloc;
-
-			m_size = 0;
-			m_capacity = 0;
 			m_vector = m_allocator.allocate(0);
 			assign(first, last);
 
-			// found the problem cf. mazoise copy-swap test ~~
+			// Fixed by this line
+			m_capacity = std::distance(first, last);
 		}
-		*/
 
 
 		vector(const vector & val)

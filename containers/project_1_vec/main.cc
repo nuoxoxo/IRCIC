@@ -335,6 +335,8 @@ int	main()
 		int	SIZE = 100;
 		int	i;
 
+		z1 = 0;
+		z2 = 0;
 		i = -1;
 		while (++i < SIZE)
 		{
@@ -354,7 +356,7 @@ int	main()
 
 
 		i = -1;
-		v2.reserve(64); // changed here
+		v2.reserve(SIZE); // changed here
 		while (++i < SIZE)
 		{
 			v2.push_back(i);
