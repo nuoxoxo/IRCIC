@@ -2,13 +2,15 @@
 
 date   | todo
 :----- | :---
-mar 11 |
-&nbsp; | vector : cleanup while loop
+mar 11 | vector : cleanup while loop
 &nbsp; | sanbox : continue map
+mar 10 | vector : fixed resize by m_next_size
+&nbsp; | ~~vector : buggy awesome test in range constr~~
+mar 9  | vector : fixed mazoise copy-swap test
 
+<!--
 ![](https://i.imgur.com/tJx6k1V.jpg)
-
-
+-->
 
 
 # _Resources_
