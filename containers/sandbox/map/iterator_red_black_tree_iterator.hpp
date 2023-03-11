@@ -12,9 +12,29 @@ namespace ft
 		typename Node,
 		typename /*class*/ Compare
 	>
-	class rbt_iterator : // inherit from ft::Iter
+	class red_black_tree_iterator : // inherit from ft::Iter
 	ft::iterator<ft::bidirectional_iterator_tag, Node>
 	{
+
+	/*
+	1. A red-black tree T
+		is a binary search tree having following five additional properties
+
+	2. Root of T is black.
+
+	3. Every node in T is either red or black.
+		- The root node of T is black.
+		- Every nil node is black.
+		- nil nodes are the leaf nodes, which do not contain any keys.
+		- if a key that is not present in the tree, we reach the nil node.
+
+	4. If a node is red, both of its children are black. 
+		-  ie. No two nodes on a path can be red nodes.
+
+	5. Every path from root to nil has the same number of black nodes.
+	*/
+
+	// https://algorithmtutor.com/Data-Structures/Tree/Red-Black-Trees/
 
 	protected:
 		Node	m_curr;
@@ -33,13 +53,11 @@ namespace ft
 		typedef T &reference;
 
 	public:
-		rbt_iterator() : m_curr() {}
+		red_black_tree_iterator() : m_curr() {}
+		red_black_tree_iterator(Node node) : m_curr(node) {}
+		red_black_tree_iterator(const red_black_tree_iterator & it) : m_curr(it.m_curr) {}
 
-		rbt_iterator(Node node) : m_curr(node) {}
-
-		rbt_iterator(const rbt_iterator & it) : m_curr(it.m_curr) {}
-
-		rbt_iterator & operator = (const rbt_iterator & it)
+		red_black_tree_iterator & operator = (const red_black_tree_iterator & it)
 		{
 			if (this != & it)
 			{
