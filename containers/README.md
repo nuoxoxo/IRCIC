@@ -16,7 +16,7 @@ mar 8  | vector : fixed mazoise resize & insert
 
 # _Resources_
 
-___[BST: Problems & Interview Questions]___
+BST: Problems & Interview Questions [___List___](https://medium.com/techie-delight/binary-search-tree-bst-practice-problems-and-interview-questions-ea13a6731098)
 
 ___throw( ) vs. noexcept___ 
 - _def._ - throw() is just an alias for noexcept(true)
