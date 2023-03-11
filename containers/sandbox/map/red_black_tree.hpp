@@ -23,7 +23,6 @@ namespace ft
 	{
 
 	private:
-	// public: // should be private // FIXME
 		class	Node
 		{
 
@@ -51,14 +50,6 @@ namespace ft
 		size_t		m_size;
 		Compare		m_compare;
 		node_allocator	m_allocator;
-
-		// node typedef session
-		// TODO
-
-		// private session of m_ attributes
-		// TODO
-		
-		// 
 
 	public:
 		typedef typename 
