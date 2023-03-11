@@ -2,7 +2,7 @@
 
 Mar 10
 
-- learn [this](https://algorithmtutor.com/Data-Structures/Tree/Red-Black-Trees)
+- Learn [this](https://algorithmtutor.com/Data-Structures/Tree/Red-Black-Trees)
 
 ![](https://i.imgur.com/EyRiRNW.gif)
 ![](https://i.imgur.com/miTq4zb.gif)
