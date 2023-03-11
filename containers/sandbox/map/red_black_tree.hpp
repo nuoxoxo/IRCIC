@@ -17,45 +17,51 @@ enum	e_tree_node_color
 
 namespace ft
 {
-	template<typename T, /* pair */ typename Key, // key type
-		class Compare, class Allocator>
+	template<typename T, /* pair */ typename Key,
+		class Allocator, class Compare>
 	class red_black_tree
 	{
 
 	private:
-		typedef T value_type;
-
-	public: // should be private // FIXME
+	// public: // should be private // FIXME
 		class	Node
 		{
 
 		public:
-			e_tree_node_color	color;
-			value_type		data;
-			Node			*left;
-			Node			*right;
+			T	data;
+			Node	*left;
+			Node	*right;
+			Node	*parent;
+			e_tree_node_color color;
 
 		public:
-			Node (const value_type & val /* ptr */ = value_type())
-			: data(val), left(0), right(0), parent(0) {}
+			Node (const T & heart /* ptr */ = T ())
+			: data(heart), left(0), right(0), parent(0) {}
 
 		};
 
+		typedef size_t	size_type;
 
-		// type typedef session
-		// TODO
+		typedef typename
+		allocator_type::template rebind<Node>::other node_allocator;
 
+
+		Node		*m_root;//, *m_end;
+		Node		*m_end;
+		size_t		m_size;
+		Compare		m_compare;
+		node_allocator	m_allocator;
 
 		// node typedef session
 		// TODO
 
-
 		// private session of m_ attributes
 		// TODO
-	
-	// 
+		
+		// 
 
 	public:
+		typedef typename 
 
 	};
 	// class red_black_tree ends
