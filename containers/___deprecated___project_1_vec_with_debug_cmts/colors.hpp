@@ -126,13 +126,16 @@ void	print_session_head(int & i, const std::string & message)
 
 class	Awesome
 {
+
 private:
-	int		m_heart;
+	int m_heart;
+
 public:
 	// canon
 	Awesome( void ) : m_heart( 42 ) {}
 	Awesome( int n ) : m_heart( n ) { (void) n; }
 	Awesome( Awesome const & a ) : m_heart( 42 ) { *this = a;}
+
 	virtual ~Awesome(void) {}
 
 	Awesome & operator = (Awesome const & a)
@@ -141,6 +144,7 @@ public:
 		return (*this);
 	}
 
+	// void operator += (int a) { m_heart += a; }
 	int	get() const { return this->m_heart; }
 };
 

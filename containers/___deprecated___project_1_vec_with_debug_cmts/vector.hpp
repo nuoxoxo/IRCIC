@@ -1,19 +1,25 @@
 #ifndef __VECTOR_HPP__
 # define __VECTOR_HPP__
 
+# include "memory"
 # include "iostream"
+# include "stdexcept"
 
-// FIXME
-// # include "memory" // home::deletable
-// # include "stdexcept" // home::deletable
+// # include "cstddef"
+// # include "iterator"
 
-# include "algorithm"
+# include "algorithm" // max
+
 # include "iterator_reverse_iterator.hpp"
+// # include "iterator_vector.hpp" /// depr because of tag dispatching 
+// # include "iterator_vector_const_iterator.hpp" /// depr
+
 # include "util_lexicographical_compare.hpp"
 # include "util_equal.hpp"
 # include "util_swap.hpp"
 # include "util_enable_if.hpp"
 # include "util_is_integral.hpp"
+// # include "util__swap.hpp" /// depr 
 
 
 namespace ft
@@ -35,10 +41,22 @@ namespace ft
 		typedef size_t		size_type;
 
 		typedef ptrdiff_t	difference_type;
-		// typedef int		difference_type; // int works just as fine
+		// typedef int		difference_type; // another way works just as fine
+
+
+		///	OLD Way : we don't need vect_iter anymore because of tag dispatching
+
+		// typedef ft::VectorIterator<pointer>		iterator;
+		// typedef ft::VectorIterator<const_pointer>	const_iterator;
+
+
+		///	NEW Way : this way 👇 (2 lines)
 
 		typedef pointer			iterator;
 		typedef const_pointer	const_iterator;
+
+
+		///	Subject dictates reverse_iterator
 
 		typedef ft::reverse_iterator<iterator>			reverse_iterator;
 		typedef ft::reverse_iterator<const_iterator>	const_reverse_iterator;
@@ -89,8 +107,54 @@ namespace ft
 				m_allocator.construct(m_vector + i, value);
 		}
 
+
 		// FIXME - mar 8 :: failed mazoise copy-swap test @ 381c381
+		/*
+		// range
+		template<class InputIterator>
+		vector(
+			InputIterator first,
+			InputIterator last,
+			const allocator_type & alloc = allocator_type(),
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value,
+				InputIterator>::type* = 0
+		)
+		{
+			m_allocator = alloc;
+			m_size = 0;
+			m_capacity = 0;
+			m_vector = m_allocator.allocate(0);
+			assign(first, last);
+
+			// FIXED : cf. lower
+			// ~~ found the problem cf. mazoise copy-swap test ~~
+		}
+		*/
+
+
 		// FIXME - mar 9 :: corr. failed mazoise copy-swap @ Segfault
+		/*
+		// range
+		template<class InputIterator>
+		vector(
+			InputIterator first,
+			InputIterator last,
+			const allocator_type & alloc = allocator_type(),
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value,
+				InputIterator>::type* = 0
+		) // ... check if is_integral, if yes, it's not an Iterator
+		{
+			m_allocator = alloc;
+
+			m_size = std::distance(first, last);
+			m_capacity = std::distance(first, last);
+			m_vector = m_allocator.allocate(m_capacity);
+			// std::copy(first, last, begin()); // is Segfault caused by std::copy ? No.
+			assign(first, last); // is Segfault caused by std::copy ? No.
+		}
+		*/
+
+
 		// FIXED - mar 10 :: Fixed mazoise copy-swap test @ 381c381
 
 		// range
@@ -103,6 +167,7 @@ namespace ft
 		{
 			m_vector = m_allocator.allocate(0);
 			assign(first, last);
+
 			// Fixed by this line
 			m_capacity = std::distance(first, last);
 		}
@@ -231,9 +296,7 @@ namespace ft
 
 		void	resize(size_type n, T c = T())
 		{
-			// FIXME - mar 9 :: kk's soln, passed resize test @ 25c25
-			// FIXED - mar 8 :: mine, failed resize test @ 25c25
-			// FIXED - mar 10 :: concise++ improvement
+			// mar 10 :: concise++ improvement
 
 			if (n > size())
 			{
@@ -245,8 +308,52 @@ namespace ft
 				erase(begin() + n, end());
 			}
 
-			
+			// mar 9 :: kk's soln, passed resize test @ 25c25
 
+			/*
+			size_type	Size;
+
+			Size = size();
+			if (n < Size)
+			{
+				while (size() > n)
+				{
+					m_allocator.destroy( & m_vector[m_size - 1]);
+					m_size--;
+				}
+			}
+			else if (n > m_capacity)
+			{
+				Size = m_capacity * 2 < n ? n : m_capacity * 2;
+
+				reserve(Size);
+			}
+			while (size() < n)
+			{
+				m_allocator.construct(m_vector + m_size, c);
+				m_size++;
+			}
+			*/
+
+			// FIXME - mar 8 :: mine, failed resize test @ 25c25
+
+			/*
+			if (n < size())
+			{
+				while (m_size > n)
+				{
+					m_allocator.destroy( & m_vector[m_size - 1]);
+					--m_size;
+				}
+				return ;
+			}
+			reserve(n);
+			while (m_size < n)
+			{
+				m_allocator.construct(m_vector + m_size, c);
+				++m_size;
+			}
+			*/
 		}
 
 		size_type capacity() const
@@ -376,12 +483,16 @@ namespace ft
 			if (m_size + 1 > m_capacity)
 			{
 				reserve(m_size > 0 ? m_size * 2 : 1);
+
+				// reserve(m_size + 1);
 			}
+
 			for (size_type i = m_size; i > diff; i--)
 			{
 				m_allocator.construct( & m_vector[i], m_vector[i - 1]);
 				m_allocator.destroy( & m_vector[i - 1]);
 			}
+
 			m_allocator.construct( & m_vector[diff], val);
 			m_size++;
 
@@ -391,8 +502,6 @@ namespace ft
 
 		void insert(iterator position, size_type n, const T & val)
 		{
-			///	FIXME -  mar 8 :: fixing cf. mazoise Resize & Insert tests
-
 			if (m_capacity < m_size + n)
 			{
 				size_type	diff;
@@ -402,9 +511,28 @@ namespace ft
 				position = begin() + diff;
 			}
 			for (size_type i = 0; i < n; i++)
-			{
 				position = insert(position, val) + 1;
+
+			///	Notes mar 8 :: try fixing cf. mazoise tests on Resize and Insert
+
+			/*
+			size_type	diff = position - begin();
+
+			if (m_size + n > m_capacity)
+			{
+				reserve(m_size + std::max(m_size, n));
 			}
+			for (size_type i = m_size; i > diff; i--)
+			{
+				m_allocator.construct( & m_vector[i + n - 1], m_vector[i - 1]);
+				m_allocator.destroy( & m_vector[i - 1]);
+			}
+			for (size_type i = 0; i < n; i++)
+			{
+				m_allocator.construct( & m_vector[diff + i], val);
+			}
+			m_size += n;
+			*/
 
 		}
 
@@ -417,12 +545,18 @@ namespace ft
 				InputIterator>::type* = 0
 		)
 		{
+
+
+			// std::cout << RED << __FUNCTION__ << " called 3 (range)" << RESET nl2reset;
+
+
 			difference_type	dist = 0;
-			difference_type	diff;
 
 			for (InputIterator tmp = last; tmp != first; tmp--)
 				dist++;
-			diff = position - begin();
+
+			difference_type	diff = position - begin();
+
 			if (m_size + dist > m_capacity)
 				reserve(m_size + std::max(m_size, (size_type) dist));
 
@@ -455,11 +589,17 @@ namespace ft
 				for (; it + 1 != ite; it++)
 				{
 					m_allocator.destroy(it);
+					// m_allocator.destroy(it.base()); // depr
+
 					m_allocator.construct(it, *(it + 1));
+					// m_allocator.construct(it.base(), *(it + 1)); // depr
 				}
 				m_allocator.destroy(it);
+				// m_allocator.destroy(it.base()); // depr
+
 				m_size--;
 			}
+
 			return ret;
 		}
 
@@ -475,6 +615,9 @@ namespace ft
 
 		void	swap(vector & val)
 		{
+
+			// std::cout << RED << __FUNCTION__ << " 1 called " nl2reset;
+
 			if (*this == val)
 				return ;
 			ft::swap(m_size, val.m_size);
@@ -496,6 +639,18 @@ namespace ft
 		const vector<T, Allocator> & R
 	)
 	{
+		/*
+		if (L.size() != R.size())
+			return false;
+		for (size_t i = 0; i < L.size(); i++)
+		{
+			if (L[i] != R[i])
+				return false;
+		}
+		return (true);
+
+		*/
+
 		typedef typename vector<T, Allocator>::const_iterator it_type;
 
 		if (L.size() ^ R.size())
@@ -552,6 +707,8 @@ namespace ft
 	template<class T, class Allocator>
 	void swap(vector<T, Allocator> & L, vector<T, Allocator> & R)
 	{
+		// std::cout << RED << __FUNCTION__ << " 2 called " nl2reset;
+
 		L.swap(R);
 	}
 }
