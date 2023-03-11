@@ -1,5 +1,11 @@
 # __Mar Updates__
 
+date   | todo
+:----- | :---
+mar 11 |
+&nbsp; | vector : cleanup while loop
+&nbsp; | sanbox : continue map
+
 ![](https://i.imgur.com/tJx6k1V.jpg)
 
 
