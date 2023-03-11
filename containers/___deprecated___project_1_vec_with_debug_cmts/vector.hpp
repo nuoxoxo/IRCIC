@@ -513,7 +513,7 @@ namespace ft
 			for (size_type i = 0; i < n; i++)
 				position = insert(position, val) + 1;
 
-			///	Notes mar 8 :: tyy fixing cf. mazoise tests on Resize and Insert
+			///	Notes mar 8 :: try fixing cf. mazoise tests on Resize and Insert
 
 			/*
 			size_type	diff = position - begin();
