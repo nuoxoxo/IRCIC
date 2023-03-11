@@ -17,16 +17,18 @@ enum	e_tree_node_color
 
 namespace ft
 {
-	template<typename T, /* pair */ typename Key,
-		class Allocator, class Compare>
+	template< typename T, /* pair */ typename Key,
+		class Allocator, class Compare >
 	class red_black_tree
 	{
 
 	private:
+
 		class	Node
 		{
 
 		public:
+
 			T	data;
 			Node	*left;
 			Node	*right;
@@ -34,6 +36,7 @@ namespace ft
 			e_tree_node_color color;
 
 		public:
+
 			Node (const T & heart /* ptr */ = T ())
 			: data(heart), left(0), right(0), parent(0) {}
 
@@ -52,7 +55,43 @@ namespace ft
 		node_allocator	m_allocator;
 
 	public:
-		typedef typename 
+
+		typedef typename
+		ft::red_black_tree_iterator<T, Node*, Compare>
+			iterator;
+
+		typedef typename
+		ft::red_black_tree_iterator<const T, Node*, Compare>
+			const_iterator;
+
+
+		// constr & decons
+		red_black_tree(
+			const Compare & C = Compare(),
+			const node_allocator & A = node_allocator()
+		)
+		{
+			m_end = create_node();
+			m_root = m_end;
+			m_size = 0;
+
+			m_allocator = A;
+			m_compare_type = C;
+		}
+
+		~red_black_tree()
+		{
+			if (m_size) clear();
+			_destroy_node(m_root);
+		}
+}
+
+~red_black_tree()
+{
+	if (m_size)
+		clear();
+	_destroy_node(m_root);
+}
 
 	};
 	// class red_black_tree ends
