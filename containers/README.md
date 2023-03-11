@@ -6,8 +6,8 @@ mar 11 | vector : cleanup while loop
 &nbsp; | sanbox : continue map
 mar 10 | vector : fixed resize by m_next_size
 &nbsp; | ~~vector : buggy awesome test in range constr~~
-mar 9  | vector : fixed mazoise tests for copy-swap test
-mar 8  | vector : fixing mazoise resize & insert tests
+mar 9  | vector : fixed mazoise copy-swap
+mar 8  | vector : fixed mazoise resize & insert
 
 <!--
 ![](https://i.imgur.com/tJx6k1V.jpg)
