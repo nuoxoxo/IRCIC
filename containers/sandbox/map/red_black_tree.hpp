@@ -3,9 +3,8 @@
 # define __RED_BLACK_TREE_HPP__
 
 # include "iostream"
-// function && memory :: obsolete on mac // FIXME
 
-# include "iterator_rbtree_iterator.hpp"
+# include "iterator_red_black_tree_iterator.hpp"
 # include "pair.hpp"
 # include "util_swap.hpp"
 # include "util_lexicographical_compare.hpp"
@@ -31,10 +30,10 @@ namespace ft
 		{
 
 		public:
-			tree_node_color	color;
-			value_type	data;
-			Node		*left;
-			Node		*right;
+			e_tree_node_color	color;
+			value_type		data;
+			Node			*left;
+			Node			*right;
 
 		public:
 			Node (const value_type & val /* ptr */ = value_type())
