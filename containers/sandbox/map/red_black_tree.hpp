@@ -3,9 +3,8 @@
 # define __RED_BLACK_TREE_HPP__
 
 # include "iostream"
-// function && memory :: obsolete on mac // FIXME
 
-# include "iterator_rbtree_iterator.hpp"
+# include "iterator_red_black_tree_iterator.hpp"
 # include "pair.hpp"
 # include "util_swap.hpp"
 # include "util_lexicographical_compare.hpp"
@@ -18,45 +17,81 @@ enum	e_tree_node_color
 
 namespace ft
 {
-	template<typename T, /* pair */ typename Key, // key type
-		class Compare, class Allocator>
+	template< typename T, /* pair */ typename Key,
+		class Allocator, class Compare >
 	class red_black_tree
 	{
 
 	private:
-		typedef T value_type;
 
-	public: // should be private // FIXME
 		class	Node
 		{
 
 		public:
-			tree_node_color	color;
-			value_type	data;
-			Node		*left;
-			Node		*right;
+
+			T	data;
+			Node	*left;
+			Node	*right;
+			Node	*parent;
+			e_tree_node_color color;
 
 		public:
-			Node (const value_type & val /* ptr */ = value_type())
-			: data(val), left(0), right(0), parent(0) {}
+
+			Node (const T & heart /* ptr */ = T ())
+			: data(heart), left(0), right(0), parent(0) {}
 
 		};
 
+		typedef size_t	size_type;
 
-		// type typedef session
-		// TODO
-
-
-		// node typedef session
-		// TODO
+		typedef typename
+		allocator_type::template rebind<Node>::other node_allocator;
 
 
-		// private session of m_ attributes
-		// TODO
-	
-	// 
+		Node		*m_root;//, *m_end;
+		Node		*m_end;
+		size_t		m_size;
+		Compare		m_compare;
+		node_allocator	m_allocator;
 
 	public:
+
+		typedef typename
+		ft::red_black_tree_iterator<T, Node*, Compare>
+			iterator;
+
+		typedef typename
+		ft::red_black_tree_iterator<const T, Node*, Compare>
+			const_iterator;
+
+
+		// constr & decons
+		red_black_tree(
+			const Compare & C = Compare(),
+			const node_allocator & A = node_allocator()
+		)
+		{
+			m_end = create_node();
+			m_root = m_end;
+			m_size = 0;
+
+			m_allocator = A;
+			m_compare_type = C;
+		}
+
+		~red_black_tree()
+		{
+			if (m_size) clear();
+			_destroy_node(m_root);
+		}
+}
+
+~red_black_tree()
+{
+	if (m_size)
+		clear();
+	_destroy_node(m_root);
+}
 
 	};
 	// class red_black_tree ends

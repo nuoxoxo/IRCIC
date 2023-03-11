@@ -10,8 +10,7 @@ namespace ft
 {
 	template<typename T, // type: pair
 		typename Node,
-		typename /*class*/ Compare
-	>
+		typename /*class*/ Compare>
 	class red_black_tree_iterator : // inherit from ft::Iter
 	ft::iterator<ft::bidirectional_iterator_tag, Node>
 	{
@@ -37,7 +36,7 @@ namespace ft
 	// https://algorithmtutor.com/Data-Structures/Tree/Red-Black-Trees/
 
 	protected:
-		Node	m_curr;
+		Node	m_current;
 
 	public:
 		typedef typename ft::iterator_traits<Node>::value_type
@@ -49,25 +48,95 @@ namespace ft
 		typedef typename ft::iterator_traits<Node>::iterator_category
 			iterator_category;
 
-		typedef T *pointer;
-		typedef T &reference;
+		typedef T	*pointer;
+		typedef T	&reference;
+		typedef Node	node_pointer;
 
 	public:
-		red_black_tree_iterator() : m_curr() {}
-		red_black_tree_iterator(Node node) : m_curr(node) {}
-		red_black_tree_iterator(const red_black_tree_iterator & it) : m_curr(it.m_curr) {}
+		// canon
+
+		red_black_tree_iterator() : m_current() {}
+		red_black_tree_iterator(Node node) : m_current(node) {}
+
+		red_black_tree_iterator(const red_black_tree_iterator & it)
+		: m_current(it.m_current) {}
 
 		red_black_tree_iterator & operator = (const red_black_tree_iterator & it)
 		{
 			if (this != & it)
-			{
-				m_curr = it.m_curr;
-			}
+				m_current = it.m_current;
 			return (*this);
 		}
 
-		
+		// const iterator
+		operator red_black_tree_iterator<const T, Node, Compare> () const
+		{
+			return
+			(red_black_tree_iterator<const T, Node, Compare> (m_current));
+		}
 
+
+		node_pointer base() const
+		{
+			return (m_current);
+		}
+
+
+		friend bool operator == (
+			const red_black_tree_iterator<T, Node, Compare> & L,
+			const red_black_tree_iterator<T, Node, Compare> & R
+		)
+		{
+			return (L.base() == R.base());
+		}
+
+		friend bool operator != (
+			const red_black_tree_iterator<T, Node, Compare> & L,
+			const red_black_tree_iterator<T, Node, Compare> & R
+		)
+		{
+			return (L.base() != R.base());
+		}
+
+		reference operator * () const
+		{
+			return (m_current->data);
+		}
+
+		pointer operator -> () const
+		{
+			return ( &(_current->data) );
+		}
+
+		// post icr
+		red_black_tree_iterator operator ++ (int)
+		{
+			red_black_tree_iterator	it(*this);
+
+			operator ++ ();
+			return (it);
+		}
+
+		// pre icr
+		red_black_tree_iterator & operator ++ ()
+		{
+			// TODO
+		}
+
+		// post dcr
+		red_black_tree_iterator operator -- (int)
+		{
+			red_black_tree_iterator	it(*this);
+
+			operator -- ();
+			return (it);
+		}
+
+		// pre dcr
+		red_black_tree_iterator & operator -- ()
+		{
+			// TODO
+		}
 
 	}
 

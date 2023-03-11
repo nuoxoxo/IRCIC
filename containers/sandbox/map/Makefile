@@ -28,10 +28,10 @@ r	:	run
 all	:	$(name)
 
 clean	:
-		@ $(rmv) $(bud)
+		$(rmv) $(bud)
 
 fclean	:	clean
-		@ $(rmv) $(name) a.out
+		$(rmv) $(name) a.out
 
 test	:	run
 f	:	fclean
