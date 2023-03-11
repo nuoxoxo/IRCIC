@@ -1,6 +1,6 @@
 # __Mar Updates__
 
-date   | todo
+Data   | Task
 :----- | :---
 mar 11 | vector : cleanup while loop
 &nbsp; | sanbox : continue map
