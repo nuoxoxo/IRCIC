@@ -11,8 +11,7 @@
 
 enum	e_tree_node_color
 {
-	RD,
-	BK
+	RED, BLACK
 };
 
 namespace ft
@@ -73,12 +72,10 @@ namespace ft
 		)
 		{
 			m_end = create_node();
-			m_
 			m_root = m_end;
 			m_size = 0;
-
-			m_allocator = A;
 			m_compare_type = C;
+			m_allocator = A;
 		}
 
 		~red_black_tree()
@@ -133,21 +130,14 @@ namespace ft
 		// max node, min node
 		// find T (pair)
 		// insert when empty
-		// delete
 		// successor
-		// replace
 		// DOWN
 		// LEFT ROT
 		// RIGHT ROT
 		// RED UNCLE FIX
 		// 2 X BLACK FIX
 		// SIBLING
-		// is left kid
-		// is right kid
-		// has red kid
-		// 
-		// 
-		//
+
 
 
 		// o(^_^o) (o^_^)o
