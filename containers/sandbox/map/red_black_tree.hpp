@@ -78,13 +78,13 @@ namespace ft
 			m_allocator = A;
 		}
 
-		~red_black_tree()
+		~ red_black_tree()
 		{
 			if (m_size) clear();
 			_destroy_node(m_root);
 		}
 
-		Node	*create_node(const T &val = T ()) // default: RED
+		Node	*create_node(const T & val = T ()) // default: RED
 		{
 			Node	*node; 
 
@@ -106,37 +106,126 @@ namespace ft
 
 		// accessor
 
-		// begin . bg const
-		// end . nd const
-		// compare const
+		iterator	begin()
+		{ return (iterator(_min_node())); } // inorder
+
+		const_iterator	begin() const
+		{ return const_iterator(_min_node()); } // inorder
+
+		iterator	end()
+		{ return iterator(m_end); }
+
+		const_iterator	end() const
+		{ return const_iterator(m_end); }
+
+		Compare	compare() const
+		{ return m_compare_type; }
+
 
 		// modifiers
 
-		// insert
-		// clear
-		// swap (tree)
-		// "node erase"
-		// "range erase"
+		/*
+		void	clear()
+		{
+			_clear( m_root );
+			m_root = m_end;
+			m_size = 0;
+		}
+
+		void	swap_tree(red_black_tree & dummy)
+		{
+			ft::swap(m_root, dummy.m_root);
+			ft::swap(m_end, dummy.m_end);
+			ft::swap(m_size, dummy.m_size);
+			ft::swap(m_allocator, dummy.m_allocator);
+			ft::swap(m_compare_type, dummy.m_compare_type);
+		}
+		*/
+
 
 		// operations
 
-		// count
-		// lower_bound . upper bound . lb const . ub const
-		// find . const
+		// size_type /* size_t */ count(const T & dummy) const
+		/*
+		size_type	count(const T & dummy) const
+		{
+			Node	*it;
 
+			it = _binary_search_tree_find(dummy);
+			return (it ? 1 : 0);
+		}
 
-		// protected func
-		// FIX tree
-		// max node, min node
-		// find T (pair)
-		// insert when empty
-		// successor
-		// DOWN
-		// LEFT ROT
-		// RIGHT ROT
-		// RED UNCLE FIX
-		// 2 X BLACK FIX
-		// SIBLING
+		iterator	lower_bound(const T & dummy)
+		{
+			iterator	it, ite;
+
+			it = begin();
+			ite = end();
+			while (it != ite && m_compare_type(it->first, dummy.first))
+			{
+				++it;
+			}
+			return (it);
+		}
+
+		const_iterator	lower_bound(const T & dummy) const
+		{
+			const_iterator it, ite;
+
+			it = begin();
+			ite = end();
+			while (it != ite && m_compare_type(it->first, dummy.first))
+			{
+				++it;
+			}
+			return (it);
+		}
+
+		iterator	upper_bound(const T & dummy)
+		{
+			const_iterator it, ite;
+
+			it = begin();
+			ite = end();
+			while (it != ite && m_compare_type(it->first, dummy.first))
+			{
+				++it;
+			}
+			return (it);
+		}
+
+		const_iterator	upper_bound(const T & dummy) const
+		{
+			const_iterator it, ite;
+
+			it = begin();
+			ite = end();
+			while (it != ite && m_compare_type(it->first, dummy.first))
+			{
+				++it;
+			}
+			return (it);
+		}
+		*/
+
+		/*
+		iterator	find(const T & dummy)
+		{
+			Node	*it;
+
+			it = _binary_search_tree_find(dummy);
+			return (it ? iterator(it) : (end());
+		}
+
+		// iterator	find(const T & dummy) const
+		const_iterator	find(const T & dummy) const
+		{
+			Node	*it;
+
+			it = _binary_search_tree_find(dummy);
+			return (it ? const_iterator(it) : (end());
+		}
+		*/
 
 
 
@@ -145,20 +234,11 @@ namespace ft
 
 
 
-
-}
-
-~red_black_tree()
-{
-	if (m_size)
-		clear();
-	_destroy_node(m_root);
-}
-
 	};
-	// class red_black_tree ends
 
-	// make stuff up
+
+
+
 }
 
 #endif
