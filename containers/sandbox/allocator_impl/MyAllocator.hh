@@ -12,16 +12,10 @@
 
 # include "iostream"
 # include "limits"
+# include "Fmt.hpp"
 
-# define CYAN	"\033[0;36m"
-# define YELLO	"\033[0;33m"
-# define GREEN	"\033[0;32m"
-# define CYAN	"\033[0;36m"
-# define RESET	"\033[0;0m"
 # define MSGALLOC GREEN " allocated " RESET
-# define MSGDEALLOC YELLO " deallocated " RESET
-# define nl2 "\n\n"
-# define nl "\n"
+# define MSGDEALLOC YELLOW " deallocated " RESET
 
 namespace	MyLibrary
 {
