@@ -2,19 +2,19 @@ import random
 
 class treenode :
     def __init__(self, val) :
-        self.parent = None
         self.red = False # ie. black
+        self.parent = None
         self.left = None
         self.right = None
         self.val = val
 
 class tree :
     def __init__(self) :
-        self.null = treenode(0)
-        self.null.red = False # ie. black
-        self.null.left = None
-        self.null.right = None
-        self.root = self.null
+        self.nil = treenode(0)
+        self.nil.red = False # ie. black
+        self.nil.left = None
+        self.nil.right = None
+        self.root = self.nil
 
     def __repr__(self) :
         a = []
@@ -24,7 +24,7 @@ class tree :
     def Rotate_Right(self, x):
         y = x.left
         x.left = y.right
-        if y.right != self.null:
+        if y.right != self.nil:
             y.right.parent = x
         y.parent = x.parent # idem
         if x.parent == None:
@@ -39,7 +39,7 @@ class tree :
     def Rotate_Left(self, x):
         y = x.right
         x.right = y.left
-        if y.left != self.null:
+        if y.left != self.nil:
             y.left.parent = x
         y.parent = x.parent # idem
         if x.parent == None:
@@ -92,13 +92,13 @@ class tree :
         node = treenode(val)
         node.red = True # new node has to be red
         node.parent = None
-        node.left = self.null
-        node.right = self.null
+        node.left = self.nil
+        node.right = self.nil
         
         # class bst Insertion ---> find the currect parent
         parent = None
         current = self.root
-        while current != self.null:
+        while current != self.nil:
             parent = current
             if current.val == parent.val:
                 return
