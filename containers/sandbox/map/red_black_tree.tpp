@@ -7,11 +7,11 @@
 # include "util_swap.hpp"
 # include "util_lexicographical_compare.hpp"
 
-// template <typename T, typename Key, class Compare, class Allocator> // T is a pair, Key is Key
+// template<typename T, typename Key, class Compare, class Allocator> // T is a pair, Key is Key
 
-template <typename T, typename Key, class C, class A> 
+template<typename T, typename Key, class C, class A> 
 typename ft::red_black_tree<T, Key, C, A>::
-Node *ft::red_black_tree<T, Key, C, A>::
+Node	*ft::red_black_tree<T, Key, C, A>::
 _binary_search_tree_find(const T & to_find) const
 {
 	Node *tmp = m_root;
@@ -39,11 +39,11 @@ _insert_empty(typename ft::red_black_tree<T, Key, C, A>::Node *node)
 	m_end->parent = m_root;
 	m_root->color = BLACK;
 	m_size++;
-	return ft::make_pair(iterator(m_root), true);
+	return (ft::make_pair(iterator(m_root), true));
 }
 
 template<typename T, typename Key, class C, class A>
-void ft::red_black_tree<T, Key, C, A>::
+void	ft::red_black_tree<T, Key, C, A>::
 _binary_search_tree_fix_insert(
 	typename ft::red_black_tree<T, Key, C, A>::Node *node
 )
@@ -56,7 +56,11 @@ _binary_search_tree_fix_insert(
 			if (node->parent->parent->right && 
 				node->parent->parent->right->color == RED
 			) // case: uncle right is red
-				node = _fix_red_uncle(node->parent, node->parent->parent, node->parent->parent->right);
+				node = _fix_red_uncle(
+					node->parent,
+					node->parent->parent,
+					node->parent->parent->right
+				);
 				// p gp u
 			else
 			{
@@ -74,12 +78,14 @@ _binary_search_tree_fix_insert(
 		{
 			if (node->parent->parent->left && node->parent->parent->left->color == RED)
 			// case: uncle left is red
+			{
 				node = _fix_red_uncle(
 					node->parent,
 					node->parent->parent,
 					node->parent->parent->left
 				);
 				// p gp u
+			}
 			else
 			{
 				if (node == node->parent->left)
@@ -96,9 +102,9 @@ _binary_search_tree_fix_insert(
 }
 
 
-template <typename T, typename Key, class C, class A> 
+template<typename T, typename Key, class C, class A> 
 typename ft::red_black_tree<T, Key, C, A>::
-Node *ft::red_black_tree<T, Key, C, A>::
+Node	*ft::red_black_tree<T, Key, C, A>::
 _binary_search_tree_delete_node(Node *node)
 {
 	Node *parent = node->parent;
@@ -162,7 +168,7 @@ _binary_search_tree_delete_node(Node *node)
 }
 
 
-template <typename T, typename Key, class C, class A> 
+template<typename T, typename Key, class C, class A> 
 typename ft::red_black_tree<T, Key, C, A>::
 Node *ft::red_black_tree<T, Key, C, A>::
 _successor(Node *node)
@@ -180,7 +186,7 @@ _successor(Node *node)
 }
 
 
-template <typename T, typename Key, class C, class A> 
+template<typename T, typename Key, class C, class A> 
 typename ft::red_black_tree<T, Key, C, A>::
 Node *ft::red_black_tree<T, Key, C, A>::_binary_search_tree_replace(Node *node)
 // find node that replace the deleted one
@@ -245,7 +251,7 @@ void	ft::red_black_tree<T, Key, C, A>::_right_rotate(Node *node)
 }
 
 
-template <typename T, typename Key, class C, class A> 
+template<typename T, typename Key, class C, class A> 
 typename ft::red_black_tree<T, Key, C, A>::
 Node	*ft::red_black_tree<T, Key, C, A>::_fix_red_uncle(
 	Node *parent, Node *grandparent, Node *uncle)
@@ -339,7 +345,7 @@ void	ft::red_black_tree<T, Key, C, A>::_destroy_node(Node *node)
 }
 
 
-template <typename T, typename Key, class C, class A> 
+template<typename T, typename Key, class C, class A> 
 typename ft::red_black_tree<T, Key, C, A>::
 Node	*ft::red_black_tree<T, Key, C, A>::_sibling(Node *node)
 {
@@ -390,7 +396,7 @@ void ft::red_black_tree<T, Key, C, A>::_assign_values(Node *dummy, Node *other)
 }
 
 
-template <typename T, typename Key, class C, class A> 
+template<typename T, typename Key, class C, class A> 
 typename ft::red_black_tree<T, Key, C, A>::
 Node	*ft::red_black_tree<T, Key, C, A>::_min_node() const
 {
@@ -402,7 +408,7 @@ Node	*ft::red_black_tree<T, Key, C, A>::_min_node() const
 	return (node);
 }
 
-template <typename T, typename Key, class C, class A> 
+template<typename T, typename Key, class C, class A> 
 typename ft::red_black_tree<T, Key, C, A>::
 Node	*ft::red_black_tree<T, Key, C, A>::_max_node() const
 {
