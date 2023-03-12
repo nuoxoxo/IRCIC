@@ -16,6 +16,12 @@ class tree :
         self.nil.right = None
         self.root = self.nil
 
+    """
+    __repr__ is a special method used to represent a class's objects as a string. 
+    __repr__ is called by the repr() built-in function. 
+    __repr__ is used to define your own string representation of your class objects
+    """
+
     def __repr__(self) :
         a = []
         Inorder_Printer(self.root, a)
@@ -145,13 +151,15 @@ def Number_Generator(bound):
 
 
 def main():
-    bound = 64
-    offset = 100
+    bound, offset = 64, 100
+
     random.seed(time.clock())
     # random.seed(0)
+
     rbt = tree()
     for _ in range(bound):
         rbt.Insert(random.randint(1, bound + offset))
+    # Inorder_Printer(rbt.root, 1, bound+offset)
     print(rbt)
 
 
