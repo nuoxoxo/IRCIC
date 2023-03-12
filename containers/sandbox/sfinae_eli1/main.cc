@@ -1,14 +1,7 @@
 #include "iostream"
+#include "../Fmt.hpp"
+
 using	namespace std;
-
-#define Y "\033[0;32m"
-#define C "\033[0;36m"
-#define R "\033[0m"
-#define nl2 "\n\n"
-#define nl "\n"
-#define nl2reset nl2 R
-#define nlreset nl R
-
 
 //	Funciton 1
 
