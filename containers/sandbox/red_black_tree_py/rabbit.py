@@ -1,4 +1,4 @@
-import random
+import random, time
 
 class treenode :
     def __init__(self, val) :
@@ -95,17 +95,28 @@ class tree :
         node.left = self.nil
         node.right = self.nil
         
-        # class bst Insertion ---> find the currect parent
+        # classic binary search tree insertion ---> find correct parent
         parent = None
         current = self.root
         while current != self.nil:
             parent = current
+            if current.val == node.val:
+                return
+            if current.val > node.val:
+                current = current.left
+            else:
+                current = current.right
+    
+            # buggy part : fixed
+            """
             if current.val == parent.val:
                 return
             if current.val > parent.val:
                 current = current.left
             else:
                 current = current.right
+            """
+
         node.parent = parent
         if parent == None:
             self.root = node
@@ -134,16 +145,19 @@ def Number_Generator(bound):
 
 
 def main():
-    bound = 256
-    random.seed(1)
-    tree_no_1 = tree()
+    bound = 64
+    offset = 100
+    random.seed(time.clock())
+    # random.seed(0)
+    rbt = tree()
     for _ in range(bound):
-        tree_no_1.Insert(random.randint(1, bound + 1))
-    print(tree_no_1)
+        rbt.Insert(random.randint(1, bound + offset))
+    print(rbt)
 
 
-main()
+# main()
 
-
+if __name__ == "__main__":
+    main()
 
 
