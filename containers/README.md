@@ -3,7 +3,7 @@
 Data   | Task
 :----- | :---
 mar 12 | rabbit : tpp now hosts private _func
-&#8203;| tested rabbit
+&#8203;| type punning sandbox
 mar 11 | vector : cleanup while loop
 &#8203;| sanbox : continue map
 mar 10 | vector : fixed resize by m_next_size
