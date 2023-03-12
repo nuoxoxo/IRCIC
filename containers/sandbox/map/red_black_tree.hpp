@@ -84,7 +84,7 @@ namespace ft
 			_destroy_node(m_root);
 		}
 
-		Node	*create_node(const T &val = T ()) // default: RED
+		Node	*create_node(const T & val = T ()) // default: RED
 		{
 			Node	*node; 
 
@@ -133,8 +133,59 @@ namespace ft
 			Node	*it;
 
 			it = _binary_search_tree_find(dummy);
-
 			return (it ? 1 : 0);
+		}
+
+		iterator	lower_bound(const T & dummy)
+		{
+			iterator	it, ite;
+
+			it = begin();
+			ite = end();
+			while (it != ite && m_compare_type(it->first, dummy.first))
+			{
+				++it;
+			}
+			return (it);
+		}
+
+		const_iterator	lower_bound(const T & dummy) const
+		{
+			const_iterator it, ite;
+
+			it = begin();
+			ite = end();
+			while (it != ite && m_compare_type(it->first, dummy.first))
+			{
+				++it;
+			}
+			return (it);
+		}
+
+		iterator	upper_bound(const T & dummy)
+		{
+			const_iterator it, ite;
+
+			it = begin();
+			ite = end();
+			while (it != ite && m_compare_type(it->first, dummy.first))
+			{
+				++it;
+			}
+			return (it);
+		}
+
+		const_iterator	upper_bound(const T & dummy) const
+		{
+			const_iterator it, ite;
+
+			it = begin();
+			ite = end();
+			while (it != ite && m_compare_type(it->first, dummy.first))
+			{
+				++it;
+			}
+			return (it);
 		}
 
 		iterator	find(const T & dummy)
