@@ -1,12 +1,13 @@
 comp	:=	c++ -Wall -Werror -Wextra -std=c++98
 rmv	:=	rm -rf
 name	:=	out
+inc	:=	../
 src	:=	main.cc
 bud	:=	$(src:%.cc=%.o)
 
 %.o	:	%.cc
 		@ echo "compiling [$^] "
-		@ $(comp) -c $^ -o $@
+		@ $(comp) -I$(inc) -c $^ -o $@
 
 $(name)	:	$(bud)
 		@ echo "compiling [$@] "

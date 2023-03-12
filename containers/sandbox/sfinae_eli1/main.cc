@@ -1,5 +1,5 @@
 #include "iostream"
-#include "../Fmt.hpp"
+#include "Fmt.hpp"
 
 using	namespace std;
 
