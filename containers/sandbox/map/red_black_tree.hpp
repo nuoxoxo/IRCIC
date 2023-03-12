@@ -27,7 +27,6 @@ namespace ft
 		{
 
 		public:
-
 			T	data;
 			Node	*left;
 			Node	*right;
@@ -35,7 +34,6 @@ namespace ft
 			e_tree_node_color color;
 
 		public:
-
 			Node (const T & heart /* ptr */ = T ())
 			: data(heart), left(0), right(0), parent(0) {}
 
@@ -44,7 +42,7 @@ namespace ft
 		typedef size_t	size_type;
 
 		typedef typename
-		allocator_type::template rebind<Node>::other node_allocator;
+		allocator_type::template rebind<Node>::other	node_allocator;
 
 
 		Node		*m_root;//, *m_end;
@@ -229,7 +227,6 @@ namespace ft
 
 
 		void	swap_values(Node *L, Node *R)
-		// Can't find another way since Key are const from map erase
 		{
 			Key key;
 			Key *key1;
@@ -248,38 +245,38 @@ namespace ft
 			R->data.second = tmp.second;
 		}
 
-		// o(^_^o) (o^_^)o
-
 	private:
 
 		ft::pair<iterator, bool>	_insert_empty(Node *);
 
 		Node	*_fix_red_uncle(Node *parent, Node *grandparent, Node *uncle);
+		void	_fix_double_black(Node *);
 
 		Node	*_binary_search_tree_replace(Node *);
-		// find node that replace the deleted one
 
 		Node	*_binary_search_tree_find(const T &) const;
 		Node	*_min_node() const;
 		Node	*_max_node() const;
-		Node	*_binary_search_tree_delete_node(Node *);
 		Node	*_successor(Node *);
 		Node	*_sibling(Node *);
+		Node	*_binary_search_tree_delete_node(Node *);
+
+		bool	_is_left_child(Node *) const;
+		bool	_has_red_child(Node *);
 
 		void	_left_rotate(Node *);
 		void	_right_rotate(Node *);
-		void	_destroy_node(Node *);
-		void	_clear(Node *);
-		bool	_is_left_child(Node *) const;
-		bool	_has_red_child(Node *);
 		void	_move_down(Node * node, Node * parent);
-		void	_fix_double_black(Node *);
-		void	_assign_values(Node *dummy, Node *node);
+
 		void	_swap_values(Node *dummy, Node *node);
 		void	_binary_search_tree_fix_insert(Node *);
 
 		void	_assign_colors_p_gp(Node *parent, Node *grandparent);
+		void	_assign_values(Node *dummy, Node *node);
 		void	_assign_end();
+
+		void	_destroy_node(Node *);
+		void	_clear(Node *);
 
 	};
 
