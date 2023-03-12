@@ -11,8 +11,7 @@
 
 enum	e_tree_node_color
 {
-	RD,
-	BK
+	RED, BLACK
 };
 
 namespace ft
@@ -65,7 +64,8 @@ namespace ft
 			const_iterator;
 
 
-		// constr & decons
+		// gaia : constr, deconstr, make_node
+
 		red_black_tree(
 			const Compare & C = Compare(),
 			const node_allocator & A = node_allocator()
@@ -74,9 +74,8 @@ namespace ft
 			m_end = create_node();
 			m_root = m_end;
 			m_size = 0;
-
-			m_allocator = A;
 			m_compare_type = C;
+			m_allocator = A;
 		}
 
 		~red_black_tree()
@@ -84,6 +83,69 @@ namespace ft
 			if (m_size) clear();
 			_destroy_node(m_root);
 		}
+
+		Node	*create_node(const T &val = T ()) // default: RED
+		{
+			Node	*node; 
+
+			node = m_allocator.construct(node, Node(val));
+			node->parent = 0;
+			node->left = 0;
+			node->right = 0;
+			node->color = RED;
+			return (node);
+		}
+
+
+		// capapcity
+
+		size_type max_size() const { return (m_allocator.max_size()); }
+		size_type empty() const { return (!(m_size)); }
+		size_type size() const { return (m_size()); }
+
+
+		// accessor
+
+		// begin . bg const
+		// end . nd const
+		// compare const
+
+		// modifiers
+
+		// insert
+		// clear
+		// swap (tree)
+		// "node erase"
+		// "range erase"
+
+		// operations
+
+		// count
+		// lower_bound . upper bound . lb const . ub const
+		// find . const
+
+
+		// protected func
+		// FIX tree
+		// max node, min node
+		// find T (pair)
+		// insert when empty
+		// successor
+		// DOWN
+		// LEFT ROT
+		// RIGHT ROT
+		// RED UNCLE FIX
+		// 2 X BLACK FIX
+		// SIBLING
+
+
+
+		// o(^_^o) (o^_^)o
+
+
+
+
+
 }
 
 ~red_black_tree()
