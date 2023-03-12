@@ -36,4 +36,3 @@ int	main()
 	func((unsigned int) 42); // idem
 }
 
-// ru
