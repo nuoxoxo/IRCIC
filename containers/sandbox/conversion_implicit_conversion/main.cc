@@ -1,10 +1,7 @@
 #include "iostream"
 #include "string"
+#include "Fmt.hpp"
 
-# define c1 "\x1b[33m"
-# define c2 "\x1b[36m"
-# define c3 "\x1b[0m"
-# define nl2 "\n\n"
 
 class	Entity
 {

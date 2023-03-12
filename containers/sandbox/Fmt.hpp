@@ -2,6 +2,10 @@
 #define C "\033[0;36m"
 #define R "\033[0m"
 
+#define c1 "\x1b[33m"
+#define c2 "\x1b[36m"
+#define c3 "\x1b[0m"
+
 #define nl2 "\n\n"
 #define nl "\n"
 #define nl2reset nl2 R

@@ -1,15 +1,31 @@
-comp	:=	c++ -std=c++98 -Wall -Werror -Wextra
+comp	:=	c++ -Wall -Werror -Wextra -std=c++98
+rmv	:=	rm -rf
+name	:=	out
+inc	:=	../
 src	:=	main.cc
-name	:=	$(src:.cc=)
+bud	:=	$(src:%.cc=%.o)
 
-all	:	$(name)
+%.o	:	%.cc
+		@ echo "compiling [$^] "
+		$(comp) -I$(inc) -c $^ -o $@
 
-$(name)	:	$(src)
+$(name)	:	$(bud)
+		@ echo "compiling [$@] "
 		@ $(comp) $^ -o $@
-		@ ./$(name)
-
-f	:
-		@ rm -rf $(name) a.out
 
 run	:	re
+		@ ./$(name)
+		@ make clean
+
+clean	:
+		@ $(rmv) $(bud)
+
+fclean	:	clean
+		@ $(rmv) $(name) a.out
+
+all	:	$(name)
+r	:	run
+f	:	fclean
 re	:	f all
+
+.PHONY	:	fclean clean all re f
