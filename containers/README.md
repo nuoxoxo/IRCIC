@@ -89,6 +89,7 @@ ___BST and algorithms___
 - ___Binary Search Tree___ - insert, [etc.](https://www.cs.dartmouth.edu/~thc/cs10/lectures/0428/0428.html)
 - ___Red Black Tree___ \
 ... Pseudocode - [programiz](https://www.programiz.com/dsa/red-black-tree) \
+... Python impl. - [boot.dev](https://blog.boot.dev/python/red-black-tree-python) \
 ... Expl. & impl. - [LMU](https://cs.lmu.edu/~ray/notes/redblacktrees) \
 ... Visualizer - [visualizer](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html) \
 ... Java impl. - [JAVA](https://www.happycoders.eu/algorithms/red-black-tree-java)
