@@ -109,7 +109,7 @@ _binary_search_tree_delete_node(Node *node)
 {
 	Node *parent = node->parent;
 	Node *child = _binary_search_tree_replace(node);
-	Node *ret = _successor(node);
+	Node *res = _successor(node);
 	bool both_black = ((child == NULL || child->color == BLACK) && (node->color == BLACK));
 
 	if (!child) // if !child, node is leaf
@@ -130,7 +130,7 @@ _binary_search_tree_delete_node(Node *node)
 		_destroy_node(node);
 		m_size--;
 		_assign_end();
-		return ret;
+		return res;
 	}
 	if (node->left == NULL || node->right == NULL) // if node has 1 child
 	{
@@ -156,7 +156,7 @@ _binary_search_tree_delete_node(Node *node)
 		}
 		m_size--;
 		_assign_end();
-		return ret;
+		return res;
 	}
 	// if node has 2 children
 	// swap node data with child data recursively
@@ -170,8 +170,7 @@ _binary_search_tree_delete_node(Node *node)
 
 template<typename T, typename Key, class C, class A> 
 typename ft::red_black_tree<T, Key, C, A>::
-Node *ft::red_black_tree<T, Key, C, A>::
-_successor(Node *node)
+Node	*ft::red_black_tree<T, Key, C, A>::_successor(Node *node)
 {
 	if (node->right)
 	{
@@ -254,7 +253,10 @@ void	ft::red_black_tree<T, Key, C, A>::_right_rotate(Node *node)
 template<typename T, typename Key, class C, class A> 
 typename ft::red_black_tree<T, Key, C, A>::
 Node	*ft::red_black_tree<T, Key, C, A>::_fix_red_uncle(
-	Node *parent, Node *grandparent, Node *uncle)
+	Node	*parent,
+	Node	*grandparent,
+	Node	*uncle
+)
 {
 	uncle->color = BLACK;
 	parent->color = BLACK;
@@ -275,67 +277,68 @@ void	ft::red_black_tree<T, Key, C, A>::_fix_double_black(Node *node)
 	sibling = _sibling(node);
 	parent = node->parent;
 	if (!sibling)
-		_fix_double_black(parent);
-	else
 	{
-		if (sibling->color == RED)
+		_fix_double_black(parent);
+		return ;
+	}
+	if (sibling->color == RED)
+	{
+		parent->color = RED;
+		sibling->color = BLACK;
+		if (_is_left_child(sibling))
+			_right_rotate(parent);
+		else
+			_left_rotate(parent);
+		_fix_double_black(node);
+	}
+	else if ( ! _has_red_child(sibling)) // 2 black kids
+	{
+		sibling->color = RED ;
+		if (parent->color == BLACK)
+			_fix_double_black(parent);
+		else
+			parent->color = BLACK;
+	}
+	else if (sibling->left && sibling->left->color == RED)
+	{
+		if (_is_left_child(sibling)) // left left
 		{
-			parent->color = RED;
-			sibling->color = BLACK;
-			if (_is_left_child(sibling))
-				_right_rotate(parent);
-			else
-				_left_rotate(parent);
-			_fix_double_black(node);
+			sibling->left->color = sibling->color;
+			sibling->color = parent->color;
+
+			_right_rotate(parent);
 		}
-		else 
+		else // right - left
 		{
-			if (_has_red_child(sibling))
-			{
-				if (sibling->left && sibling->left->color == RED)
-				{
-					if (_is_left_child(sibling)) // left left
-					{
-						sibling->left->color = sibling->color;
-						sibling->color = parent->color;
-						_right_rotate(parent);
-					}
-					else // right - left
-					{
-						sibling->left->color = parent->color;
-						_right_rotate(sibling);
-						_left_rotate(parent);
-					}
-				}
-				else
-				{
-					if (_is_left_child(sibling)) // left right
-					{
-						sibling->right->color = parent->color;
-						_left_rotate(sibling);
-						_right_rotate(parent);
-					}
-					else // right right
-					{
-						sibling->right->color = sibling->color;
-						sibling->color = parent->color;
-						_left_rotate(parent);
-					}
-				}
-				parent->color = BLACK;
-			}
-			else // two black children
-			{
-				sibling->color = RED;
-				if (parent->color == BLACK)
-					_fix_double_black(parent);
-				else
-					parent->color = BLACK;
-			}
+			sibling->left->color = parent->color;
+			_right_rotate(sibling);
+			_left_rotate(parent);
 		}
 	}
-}
+	else
+	{
+		if (_is_left_child(sibling)) // left right
+		{
+			sibling->right->color = parent->color;
+			_left_rotate(sibling);
+			_right_rotate(parent);
+		}
+		else // right - right
+		{
+			sibling->right->color = sibling->color;
+			sibling->color = parent->color;
 
+			_left_rotate(parent);
+		}
+	}
+	parent->color = BLACK;
+}
+/*
+else // two black children
+}
+}
+}
+*/
 
 template<typename T, typename Key, class C, class A>
 void	ft::red_black_tree<T, Key, C, A>::_destroy_node(Node *node)
@@ -357,14 +360,14 @@ Node	*ft::red_black_tree<T, Key, C, A>::_sibling(Node *node)
 }
 
 template<typename T, typename Key, class C, class A>
-bool ft::red_black_tree<T, Key, C, A>::_is_left_child(Node *node) const
+bool	ft::red_black_tree<T, Key, C, A>::_is_left_child(Node *node) const
 {
 	return (node == node->parent->left);
 }
 
 
 template<typename T, typename Key, class C, class A>
-bool ft::red_black_tree<T, Key, C, A>::_has_red_child(Node *node)
+bool	ft::red_black_tree<T, Key, C, A>::_has_red_child(Node *node)
 {
 	return ((node->left && node->left->color == RED) ||
 		(node->right && node->right->color == RED)
@@ -373,7 +376,7 @@ bool ft::red_black_tree<T, Key, C, A>::_has_red_child(Node *node)
 
 
 template<typename T, typename Key, class C, class A>
-void ft::red_black_tree<T, Key, C, A>::_clear(Node *node)
+void	ft::red_black_tree<T, Key, C, A>::_clear(Node *node)
 {
 	if (!node || node == m_end)
 		return ;
@@ -384,7 +387,10 @@ void ft::red_black_tree<T, Key, C, A>::_clear(Node *node)
 
 
 template<typename T, typename Key, class C, class A>
-void ft::red_black_tree<T, Key, C, A>::_assign_values(Node *dummy, Node *other)
+void	ft::red_black_tree<T, Key, C, A>::_assign_values(
+	Node	*dummy,
+	Node	*other
+)
 {
 	Key	*key1;
 	Key	*key2;
@@ -427,8 +433,8 @@ void	ft::red_black_tree<T, Key, C, A>::_assign_colors_p_gp(
 	typename ft::red_black_tree<T, Key, C, A>::Node *grandparent
 )
 {
-	p->color = BLACK;
-	gp->color = RED;
+	parent->color = BLACK;
+	grandparent->color = RED;
 }
 
 
@@ -440,8 +446,8 @@ void ft::red_black_tree<T, Key, C, A>::_assign_end(void)
 	max_node= _max_node();
 	max_node->right = m_end;
 	m_end->parent = max_node;
-	m_end->right = NULL;
 	m_end->color = BLACK;
+	m_end->right = NULL;
 }
 
 
