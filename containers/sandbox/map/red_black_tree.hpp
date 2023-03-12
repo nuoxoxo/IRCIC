@@ -128,24 +128,30 @@ namespace ft
 
 		// operations
 
+		size_type /* size_t */	count(const T & dummy) const
+		{
+			Node	*it;
+
+			it = _binary_search_tree_find(dummy);
+
+			return (it ? 1 : 0);
+		}
+
 		iterator	find(const T & dummy)
 		{
 			Node	*it;
 
 			it = _binary_search_tree_find(dummy);
-			if (it)
-				return (end());
-			return iterator(it);
+			return (it ? iterator(it) : (end());
 		}
 
-		iterator	find(const T & dummy) const
+		// iterator	find(const T & dummy) const
+		const_iterator	find(const T & dummy) const
 		{
 			Node	*it;
 
 			it = _binary_search_tree_find(dummy);
-			if (it)
-				return (end());
-			return iterator(it);
+			return (it ? const_iterator(it) : (end());
 		}
 
 		// protected func
