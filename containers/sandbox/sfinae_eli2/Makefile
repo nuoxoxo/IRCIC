@@ -1,4 +1,5 @@
-comp	:=	c++ -Wall -Werror -Wextra -std=c++98
+comp	:=	c++ -std=c++2a
+# comp	:=	c++ -Wall -Werror -Wextra -std=c++98
 rmv	:=	rm -rf
 name	:=	out
 inc	:=	../
@@ -14,6 +15,7 @@ $(name)	:	$(bud)
 		@ $(comp) $^ -o $@
 
 run	:	re
+		@#@ echo "./$(name) | c++filt -t \n"
 		@ ./$(name)
 		@ make clean
 

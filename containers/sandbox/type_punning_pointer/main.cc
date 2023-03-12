@@ -1,8 +1,5 @@
 #include "iostream"
-
-#define C "\033[0;32m"
-// #define C "\033[0;36m"
-#define R "\033[0m"
+#include "../Fmt.hpp"
 
 static int i = 0;
 

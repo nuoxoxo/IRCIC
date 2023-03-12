@@ -1,4 +1,4 @@
-comp	:=	c++ -Wall -Werror -Wextra -std=c++98
+comp	:=	c++ -Wall -Werror -Wextra -std=c++11
 rmv	:=	rm -rf
 name	:=	out
 inc	:=	../
@@ -12,6 +12,7 @@ bud	:=	$(src:%.cc=%.o)
 $(name)	:	$(bud)
 		@ echo "compiling [$@] "
 		@ $(comp) $^ -o $@
+		@ echo ""
 
 run	:	re
 		@ ./$(name)

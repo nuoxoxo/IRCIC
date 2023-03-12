@@ -7,14 +7,15 @@ bud	:=	$(src:%.cc=%.o)
 
 %.o	:	%.cc
 		@ echo "compiling [$^] "
-		$(comp) -I$(inc) -c $^ -o $@
+		@ $(comp) -I$(inc) -c $^ -o $@
 
 $(name)	:	$(bud)
 		@ echo "compiling [$@] "
 		@ $(comp) $^ -o $@
 
 run	:	re
-		@ ./$(name)
+		@ echo "./$(name) | c++filt -t \n"
+		@ ./$(name) | c++filt -t
 		@ make clean
 
 clean	:

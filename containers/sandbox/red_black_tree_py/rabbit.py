@@ -1,20 +1,26 @@
-import random
+import random, time
 
 class treenode :
     def __init__(self, val) :
-        self.parent = None
         self.red = False # ie. black
+        self.parent = None
         self.left = None
         self.right = None
         self.val = val
 
 class tree :
     def __init__(self) :
-        self.null = treenode(0)
-        self.null.red = False # ie. black
-        self.null.left = None
-        self.null.right = None
-        self.root = self.null
+        self.nil = treenode(0)
+        self.nil.red = False # ie. black
+        self.nil.left = None
+        self.nil.right = None
+        self.root = self.nil
+
+    """
+    __repr__ is a special method used to represent a class's objects as a string. 
+    __repr__ is called by the repr() built-in function. 
+    __repr__ is used to define your own string representation of your class objects
+    """
 
     def __repr__(self) :
         a = []
@@ -24,7 +30,7 @@ class tree :
     def Rotate_Right(self, x):
         y = x.left
         x.left = y.right
-        if y.right != self.null:
+        if y.right != self.nil:
             y.right.parent = x
         y.parent = x.parent # idem
         if x.parent == None:
@@ -39,7 +45,7 @@ class tree :
     def Rotate_Left(self, x):
         y = x.right
         x.right = y.left
-        if y.left != self.null:
+        if y.left != self.nil:
             y.left.parent = x
         y.parent = x.parent # idem
         if x.parent == None:
@@ -92,20 +98,31 @@ class tree :
         node = treenode(val)
         node.red = True # new node has to be red
         node.parent = None
-        node.left = self.null
-        node.right = self.null
+        node.left = self.nil
+        node.right = self.nil
         
-        # class bst Insertion ---> find the currect parent
+        # classic binary search tree insertion ---> find correct parent
         parent = None
         current = self.root
-        while current != self.null:
+        while current != self.nil:
             parent = current
+            if current.val == node.val:
+                return
+            if current.val > node.val:
+                current = current.left
+            else:
+                current = current.right
+    
+            # buggy part : fixed
+            """
             if current.val == parent.val:
                 return
             if current.val > parent.val:
                 current = current.left
             else:
                 current = current.right
+            """
+
         node.parent = parent
         if parent == None:
             self.root = node
@@ -134,16 +151,21 @@ def Number_Generator(bound):
 
 
 def main():
-    bound = 256
-    random.seed(1)
-    tree_no_1 = tree()
+    bound, offset = 64, 100
+
+    random.seed(time.clock())
+    # random.seed(0)
+
+    rbt = tree()
     for _ in range(bound):
-        tree_no_1.Insert(random.randint(1, bound + 1))
-    print(tree_no_1)
+        rbt.Insert(random.randint(1, bound + offset))
+    # Inorder_Printer(rbt.root, 1, bound+offset)
+    print(rbt)
 
 
-main()
+# main()
 
-
+if __name__ == "__main__":
+    main()
 
 

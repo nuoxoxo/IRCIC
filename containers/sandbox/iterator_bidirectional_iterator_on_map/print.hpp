@@ -1,10 +1,7 @@
+#pragma once
 #include "iostream"
 #include "map"
-
-#define RED "\033[0;31m"
-#define GREEN "\033[0;32m"
-#define YELLOW "\033[0;33m"
-#define RESET "\033[0;0m"
+#include "../Fmt.hpp"
 
 using	namespace std;
 
