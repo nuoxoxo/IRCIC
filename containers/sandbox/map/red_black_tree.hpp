@@ -124,11 +124,30 @@ namespace ft
 
 		// modifiers
 
+		/*
+		void	clear()
+		{
+			_clear( m_root );
+			m_root = m_end;
+			m_size = 0;
+		}
+
+		void	swap_tree(red_black_tree & dummy)
+		{
+			ft::swap(m_root, dummy.m_root);
+			ft::swap(m_end, dummy.m_end);
+			ft::swap(m_size, dummy.m_size);
+			ft::swap(m_allocator, dummy.m_allocator);
+			ft::swap(m_compare_type, dummy.m_compare_type);
+		}
+		*/
 
 
 		// operations
 
-		size_type /* size_t */	count(const T & dummy) const
+		// size_type /* size_t */ count(const T & dummy) const
+		/*
+		size_type	count(const T & dummy) const
 		{
 			Node	*it;
 
@@ -187,7 +206,9 @@ namespace ft
 			}
 			return (it);
 		}
+		*/
 
+		/*
 		iterator	find(const T & dummy)
 		{
 			Node	*it;
@@ -204,19 +225,7 @@ namespace ft
 			it = _binary_search_tree_find(dummy);
 			return (it ? const_iterator(it) : (end());
 		}
-
-		// protected func
-		// FIX tree
-		// max node, min node
-		// find T (pair)
-		// insert when empty
-		// successor
-		// DOWN
-		// LEFT ROT
-		// RIGHT ROT
-		// RED UNCLE FIX
-		// 2 X BLACK FIX
-		// SIBLING
+		*/
 
 
 
@@ -225,20 +234,11 @@ namespace ft
 
 
 
-
-}
-
-~red_black_tree()
-{
-	if (m_size)
-		clear();
-	_destroy_node(m_root);
-}
-
 	};
-	// class red_black_tree ends
 
-	// make stuff up
+
+
+
 }
 
 #endif
