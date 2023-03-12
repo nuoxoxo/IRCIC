@@ -228,16 +228,60 @@ namespace ft
 		*/
 
 
+		void	swap_values(Node *L, Node *R)
+		// Can't find another way since Key are const from map erase
+		{
+			Key key;
+			Key *key1;
+			Key	*key2;
+			T   tmp;
+
+			key1 = const_cast<Key *>(& L->data.first);
+			key2 = const_cast<Key *>(& R->data.first);
+
+			key = *key1;
+			*key1 = *key2;
+			*key2 = key;
+
+			tmp.second = L->data.second;
+			L->data.second = R->data.second;
+			R->data.second = tmp.second;
+		}
 
 		// o(^_^o) (o^_^)o
 
+	private:
 
+		ft::pair<iterator, bool>	_insert_empty(Node *);
 
+		Node	*_fix_red_uncle(Node *parent, Node *grandparent, Node *uncle);
+
+		Node	*_binary_search_tree_replace(Node *);
+		// find node that replace the deleted one
+
+		Node	*_binary_search_tree_find(const T &) const;
+		Node	*_min_node() const;
+		Node	*_max_node() const;
+		Node	*_binary_search_tree_delete_node(Node *);
+		Node	*_successor(Node *);
+		Node	*_sibling(Node *);
+
+		void	_left_rotate(Node *);
+		void	_right_rotate(Node *);
+		void	_destroy_node(Node *);
+		void	_clear(Node *);
+		bool	_is_left_child(Node *) const;
+		bool	_has_red_child(Node *);
+		void	_move_down(Node * node, Node * parent);
+		void	_fix_double_black(Node *);
+		void	_assign_values(Node *dummy, Node *node);
+		void	_swap_values(Node *dummy, Node *node);
+		void	_binary_search_tree_fix_insert(Node *);
+
+		void	_assign_colors_p_gp(Node *parent, Node *grandparent);
+		void	_assign_end();
 
 	};
-
-
-
 
 }
 
