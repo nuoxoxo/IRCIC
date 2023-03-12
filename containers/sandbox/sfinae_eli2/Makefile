@@ -13,8 +13,8 @@ $(name)	:	$(bud)
 		@ $(comp) $^ -o $@
 
 run	:	re
-		@ echo "./$(name) | c++filt -t \n"
-		@ ./$(name) | c++filt -t
+		@#@ echo "./$(name) | c++filt -t \n"
+		@ ./$(name)
 		@ make clean
 
 clean	:
