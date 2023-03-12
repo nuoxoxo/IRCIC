@@ -3,9 +3,9 @@
 Data   | Task
 :----- | :---
 mar 11 | vector : cleanup while loop
-&nbsp; | sanbox : continue map
+&#8203;| sanbox : continue map
 mar 10 | vector : fixed resize by m_next_size
-&nbsp; | ~~vector : buggy awesome test in range constr~~
+&#8203;| ~~vector : buggy awesome test in range constr~~
 mar 9  | vector : fixed mazoise copy-swap
 mar 8  | vector : fixed mazoise resize & insert
 
