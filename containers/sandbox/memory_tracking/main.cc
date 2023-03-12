@@ -1,7 +1,6 @@
 #include "iostream"
+#include "../Fmt.hpp"
 
-#define CYAN "\033[0;36m"
-#define RESET "\033[0m"
 
 static int i = 0;
 
