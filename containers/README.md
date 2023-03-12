@@ -55,6 +55,7 @@ ___is_integral___
 - type_traits/const - [HERE](https://cplusplus.com/reference/type_traits/integral_constant)\
 (is_integral dep of integral_constant) 
 - sfinae & enable_if - [eli](https://eli.thegreenplace.net/2014/sfinae-and-enable_if)
+- sfinae [h-deb.clg.qc.ca](https://h-deb.clg.qc.ca/Sujets/Divers--cplusplus/SFINAE.html)
 
 ___is_integral AND the `-pedantic` flag___ 
 - _def._ - excessively concerned with minor details or rules; overscrupulous.
