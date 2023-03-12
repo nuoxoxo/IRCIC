@@ -1,13 +1,13 @@
 #include "iostream"
 
-#include "pair.hpp"
-#include "stack.hpp"
-#include "vector.hpp"
-#include "map.hpp" // <---
+// #include "stack.hpp"
+// #include "vector.hpp"
 #include "colors.hpp"
+#include "pair.hpp"
+#include "map.hpp" // <---
 
 #include "cstdlib" // random
-#include "vector" // for mazoise reproduced
+#include "vector" // for reproducing mazoise
 
 int	main()
 {
@@ -15,19 +15,10 @@ int	main()
 
 	srand(time(0));
 
-	print_session_head(++i, "swap test :: vector<int>");
+	print_session_head(++i, " map test ");
 
 	{
-		ft::vector<int>		A(2, 42);
-		ft::vector<int>		B(9, 196883);
-		// ft::vector<std::string>	b(9, "hello, 196883");
-		/// ! swap applies only when 2 vectors are of the same type
-
-		print_vector_head(A);
-		print_vector_head(B);
-		A.swap(B);
-		print_vector_head(A);
-		print_vector_head(B);
+		// ft::map<int, int>
 	}
 
 }
