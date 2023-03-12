@@ -17,13 +17,13 @@ _binary_search_tree_find(const T & to_find) const
 	Node *tmp = m_root;
 
 	while (tmp != NULL && tmp != m_end)
-{
-	if (m_compare_type(tmp->data.first, to_find.first))
-		tmp = tmp->right;
-	else if (m_compare_type(to_find.first, tmp->data.first))
-		tmp = tmp->left;
-	else
-		return tmp;
+	{
+		if (m_compare_type(tmp->data.first, to_find.first))
+			tmp = tmp->right;
+		else if (m_compare_type(to_find.first, tmp->data.first))
+			tmp = tmp->left;
+		else
+			return tmp;
 	}
 	return (NULL);
 }
@@ -61,7 +61,7 @@ _binary_search_tree_fix_insert(
 					node->parent->parent,
 					node->parent->parent->right
 				);
-				// p gp u
+				// parent grandparent uncle
 			else
 			{
 				if (node == node->parent->right)
@@ -72,30 +72,30 @@ _binary_search_tree_fix_insert(
 				_assign_colors_p_gp(node->parent, node->parent->parent);
 				_right_rotate(node->parent->parent);
 			}
+
+			return ;
+		}
+		// remaining cases: node is a right node
+		if (node->parent->parent->left && node->parent->parent->left->color == RED)
+		{
+			// case: uncle left is red
+
+			node = _fix_red_uncle(
+				node->parent,
+				node->parent->parent,
+				node->parent->parent->left
+			);
+			// p gp u
 		}
 		else
-		// case: node is a right node
 		{
-			if (node->parent->parent->left && node->parent->parent->left->color == RED)
-			// case: uncle left is red
+			if (node == node->parent->left)
 			{
-				node = _fix_red_uncle(
-					node->parent,
-					node->parent->parent,
-					node->parent->parent->left
-				);
-				// p gp u
+				node = node->parent;
+				_right_rotate(node);
 			}
-			else
-			{
-				if (node == node->parent->left)
-				{
-					node = node->parent;
-					_right_rotate(node);
-				}
-				_assign_colors_p_gp(node->parent, node->parent->parent);
-				_left_rotate(node->parent->parent);
-			}
+			_assign_colors_p_gp(node->parent, node->parent->parent);
+			_left_rotate(node->parent->parent);
 		}
 	}
 	m_root->color = BLACK;
