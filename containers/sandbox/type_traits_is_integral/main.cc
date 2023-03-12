@@ -1,7 +1,6 @@
 #include "iostream"
 #include "type_traits"
-#define nl "\n"
-#define nl2 "\n\n"
+#include "../Fmt.hpp"
 
 using	namespace std;
  
