@@ -1,6 +1,6 @@
 #include "iostream"
 
-using namespace std;
+using	namespace std;
 
 class	X {};
 struct	Y { using type = X; };
