@@ -78,7 +78,7 @@ namespace ft
 			m_allocator = A;
 		}
 
-		~red_black_tree()
+		~ red_black_tree()
 		{
 			if (m_size) clear();
 			_destroy_node(m_root);
@@ -106,24 +106,47 @@ namespace ft
 
 		// accessor
 
-		// begin . bg const
-		// end . nd const
-		// compare const
+		iterator	begin()
+		{ return (iterator(_min_node())); } // inorder
+
+		const_iterator	begin() const
+		{ return const_iterator(_min_node()); } // inorder
+
+		iterator	end()
+		{ return iterator(m_end); }
+
+		const_iterator	end() const
+		{ return const_iterator(m_end); }
+
+		Compare	compare() const
+		{ return m_compare_type; }
+
 
 		// modifiers
 
-		// insert
-		// clear
-		// swap (tree)
-		// "node erase"
-		// "range erase"
+
 
 		// operations
 
-		// count
-		// lower_bound . upper bound . lb const . ub const
-		// find . const
+		iterator	find(const T & dummy)
+		{
+			Node	*it;
 
+			it = _binary_search_tree_find(dummy);
+			if (it)
+				return (end());
+			return iterator(it);
+		}
+
+		iterator	find(const T & dummy) const
+		{
+			Node	*it;
+
+			it = _binary_search_tree_find(dummy);
+			if (it)
+				return (end());
+			return iterator(it);
+		}
 
 		// protected func
 		// FIX tree
