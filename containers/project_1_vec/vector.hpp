@@ -45,22 +45,15 @@ namespace ft
 
 
 	private:
+
 		size_type		m_size;
 		size_type		m_capacity;
 		value_type		* m_vector;
 		allocator_type		m_allocator;
 
-		size_type	m_next_size(size_type n)
-		{
-			size_type	res;
+		size_type	_get_next_size(size_type) const;
 
-			res = n > max_size() / 2 ? max_size() : m_capacity * 2;
-			if (!res)
-				res = 1;
-			if (res < n)
-				return (n);
-			return (res);
-		}
+
 	public:
 
 		// default
@@ -75,23 +68,48 @@ namespace ft
 
 		// fill
 		explicit vector(
-			size_type n,
-			const T & value = T(),
-			const allocator_type& alloc = allocator_type()
+			size_type	n,
+			const		T & value = T(),
+			const		allocator_type& alloc = allocator_type()
 		)
 		{
+			size_type	i;
+
 			m_size = n;
 			m_capacity = n;
 			m_allocator = alloc;
 			m_vector = m_allocator.allocate(n);
 
-			for (size_type i = 0; i < m_size; i++)
+			i = -1;
+			while (++i < m_size)
 				m_allocator.construct(m_vector + i, value);
 		}
-
-		// FIXME - mar 8 :: failed mazoise copy-swap test @ 381c381
-		// FIXME - mar 9 :: corr. failed mazoise copy-swap @ Segfault
 		// FIXED - mar 10 :: Fixed mazoise copy-swap test @ 381c381
+		// FIXME - mar 9 :: corr. failed mazoise copy-swap @ Segfault
+		// FIXME - mar 8 :: failed mazoise copy-swap test @ 381c381
+		/*
+		{
+			m_allocator = alloc;
+			m_size = 0;
+			m_capacity = 0;
+			m_vector = m_allocator.allocate(0);
+			assign(first, last);
+
+			// FIXME - found the problem cf. mazoise copy-swap test ~~
+		}
+		{
+			m_allocator = alloc;
+
+			m_size = std::distance(first, last);
+			m_capacity = std::distance(first, last);
+			m_vector = m_allocator.allocate(m_capacity);
+
+			// std::copy(first, last, begin());
+			// FIXME - is Segfault caused by std::copy ? No.
+
+			assign(first, last); // is Segfault caused by std::copy ? No.
+		}
+		*/
 
 		// range
 		template<class InputIterator>
@@ -110,12 +128,15 @@ namespace ft
 
 		vector(const vector & val)
 		{
+			size_type	i;
+
 			m_allocator = val.m_allocator;
 			m_size = val.m_size;
 			m_capacity = val.m_size ;
 			m_vector = m_allocator.allocate(m_capacity);
 
-			for (size_type i = 0; i < m_size; i++)
+			i = -1;
+			while (++i < m_size)
 			{
 				m_allocator.construct(m_vector + i, *(val.m_vector + i));
 			}
@@ -134,7 +155,7 @@ namespace ft
 
 			assign(dummy.begin(), dummy.end());
 
-			return *this;
+			return (*this);
 		}
 
 		template<class InputIterator>
@@ -188,12 +209,12 @@ namespace ft
 
 		iterator	end()
 		{
-			return iterator(m_vector + size());
+			return iterator(m_vector + m_size);
 		}
 
 		const_iterator	end() const
 		{
-			return const_iterator(m_vector + size());
+			return const_iterator(m_vector + m_size);
 		}
 
 		reverse_iterator	rbegin()
@@ -224,42 +245,93 @@ namespace ft
 			return m_size;
 		}
 
+
 		size_type	max_size() const
 		{
 			return m_allocator.max_size();
 		}
 
-		void	resize(size_type n, T c = T())
+
+		void	resize(size_type size, T c = T())
 		{
-			// FIXME - mar 9 :: kk's soln, passed resize test @ 25c25
-			// FIXED - mar 8 :: mine, failed resize test @ 25c25
-			// FIXED - mar 10 :: concise++ improvement
-
-			if (n > size())
+			if (size > m_size)
 			{
-				reserve(m_next_size(n));
-				insert(end(), n - size(), c);
+				reserve(_get_next_size(size));
+				insert(end(), size - m_size, c);
 			}
-			else if (n < size())
+			else if (size < m_size)
 			{
-				erase(begin() + n, end());
+				erase(begin() + size, end());
 			}
-
-			
-
 		}
+		// FIXED - mar 10 :: concise++ improvement
+		// FIXME - mar 9 :: passed resize @ 25c25 failed the rest
+		// FIXED - mar 8 :: mine, failed resize test @ 25c25
+		/*
+		{
+			// FIXME - passed resize @ 25c25 failed others
+
+			size_type	Size;
+
+			Size = m_size;
+			if (n < Size)
+			{
+				while (m_size > n)
+				{
+					m_allocator.destroy( & m_vector[m_size - 1]);
+					m_size--;
+				}
+			}
+			else if (n > m_capacity)
+			{
+				Size = m_capacity * 2 < n ? n : m_capacity * 2;
+
+				reserve(Size);
+			}
+			while (m_size < n)
+			{
+				m_allocator.construct(m_vector + m_size, c);
+				m_size++;
+			}
+		}
+		{
+			// FIXME - failed resize test @ 25c25
+
+			if (n < m_size)
+			{
+				while (m_size > n)
+				{
+					m_allocator.destroy( & m_vector[m_size - 1]);
+					--m_size;
+				}
+				return ;
+			}
+			reserve(n);
+			while (m_size < n)
+			{
+				m_allocator.construct(m_vector + m_size, c);
+				++m_size;
+			}
+		}
+		*/
+
 
 		size_type capacity() const
 		{
 			return (m_capacity);
 		}
 
+
 		bool	empty() const
 		{
+			return ((m_size) ? false : true);
+			/*
 			if (m_size != 0)
 				return false;
 			return true;
+			*/
 		}
+
 
 		void	reserve(size_type n)
 		{
@@ -271,12 +343,14 @@ namespace ft
 			if (n > capacity())
 			{
 				size_type	old_capacity = m_capacity;
-				T		* tmp;
+				size_type	i;
+				T		*tmp;
 
 				m_capacity = n;
 				tmp = m_allocator.allocate(m_capacity);
 
-				for (size_type i = 0; i < m_size; i++)
+				i = -1;
+				while (++i < m_size)
 				{
 					m_allocator.construct(tmp + i, *(m_vector + i));
 					m_allocator.destroy( & m_vector[i]);
@@ -306,31 +380,31 @@ namespace ft
 		// .at
 		reference	at(size_type n)
 		{
-			if (n < 0 || n >= size())
+			if (n < 0 || n >= m_size)
 				throw(std::out_of_range("vector::at"));
 			return (*(m_vector + n));
 		}
 
 		const_reference	at(size_type n) const
 		{
-			if (n < 0 || n >= size())
+			if (n < 0 || n >= m_size)
 				throw(std::out_of_range("vector::at const"));
 			return (*(m_vector + n));
 		}
 
 
 		// .front & .back
-		reference front()
+		reference	front()
 		{
 			return (*m_vector);
 		}
 
-		const_reference front() const
+		const_reference	front() const
 		{
 			return (*m_vector);
 		}
 
-		reference back()
+		reference	back()
 		{
 			return (*(m_vector + (m_size - 1)));
 		}
@@ -342,7 +416,7 @@ namespace ft
 
 
 		// modifiers:
-		void push_back(const T & val)
+		void	push_back(const T & val)
 		{
 			if (m_capacity == 0)
 				reserve(1);
@@ -356,13 +430,12 @@ namespace ft
 			m_allocator.construct(end, val);
 		}
 
-		void pop_back()
+		void	pop_back()
 		{
-			if (!empty())
-			{
-				m_size--;
-				m_allocator.destroy( & m_vector[m_size]);
-			}
+			if (empty())
+				return ;
+			m_size--;
+			m_allocator.destroy( & m_vector[m_size]);
 		}
 
 
@@ -371,71 +444,102 @@ namespace ft
 
 			// std::cout << RED << __FUNCTION__ << " called 1 (single element)" << RESET nl2reset;
 
-			size_type	diff = position - begin();
+			size_type	offset = position - begin();
+			size_type	i;
 
 			if (m_size + 1 > m_capacity)
 			{
 				reserve(m_size > 0 ? m_size * 2 : 1);
 			}
-			for (size_type i = m_size; i > diff; i--)
+			i = m_size + 1;
+			while (--i > offset)
 			{
 				m_allocator.construct( & m_vector[i], m_vector[i - 1]);
 				m_allocator.destroy( & m_vector[i - 1]);
 			}
-			m_allocator.construct( & m_vector[diff], val);
+			m_allocator.construct( & m_vector[offset], val);
 			m_size++;
-
-			return begin() + diff;
+			return (begin() + offset);
 		}
 
 
-		void insert(iterator position, size_type n, const T & val)
+		void	insert(iterator position, size_type n, const T & val)
 		{
-			///	FIXME -  mar 8 :: fixing cf. mazoise Resize & Insert tests
+			size_type	i;
 
 			if (m_capacity < m_size + n)
 			{
 				size_type	diff;
 
 				diff = position - begin();
-				reserve(m_next_size(m_size + n));
+
+				reserve(m_size + n > m_size * 2 ? m_size + n : m_size * 2);
 				position = begin() + diff;
+			}
+			i = -1;
+			while (++i < n)
+				position = insert(position, val) + 1;
+
+		}
+		// FIXME -  mar 8 :: cf. mazoise Resize & Insert tests
+		/*
+		{
+			size_type	diff = position - begin();
+
+			if (m_size + n > m_capacity)
+			{
+				reserve(m_size + std::max(m_size, n));
+			}
+			for (size_type i = m_size; i > diff; i--)
+			{
+				m_allocator.construct( & m_vector[i + n - 1], m_vector[i - 1]);
+				m_allocator.destroy( & m_vector[i - 1]);
 			}
 			for (size_type i = 0; i < n; i++)
 			{
-				position = insert(position, val) + 1;
+				m_allocator.construct( & m_vector[diff + i], val);
 			}
-
+			m_size += n;
 		}
+		*/
+
 
 		template<class InputIterator>
 		void	insert(
-			iterator position,
-			InputIterator first,
-			InputIterator last,
+			iterator	position,
+			InputIterator	first,
+			InputIterator	last,
 			typename ft::enable_if<!ft::is_integral<InputIterator>::value,
 				InputIterator>::type* = 0
 		)
 		{
 			difference_type	dist = 0;
 			difference_type	diff;
+			difference_type	i;
+			InputIterator	it;
 
-			for (InputIterator tmp = last; tmp != first; tmp--)
-				dist++;
+			it = last;
+			while (it > first)
+			{
+				++dist;
+				--it;
+			}
 			diff = position - begin();
 			if (m_size + dist > m_capacity)
+			{
 				reserve(m_size + std::max(m_size, (size_type) dist));
-
-			for (difference_type i = m_size; i > diff; i--)
+			}
+			i = m_size + 1;
+			while (--i > diff)
 			{
 				m_allocator.construct( & m_vector[i + dist - 1], m_vector[i - 1]);
 				m_allocator.destroy( & m_vector[i - 1]);
 			}
-
-			for (difference_type i = 0; i < dist; i++)
+			i = -1;
+			while (++i < dist)
 			{
 				m_allocator.construct( & m_vector[diff + i], *first);
-				first++;
+				++first;
 			}
 			m_size += dist;
 		}
@@ -452,10 +556,11 @@ namespace ft
 			}
 			else
 			{
-				for (; it + 1 != ite; it++)
+				while (it + 1 != ite)
 				{
 					m_allocator.destroy(it);
 					m_allocator.construct(it, *(it + 1));
+					++it;
 				}
 				m_allocator.destroy(it);
 				m_size--;
@@ -465,12 +570,16 @@ namespace ft
 
 		iterator erase(iterator first, iterator last)
 		{
-			iterator it = first;
-			iterator ret;
-			for (; first != last; ++first)
-				ret = erase(it);
+			iterator	res;
+			iterator	it;
 
-			return ret;
+			it = first;
+			while (first < last)
+			{
+				res = erase(it);
+				++first;
+			}
+			return res;
 		}
 
 		void	swap(vector & val)
@@ -484,7 +593,9 @@ namespace ft
 
 		void	clear()
 		{
-			for (size_type i = 0; i < m_size; i++)
+			size_type	i = -1;
+
+			while (++i < m_size)
 				m_allocator.destroy(m_vector + i);
 			m_size = 0;
 		}
@@ -503,6 +614,19 @@ namespace ft
 		return ft::equal<it_type, it_type>(L.begin(), L.end(), R.begin());
 
 	}
+	/*
+	{
+		if (L.size() != R.size())
+			return false;
+		for (size_t i = 0; i < L.size(); i++)
+		{
+			if (L[i] == R[i])
+				continue ;
+			return false;
+		}
+		return (true);
+	}
+	*/
 
 	template<class T, class Allocator>
 	bool operator != (
@@ -523,7 +647,7 @@ namespace ft
 	}
 
 	template<class T, class Allocator>
-	bool operator> (
+	bool operator > (
 		const vector<T, Allocator> & L, 
 		const vector<T, Allocator> & R
 	)
@@ -554,6 +678,23 @@ namespace ft
 	{
 		L.swap(R);
 	}
+
 }
+
+
+template<class T, class Allocator>
+typename ft::vector<T, Allocator>::size_type 
+ft::vector<T, Allocator>::_get_next_size(size_type size) const
+{
+	size_type	res;
+
+	res = size > max_size() / 2 ? max_size() : m_capacity * 2;
+	if (!res)
+		res = 1;
+	if (res < size)
+		return (size);
+	return (res);
+}
+
 
 #endif
