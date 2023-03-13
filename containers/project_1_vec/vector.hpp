@@ -436,7 +436,7 @@ namespace ft
 		}
 
 
-		iterator insert(iterator position, const T & val)
+		iterator	insert(iterator position, const T & val)
 		{
 
 			// std::cout << RED << __FUNCTION__ << " called 1 (single element)" << RESET nl2reset;
@@ -459,9 +459,8 @@ namespace ft
 		}
 
 
-		void insert(iterator position, size_type n, const T & val)
+		void	insert(iterator position, size_type n, const T & val)
 		{
-			///	FIXME -  mar 8 :: fixing cf. mazoise Resize & Insert tests
 
 			if (m_capacity < m_size + n)
 			{
@@ -477,6 +476,28 @@ namespace ft
 			}
 
 		}
+		// FIXME -  mar 8 :: cf. mazoise Resize & Insert tests
+		/*
+		{
+			size_type	diff = position - begin();
+
+			if (m_size + n > m_capacity)
+			{
+				reserve(m_size + std::max(m_size, n));
+			}
+			for (size_type i = m_size; i > diff; i--)
+			{
+				m_allocator.construct( & m_vector[i + n - 1], m_vector[i - 1]);
+				m_allocator.destroy( & m_vector[i - 1]);
+			}
+			for (size_type i = 0; i < n; i++)
+			{
+				m_allocator.construct( & m_vector[diff + i], val);
+			}
+			m_size += n;
+		}
+		*/
+
 
 		template<class InputIterator>
 		void	insert(
@@ -573,6 +594,19 @@ namespace ft
 		return ft::equal<it_type, it_type>(L.begin(), L.end(), R.begin());
 
 	}
+	/*
+	{
+		if (L.size() != R.size())
+			return false;
+		for (size_t i = 0; i < L.size(); i++)
+		{
+			if (L[i] == R[i])
+				continue ;
+			return false;
+		}
+		return (true);
+	}
+	*/
 
 	template<class T, class Allocator>
 	bool operator != (
