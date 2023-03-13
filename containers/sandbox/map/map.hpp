@@ -66,7 +66,7 @@ namespace ft
 		const map<Key, T, Compare, Allocator> & L,
 		const map<Key, T, Compare, Allocator> & R)
 	{
-		return (!(L== R));
+		return (!(L == R));
 	}
 
 	template<class Key, class T, class Compare, class Allocator>
