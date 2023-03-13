@@ -42,7 +42,7 @@ namespace ft
 		typedef size_t	size_type;
 
 		typedef typename
-		allocator_type::template rebind<Node>::other	node_allocator;
+		Allocator::template rebind<Node>::other	node_allocator;
 
 
 		Node		*m_root;//, *m_end;
@@ -72,7 +72,7 @@ namespace ft
 			m_end = create_node();
 			m_root = m_end;
 			m_size = 0;
-			m_compare_type = C;
+			m_compare = C;
 			m_allocator = A;
 		}
 
@@ -99,7 +99,7 @@ namespace ft
 
 		size_type max_size() const { return (m_allocator.max_size()); }
 		size_type empty() const { return (!(m_size)); }
-		size_type size() const { return (m_size()); }
+		size_type size() const { return (m_size); }
 
 
 		// accessor
@@ -117,12 +117,11 @@ namespace ft
 		{ return const_iterator(m_end); }
 
 		Compare	compare() const
-		{ return m_compare_type; }
+		{ return m_compare; }
 
 
 		// modifiers
 
-		/*
 		void	clear()
 		{
 			_clear( m_root );
@@ -136,15 +135,13 @@ namespace ft
 			ft::swap(m_end, dummy.m_end);
 			ft::swap(m_size, dummy.m_size);
 			ft::swap(m_allocator, dummy.m_allocator);
-			ft::swap(m_compare_type, dummy.m_compare_type);
+			ft::swap(m_compare, dummy.m_compare);
 		}
-		*/
 
 
 		// operations
 
 		// size_type /* size_t */ count(const T & dummy) const
-		/*
 		size_type	count(const T & dummy) const
 		{
 			Node	*it;
@@ -159,7 +156,7 @@ namespace ft
 
 			it = begin();
 			ite = end();
-			while (it != ite && m_compare_type(it->first, dummy.first))
+			while (it != ite && m_compare(it->first, dummy.first))
 			{
 				++it;
 			}
@@ -172,7 +169,7 @@ namespace ft
 
 			it = begin();
 			ite = end();
-			while (it != ite && m_compare_type(it->first, dummy.first))
+			while (it != ite && m_compare(it->first, dummy.first))
 			{
 				++it;
 			}
@@ -185,7 +182,7 @@ namespace ft
 
 			it = begin();
 			ite = end();
-			while (it != ite && m_compare_type(it->first, dummy.first))
+			while (it != ite && m_compare(it->first, dummy.first))
 			{
 				++it;
 			}
@@ -198,21 +195,19 @@ namespace ft
 
 			it = begin();
 			ite = end();
-			while (it != ite && m_compare_type(it->first, dummy.first))
+			while (it != ite && m_compare(it->first, dummy.first))
 			{
 				++it;
 			}
 			return (it);
 		}
-		*/
 
-		/*
 		iterator	find(const T & dummy)
 		{
 			Node	*it;
 
 			it = _binary_search_tree_find(dummy);
-			return (it ? iterator(it) : (end());
+			return (it ? iterator(it) : (end()));
 		}
 
 		// iterator	find(const T & dummy) const
@@ -221,9 +216,8 @@ namespace ft
 			Node	*it;
 
 			it = _binary_search_tree_find(dummy);
-			return (it ? const_iterator(it) : (end());
+			return (it ? const_iterator(it) : (end()));
 		}
-		*/
 
 
 		void	swap_values(Node *L, Node *R)
@@ -281,6 +275,8 @@ namespace ft
 	};
 
 }
+
+# include "red_black_tree.tpp"
 
 #endif
 
