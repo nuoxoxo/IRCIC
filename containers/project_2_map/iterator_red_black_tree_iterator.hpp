@@ -105,7 +105,7 @@ namespace ft
 
 		pointer operator -> () const
 		{
-			return ( &(_current->data) );
+			return ( &(m_current->data) );
 		}
 
 		// post icr
@@ -138,7 +138,7 @@ namespace ft
 			// TODO
 		}
 
-	}
+	};
 
 	// make stuff up
 }
