@@ -472,7 +472,8 @@ namespace ft
 				size_type	diff;
 
 				diff = position - begin();
-				reserve(_get_next_size(m_size + n));
+
+				reserve(m_size + n > m_size * 2 ? m_size + n : m_size * 2);
 				position = begin() + diff;
 			}
 			i = -1;
