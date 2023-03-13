@@ -88,10 +88,32 @@ namespace ft
 			for (size_type i = 0; i < m_size; i++)
 				m_allocator.construct(m_vector + i, value);
 		}
-
-		// FIXME - mar 8 :: failed mazoise copy-swap test @ 381c381
-		// FIXME - mar 9 :: corr. failed mazoise copy-swap @ Segfault
+		/*
 		// FIXED - mar 10 :: Fixed mazoise copy-swap test @ 381c381
+		// FIXME - mar 9 :: corr. failed mazoise copy-swap @ Segfault
+		// FIXME - mar 8 :: failed mazoise copy-swap test @ 381c381
+		{
+			m_allocator = alloc;
+			m_size = 0;
+			m_capacity = 0;
+			m_vector = m_allocator.allocate(0);
+			assign(first, last);
+
+			// FIXME - found the problem cf. mazoise copy-swap test ~~
+		}
+		{
+			m_allocator = alloc;
+
+			m_size = std::distance(first, last);
+			m_capacity = std::distance(first, last);
+			m_vector = m_allocator.allocate(m_capacity);
+
+			// std::copy(first, last, begin());
+			// FIXME - is Segfault caused by std::copy ? No.
+
+			assign(first, last); // is Segfault caused by std::copy ? No.
+		}
+		*/
 
 		// range
 		template<class InputIterator>
