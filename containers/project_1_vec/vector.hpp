@@ -88,10 +88,10 @@ namespace ft
 			for (size_type i = 0; i < m_size; i++)
 				m_allocator.construct(m_vector + i, value);
 		}
-		/*
 		// FIXED - mar 10 :: Fixed mazoise copy-swap test @ 381c381
 		// FIXME - mar 9 :: corr. failed mazoise copy-swap @ Segfault
 		// FIXME - mar 8 :: failed mazoise copy-swap test @ 381c381
+		/*
 		{
 			m_allocator = alloc;
 			m_size = 0;
@@ -246,17 +246,15 @@ namespace ft
 			return m_size;
 		}
 
+
 		size_type	max_size() const
 		{
 			return m_allocator.max_size();
 		}
 
+
 		void	resize(size_type n, T c = T())
 		{
-			// FIXME - mar 9 :: kk's soln, passed resize test @ 25c25
-			// FIXED - mar 8 :: mine, failed resize test @ 25c25
-			// FIXED - mar 10 :: concise++ improvement
-
 			if (n > size())
 			{
 				reserve(m_next_size(n));
@@ -266,15 +264,64 @@ namespace ft
 			{
 				erase(begin() + n, end());
 			}
-
-			
-
 		}
+		// FIXED - mar 10 :: concise++ improvement
+		// FIXME - mar 9 :: passed resize @ 25c25 failed the rest
+		// FIXED - mar 8 :: mine, failed resize test @ 25c25
+		/*
+		{
+			// FIXME - passed resize @ 25c25 failed others
+
+			size_type	Size;
+
+			Size = size();
+			if (n < Size)
+			{
+				while (size() > n)
+				{
+					m_allocator.destroy( & m_vector[m_size - 1]);
+					m_size--;
+				}
+			}
+			else if (n > m_capacity)
+			{
+				Size = m_capacity * 2 < n ? n : m_capacity * 2;
+
+				reserve(Size);
+			}
+			while (size() < n)
+			{
+				m_allocator.construct(m_vector + m_size, c);
+				m_size++;
+			}
+		}
+		{
+			// FIXME - failed resize test @ 25c25
+
+			if (n < size())
+			{
+				while (m_size > n)
+				{
+					m_allocator.destroy( & m_vector[m_size - 1]);
+					--m_size;
+				}
+				return ;
+			}
+			reserve(n);
+			while (m_size < n)
+			{
+				m_allocator.construct(m_vector + m_size, c);
+				++m_size;
+			}
+		}
+		*/
+
 
 		size_type capacity() const
 		{
 			return (m_capacity);
 		}
+
 
 		bool	empty() const
 		{
@@ -282,6 +329,7 @@ namespace ft
 				return false;
 			return true;
 		}
+
 
 		void	reserve(size_type n)
 		{
