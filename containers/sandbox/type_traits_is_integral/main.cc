@@ -1,6 +1,6 @@
 #include "iostream"
 #include "type_traits"
-#include "../Fmt.hpp"
+#include "Fmt.hpp"
 
 using	namespace std;
  
