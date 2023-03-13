@@ -54,12 +54,10 @@ namespace ft
 	public:
 
 		typedef typename
-		ft::red_black_tree_iterator<T, Node*, Compare>
-			iterator;
+		ft::red_black_tree_iterator<T, Node*, Compare> iterator;
 
 		typedef typename
-		ft::red_black_tree_iterator<const T, Node*, Compare>
-			const_iterator;
+		ft::red_black_tree_iterator<const T, Node*, Compare> const_iterator;
 
 
 		// gaia : constr, deconstr, make_node
@@ -182,7 +180,7 @@ namespace ft
 
 			it = begin();
 			ite = end();
-			while (it != ite && m_compare(it->first, dummy.first))
+			while (it != ite && m_compare(dummy->first, it.first))
 			{
 				++it;
 			}
@@ -195,7 +193,7 @@ namespace ft
 
 			it = begin();
 			ite = end();
-			while (it != ite && m_compare(it->first, dummy.first))
+			while (it != ite && m_compare(dummy->first, it.first))
 			{
 				++it;
 			}
@@ -238,6 +236,51 @@ namespace ft
 			L->data.second = R->data.second;
 			R->data.second = tmp.second;
 		}
+
+		size_type	node_erase(T p)
+		{
+			Node	*node;
+
+			if (empty())
+				return 0;
+			node = _binary_search_tree_find(p);
+			if (!node)
+				return 0;
+			if (m_size == 1)
+			{
+				clear();
+				return (1);
+			}
+			_binary_search_tree_delete_node(node);
+			return (1);
+		}
+
+		void	range_erase(iterator first, iterator last)
+		{
+			size_type	i;
+			iterator	it;
+			Node		*node;
+
+			node = first.base();
+			if (first == begin() && last == end())
+			{
+				clear();
+				return ;
+			}
+			i = 0;
+			it = first;
+			while (it != last)
+			{
+				it++;
+				i++;
+			}
+			while (i)
+			{
+				node = _binary_search_tree_delete_node(node);
+				i--;
+			}
+		}
+
 
 	private:
 
