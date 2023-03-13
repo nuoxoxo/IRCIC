@@ -24,8 +24,8 @@ namespace ft
 		const map<Key, T, Compare, Allocator> & R
 	)
 	{
-		typename
-		map<Key, T, key_compare, Allocator>::const_iterator	it, it2;
+		typename map<Key, T, key_compare, Allocator>::const_iterator	it;
+		typename map<Key, T, key_compare, Allocator>::const_iterator	it2;
 
 		if (L.size() != R.size())
 		{
@@ -50,7 +50,7 @@ namespace ft
 		const map<Key, T, Compare, Allocator> & L,
 		const map<Key, T, Compare, Allocator> & R
 	)
-	{	return ( ft::lexicographical_compare(L.begin(), L.end(), R.begin(), R.end() );	}
+	{	return ( ft::lexicographical_compare(L.begin(), L.end(), R.begin(), R.end()) );	}
 
 	template<class Key, class T, class Compare, class Allocator>
 	bool operator > (
