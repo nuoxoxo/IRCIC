@@ -17,27 +17,84 @@ namespace ft
 	public :
 	};
 
-	template<class Key, class T, class key_compare, class Alloc>
+
+	template<class Key, class T, class Compare, class Allocator>
 	bool operator == (
-		const map<Key, T, key_compare, Alloc> & L,
-		const map<Key, T, key_compare, Alloc> & R
+		const map<Key, T, Compare, Allocator> & L,
+		const map<Key, T, Compare, Allocator> & R
 	)
 	{
-		typename map<Key, T, key_compare, Alloc>::const_iterator it, it2;// = L .begin();
+		typename
+		map<Key, T, key_compare, Allocator>::const_iterator	it, it2;
 
+		if (L.size() != R.size())
+		{
+			return (false);
+		}
 		L = L.begin();
 		R = R.begin();
-		if (L .size() != R .size())
-			return false;
-		while (it != L .end())
+		while (it != L.end())
 		{
 			if (*it != *it2)
-				return false;
+			{
+				return (false);
+			}
 			it++;
 			it2++;
 		}
-		return true;
+		return (true);
 	}
+
+	template<class Key, class T, class Compare, class Allocator>
+	bool operator < (
+		const map<Key, T, Compare, Allocator> & L,
+		const map<Key, T, Compare, Allocator> & R
+	)
+	{	return ( ft::lexicographical_compare(L.begin(), L.end(), R.begin(), R.end() );	}
+
+	template<class Key, class T, class Compare, class Allocator>
+	bool operator > (
+		const map<Key, T, Compare, Allocator> & L,
+		const map<Key, T, Compare, Allocator> & R
+	)
+	{
+		return (R < L);
+	}
+
+	template<class Key, class T, class Compare, class Allocator>
+	bool operator != (
+		const map<Key, T, Compare, Allocator> & L,
+		const map<Key, T, Compare, Allocator> & R)
+	{
+		return (!(L== R));
+	}
+
+	template<class Key, class T, class Compare, class Allocator>
+	bool operator <= (
+		const map<Key, T, Compare, Allocator> & L,
+		const map<Key, T, Compare, Allocator> & R)
+	{
+		return (!(R < L));
+	}
+
+	template<class Key, class T, class Compare, class Allocator>
+	bool operator >= (
+		const map<Key, T, Compare, Allocator> & L,
+		const map<Key, T, Compare, Allocator> & R)
+	{
+		return (!(L < R));
+	}
+
+	template<class Key, class T, class Compare, class Allocator>
+	void	swap(
+		map<Key, T, Compare, Allocator> & L,
+		map<Key, T, Compare, Allocator> & R
+	)
+	{
+		return L.swap(R);
+	}
+
+
 
 }
 
