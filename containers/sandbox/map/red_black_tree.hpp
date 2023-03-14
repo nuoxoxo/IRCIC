@@ -23,16 +23,17 @@ namespace ft
 	{
 
 	private:
+		typedef T	value_type;
 
 		class	Node
 		{
 
 		public:
-			T	data;
-			Node	*left;
-			Node	*right;
-			Node	*parent;
-			e_tree_node_color color;
+			T			data;
+			Node			*left;
+			Node			*right;
+			Node			*parent;
+			e_tree_node_color	color;
 
 		public:
 			Node (const T & heart /* ptr */ = T ())
@@ -41,9 +42,10 @@ namespace ft
 		};
 
 		// addition : begin //
-		typedef T*	pointer;
-		typedef T	value_type;
+		typedef value_type *	pointer;
+
 		typedef Key		key_type;
+		typedef size_t		size_type;
 		typedef Compare		compare_type;
 		typedef Allocator	allocator_type;
 
@@ -53,7 +55,6 @@ namespace ft
 		
 		// addition : end //
 
-		typedef size_t		size_type;
 
 		typedef typename
 		allocator_type::template rebind<Node>::other	node_allocator;
@@ -78,12 +79,12 @@ namespace ft
 		// gaia : constr, deconstr, make_node
 
 		red_black_tree(
-			const Compare & C = Compare(),
-			const node_allocator & A = node_allocator()
+			const Compare & comp = Compare(),
+			const node_allocator & allo = node_allocator()
 		)
 		{
-			m_node_allocator = A;
-			m_compare = C;
+			m_node_allocator = allo;
+			m_compare = comp;
 			m_end = create_node();
 			m_root = m_end;
 			m_size = 0;
@@ -91,7 +92,8 @@ namespace ft
 
 		~ red_black_tree()
 		{
-			if (m_size) clear();
+			if (m_size)
+				clear();
 			_destroy_node(m_root);
 		}
 
@@ -99,7 +101,7 @@ namespace ft
 		{
 			Node	*node;
 
-			node = m_node_allocator.construct(node, Node(val));
+			node = m_node_allocator.allocate(1);
 			m_node_allocator.construct(node, Node(val));
 			node->parent = 0;
 			node->left = 0;
@@ -166,7 +168,7 @@ namespace ft
 				parent->left = node;
 			else
 				parent->right = node;
-			_bst_fix_insert(node);
+			_binary_search_tree_fix_insert(node);
 			_assign_end();
 			m_size++;
 			return ft::make_pair(iterator(node), true);
