@@ -3,7 +3,7 @@
 Data   | Task
 :----- | :---
 mar 13 | vector : fix 802/804 disparity in insert
-&#8203;| sanbox : enable_if 
+&#8203;| sandbox : enable_if 
 &#8203;| map : now compiles, hpp empty
 mar 12 | rabbit : tpp now hosts private _func
 &#8203;| type punning sandbox
