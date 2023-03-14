@@ -62,12 +62,14 @@ namespace ft
 		red_black_tree_iterator(const red_black_tree_iterator & it)
 		: m_current(it.m_current) {}
 
+
 		red_black_tree_iterator & operator = (const red_black_tree_iterator & it)
 		{
 			if (this != & it)
 				m_current = it.m_current;
 			return (*this);
 		}
+
 
 		operator red_black_tree_iterator<const T, Node, Compare> () const
 		{

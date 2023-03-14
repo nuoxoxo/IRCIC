@@ -124,14 +124,14 @@ namespace ft
 		{
 		}
 
-		map &operator=(const map &R )
+		map & operator = (const map & R )
 		{
 			if (*this != R )
 			{
 				clear();
-				insert(R .begin(), R .end());
+				insert(R.begin(), R.end());
 			}
-			return *this;
+			return (*this);
 		}
 
 		// ==================== Iterators
@@ -320,15 +320,15 @@ namespace ft
 		const map<Key, T, Compare, Allocator> & R
 	)
 	{
-		typename map<Key, T, Compare, Allocator>::const_iterator	it;
-		typename map<Key, T, Compare, Allocator>::const_iterator	it2;
+		typename map<Key, T, Compare, Allocator>::const_iterator it;
+		typename map<Key, T, Compare, Allocator>::const_iterator it2;
 
 		if (L.size() != R.size())
 		{
 			return (false);
 		}
-		L = L.begin();
-		R = R.begin();
+		it = L.begin(); // FIXME - fixed
+		it2 = R.begin();
 		while (it != L.end())
 		{
 			if (*it != *it2)
