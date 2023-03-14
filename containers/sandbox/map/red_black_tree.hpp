@@ -16,9 +16,7 @@ enum	e_tree_node_color
 
 namespace ft
 {
-	template< typename T, /* pair */ typename Key,
-		//class Allocator, class Compare >
-		class Compare, class Allocator = std::allocator<T> >
+	template< typename T, typename Key, class Compare, class Allocator >
 	class red_black_tree
 	{
 
@@ -36,44 +34,32 @@ namespace ft
 			e_tree_node_color	color;
 
 		public:
-			Node (const T & heart /* ptr */ = T ())
-			: data(heart), left(0), right(0), parent(0) {}
+			Node (const T & val /* ptr */ = T ())
+			: data(val), left(0), right(0), parent(0) {}
 
 		};
 
-		// addition : begin //
-		typedef value_type *	pointer;
-
-		typedef Key		key_type;
 		typedef size_t		size_type;
-		typedef Compare		compare_type;
-		typedef Allocator	allocator_type;
-
-		typedef	Node *			node_pointer;
-		typedef const Node *		const_node_pointer;
-		typedef const value_type &	const_reference;
-		
-		// addition : end //
-
 
 		typedef typename
-		allocator_type::template rebind<Node>::other	node_allocator;
-		// Allocator::template rebind<Node>::other	node_allocator;
+		Allocator::template rebind<Node>::other	node_allocator;
 
 
 		Node		*m_root;//, *m_end;
 		Node		*m_end;
 		size_t		m_size;
 		Compare		m_compare;
-		node_allocator	m_node_allocator;
+		node_allocator	m_allocator;
 
 	public:
 
 		typedef typename
-		ft::red_black_tree_iterator<T, Node*, Compare> iterator;
+		ft::red_black_tree_iterator<T, Node*, Compare>
+			iterator;
 
 		typedef typename
-		ft::red_black_tree_iterator<const T, Node*, Compare> const_iterator;
+		ft::red_black_tree_iterator<const T, Node*, Compare>
+			const_iterator;
 
 
 		// gaia : constr, deconstr, make_node
@@ -83,7 +69,7 @@ namespace ft
 			const node_allocator & allo = node_allocator()
 		)
 		{
-			m_node_allocator = allo;
+			m_allocator = allo;
 			m_compare = comp;
 			m_end = create_node();
 			m_root = m_end;
@@ -101,8 +87,8 @@ namespace ft
 		{
 			Node	*node;
 
-			node = m_node_allocator.allocate(1);
-			m_node_allocator.construct(node, Node(val));
+			node = m_allocator.allocate(1);
+			m_allocator.construct(node, Node(val));
 			node->parent = 0;
 			node->left = 0;
 			node->right = 0;
@@ -113,8 +99,8 @@ namespace ft
 
 		// capapcity
 
-		size_type max_size() const { return (m_node_allocator.max_size()); }
-		size_type empty() const { return (!(m_size)); }
+		size_type max_size() const { return (m_allocator.max_size()); }
+		bool empty() const { return (!(m_size)); } // FIXME : crucial
 		size_type size() const { return (m_size); }
 
 
@@ -138,11 +124,11 @@ namespace ft
 
 		// modifiers
 
-		ft::pair<iterator, bool> insert(const_reference val)
+		ft::pair<iterator, bool> insert(const T & val)
 		{
-			node_pointer	node = create_node(val);
-			node_pointer	temp = m_root;
-			node_pointer	parent = NULL;
+			Node	*node = create_node(val);
+			Node	*temp = m_root;
+			Node	*parent = NULL;
 
 			if (empty())
 			{
@@ -187,14 +173,13 @@ namespace ft
 			ft::swap(m_root, dummy.m_root);
 			ft::swap(m_end, dummy.m_end);
 			ft::swap(m_size, dummy.m_size);
-			ft::swap(m_node_allocator, dummy.m_node_allocator);
+			ft::swap(m_allocator, dummy.m_allocator);
 			ft::swap(m_compare, dummy.m_compare);
 		}
 
 
 		// operations
 
-		// size_type /* size_t */ count(const T & dummy) const
 		size_type	count(const T & dummy) const
 		{
 			Node	*it;
@@ -229,13 +214,18 @@ namespace ft
 			return (it);
 		}
 
+
 		iterator	upper_bound(const T & dummy)
 		{
-			const_iterator it, ite;
+			/*
+			const_iterator	it;
+			const_iterator	ite;
+			*/
+			iterator	it, ite;
 
 			it = begin();
 			ite = end();
-			while (it != ite && m_compare(dummy->first, it.first))
+			while (it != ite && !m_compare(dummy.first, it->first))
 			{
 				++it;
 			}
@@ -248,7 +238,7 @@ namespace ft
 
 			it = begin();
 			ite = end();
-			while (it != ite && m_compare(dummy->first, it.first))
+			while (it != ite && !(m_compare(dummy.first, it->first)))
 			{
 				++it;
 			}
