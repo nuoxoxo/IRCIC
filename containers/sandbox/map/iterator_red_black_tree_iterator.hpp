@@ -190,7 +190,6 @@ namespace ft
 
 	};
 
-	// make stuff up
 }
 
 #endif
