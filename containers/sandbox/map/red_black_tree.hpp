@@ -17,7 +17,8 @@ enum	e_tree_node_color
 namespace ft
 {
 	template< typename T, /* pair */ typename Key,
-		class Allocator, class Compare >
+		//class Allocator, class Compare >
+		class Compare, class Allocator = std::allocator<T> >
 	class red_black_tree
 	{
 
@@ -39,17 +40,31 @@ namespace ft
 
 		};
 
-		typedef size_t	size_type;
+		// addition : begin //
+		typedef T*	pointer;
+		typedef T	value_type;
+		typedef Key		key_type;
+		typedef Compare		compare_type;
+		typedef Allocator	allocator_type;
+
+		typedef	Node *			node_pointer;
+		typedef const Node *		const_node_pointer;
+		typedef const value_type &	const_reference;
+		
+		// addition : end //
+
+		typedef size_t		size_type;
 
 		typedef typename
-		Allocator::template rebind<Node>::other	node_allocator;
+		allocator_type::template rebind<Node>::other	node_allocator;
+		// Allocator::template rebind<Node>::other	node_allocator;
 
 
 		Node		*m_root;//, *m_end;
 		Node		*m_end;
 		size_t		m_size;
 		Compare		m_compare;
-		node_allocator	m_allocator;
+		node_allocator	m_node_allocator;
 
 	public:
 
@@ -67,11 +82,11 @@ namespace ft
 			const node_allocator & A = node_allocator()
 		)
 		{
+			m_node_allocator = A;
+			m_compare = C;
 			m_end = create_node();
 			m_root = m_end;
 			m_size = 0;
-			m_compare = C;
-			m_allocator = A;
 		}
 
 		~ red_black_tree()
@@ -82,9 +97,10 @@ namespace ft
 
 		Node	*create_node(const T & val = T ()) // default: RED
 		{
-			Node	*node; 
+			Node	*node;
 
-			node = m_allocator.construct(node, Node(val));
+			node = m_node_allocator.construct(node, Node(val));
+			m_node_allocator.construct(node, Node(val));
 			node->parent = 0;
 			node->left = 0;
 			node->right = 0;
@@ -95,7 +111,7 @@ namespace ft
 
 		// capapcity
 
-		size_type max_size() const { return (m_allocator.max_size()); }
+		size_type max_size() const { return (m_node_allocator.max_size()); }
 		size_type empty() const { return (!(m_size)); }
 		size_type size() const { return (m_size); }
 
@@ -120,6 +136,43 @@ namespace ft
 
 		// modifiers
 
+		ft::pair<iterator, bool> insert(const_reference val)
+		{
+			node_pointer	node = create_node(val);
+			node_pointer	temp = m_root;
+			node_pointer	parent = NULL;
+
+			if (empty())
+			{
+				return ( _insert_empty(node) );
+			}
+			while (temp != NULL && temp != m_end)
+			// Find if already a node with the same key, if not, give pos for new node
+			{
+				parent = temp;
+				if (m_compare(val.first, temp->data.first))
+					temp = temp->left;
+				else if (m_compare(temp->data.first, val.first))
+					temp = temp->right;
+				else
+				{
+					_destroy_node(node);
+					_assign_end();
+					return ( ft::make_pair(iterator(temp), false) ); // already a node
+				}
+			}
+			node->parent = parent;
+			if (m_compare(val.first, parent->data.first))
+				parent->left = node;
+			else
+				parent->right = node;
+			_bst_fix_insert(node);
+			_assign_end();
+			m_size++;
+			return ft::make_pair(iterator(node), true);
+		}
+
+
 		void	clear()
 		{
 			_clear( m_root );
@@ -132,7 +185,7 @@ namespace ft
 			ft::swap(m_root, dummy.m_root);
 			ft::swap(m_end, dummy.m_end);
 			ft::swap(m_size, dummy.m_size);
-			ft::swap(m_allocator, dummy.m_allocator);
+			ft::swap(m_node_allocator, dummy.m_node_allocator);
 			ft::swap(m_compare, dummy.m_compare);
 		}
 
@@ -223,7 +276,7 @@ namespace ft
 			Key key;
 			Key *key1;
 			Key	*key2;
-			T   tmp;
+			T   temp;
 
 			key1 = const_cast<Key *>(& L->data.first);
 			key2 = const_cast<Key *>(& R->data.first);
@@ -232,9 +285,9 @@ namespace ft
 			*key1 = *key2;
 			*key2 = key;
 
-			tmp.second = L->data.second;
+			temp.second = L->data.second;
 			L->data.second = R->data.second;
-			R->data.second = tmp.second;
+			R->data.second = temp.second;
 		}
 
 		size_type	node_erase(T p)

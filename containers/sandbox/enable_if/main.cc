@@ -1,16 +1,15 @@
-
 #include "iostream"
 #include "type_traits"
 #include "Fmt.hpp"
 
 // enable_if example: 2 ways of using enable_if
 
-template < class T >
+
+template<class T>
 typename std::enable_if< std::is_integral<T>::value, bool >::type
 is_odd(T);
 
-template < class T, 
-class = typename std::enable_if<std::is_integral<T>::value>::type >
+template<class T, class = typename std::enable_if<std::is_integral<T>::value>::type>
 bool is_even (T);
 
 int	main()
@@ -31,11 +30,13 @@ int	main()
 		}
 	}
 	{
-		// float	f = 2.0f; // no matching func bcz not enabled
+		// float	f = 2.0f;
+		// float is not an integaral type, does not compile
+
 		long long	f = 2147483647;
 		int		i = -1;
 
-		while (++i < 2)
+		while (++i < 4)
 		{
 			std::cout << "number " c1 << f << R << " is odd: "
 			<< is_odd(f) << nl;
@@ -44,6 +45,7 @@ int	main()
 			<< is_even(f) << nl2;
 
 			f++;
+
 		}
 
 	}
@@ -58,19 +60,18 @@ int	main()
 // way 1 - the return type (bool) is only valid if T is an integral type:
 
 template < class T >
-typename
-std::enable_if< std::is_integral<T>::value, bool >::type is_odd(T num)
+typename std::enable_if< std::is_integral<T>::value, bool >::type is_odd(T num)
 {
-	return (bool) (num % 2);
+	return ((bool) (num % 2));
 }
 
-// way 2 - the second template argument is only valid if T is an integral type:
 
-// template<class T, class = typename std::enable_if<std::is_integral<T>::value>::type>
+// way 2 - in template, the 2nd argument won't exsit if T is NOT an integral type:
+
 template < class T, class type >
 bool	is_even (T num)	// ( c++11 required )
 {
-	return ( !(bool) (num % 2));
+	return ( !((bool) (num % 2)) );
 }
 
 
