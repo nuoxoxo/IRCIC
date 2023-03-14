@@ -92,7 +92,9 @@ namespace	ft
 	{
 		std::cout << p.first << ' ' << p.second << nl;
 	}
-};
+}//;
+// above is crucial fix
+
 
 /* ****************************************
  *  type test, operator test              *

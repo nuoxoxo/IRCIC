@@ -70,10 +70,12 @@ namespace ft
 	public:
 
 		typedef typename
-		ft::red_black_tree_iterator<T, Node*, Compare> iterator;
+		ft::red_black_tree_iterator<T, Node*, Compare>
+			iterator;
 
 		typedef typename
-		ft::red_black_tree_iterator<const T, Node*, Compare> const_iterator;
+		ft::red_black_tree_iterator<const T, Node*, Compare>
+			const_iterator;
 
 
 		// gaia : constr, deconstr, make_node
@@ -231,11 +233,12 @@ namespace ft
 
 		iterator	upper_bound(const T & dummy)
 		{
-			const_iterator it, ite;
+			const_iterator	it;
+			const_iterator	ite;
 
 			it = begin();
 			ite = end();
-			while (it != ite && m_compare(dummy->first, it.first))
+			while (it != ite && /*here*/!m_compare(dummy.first, it->first))
 			{
 				++it;
 			}
@@ -248,7 +251,7 @@ namespace ft
 
 			it = begin();
 			ite = end();
-			while (it != ite && m_compare(dummy->first, it.first))
+			while (it != ite && !/* here */m_compare(dummy->first, it.first))
 			{
 				++it;
 			}
