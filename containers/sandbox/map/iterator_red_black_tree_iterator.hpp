@@ -121,6 +121,31 @@ namespace ft
 		red_black_tree_iterator & operator ++ ()
 		{
 			// TODO
+			if (m_current && m_current->right)
+			{
+				m_current = m_current->right;
+				while (m_current->left)
+					m_current = m_current->left;
+			}
+			else if (m_current && m_current->parent)
+			{
+				Node	curr, temp;
+
+				curr = m_current;
+				temp = m_current->parent;
+				while (temp && m_current == temp->right)
+				{
+					if (temp->parent == 0)
+					{
+						m_current = curr->parent;
+						return (*this);
+					}
+					m_current = temp;
+					temp = temp->parent;
+				}
+				m_current = temp;
+			}
+			return (*this);
 		}
 
 		// post dcr
@@ -136,6 +161,31 @@ namespace ft
 		red_black_tree_iterator & operator -- ()
 		{
 			// TODO
+			if (m_current && m_current->left)
+			{
+				m_current = m_current->left;
+				while (m_current->right && m_current->right)
+				{
+					m_current = m_current->right;
+				}
+			}
+			else if (m_current && m_current->parent)
+			{
+				Node curr = m_current;
+				Node temp = m_current->parent;
+				while (temp && m_current == temp->left)
+				{
+					if (temp->parent == 0)
+					{
+						m_current = curr;
+						return (*this);
+					}
+					m_current = temp;
+					temp = temp->parent;
+				}
+				m_current = temp;
+			}
+			return (*this);
 		}
 
 	};
