@@ -43,7 +43,9 @@ namespace ft
 		// addition : begin //
 		typedef T*	pointer;
 		typedef T	value_type;
+
 		typedef Key		key_type;
+		typedef size_t		size_type;
 		typedef Compare		compare_type;
 		typedef Allocator	allocator_type;
 
@@ -53,7 +55,6 @@ namespace ft
 		
 		// addition : end //
 
-		typedef size_t		size_type;
 
 		typedef typename
 		allocator_type::template rebind<Node>::other	node_allocator;
