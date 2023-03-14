@@ -2,7 +2,9 @@
 
 Data   | Task
 :----- | :---
-mar 14 | map : fixing bug
+mar 15 | map : bug identified & fixed, rbt::upper_bound
+&#8203;| fixed small bug in operator ==, map hpp
+mar 14 | map : const pair bug
 &#8203;| need main & tester
 mar 13 | vector : fix 802/804 disparity in insert
 &#8203;| sandbox : enable_if 
