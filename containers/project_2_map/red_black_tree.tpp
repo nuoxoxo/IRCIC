@@ -18,9 +18,9 @@ _binary_search_tree_find(const T & to_find) const
 
 	while (tmp != NULL && tmp != m_end)
 	{
-		if (m_compare_type(tmp->data.first, to_find.first))
+		if (m_compare(tmp->data.first, to_find.first))
 			tmp = tmp->right;
-		else if (m_compare_type(to_find.first, tmp->data.first))
+		else if (m_compare(to_find.first, tmp->data.first))
 			tmp = tmp->left;
 		else
 			return tmp;

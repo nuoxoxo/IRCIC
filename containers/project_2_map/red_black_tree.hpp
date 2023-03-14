@@ -16,30 +16,30 @@ enum	e_tree_node_color
 
 namespace ft
 {
-	template< typename T, /* pair */ typename Key,
-		class Allocator, class Compare >
+	template< typename T, typename Key, class Compare, class Allocator >
 	class red_black_tree
 	{
 
 	private:
+		typedef T	value_type;
 
 		class	Node
 		{
 
 		public:
-			T	data;
-			Node	*left;
-			Node	*right;
-			Node	*parent;
-			e_tree_node_color color;
+			T			data;
+			Node			*left;
+			Node			*right;
+			Node			*parent;
+			e_tree_node_color	color;
 
 		public:
-			Node (const T & heart /* ptr */ = T ())
-			: data(heart), left(0), right(0), parent(0) {}
+			Node (const T & val /* ptr */ = T ())
+			: data(val), left(0), right(0), parent(0) {}
 
 		};
 
-		typedef size_t	size_type;
+		typedef size_t		size_type;
 
 		typedef typename
 		Allocator::template rebind<Node>::other	node_allocator;
@@ -54,37 +54,41 @@ namespace ft
 	public:
 
 		typedef typename
-		ft::red_black_tree_iterator<T, Node*, Compare> iterator;
+		ft::red_black_tree_iterator<T, Node*, Compare>
+			iterator;
 
 		typedef typename
-		ft::red_black_tree_iterator<const T, Node*, Compare> const_iterator;
+		ft::red_black_tree_iterator<const T, Node*, Compare>
+			const_iterator;
 
 
 		// gaia : constr, deconstr, make_node
 
 		red_black_tree(
-			const Compare & C = Compare(),
-			const node_allocator & A = node_allocator()
+			const Compare & comp = Compare(),
+			const node_allocator & allo = node_allocator()
 		)
 		{
+			m_allocator = allo;
+			m_compare = comp;
 			m_end = create_node();
 			m_root = m_end;
 			m_size = 0;
-			m_compare = C;
-			m_allocator = A;
 		}
 
 		~ red_black_tree()
 		{
-			if (m_size) clear();
+			if (m_size)
+				clear();
 			_destroy_node(m_root);
 		}
 
 		Node	*create_node(const T & val = T ()) // default: RED
 		{
-			Node	*node; 
+			Node	*node;
 
-			node = m_allocator.construct(node, Node(val));
+			node = m_allocator.allocate(1);
+			m_allocator.construct(node, Node(val));
 			node->parent = 0;
 			node->left = 0;
 			node->right = 0;
@@ -96,7 +100,7 @@ namespace ft
 		// capapcity
 
 		size_type max_size() const { return (m_allocator.max_size()); }
-		size_type empty() const { return (!(m_size)); }
+		bool empty() const { return (!(m_size)); } // FIXME : crucial
 		size_type size() const { return (m_size); }
 
 
@@ -120,6 +124,43 @@ namespace ft
 
 		// modifiers
 
+		ft::pair<iterator, bool> insert(const T & val)
+		{
+			Node	*node = create_node(val);
+			Node	*temp = m_root;
+			Node	*parent = NULL;
+
+			if (empty())
+			{
+				return ( _insert_empty(node) );
+			}
+			while (temp != NULL && temp != m_end)
+			// Find if already a node with the same key, if not, give pos for new node
+			{
+				parent = temp;
+				if (m_compare(val.first, temp->data.first))
+					temp = temp->left;
+				else if (m_compare(temp->data.first, val.first))
+					temp = temp->right;
+				else
+				{
+					_destroy_node(node);
+					_assign_end();
+					return ( ft::make_pair(iterator(temp), false) ); // already a node
+				}
+			}
+			node->parent = parent;
+			if (m_compare(val.first, parent->data.first))
+				parent->left = node;
+			else
+				parent->right = node;
+			_binary_search_tree_fix_insert(node);
+			_assign_end();
+			m_size++;
+			return ft::make_pair(iterator(node), true);
+		}
+
+
 		void	clear()
 		{
 			_clear( m_root );
@@ -139,7 +180,6 @@ namespace ft
 
 		// operations
 
-		// size_type /* size_t */ count(const T & dummy) const
 		size_type	count(const T & dummy) const
 		{
 			Node	*it;
@@ -174,13 +214,18 @@ namespace ft
 			return (it);
 		}
 
+
 		iterator	upper_bound(const T & dummy)
 		{
-			const_iterator it, ite;
+			/*
+			const_iterator	it;
+			const_iterator	ite;
+			*/
+			iterator	it, ite;
 
 			it = begin();
 			ite = end();
-			while (it != ite && m_compare(dummy->first, it.first))
+			while (it != ite && !m_compare(dummy.first, it->first))
 			{
 				++it;
 			}
@@ -193,7 +238,7 @@ namespace ft
 
 			it = begin();
 			ite = end();
-			while (it != ite && m_compare(dummy->first, it.first))
+			while (it != ite && !(m_compare(dummy.first, it->first)))
 			{
 				++it;
 			}
@@ -223,7 +268,7 @@ namespace ft
 			Key key;
 			Key *key1;
 			Key	*key2;
-			T   tmp;
+			T   temp;
 
 			key1 = const_cast<Key *>(& L->data.first);
 			key2 = const_cast<Key *>(& R->data.first);
@@ -232,9 +277,9 @@ namespace ft
 			*key1 = *key2;
 			*key2 = key;
 
-			tmp.second = L->data.second;
+			temp.second = L->data.second;
 			L->data.second = R->data.second;
-			R->data.second = tmp.second;
+			R->data.second = temp.second;
 		}
 
 		size_type	node_erase(T p)
