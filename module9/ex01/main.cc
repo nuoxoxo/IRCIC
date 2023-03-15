@@ -3,7 +3,7 @@
 #include "stack"//"deque"
 #include "RPN.hpp"
 
-//#include "cassert"
+#include "cassert"
 //#include "string" // std::to_string
 
 using	namespace std;
@@ -50,6 +50,14 @@ void	test(string expr, string compare)
 		assert(res == compare);
 	}
 
+}
+
+//to_string not include in c++98
+template<typename T>
+std::string to_string(const T & value) {
+    std::ostringstream oss;
+    oss << value;
+    return oss.str();
 }
 
 string	calc(string line)
