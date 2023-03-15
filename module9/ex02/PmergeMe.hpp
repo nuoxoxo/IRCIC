@@ -31,15 +31,15 @@ bool	isnumeric(std::string s)
 
 void	_usage_(std::string message)
 {
-	if (message != "")
-		std::cout << YELLOW << message << nlreset;
 	if (message == "Error")
 	{
 		std::cout << message << nlreset;
 		return ;
 	}
+	if (message != "")
+		std::cout << YELLOW << message << nlreset;
 	std::cout << "Example: \n";
-	std::cout << "$> ./PmergeMe 3 5 9 7 4" nl2;
+	std::cout << "$> ./PmergeMe 3 5 9 7 4" nl;
 }
 
 
