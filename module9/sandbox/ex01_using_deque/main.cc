@@ -1,6 +1,6 @@
 #include "iostream"
 #include "sstream"
-#include "stack"//"deque"
+#include "deque"
 #include "RPN.hpp"
 
 //#include "cassert"
@@ -54,7 +54,7 @@ void	test(string expr, string compare)
 
 string	calc(string line)
 {
-	stack<string>	E;
+	deque<string>	E;
 	string		s;
 	stringstream	ss(line);
 	while (!ss.eof() && ss >> s)
@@ -64,35 +64,35 @@ string	calc(string line)
 			int	r = 0, l = 0;
 			if (E.size())
 			{
-				stringstream(E.top()) >> r;
-				E.pop();
+				stringstream(E.back()) >> r;
+				E.pop_back();
 			}
 			if (E.size())
 			{
-				stringstream(E.top()) >> l;
-				E.pop();
+				stringstream(E.back()) >> l;
+				E.pop_back();
 			}
 			if (s == "+")
-				E.push(to_string(l + r));
+				E.push_back(to_string(l + r));
 			else if (s == "-")
-				E.push(to_string(l - r));
+				E.push_back(to_string(l - r));
 			else if (s == "*")
-				E.push(to_string(l * r));
+				E.push_back(to_string(l * r));
 			else if (s == "/")
-				E.push(to_string(l / r));
+				E.push_back(to_string(l / r));
 		}
 		else if ( ! isnumeric(s))
 		{
 			if ((s[0] == '+' || s[0] == '-')
 			&& isnumeric(s.substr(1)))
-				E.push(s.substr(1));
+				E.push_back(s.substr(1));
 			else
 				return "Error";
 		}
 		else if (isnumeric(s))
-			E.push(s);
+			E.push_back(s);
 	}
-	return E.top();
+	return E.back();
 }
 
 bool	isnumeric(string s)
