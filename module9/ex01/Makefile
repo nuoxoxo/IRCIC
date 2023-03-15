@@ -22,7 +22,7 @@ $(name)	:	$(bud)
 		@ echo ""
 
 run	:	re
-		@ ./$(name) input.txt
+		@ ./$(name)
 		@ make clean
 
 r	:	run
