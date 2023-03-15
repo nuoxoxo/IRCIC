@@ -15,8 +15,13 @@ void	test(string, string);
 
 // drive
 
-int	main()
+int	main(int c, char **v)
 {
+	if (c == 2)
+	{
+		test(v[1], "");
+		return 0;
+	}
 	test("8 9 * 9 - 9 - 9 - 4 - 1 +", "42");
 	test("7 7 * 7 -", "42");
 	test("(1 + 1)", "Error");
@@ -38,9 +43,12 @@ void	test(string expr, string compare)
 	<< "expression: "
 	<< YELLOW << expr << nlreset
 	<< "result: "
-	<< GREEN << calc(expr) << nl2reset;
+	<< GREEN << calc(expr) << nlreset;
 
-	assert(res == compare);
+	if (compare != "")
+	{
+		assert(res == compare);
+	}
 
 }
 
