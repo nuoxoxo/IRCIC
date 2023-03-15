@@ -3,7 +3,7 @@
 *.d
 btc
 RPN
-*/RPN
+RPN
 PmergeMe
 
 .vscode
