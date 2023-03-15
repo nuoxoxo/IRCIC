@@ -4,7 +4,7 @@
 #include "deque"
 #include "PmergeMe.hpp"
 #include "algorithm" // merge
-#include "iterator"
+#include "ctime"
 
 #define BEFORE 0
 #define AFTER 1
@@ -22,6 +22,7 @@ int	main(int c, char *v[])
 	deque<int>	d;
 	int		i;
 	int		n;
+	std::time_t	start, end, diff_1, diff_2;
 
 	if (c < 2)
 		return (_usage_("no number given. exit now."), 1);
@@ -36,17 +37,25 @@ int	main(int c, char *v[])
 	}
 
 	// sort vector
-	print_vector(a, BEFORE);
+	start = time(0);
 	merge_sort(a);
-	print_vector(a, AFTER);
+	end = time(0);
+	diff_1 = end - start;
 
 	// ... 
 	cout << nl;
 
 	// sort deque
-	print_deque(d, BEFORE);
+	start = time(0);
 	d = merge_sort(d);
-	print_deque(d, AFTER);
+	end = time(0);
+	diff_2 = end - start;
+
+	cout << "Time to process a range of\t" << CYAN << a.size() << RESET
+	<< " elements with std::vector :\t" << diff_1 << " us\n";
+
+	cout << "Time to process a range of\t" << CYAN << a.size() << RESET
+	<< " elements with std::deque :\t" << diff_2 << " us\n";
 }
 
 void	print_deque(deque<int> a, bool option)
