@@ -1,6 +1,10 @@
 *mazoise
 *.csv
 *.d
+btc
+RPN
+*/RPN
+PmergeMe
 
 .vscode
 *.gch

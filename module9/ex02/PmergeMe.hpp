@@ -18,5 +18,31 @@
 # define TICK	GREEN " ✓" RESET
 # define CROSS	_RED_ " ✘" RESET
 
+bool	isnumeric(std::string s)
+{
+	size_t	i = -1;
+	while (++i < s.length())
+	{
+		if (s[i] < '0' || s[i] > '9')
+			return false;
+	}
+	return true;
+}
+
+void	_usage_(std::string message)
+{
+	if (message != "")
+		std::cout << YELLOW << message << nlreset;
+	if (message == "Error")
+	{
+		std::cout << message << nlreset;
+		return ;
+	}
+	std::cout << "Example: \n";
+	std::cout << "$> ./PmergeMe 3 5 9 7 4" nl2;
+}
+
+
 #endif
+
 
