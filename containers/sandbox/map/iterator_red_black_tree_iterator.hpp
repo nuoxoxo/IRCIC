@@ -10,7 +10,8 @@ namespace ft
 {
 	template<typename T, // type: pair
 		typename Node,
-		typename /*class*/ Compare>
+		class /*typename*/ Compare>
+		//typename /*class*/ Compare>
 	class red_black_tree_iterator : // inherit from ft::Iter
 	ft::iterator<ft::bidirectional_iterator_tag, Node>
 	{
@@ -39,27 +40,28 @@ namespace ft
 		Node	m_current;
 
 	public:
-		typedef typename ft::iterator_traits<Node>::value_type
-			value_type;
+		typedef typename
+		ft::iterator_traits<Node>::value_type	value_type;
 
-		typedef typename ft::iterator_traits<Node>::difference_type
-			difference_type;
+		typedef typename
+		ft::iterator_traits<Node>::difference_type difference_type;
 
-		typedef typename ft::iterator_traits<Node>::iterator_category
-			iterator_category;
+		typedef typename
+		ft::iterator_traits<Node>::iterator_category iterator_category;
 
-		typedef T	*pointer;
-		typedef T	&reference;
-		typedef Node	node_pointer;
+		typedef T *	pointer;
+		typedef T &	reference;
+		typedef Node	node_pointer ;
 
 	public:
 		// canon
 
-		red_black_tree_iterator() : m_current() {}
+		red_black_tree_iterator() : m_current(NULL) {}
 		red_black_tree_iterator(Node node) : m_current(node) {}
 
 		red_black_tree_iterator(const red_black_tree_iterator & it)
 		: m_current(it.m_current) {}
+
 
 		red_black_tree_iterator & operator = (const red_black_tree_iterator & it)
 		{
@@ -68,15 +70,15 @@ namespace ft
 			return (*this);
 		}
 
-		// const iterator
+
 		operator red_black_tree_iterator<const T, Node, Compare> () const
 		{
 			return
-			(red_black_tree_iterator<const T, Node, Compare> (m_current));
+			(red_black_tree_iterator<const T, Node, Compare>(m_current));
 		}
 
 
-		node_pointer base() const
+		Node  base() const
 		{
 			return (m_current);
 		}
@@ -190,7 +192,6 @@ namespace ft
 
 	};
 
-	// make stuff up
 }
 
 #endif

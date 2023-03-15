@@ -4,12 +4,14 @@ rmv	:=	rm -rf
 
 name	:=	out
 src	:=	main.cc
+inc	:=	$(foreach dir, $(INCLUDES),-I$(dir))
+inc	:=	-I./include/ -I./iter/ -I./tree/ -I./util/
 
 bud	:=	$(src:%.cc=%.o)
 
 %.o	:	%.cc
 		@ echo "compiling [$^] "
-		@ $(comp) -c $^ -o $@
+		$(comp) $(inc) -c $^ -o $@
 
 $(name)	:	$(bud)
 		@ echo "compiling [$@] "

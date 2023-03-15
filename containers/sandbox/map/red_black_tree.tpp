@@ -343,8 +343,8 @@ else // two black children
 template<typename T, typename Key, class C, class A>
 void	ft::red_black_tree<T, Key, C, A>::_destroy_node(Node *node)
 {
-	m_node_allocator.destroy(node);
-	m_node_allocator.deallocate(node, 1);
+	m_allocator.destroy(node);
+	m_allocator.deallocate(node, 1);
 }
 
 
