@@ -31,4 +31,17 @@ public:
 	{
 		operator delete (ptr);
 	}
+
+
+	size_type	max_size() const
+	{
+		return
+		( std::numeric_limits<size_type>::max() );
+	}
+
+
+
+
 };
+
+
