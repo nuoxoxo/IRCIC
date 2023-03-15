@@ -3,7 +3,7 @@
 Data   | Task
 :----- | :---
 mar 16 | module 9 : fi. ex01 ex02
-&#8203;| containers : allocator explained: [@](https://zhuanlan.zhihu.com/p/185611161)
+&#8203;| _{reading}_ : allocator explained: [@](https://zhuanlan.zhihu.com/p/185611161)
 mar 15 | map : bug identified & fixed, rbt::upper_bound
 &#8203;| fixed small bug in operator ==, map hpp
 mar 14 | map : const pair bug
