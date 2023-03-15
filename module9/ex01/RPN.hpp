@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __BITCOINEXCHANGE_HPP__
-# define __BITCOINEXCHANGE_HPP__
+#ifndef __RPN_HPP__
+# define __RPN_HPP__
 
 # define nl "\n"
 # define nl2 "\n\n"

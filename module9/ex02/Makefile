@@ -3,16 +3,18 @@ comp	:=	c++ -Wall -Werror -Wextra -std=c++98
 rmv	:=	rm -rf
 
 name	:=	btc
+name	:=	RPN
+name	:=	PmergeMe
 src	:=	main.cpp
 
 bud	:=	$(src:%.cpp=%.o)
 
 %.o	:	%.cc
-		 echo "compiling [$^] "
+		@ echo "compiling [$^] "
 		@ $(comp) -c $^ -o $@
 
 $(name)	:	$(bud)
-		 echo "compiling [$@] "
+		@ echo "compiling [$@] "
 		@ $(comp) $^ -o $@
 		@ printf "\n\t"
 		@ printf "\"are you using the right compiler? \"\n\n"
@@ -39,4 +41,3 @@ f	:	fclean
 re	:	f all
 
 .PHONY	:	fclean clean all re f
-
