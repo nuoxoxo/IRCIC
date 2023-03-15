@@ -4,7 +4,8 @@
 #include "deque"
 #include "PmergeMe.hpp"
 #include "algorithm" // merge
-#include "ctime"
+// #include "ctime"
+#include "sys/time.h"
 
 #define BEFORE 0
 #define AFTER 1
@@ -22,7 +23,10 @@ int	main(int c, char *v[])
 	deque<int>	d;
 	int		i;
 	int		n;
-	std::time_t	start, end, diff_1, diff_2;
+
+	long long		start, end, diff_1, diff_2;
+	struct timeval		tv_start, tv_end;
+
 
 	if (c < 2)
 		return (_usage_("no number given. exit now."), 1);
@@ -36,25 +40,46 @@ int	main(int c, char *v[])
 		d.push_back(n);
 	}
 
+
+	// print unsorted list
+	print_vector(a, BEFORE);
+
+
 	// sort vector
-	start = time(0);
+	if (gettimeofday( & tv_start, NULL))
+		return (1);
 	merge_sort(a);
-	end = time(0);
+	if (gettimeofday( & tv_end, NULL))
+		return (1);
+	start = tv_start.tv_usec;// + tv_end.tv_sec * 1000000;
+	end = tv_end.tv_usec;// + tv_end.tv_sec * 1000000;
 	diff_1 = end - start;
 
-	// ... 
-	cout << nl;
+
+	// newline
+	// cout << nl;
+
 
 	// sort deque
-	start = time(0);
-	d = merge_sort(d);
-	end = time(0);
+	if (gettimeofday( & tv_start, NULL))
+		return (1);
+	merge_sort(d);
+	if (gettimeofday( & tv_end, NULL))
+		return (1);
+	start = tv_start.tv_usec;// + tv_end.tv_sec * 1000000;
+	end = tv_end.tv_usec;// + tv_end.tv_sec * 1000000;
 	diff_2 = end - start;
 
-	cout << "Time to process a range of\t" << CYAN << a.size() << RESET
+
+	// print sorted list
+	print_vector(a, AFTER);
+
+
+	// print delta time
+	cout << "Time to process a range of " << CYAN << a.size() << "\t" RESET
 	<< " elements with std::vector :\t" << diff_1 << " us\n";
 
-	cout << "Time to process a range of\t" << CYAN << a.size() << RESET
+	cout << "Time to process a range of " << CYAN << d.size() << "\t" RESET
 	<< " elements with std::deque :\t" << diff_2 << " us\n";
 }
 
