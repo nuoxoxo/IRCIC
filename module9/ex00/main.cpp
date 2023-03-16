@@ -10,6 +10,8 @@
 template < typename T >
 	std::string to_string(const T &);
 
+static int stof(std::string &);
+
 bool	_check_params_(int, char **);
 void	printerr(std::string s = "");
 bool	date_is_valid(std::string &);
@@ -22,19 +24,45 @@ int	main(int c, char **v)
 {
 	std::ifstream	ifs;
 	std::ofstream	ofs;
-	std::string	file;
+	std::string	input, data;
 	std::string	s;
-	std::string	title;
 	bool		title_checked = false;
+	std::map<std::string, float>	dict;
 
 	if (!_check_params_(c, v))
-		return (printerr("could not open file."), 1);
-	file = std::string(v[1]);
+		return (printerr("could not open input."), 1);
+
+
+	// (should do this part before reading input) - open data.csv
+	data = "data.csv";
 	if (ifs.is_open())
 		ifs.close();
-	ifs.open(file.c_str());
+	ifs.open(data.c_str());
 	if (ifs.fail())
 		return (printerr(), 1);
+
+	while (!ifs.eof() && getline(ifs, s))
+	{
+		std::cout << CYAN
+		<< s.substr(0, s.find(",")) << " :: "
+		<< atof(s.substr(s.find(",") + 1).c_str()) << nlreset;
+
+		dict[s.substr(0, s.find(","))] = atof((s.substr(s.find(",") + 1)).c_str());
+	}
+
+
+
+
+	// open input.txt
+	input = std::string(v[1]);
+	if (ifs.is_open())
+		ifs.close();
+	ifs.open(input.c_str());
+	if (ifs.fail())
+		return (printerr(), 1);
+
+
+	// read input
 	while (!ifs.eof() && getline(ifs, s))
 	{
 		if ( ! title_checked && title_is_valid(s))
@@ -52,9 +80,29 @@ int	main(int c, char **v)
 		}
 		else
 		{
-			std::cout << /* YELLOW << */ s << nlreset;
+			std::string	key = s.substr(0, s.find(" | "));
+			float		val = atof(s.substr(s.find(" | ") + 3).c_str());
+
+			std::cout << RED
+			<< key << " ::::::: " << val << nl
+			<< key << " => " << val << " = " << dict[key] * val << nl;
+
+			/*
+			std::cout
+			<< s.substr(0, s.find(" | ")) << " :: "
+			<< atof(s.substr(s.find(" | ") + 3).c_str()) << nl;
+			dict[s.substr(0, s.find(" | "))] = atof((s.substr(s.find(" | ") + 3)).c_str());
+			*/
 		}
 	}
+
+
+
+
+	// std::cout << CYAN "\n(above: test print on parsing)" nl2reset;
+
+
+
 }
 
 
@@ -65,6 +113,12 @@ std::string to_string(const T & value) {
     std::ostringstream oss;
     oss << value;
     return oss.str();
+}
+
+static int stoi( std::string & s ) {
+    int i;
+    std::istringstream(s) >> i;
+    return i;
 }
 
 bool	number_check(std::string & s)
@@ -120,12 +174,12 @@ bool	query_is_valid(std::string & s)
 
 bool	title_is_valid(std::string & s)
 {
-	std::string	title;
+	std::string	title_input;
 
 	if ((int) s.length() > 12)
 	{
-		title = s.substr(0, 12);
-		if (title != "date | value")
+		title_input = s.substr(0, 12);
+		if (title_input != "date | value")
 			return (false);
 	}
 
