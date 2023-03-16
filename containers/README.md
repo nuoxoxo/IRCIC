@@ -2,6 +2,9 @@
 
 Data   | Task
 :----- | :---
+mar 16 | module 9 : fi. ex01 ex02
+&#8203;| _{reading}_ : allocator explained: [@](https://zhuanlan.zhihu.com/p/185611161) [@](https://blog.csdn.net/JMW1407/article/details/106868553) [@](https://www.cnblogs.com/simonkly/p/7819122.html) [@](https://www.jianshu.com/p/d7be8a1d9010) [@](https://learn.microsoft.com/zh-cn/cpp/standard-library/allocator-class?view=msvc-170) [@](http://llllkkkk.github.io/2014/05/01/allocator-/) [@](https://cloud.tencent.com/developer/article/1007465)
+&#8203;| [rebind](https://www.genban.org/ask/c/36708.html)
 mar 15 | map : bug identified & fixed, rbt::upper_bound
 &#8203;| fixed small bug in operator ==, map hpp
 mar 14 | map : const pair bug

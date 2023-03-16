@@ -98,6 +98,7 @@ bool	number_check(std::string & s)
 		printerr("too large a number.");
 		return (false);
 	}
+
 	return (true);
 }
 
@@ -113,6 +114,7 @@ bool	query_is_valid(std::string & s)
 	date = s.substr(0, 10);
 	if ( ! date_is_valid(date))
 		return (false);
+
 	return (true);
 }
 
@@ -126,6 +128,7 @@ bool	title_is_valid(std::string & s)
 		if (title != "date | value")
 			return (false);
 	}
+
 	return (true);
 }
 
@@ -200,6 +203,7 @@ bool	_check_params_(int c, char *v[])
 	filename = std::string(v[1]);
 	if (filename == "")
 		return (printerr(), false);
+
 	return true;
 }
 
