@@ -11,6 +11,7 @@ using	namespace std;
 string	calc(string);
 bool	isnumeric(string);
 void	test(string, string);
+string	convert(string);
 
 
 // drive
@@ -26,18 +27,25 @@ int	main(int c, char **v)
 	test("7 7 * 7 -", "42");
 	test("(1 + 1)", "Error");
 	test("10 6 9 3 + -11 * / * 17 + 5 +", "13"); // gfg
+	test("1 + 0 6 9 3 + -11 * / * 17 + 5 +", "Error");
 
 	test("3 4 +", "7");
 	test("3 5 6 + *", "33");
 	test("3 10 5 + *", "5");
 	test("12 * 2 / 5 + 46 * 6 / 8 * 2 / + 2 * 2 -", "42");
+	test("99 3 -4 + 2 - 6 + -2 +", "-3");
+	test("123 + -2 3 * 7 + -4 +", "-13");
+	test("4 12 -764 + 23 * 23 1 -", "2");
+	test("3 -4 5 + -", "Error");
 }
 
 
 // helpers
 
-void	test(string expr, string compare)
+void	test(string e, string compare)
 {
+
+	string	expr = convert(e);
 	string	res = calc(expr);
 
 	cout
@@ -51,6 +59,21 @@ void	test(string expr, string compare)
 		assert(res == compare);
 	}
 
+}
+
+string	convert(string s)
+{
+	string	r;
+
+	int	i = -1;
+	while (++i < (int) s.length())
+	{
+		if (s[i] == ' ')
+			continue ;
+		r += s[i];
+		r += ' ';
+	}
+	return (r);
 }
 
 //to_string not include in c++98
@@ -68,7 +91,6 @@ string	calc(string line)
 	stringstream	ss(line);
 	while (!ss.eof() && ss >> s)
 	{
-
 		if (s == "+" || s == "-" || s == "*" || s == "/")
 		{
 			int	r = 0, l = 0;
@@ -77,16 +99,24 @@ string	calc(string line)
 				r = 1;
 				l = 1;
 			}
+			if (!E.size())
+				return "Error";
 			if (E.size())
 			{
 				stringstream(E.top()) >> r;
 				E.pop();
 			}
+			if (!E.size())
+				return "Error";
 			if (E.size())
 			{
 				stringstream(E.top()) >> l;
 				E.pop();
 			}
+
+			// dbg
+			// cout << l << " . " << r << " . " << s << nl;
+
 			if (s == "+")
 				E.push(to_string(l + r));
 			else if (s == "-")
@@ -105,6 +135,10 @@ string	calc(string line)
 				return "Error";
 		}
 		else if (isnumeric(s))
+		{
+			E.push(s);
+		}
+		/*
 		{
 			long long ll;
 			stringstream(s) >> ll;
@@ -131,6 +165,7 @@ string	calc(string line)
 				E.push(s);
 			}
 		}
+		*/
 	}
 	return (E.top());
 }

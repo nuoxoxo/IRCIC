@@ -32,6 +32,7 @@ int	main(int c, char *v[])
 	if (c < 2)
 		return (_usage_("no number given. exit now."), 1);
 	i = 0;
+	cout << v[1] << "\n";
 	while (++i < c)
 	{
 		if ( ! isnumeric(v[i]))
@@ -53,7 +54,9 @@ int	main(int c, char *v[])
 	if (gettimeofday( & tv_end, NULL))
 		return (1);
 	start = tv_start.tv_usec;// + tv_end.tv_sec * 1000000;
+	// start = tv_start.tv_sec * (long long)1000000.0;
 	end = tv_end.tv_usec;// + tv_end.tv_sec * 1000000;
+	// end = tv_end.tv_sec * (long long)1000000.0;
 	diff_1 = end - start;
 
 
@@ -68,7 +71,10 @@ int	main(int c, char *v[])
 	if (gettimeofday( & tv_end, NULL))
 		return (1);
 	start = tv_start.tv_usec;// + tv_end.tv_sec * 1000000;
+	// start = tv_start.tv_sec * 1000000.0;
 	end = tv_end.tv_usec;// + tv_end.tv_sec * 1000000;
+	// end = tv_end.tv_sec * 1000000.0;
+
 	diff_2 = end - start;
 
 
