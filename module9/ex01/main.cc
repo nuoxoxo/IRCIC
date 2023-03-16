@@ -1,6 +1,6 @@
 #include "iostream"
 #include "sstream"
-#include "stack"//"deque"
+#include "stack"
 #include "RPN.hpp"
 
 #include "cassert"
@@ -25,11 +25,11 @@ int	main(int c, char **v)
 	test("8 9 * 9 - 9 - 9 - 4 - 1 +", "42");
 	test("7 7 * 7 -", "42");
 	test("(1 + 1)", "Error");
-	test("10 6 9 3 + -11 * / * 17 + 5 +", "13"/* "22" */); // gfg
+	test("10 6 9 3 + -11 * / * 17 + 5 +", "13"); // gfg
 
 	test("3 4 +", "7");
 	test("3 5 6 + *", "33");
-	// test("3 10 5 + *", "45");
+	test("3 10 5 + *", "5");
 	test("12 * 2 / 5 + 46 * 6 / 8 * 2 / + 2 * 2 -", "42");
 }
 
@@ -72,8 +72,11 @@ string	calc(string line)
 		if (s == "+" || s == "-" || s == "*" || s == "/")
 		{
 			int	r = 0, l = 0;
-			// if (s == "*" || s == "/")
-			// {r = 1, l = 1;}
+			if (s == "*" || s == "/")
+			{
+				r = 1;
+				l = 1;
+			}
 			if (E.size())
 			{
 				stringstream(E.top()) >> r;
@@ -84,7 +87,6 @@ string	calc(string line)
 				stringstream(E.top()) >> l;
 				E.pop();
 			}
-			// cout << l << " - " << r << " - " << s << endl;
 			if (s == "+")
 				E.push(to_string(l + r));
 			else if (s == "-")
@@ -103,9 +105,6 @@ string	calc(string line)
 				return "Error";
 		}
 		else if (isnumeric(s))
-		// {
-		// 	E.push(s);
-		// }
 		{
 			long long ll;
 			stringstream(s) >> ll;
@@ -120,17 +119,10 @@ string	calc(string line)
 					ll /= 10;
 					temp1.push(n);
 				}
-				stack<int>	temp2;
 				while (!temp1.empty())
 				{
 					int n = temp1.top();
-					temp2.push(n);
 					temp1.pop();
-				}
-				while (!temp2.empty())
-				{
-					int n = temp2.top();
-					temp2.pop();
 					E.push(to_string(n));
 				}
 			}
@@ -140,7 +132,7 @@ string	calc(string line)
 			}
 		}
 	}
-	return E.top();
+	return (E.top());
 }
 
 bool	isnumeric(string s)
