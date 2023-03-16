@@ -4,17 +4,15 @@
 #include "RPN.hpp"
 
 #include "cassert"
-#define Error "Error"
+//#include "string" // std::to_string
 
 using	namespace std;
 
-bool	isnumeric(string &);
-void	test(string, string);
 string	calc(string);
-string	to_space_separated_string(string &);
+bool	isnumeric(string);
+void	test(string, string);
+string	convert(string);
 
-template <typename T>
-string	to_string(const T &);
 
 // drive
 
@@ -25,13 +23,11 @@ int	main(int c, char **v)
 		test(v[1], "");
 		return 0;
 	}
-
 	test("8 9 * 9 - 9 - 9 - 4 - 1 +", "42");
 	test("7 7 * 7 -", "42");
-
-	test("(1 + 1)", Error);
+	test("(1 + 1)", "Error");
 	test("10 6 9 3 + -11 * / * 17 + 5 +", "13"); // gfg
-	test("1 + 0 6 9 3 + -11 * / * 17 + 5 +", Error);
+	test("1 + 0 6 9 3 + -11 * / * 17 + 5 +", "Error");
 
 	test("3 4 +", "7");
 	test("3 5 6 + *", "33");
@@ -40,8 +36,7 @@ int	main(int c, char **v)
 	test("99 3 -4 + 2 - 6 + -2 +", "-3");
 	test("123 + -2 3 * 7 + -4 +", "-13");
 	test("4 12 -764 + 23 * 23 1 -", "2");
-	test("3 -4 5 + -", Error);
-
+	test("3 -4 5 + -", "Error");
 }
 
 
@@ -50,75 +45,23 @@ int	main(int c, char **v)
 void	test(string e, string compare)
 {
 
-	string	res = calc(e);
+	string	expr = convert(e);
+	string	res = calc(expr);
 
 	cout
 	<< "expression: "
-	<< YELLOW << e << nlreset
+	<< YELLOW << expr << nlreset
 	<< "result: "
-	<< GREEN << calc(e) << nlreset;
+	<< GREEN << calc(expr) << nlreset;
 
 	if (compare != "")
 	{
 		assert(res == compare);
 	}
+
 }
 
-
-string	calc(string line)
-{
-	stack<string>	E;
-	string		s;
-	string		expr = to_space_separated_string(line);
-	stringstream	ss(expr);
-
-	while (!ss.eof() && ss >> s)
-	{
-		if (s == "+" || s == "-" || s == "*" || s == "/")
-		{
-			int	r = 0, l = 0;
-			if (s == "*" || s == "/")
-			{
-				r = 1;
-				l = 1;
-			}
-			if (!E.size())
-				return Error;
-			if (E.size())
-			{
-				stringstream(E.top()) >> r;
-				E.pop();
-			}
-			if (!E.size())
-				return Error;
-			if (E.size())
-			{
-				stringstream(E.top()) >> l;
-				E.pop();
-			}
-
-			// dbg (to keep)
-			// cout << l << " . " << r << " . " << s << nl;
-
-			if (s == "+")
-				E.push(to_string(l + r));
-			else if (s == "-")
-				E.push(to_string(l - r));
-			else if (s == "*")
-				E.push(to_string(l * r));
-			else if (s == "/")
-				E.push(to_string(l / r));
-		}
-		else if (isnumeric(s))
-		{
-			E.push(s);
-		}
-	}
-	return (E.top());
-}
-
-
-string	to_space_separated_string(string& s)
+string	convert(string s)
 {
 	string	r;
 
@@ -133,7 +76,6 @@ string	to_space_separated_string(string& s)
 	return (r);
 }
 
-
 //to_string not include in c++98
 template<typename T>
 string to_string(const T & value) {
@@ -142,7 +84,93 @@ string to_string(const T & value) {
     return oss.str();
 }
 
-bool	isnumeric(string & s)
+string	calc(string line)
+{
+	stack<string>	E;
+	string		s;
+	stringstream	ss(line);
+	while (!ss.eof() && ss >> s)
+	{
+		if (s == "+" || s == "-" || s == "*" || s == "/")
+		{
+			int	r = 0, l = 0;
+			if (s == "*" || s == "/")
+			{
+				r = 1;
+				l = 1;
+			}
+			if (!E.size())
+				return "Error";
+			if (E.size())
+			{
+				stringstream(E.top()) >> r;
+				E.pop();
+			}
+			if (!E.size())
+				return "Error";
+			if (E.size())
+			{
+				stringstream(E.top()) >> l;
+				E.pop();
+			}
+
+			// dbg
+			// cout << l << " . " << r << " . " << s << nl;
+
+			if (s == "+")
+				E.push(to_string(l + r));
+			else if (s == "-")
+				E.push(to_string(l - r));
+			else if (s == "*")
+				E.push(to_string(l * r));
+			else if (s == "/")
+				E.push(to_string(l / r));
+		}
+		else if ( ! isnumeric(s))
+		{
+			if ((s[0] == '+' || s[0] == '-')
+			&& isnumeric(s.substr(1)))
+				E.push(s.substr(1));
+			else
+				return "Error";
+		}
+		else if (isnumeric(s))
+		{
+			E.push(s);
+		}
+		/*
+		{
+			long long ll;
+			stringstream(s) >> ll;
+			if (ll < -2147483648)
+				return "Error";
+			if (ll > 9)
+			{
+				stack<int>	temp1;
+				while (ll)
+				{
+					int n = ll % 10;
+					ll /= 10;
+					temp1.push(n);
+				}
+				while (!temp1.empty())
+				{
+					int n = temp1.top();
+					temp1.pop();
+					E.push(to_string(n));
+				}
+			}
+			else
+			{
+				E.push(s);
+			}
+		}
+		*/
+	}
+	return (E.top());
+}
+
+bool	isnumeric(string s)
 {
 	size_t	i = -1;
 	while (++i < s.length())
