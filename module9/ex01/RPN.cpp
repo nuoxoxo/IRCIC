@@ -40,6 +40,7 @@ std::string	calc(std::string line)
 		if (s == "+" || s == "-" || s == "*" || s == "/")
 		{
 			int	r = 0, l = 0;
+
 			if (s == "*" || s == "/")
 			{
 				r = 1;
@@ -47,18 +48,15 @@ std::string	calc(std::string line)
 			}
 			if (!E.size())
 				return Error;
-			if (E.size())
-			{
-				std::stringstream(E.top()) >> r;
-				E.pop();
-			}
+
+			std::stringstream(E.top()) >> r;
+			E.pop();
+
 			if (!E.size())
 				return Error;
-			if (E.size())
-			{
-				std::stringstream(E.top()) >> l;
-				E.pop();
-			}
+
+			std::stringstream(E.top()) >> l;
+			E.pop();
 
 			// dbg (to keep)
 			// std::cout << l << " . " << r << " . " << s << nl;

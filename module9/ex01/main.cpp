@@ -29,7 +29,7 @@ int	main(int c, char **v)
 	test("4135/+", "1");
 	test("4 13 5 / +", "1");
 
-	std::cout << CYAN "\n::: Miscellaneous tests :::" nl2reset;
+	std::cout << CYAN "\n::: miscellaneous :::" nl2reset;
 
 	test("3 4 +", "7");
 	test("3 5 6 + *", "33");
