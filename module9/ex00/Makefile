@@ -7,12 +7,12 @@ src	:=	main.cpp
 
 bud	:=	$(src:%.cpp=%.o)
 
-%.o	:	%.cc
-		 echo "compiling [$^] "
+%.o	:	%.cpp
+		@ echo "compiling [$^] "
 		@ $(comp) -c $^ -o $@
 
 $(name)	:	$(bud)
-		 echo "compiling [$@] "
+		@ echo "compiling [$@] "
 		@ $(comp) $^ -o $@
 		@ printf "\n\t"
 		@ printf "\"are you using the right compiler? \"\n\n"

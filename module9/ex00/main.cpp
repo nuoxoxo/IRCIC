@@ -10,7 +10,6 @@
 template < typename T >
 	std::string to_string(const T &);
 
-static int stof(std::string &);
 float	to_float_round_2(float);
 float	to_float_floor_2(float);
 bool	_check_params_(int, char **);
@@ -34,7 +33,7 @@ int	main(int c, char **v)
 		return (printerr("could not open input."), 1);
 
 
-	// (should do this part before reading input) - open data.csv
+	// open data.csv
 	data = "data.csv";
 	if (ifs.is_open())
 		ifs.close();
@@ -47,22 +46,6 @@ int	main(int c, char **v)
 	{
 		dict[s.substr(0, s.find(","))] = atof((s.substr(s.find(",") + 1)).c_str());
 	}
-
-
-	// debugging printer of the filled map
-	/*
-	std::map<std::string, float>::iterator	it = dict.begin();
-
-	while (it != dict.end())
-	{
-		std::cout << "[printing map] " << it->first << " = " << it->second << nl;
-		it++;
-	} // success
-	*/
-
-
-	// fill map
-	std::map<std::string, float>::iterator	it = dict.begin();
 
 
 	// open input.txt
@@ -95,20 +78,12 @@ int	main(int c, char **v)
 			std::string	key = s.substr(0, s.find(" | "));
 			float		val = atof(s.substr(s.find(" | ") + 3).c_str());
 
-			// debugger
-			/*
-			std::cout << YELLOW
-			<< key << " (dbg input) "
-			<< dict[key] << " (dbg input) "
-			<< val << nlreset;
-			*/
-
-			// real printer
 			if (dict.count(key))
 			{
 				res = to_string(to_float_round_2(dict[key] * val));
 				if (res[res.length() - 1] == '0')
 					res = res.substr(0, res.length() - 1);
+
 				std::cout
 				<< key << " => "
 				<< val << " = "
@@ -128,6 +103,7 @@ int	main(int c, char **v)
 					res = to_string(to_float_round_2(it->second * val));
 					if (res[res.length() - 1] == '0')
 						res = res.substr(0, res.length() - 1);
+
 					std::cout
 					<< key << " => "
 					<< val << " = "
@@ -135,20 +111,8 @@ int	main(int c, char **v)
 				}
 
 			}
-
-			// DBG
-			/*
-			std::cout << s.substr(0, s.find(" | ")) << " :: "
-			<< atof(s.substr(s.find(" | ") + 3).c_str()) << nl;
-			*/
-
 		}
 	}
-
-
-	// std::cout << CYAN "\n(above: test print on parsing)" nl2reset;
-
-
 
 }
 
@@ -162,11 +126,6 @@ std::string to_string(const T & value) {
     return oss.str();
 }
 
-static int stoi( std::string & s ) {
-    int i;
-    std::istringstream(s) >> i;
-    return i;
-}
 
 float to_float_floor_2(float f)
 {
@@ -175,12 +134,14 @@ float to_float_floor_2(float f)
     return (R);
 }
 
+
 float to_float_round_2(float f)
 {
     float L = (int) (f * 100 + .5);
     float R = (float) L / 100;
     return (R);
 }
+
 
 bool	number_check(std::string & s)
 {
@@ -201,8 +162,6 @@ bool	number_check(std::string & s)
 	{
 		printerr("not a number.");
 	}
-	// debugger
-	// std::cout << f << " :: " << i << nl;
 	if (f < 0 || i < 0)
 	{
 		printerr("not a positive number.");
@@ -216,6 +175,7 @@ bool	number_check(std::string & s)
 
 	return (true);
 }
+
 
 bool	query_is_valid(std::string & s)
 {
@@ -233,6 +193,7 @@ bool	query_is_valid(std::string & s)
 	return (true);
 }
 
+
 bool	title_is_valid(std::string & s)
 {
 	std::string	title_input;
@@ -246,6 +207,7 @@ bool	title_is_valid(std::string & s)
 
 	return (true);
 }
+
 
 bool	date_is_valid(std::string & s)
 {
@@ -298,6 +260,7 @@ bool	date_is_valid(std::string & s)
 	return (true);
 }
 
+
 bool	isnumeric(std::string & s)
 {
 	size_t	i = -1;
@@ -308,6 +271,7 @@ bool	isnumeric(std::string & s)
 	}
 	return true;
 }
+
 
 bool	_check_params_(int c, char *v[])
 {
@@ -322,14 +286,12 @@ bool	_check_params_(int c, char *v[])
 	return true;
 }
 
+
 void	printerr(std::string msg)
 {
-	// std::cerr << "Error";
 	std::cout << "Error";
 	if (msg != "")
-		// std::cerr << ": " << COLOR << msg;
 		std::cout << ": " << COLOR << msg;
 	std::cout << nlreset;
-	//std::cerr << nlreset;
 }
 
