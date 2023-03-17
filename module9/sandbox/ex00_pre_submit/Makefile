@@ -3,12 +3,11 @@ comp	:=	c++ -Wall -Werror -Wextra -std=c++98
 rmv	:=	rm -rf
 
 name	:=	btc
-name	:=	RPN
-src	:=	main.cpp RPN.cpp
+src	:=	main.cpp
 
 bud	:=	$(src:%.cpp=%.o)
 
-%.o	:	%.cc
+%.o	:	%.cpp
 		@ echo "compiling [$^] "
 		@ $(comp) -c $^ -o $@
 
@@ -22,7 +21,7 @@ $(name)	:	$(bud)
 		@ echo ""
 
 run	:	re
-		@ ./$(name)
+		@ ./$(name) input.txt
 		@ make clean
 
 r	:	run
@@ -40,3 +39,4 @@ f	:	fclean
 re	:	f all
 
 .PHONY	:	fclean clean all re f
+

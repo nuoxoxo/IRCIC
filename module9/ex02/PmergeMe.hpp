@@ -1,6 +1,16 @@
 #pragma once
-#ifndef __BITCOINEXCHANGE_HPP__
-# define __BITCOINEXCHANGE_HPP__
+#ifndef __PMERGEME_HPP__
+# define __PMERGEME_HPP__
+
+# include "iostream"
+# include "sstream"
+# include "vector"
+# include "deque"
+# include "algorithm" // merge
+# include "sys/time.h"
+
+# define BEFORE 0
+# define AFTER 1
 
 # define nl "\n"
 # define nl2 "\n\n"
@@ -18,31 +28,13 @@
 # define TICK	GREEN " ✓" RESET
 # define CROSS	_RED_ " ✘" RESET
 
-bool	isnumeric(std::string s)
-{
-	size_t	i = -1;
-	while (++i < s.length())
-	{
-		if (s[i] < '0' || s[i] > '9')
-			return false;
-	}
-	return true;
-}
+void		print_deque(std::deque<int>, bool);
+void		print_vector(std::vector<int>, bool);
+std::deque<int>	merge_sort(std::deque<int> &);
+std::vector<int>	merge_sort(std::vector<int> &);
 
-void	_usage_(std::string message)
-{
-	if (message == "Error")
-	{
-		std::cout << message << nlreset;
-		return ;
-	}
-	if (message != "")
-		std::cout << YELLOW << message << nlreset;
-	std::cout << "Example: \n";
-	std::cout << "$> ./PmergeMe 3 5 9 7 4" nl;
-}
-
+bool	isnumeric(std::string);
+void	_usage_(std::string);
 
 #endif
-
 

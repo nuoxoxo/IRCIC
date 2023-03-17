@@ -4,7 +4,8 @@ rmv	:=	rm -rf
 
 name	:=	btc
 name	:=	RPN
-src	:=	main.cpp RPN.cpp
+name	:=	PmergeMe
+src	:=	main.cpp
 
 bud	:=	$(src:%.cpp=%.o)
 
@@ -17,13 +18,16 @@ $(name)	:	$(bud)
 		@ $(comp) $^ -o $@
 		@ printf "\n\t"
 		@ printf "\"are you using the right compiler? \"\n\n"
-		@ echo "you can do [make f] "
-		@ echo "you can do [make run] "
+		@ echo "you can do [ make f ] "
+		@ printf "you can do [ ./PmergeMe \`shuf -i 1-100000 -n 3000 | tr \"\\\\n\" \" \"\` ] "
+		@ echo ""
 		@ echo ""
 
 run	:	re
-		@ ./$(name)
+		@ ./$(name) `shuf -i 1-100000 -n 3000 | tr "\n" " "`
 		@ make clean
+		@ echo ""
+		@ echo ""
 
 r	:	run
 

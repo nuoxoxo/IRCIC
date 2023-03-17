@@ -3,7 +3,7 @@ comp	:=	c++ -Wall -Werror -Wextra -std=c++98
 rmv	:=	rm -rf
 
 name	:=	btc
-src	:=	main.cpp
+src	:=	main.cpp BitcoinExchange.cpp
 
 bud	:=	$(src:%.cpp=%.o)
 
@@ -21,7 +21,7 @@ $(name)	:	$(bud)
 		@ echo ""
 
 run	:	re
-		@ ./$(name) input.txt
+		@#@ ./$(name) input.txt
 		@ make clean
 
 r	:	run
