@@ -4,7 +4,7 @@ rmv	:=	rm -rf
 
 name	:=	btc
 name	:=	RPN
-src	:=	main.cpp
+src	:=	main.cpp RPN.cpp
 
 bud	:=	$(src:%.cpp=%.o)
 
