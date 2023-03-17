@@ -19,9 +19,10 @@ void	test(std::string e, std::string compare)
 
 void	test(std::string e, std::string compare, bool b)
 {
-    if (!b)
-        return ;
-	std::string	res = calc(e);
+	std::string	res;
+	if (!b)
+		return ;
+	res = calc(e);
 
 	std::cout << GREEN << res << nlreset;
 }
@@ -114,3 +115,5 @@ bool	isnumeric(std::string & s)
 	}
 	return true;
 }
+
+
