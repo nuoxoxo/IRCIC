@@ -5,11 +5,11 @@ rmv	:=	rm -rf
 name	:=	btc
 name	:=	RPN
 name	:=	PmergeMe
-src	:=	main.cpp
+src		:=	main.cpp PmergeMe.cpp
 
-bud	:=	$(src:%.cpp=%.o)
+bud		:=	$(src:%.cpp=%.o)
 
-%.o	:	%.cc
+%.o	:	%.cpp
 		@ echo "compiling [$^] "
 		@ $(comp) -c $^ -o $@
 
