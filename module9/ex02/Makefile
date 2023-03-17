@@ -1,5 +1,5 @@
 comp	:=	c++ -Wall -Werror -Wextra -pedantic -MMD -MP -std=c++98
-comp	:=	c++ -Wall -Werror -Wextra -std=c++98
+comp	:=	c++ -Wall -Wextra -std=c++98
 rmv	:=	rm -rf
 
 name	:=	btc
