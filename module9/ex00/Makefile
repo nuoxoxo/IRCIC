@@ -25,7 +25,10 @@ run	:	re
 		@ echo "::: EVAL testcases :::"
 		@ echo "::"
 		./$(name) input.csv
-		@#@ ./$(name) input.txt
+		@ echo "::"
+		@ echo "::: Subj testcases :::"
+		@ echo "::"
+		./$(name) input.txt
 		@ make clean
 
 r	:	run

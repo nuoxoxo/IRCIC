@@ -6,11 +6,11 @@
 
 int	main(int c, char **v)
 {
-	std::ifstream	ifs;
-	std::ofstream	ofs;
+	bool			title_checked = false;
+	std::ifstream		ifs;
+	std::ofstream		ofs;
 	std::string		input, data;
 	std::string		s, res;
-	bool		title_checked = false;
 	std::map<std::string, float>	dict;
 
 	if (!_check_params_(c, v))
@@ -60,18 +60,23 @@ int	main(int c, char **v)
 		else
 		{
 			std::string	key = s.substr(0, s.find(" | "));
-			float		val = atof(s.substr(s.find(" | ") + 3).c_str());
+			std::string	valstr = s.substr(s.find(" | ") + 3);
+			float		val = atof(valstr.c_str());
 
 			if (dict.count(key))
 			{
+				// std::cout <<"(1) : "<< dict[key]<<" * "<< val<<" = "<< dict[key]*val<<nl;
 				res = to_string(to_float_round_2(dict[key] * val));
+				float R = to_float_round_2(dict[key] * val);
 				if (res[res.length() - 1] == '0')
 					res = res.substr(0, res.length() - 1);
 
-				std::cout
-				<< key << " => "
-				<< val << " = "
-				<< YELLOW << res << nlreset;
+				std::cout << key << " => " << valstr << " = " YELLOW;
+				if (res.find("+") != std::string::npos)
+					//std::cout << std::setprecision(2) << R << nlreset;
+					std::cout << "(1) "<<std::setprecision(2) << R << std::defaultfloat << nlreset;
+				else
+					std::cout << res << nlreset;
 			}
 			else
 			{
@@ -79,19 +84,24 @@ int	main(int c, char **v)
 
 				if (it == dict.begin())
 				{
-					std::cout << key << " => " << val << " = 0" nl;
+					std::cout << key << " => " << valstr << " = 0" nl;
 				}
 				else
 				{
 					it--;
+					// std::cout <<"(2) : "<< dict[key]<<" * "<< val<<" = "<< dict[key]*val<<nl;
+					float R = to_float_round_2(it->second * val);
 					res = to_string(to_float_round_2(it->second * val));
 					if (res[res.length() - 1] == '0')
 						res = res.substr(0, res.length() - 1);
 
-					std::cout
-					<< key << " => "
-					<< val << " = "
-					<< YELLOW << res << nlreset;
+					std::cout << key << " => " << valstr << " = " YELLOW;
+					// std::cout << key << " => " << val << " = " YELLOW;
+					if (res.find("+") != std::string::npos)
+						std::cout << "(2) "<<std::setprecision(2) << R << std::defaultfloat << nlreset;
+					else
+						std::cout << res << nlreset;
+
 				}
 
 			}

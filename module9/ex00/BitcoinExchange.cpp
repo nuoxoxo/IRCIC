@@ -28,6 +28,10 @@ float to_float_round_2(float f)
 {
     float L = (int) (f * 100 + .5);
     float R = (float) L / 100;
+    /*
+    std::cout << f << "\n" ;
+    std::cout << L << " - " << R << "\n" ;
+    */
     return (R);
 }
 
@@ -56,7 +60,7 @@ bool	number_check(std::string & s)
 		printerr("not a positive number.");
 		return (false);
 	}
-	else if (i > 2147483647)
+	else if (i > 1000 /* 2147483647 */)
 	{
 		printerr("too large a number.");
 		return (false);
