@@ -10,24 +10,24 @@ std::string to_string(const T value) {
     return oss.str();
 }
 
-std::string to_string(float const value) {
+std::string to_string(double const value) {
     std::ostringstream oss;
     oss << value;
     return oss.str();
 }
 
-float to_float_floor_2(float f)
+double to_double_floor_2(double f)
 {
-    float L = (int) (f * 100);
-    float R = (float) L / 100;
+    double L = (int) (f * 100);
+    double R = (double) L / 100;
     return (R);
 }
 
 
-float to_float_round_2(float f)
+double to_double_round_2(double f)
 {
-    float L = (int) (f * 100 + .5);
-    float R = (float) L / 100;
+    double L = (int) (f * 100 + .5);
+    double R = (double) L / 100;
     /*
     std::cout << f << "\n" ;
     std::cout << L << " - " << R << "\n" ;
@@ -46,7 +46,7 @@ bool	number_check(std::string & s)
 
 	std::stringstream	ssf(number);
 	std::stringstream	ssi(number);
-	float			f;
+	double			f;
 	long long		i;
 
 	ssf >> std::noskipws >> f;

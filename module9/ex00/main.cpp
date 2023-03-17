@@ -1,9 +1,6 @@
 #include "iostream"
 #include "BitcoinExchange.hpp"
 
-
-
-
 int	main(int c, char **v)
 {
 	bool			title_checked = false;
@@ -11,12 +8,13 @@ int	main(int c, char **v)
 	std::ofstream		ofs;
 	std::string		input, data;
 	std::string		s, res;
-	std::map<std::string, float>	dict;
+	std::map<std::string, double>	dict;
 
 	// std::string	L, R;
 
 	if (!_check_params_(c, v))
-		return (printerr("could not open input."), 1);
+		return (printerr("could not open file."), 1);
+		// return (printerr("could not open input."), 1);
 
 
 	// open data.csv
@@ -66,24 +64,24 @@ int	main(int c, char **v)
 		{
 			std::string	key = s.substr(0, s.find(" | "));
 			std::string	valstr = s.substr(s.find(" | ") + 3);
-			float		val = atof(valstr.c_str());
+			double		val = atof(valstr.c_str());
 
 			if (dict.count(key))
 			{
-				res = to_string(to_float_round_2(dict[key] * val));
-				float R = to_float_round_2(dict[key] * val);
+				res = to_string(to_double_round_2(dict[key] * val));
+				double R = to_double_round_2(dict[key] * val);
 				if (res[res.length() - 1] == '0')
 					res = res.substr(0, res.length() - 1);
 
 				std::cout << key << " => " << valstr << " = " YELLOW;
 				if (res.find("+") != std::string::npos)
-					std::cout << "(1) "<<std::setprecision(20) << R << std::defaultfloat << nlreset;
+					std::cout << std::setprecision(PRECISION) << R << std::defaultfloat << nlreset;
 				else
 					std::cout << res << nlreset;
 			}
 			else
 			{
-				std::map<std::string, float>::iterator it = dict.upper_bound(key);
+				std::map<std::string, double>::iterator it = dict.upper_bound(key);
 
 				if (it == dict.begin())
 				{
@@ -92,14 +90,14 @@ int	main(int c, char **v)
 				else
 				{
 					it--;
-					float R = to_float_round_2(it->second * val);
-					res = to_string(to_float_round_2(it->second * val));
+					double R = to_double_round_2(it->second * val);
+					res = to_string(to_double_round_2(it->second * val));
 					if (res[res.length() - 1] == '0')
 						res = res.substr(0, res.length() - 1);
 
 					std::cout << key << " => " << valstr << " = " YELLOW;
 					if (res.find("+") != std::string::npos)
-						std::cout << "(2) "<<std::setprecision(10) << R << std::defaultfloat << nlreset;
+						std::cout << std::setprecision(PRECISION) << R << std::defaultfloat << nlreset;
 					else
 						std::cout << res << nlreset;
 
