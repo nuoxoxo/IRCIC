@@ -5,13 +5,14 @@
 #include "BitcoinExchange.hpp"
 #include "map"
 
-#define COLOR YELLOW
+#define COLOR RED
 
 template < typename T >
 	std::string to_string(const T &);
 
 static int stof(std::string &);
-
+float	to_float_round_2(float);
+float	to_float_floor_2(float);
 bool	_check_params_(int, char **);
 void	printerr(std::string s = "");
 bool	date_is_valid(std::string &);
@@ -25,7 +26,7 @@ int	main(int c, char **v)
 	std::ifstream	ifs;
 	std::ofstream	ofs;
 	std::string	input, data;
-	std::string	s;
+	std::string	s, res;
 	bool		title_checked = false;
 	std::map<std::string, float>	dict;
 
@@ -41,16 +42,37 @@ int	main(int c, char **v)
 	if (ifs.fail())
 		return (printerr(), 1);
 
+	getline(ifs, s); // jettison the headline
 	while (!ifs.eof() && getline(ifs, s))
 	{
-		std::cout << CYAN
-		<< s.substr(0, s.find(",")) << " :: "
+		/*
+		std::cout
+		<< CYAN
+		<< s.substr(0, s.find(","))
+		<< " (dbg csv) "
 		<< atof(s.substr(s.find(",") + 1).c_str()) << nlreset;
+		*/
 
 		dict[s.substr(0, s.find(","))] = atof((s.substr(s.find(",") + 1)).c_str());
+
+		// std::cout << dict[s.substr(0, s.find(","))] << nl; // success
 	}
 
 
+	// debugging printer of the filled map
+	/*
+	std::map<std::string, float>::iterator	it = dict.begin();
+
+	while (it != dict.end())
+	{
+		std::cout << "[printing map] " << it->first << " = " << it->second << nl;
+		it++;
+	} // success
+	*/
+
+
+	// fill map
+	std::map<std::string, float>::iterator	it = dict.begin();
 
 
 	// open input.txt
@@ -83,20 +105,65 @@ int	main(int c, char **v)
 			std::string	key = s.substr(0, s.find(" | "));
 			float		val = atof(s.substr(s.find(" | ") + 3).c_str());
 
-			std::cout << RED
-			<< key << " ::::::: " << val << nl
-			<< key << " => " << val << " = " << dict[key] * val << nl;
-
+			// debugger
 			/*
-			std::cout
-			<< s.substr(0, s.find(" | ")) << " :: "
-			<< atof(s.substr(s.find(" | ") + 3).c_str()) << nl;
-			dict[s.substr(0, s.find(" | "))] = atof((s.substr(s.find(" | ") + 3)).c_str());
+			std::cout << YELLOW
+			<< key << " (dbg input) "
+			<< dict[key] << " (dbg input) "
+			<< val << nlreset;
 			*/
+
+			// real printer
+			if (dict.count(key))
+			{
+				res = to_string(to_float_round_2(dict[key] * val));
+				if (res[res.length() - 1] == '0')
+					res = res.substr(0, res.length() - 1);
+				std::cout
+				<< key << " => "
+				<< val << " = "
+				<< std::setiosflags(std::ios::fixed)
+				<< std::setprecision(2)
+				<< YELLOW
+				<< res
+				<< std::resetiosflags(std::ios::fixed)
+				<< nlreset;
+			}
+			else
+			{
+				std::map<std::string, float>::iterator it = dict.upper_bound(key);
+
+				if (it == dict.begin())
+				{
+					std::cout << key << " => " << val << " = 0" nl;
+				}
+				else
+				{
+					it--;
+					res = to_string(to_float_round_2(it->second * val));
+					if (res[res.length() - 1] == '0')
+						res = res.substr(0, res.length() - 1);
+					std::cout
+					<< key << " => "
+					<< val << " = "
+					//<< std::setiosflags(std::ios::fixed)
+					//<< std::setprecision(2)
+					<< YELLOW
+					<< res
+					//<< std::resetiosflags(std::ios::fixed)
+					<< nlreset;
+				}
+
+			}
+
+			// DBG
+			/*
+			std::cout << s.substr(0, s.find(" | ")) << " :: "
+			<< atof(s.substr(s.find(" | ") + 3).c_str()) << nl;
+			*/
+
 		}
 	}
-
-
 
 
 	// std::cout << CYAN "\n(above: test print on parsing)" nl2reset;
@@ -119,6 +186,20 @@ static int stoi( std::string & s ) {
     int i;
     std::istringstream(s) >> i;
     return i;
+}
+
+float to_float_floor_2(float f)
+{
+    float L = (int) (f * 100);
+    float R = (float) L / 100;
+    return (R);
+}
+
+float to_float_round_2(float f)
+{
+    float L = (int) (f * 100 + .5);
+    float R = (float) L / 100;
+    return (R);
 }
 
 bool	number_check(std::string & s)
@@ -263,9 +344,12 @@ bool	_check_params_(int c, char *v[])
 
 void	printerr(std::string msg)
 {
-	std::cerr << "Error";
+	// std::cerr << "Error";
+	std::cout << "Error";
 	if (msg != "")
-		std::cerr << ": " << COLOR << msg;
-	std::cerr << nlreset;
+		// std::cerr << ": " << COLOR << msg;
+		std::cout << ": " << COLOR << msg;
+	std::cout << nlreset;
+	//std::cerr << nlreset;
 }
 
