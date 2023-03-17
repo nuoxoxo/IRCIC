@@ -162,7 +162,7 @@ bool	date_is_valid(std::string & s)
 	std::stringstream(s2) >> month;
 	if (!(year % 400) || (year % 100 && ! (year % 4)))
 		months[1] = 29;
-	if (day > months[month])
+	if (day > months[month - 1])
 		return (false);
 
 	return (true);

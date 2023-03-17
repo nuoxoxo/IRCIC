@@ -3,7 +3,7 @@
 
 int	main(int c, char **v)
 {
-	bool			title_checked = false;
+	// bool			title_checked = false;
 	std::ifstream		ifs;
 	std::ofstream		ofs;
 	std::string		input, data;
@@ -18,14 +18,20 @@ int	main(int c, char **v)
 
 
 	// open data.csv
-	data = "data.csv";
+
+	data = "./assets/data.csv";
+	// data = "data.csv"; // TODO . FIXME . XXX
+
 	if (ifs.is_open())
 		ifs.close();
 	ifs.open(data.c_str());
 	if (ifs.fail())
 		return (printerr(), 1);
 
-	getline(ifs, line); // jettison the headline
+
+	// read data
+	if (!ifs.eof())
+		getline(ifs, line); // jettison the headline
 	while (!ifs.eof() && getline(ifs, line))
 	{
 		std::string	lhs = line.substr(0, line.find(","));
@@ -45,15 +51,13 @@ int	main(int c, char **v)
 
 
 	// read input
+	if (!ifs.eof())
+		getline(ifs, line); // jettison the headline
 	while (!ifs.eof() && getline(ifs, line))
 	{
 		s = remove_whitesp(line);
-		if ( ! title_checked && title_is_valid(s))
-		{
-			title_checked = true;
-			continue ;
-		}
-		else if ( ! query_is_valid(s))
+
+		if ( ! query_is_valid(s))
 		{
 			printerr("bad input => " + line /* original line */);
 		}
