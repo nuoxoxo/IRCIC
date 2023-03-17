@@ -21,7 +21,14 @@ $(name)	:	$(bud)
 		@ echo ""
 
 run	:	re
-		@#@ ./$(name) input.txt
+		@ echo ""
+		@ echo "::: EVAL input :::"
+		@ echo ""
+		@ ./$(name) input.csv
+		@ echo ""
+		@ echo "::: Subject input :::"
+		@ echo ""
+		@ ./$(name) input.txt
 		@ make clean
 
 r	:	run

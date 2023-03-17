@@ -22,18 +22,23 @@
 # define RESET "\033[0;0m"
 # define ITAL "\033[3m"
 
-#define COLOR RED
+// #define COLOR RED
+// #define COLOR ""
+#define COLOR CYAN
 
 # define TICK	GREEN " ✓" RESET
 # define CROSS	_RED_ " ✘" RESET
 
+# define PRECISION 10
+
 template<typename T>
     std::string to_string(const T value);
 
-std::string to_string(float const);
+std::string to_string(double const);
+std::string remove_whitesp(std::string &);
 
-float	to_float_round_2(float);
-float	to_float_floor_2(float);
+double	to_double_round_2(double);
+double	to_double_floor_2(double);
 bool	_check_params_(int, char **);
 void	printerr(std::string s = "");
 bool	date_is_valid(std::string &);

@@ -10,24 +10,42 @@ std::string to_string(const T value) {
     return oss.str();
 }
 
-std::string to_string(float const value) {
+std::string to_string(double const value) {
     std::ostringstream oss;
     oss << value;
     return oss.str();
 }
 
-float to_float_floor_2(float f)
+std::string	remove_whitesp(std::string & line)
 {
-    float L = (int) (f * 100);
-    float R = (float) L / 100;
+	std::string	res;
+	int		i = -1;
+
+	while (++i < (int) line.length())
+	{
+		if (!(line[i] == ' ' || (line[i] < 14 && line[i] > 8)))
+			res += line[i];
+	}
+
+	return (res);
+}
+
+double to_double_floor_2(double f)
+{
+    double L = (int) (f * 100);
+    double R = (double) L / 100;
     return (R);
 }
 
 
-float to_float_round_2(float f)
+double to_double_round_2(double f)
 {
-    float L = (int) (f * 100 + .5);
-    float R = (float) L / 100;
+    double L = (int) (f * 100 + .5);
+    double R = (double) L / 100;
+    /*
+    std::cout << f << "\n" ;
+    std::cout << L << " - " << R << "\n" ;
+    */
     return (R);
 }
 
@@ -38,25 +56,26 @@ bool	number_check(std::string & s)
 
 	if (!query_is_valid(s))
 		return (false);
-	number = s.substr(13, (int) s.length() - 13);
+	number = s.substr(11, (int) s.length() - 11); // minur 2 sp
+	// number = s.substr(13, (int) s.length() - 13);
 
-	std::stringstream	ssf(number);
-	std::stringstream	ssi(number);
-	float			f;
+	double			d;
 	long long		i;
+	std::stringstream	ssd(number);
+	std::stringstream	ssi(number);
 
-	ssf >> std::noskipws >> f;
+	ssd >> std::noskipws >> d;
 	ssi >> std::noskipws >> i;
-	if ((!ssf.eof() || ssf.fail()) && (!ssi.eof() || ssi.fail()))
+	if ((!ssd.eof() || ssd.fail()) && (!ssi.eof() || ssi.fail()))
 	{
 		printerr("not a number.");
 	}
-	if (f < 0 || i < 0)
+	if (d < 0 || i < 0)
 	{
 		printerr("not a positive number.");
 		return (false);
 	}
-	else if (i > 2147483647)
+	else if (i > 1000 /* 2147483647 */)
 	{
 		printerr("too large a number.");
 		return (false);
@@ -71,9 +90,9 @@ bool	query_is_valid(std::string & s)
 	std::string	date;
 	std::string	number;
 
-	if ((int) s.length() < 14)
+	if ((int) s.length() < 11)
 		return (false);
-	if (s[10] != ' ' && s[11] != '|' && s[12] != ' ')
+	if (s[10] != '|')
 		return (false);
 	date = s.substr(0, 10);
 	if ( ! date_is_valid(date))
