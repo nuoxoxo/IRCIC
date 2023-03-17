@@ -17,11 +17,28 @@ void	test(std::string e, std::string compare)
 	}
 }
 
-void	test(std::string e, std::string compare, bool b)
+void	test(std::string e, int compare)
 {
-    if (!b)
-        return ;
+
 	std::string	res = calc(e);
+	std::string	cmp = to_string(compare);
+
+	std::cout
+	<< "expression: "
+	<< YELLOW << e << nlreset
+	<< "result: "
+	<< GREEN << res << nlreset;
+
+	assert(res == cmp);
+}
+
+void	test(std::string e, std::string compare, bool b) // overload trick
+{
+	std::string	res;
+
+	if (!b)
+		return ;
+	res = calc(e);
 
 	std::cout << GREEN << res << nlreset;
 }
@@ -39,6 +56,7 @@ std::string	calc(std::string line)
 		if (s == "+" || s == "-" || s == "*" || s == "/")
 		{
 			int	r = 0, l = 0;
+
 			if (s == "*" || s == "/")
 			{
 				r = 1;
@@ -46,18 +64,15 @@ std::string	calc(std::string line)
 			}
 			if (!E.size())
 				return Error;
-			if (E.size())
-			{
-				std::stringstream(E.top()) >> r;
-				E.pop();
-			}
+
+			std::stringstream(E.top()) >> r;
+			E.pop();
+
 			if (!E.size())
 				return Error;
-			if (E.size())
-			{
-				std::stringstream(E.top()) >> l;
-				E.pop();
-			}
+
+			std::stringstream(E.top()) >> l;
+			E.pop();
 
 			// dbg (to keep)
 			// std::cout << l << " . " << r << " . " << s << nl;
@@ -114,3 +129,5 @@ bool	isnumeric(std::string & s)
 	}
 	return true;
 }
+
+

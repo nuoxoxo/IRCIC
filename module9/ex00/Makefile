@@ -24,11 +24,11 @@ run	:	re
 		@ echo ""
 		@ echo "::: EVAL input :::"
 		@ echo ""
-		@ ./$(name) input.csv
+		@ ./$(name) assets/input.csv
 		@ echo ""
 		@ echo "::: Subject input :::"
 		@ echo ""
-		@ ./$(name) input.txt
+		@ ./$(name) assets/input.txt
 		@ make clean
 
 r	:	run

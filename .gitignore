@@ -1,6 +1,5 @@
 *containers_test
 *mazoise
-*.csv
 *.d
 btc
 RPN
@@ -16,7 +15,6 @@ Thumbs.db
 *.swo
 *.swn
 *.pdf
-*.txt
 *.a
 *.o
 *.sum
