@@ -16,6 +16,20 @@ std::string to_string(double const value) {
     return oss.str();
 }
 
+std::string	remove_whitesp(std::string & line)
+{
+	std::string	res;
+	int		i = -1;
+
+	while (++i < (int) line.length())
+	{
+		if (!(line[i] == ' ' || (line[i] < 14 && line[i] > 8)))
+			res += line[i];
+	}
+
+	return (res);
+}
+
 double to_double_floor_2(double f)
 {
     double L = (int) (f * 100);
@@ -42,20 +56,21 @@ bool	number_check(std::string & s)
 
 	if (!query_is_valid(s))
 		return (false);
-	number = s.substr(13, (int) s.length() - 13);
+	number = s.substr(11, (int) s.length() - 11); // minur 2 sp
+	// number = s.substr(13, (int) s.length() - 13);
 
-	std::stringstream	ssf(number);
-	std::stringstream	ssi(number);
-	double			f;
+	double			d;
 	long long		i;
+	std::stringstream	ssd(number);
+	std::stringstream	ssi(number);
 
-	ssf >> std::noskipws >> f;
+	ssd >> std::noskipws >> d;
 	ssi >> std::noskipws >> i;
-	if ((!ssf.eof() || ssf.fail()) && (!ssi.eof() || ssi.fail()))
+	if ((!ssd.eof() || ssd.fail()) && (!ssi.eof() || ssi.fail()))
 	{
 		printerr("not a number.");
 	}
-	if (f < 0 || i < 0)
+	if (d < 0 || i < 0)
 	{
 		printerr("not a positive number.");
 		return (false);
@@ -75,9 +90,9 @@ bool	query_is_valid(std::string & s)
 	std::string	date;
 	std::string	number;
 
-	if ((int) s.length() < 14)
+	if ((int) s.length() < 11)
 		return (false);
-	if (s[10] != ' ' && s[11] != '|' && s[12] != ' ')
+	if (s[10] != '|')
 		return (false);
 	date = s.substr(0, 10);
 	if ( ! date_is_valid(date))

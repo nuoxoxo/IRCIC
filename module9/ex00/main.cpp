@@ -7,7 +7,7 @@ int	main(int c, char **v)
 	std::ifstream		ifs;
 	std::ofstream		ofs;
 	std::string		input, data;
-	std::string		s, res;
+	std::string		s, res, line;
 	std::map<std::string, double>	dict;
 
 	// std::string	L, R;
@@ -25,13 +25,13 @@ int	main(int c, char **v)
 	if (ifs.fail())
 		return (printerr(), 1);
 
-	getline(ifs, s); // jettison the headline
-	while (!ifs.eof() && getline(ifs, s))
+	getline(ifs, line); // jettison the headline
+	while (!ifs.eof() && getline(ifs, line))
 	{
-		std::string L = s.substr(0, s.find(","));
-		std::string R = s.substr(s.find(",") + 1);
+		std::string	lhs = line.substr(0, line.find(","));
+		std::string	rhs = line.substr(line.find(",") + 1);
 
-		dict[L] = atof(R.c_str());
+		dict[ lhs ] = atof( rhs.c_str() );
 	}
 
 
@@ -45,8 +45,9 @@ int	main(int c, char **v)
 
 
 	// read input
-	while (!ifs.eof() && getline(ifs, s))
+	while (!ifs.eof() && getline(ifs, line))
 	{
+		s = remove_whitesp(line);
 		if ( ! title_checked && title_is_valid(s))
 		{
 			title_checked = true;
@@ -54,7 +55,7 @@ int	main(int c, char **v)
 		}
 		else if ( ! query_is_valid(s))
 		{
-			printerr("bad input => " + s);
+			printerr("bad input => " + line /* original line */);
 		}
 		else if ( ! number_check(s))
 		{
@@ -62,8 +63,8 @@ int	main(int c, char **v)
 		}
 		else
 		{
-			std::string	key = s.substr(0, s.find(" | "));
-			std::string	valstr = s.substr(s.find(" | ") + 3);
+			std::string	key = s.substr(0, s.find("|"));
+			std::string	valstr = s.substr(s.find("|") + 1);
 			double		val = atof(valstr.c_str());
 
 			if (dict.count(key))
