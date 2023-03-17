@@ -77,7 +77,7 @@ int	main(int c, char **v)
 
 				std::cout << key << " => " << valstr << " = " YELLOW;
 				if (res.find("+") != std::string::npos)
-					std::cout << "(1) "<<std::setprecision(2) << R << std::defaultfloat << nlreset;
+					std::cout << "(1) "<<std::setprecision(20) << R << std::defaultfloat << nlreset;
 				else
 					std::cout << res << nlreset;
 			}
@@ -99,7 +99,7 @@ int	main(int c, char **v)
 
 					std::cout << key << " => " << valstr << " = " YELLOW;
 					if (res.find("+") != std::string::npos)
-						std::cout << "(2) "<<std::setprecision(2) << R << std::defaultfloat << nlreset;
+						std::cout << "(2) "<<std::setprecision(10) << R << std::defaultfloat << nlreset;
 					else
 						std::cout << res << nlreset;
 
