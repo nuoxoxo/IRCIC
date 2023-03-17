@@ -29,6 +29,7 @@ namespace ft
 		typedef typename Allocator::const_reference
 			const_reference;
 
+
 		// Iter
 
 		typedef typename tree_type::iterator
@@ -134,7 +135,8 @@ namespace ft
 			return (*this);
 		}
 
-		// ==================== Iterators
+
+		// Iter
 
 		iterator begin()
 		{
@@ -193,24 +195,26 @@ namespace ft
 			return m_tree.max_size();
 		}
 
-		// ==================== Elements access
+
+		// accessors
 
 		T & operator[](const Key& k)
 		{
 			return (insert(ft::make_pair(k, T ())).first)->second;
 		}
 
-		// ==================== Modifiers
+
+		// modifiers
 
 		pair<iterator, bool> insert(const_reference x)
 		{
-			return m_tree.insert(x);
+			return (m_tree.insert(x));
 		}
 
 		iterator insert(iterator position, const value_type& x)
 		{
 			(void)position;
-			return m_tree.insert(x).first;
+			return (m_tree.insert(x).first);
 		}
 
 		template<class InputIterator>
@@ -250,55 +254,55 @@ namespace ft
 
 		key_compare key_comp() const
 		{
-			return key_compare();
+			return (key_compare());
 		}
 
 		value_compare value_comp() const
 		{
 
-			return value_compare(m_tree.compare());
+			return (value_compare(m_tree.compare()));
 		}
 
 		// ==================== Operations
 
 		iterator find(const Key& k)
 		{
-			return m_tree.find(ft::make_pair(k, T ()));
+			return (m_tree.find(ft::make_pair(k, T ())));
 		}
 
 		const_iterator find(const Key& k) const
 		{
-			return m_tree.find(ft::make_pair(k, T ()));
+			return (m_tree.find(ft::make_pair(k, T ())));
 		}
 
 		size_type count(const Key& k) const
 		{
-			return m_tree.count(ft::make_pair(k, T ()));
+			return (m_tree.count(ft::make_pair(k, T ())));
 		}
 
 		iterator lower_bound(const Key& k)
 		{
-			return m_tree.lower_bound(ft::make_pair(k, T ()));
+			return (m_tree.lower_bound(ft::make_pair(k, T ())));
 		}
 
 		const_iterator lower_bound(const Key& k) const
 		{
-			return m_tree.lower_bound(ft::make_pair(k, T ()));
+			return (m_tree.lower_bound(ft::make_pair(k, T ())));
 		}
 
 		iterator upper_bound(const Key & k)
 		{
-			return m_tree.upper_bound(ft::make_pair(k, T ()));
+			return (m_tree.upper_bound(ft::make_pair(k, T ())));
 		}
 
 		const_iterator upper_bound(const Key& k) const
 		{
-			return m_tree.upper_bound(ft::make_pair(k, T ()));
+			return (m_tree.upper_bound(ft::make_pair(k, T ())));
 		}
 
 		pair<iterator, iterator> equal_range(const Key & k)
 		{
-			return ft::make_pair(lower_bound(k), upper_bound(k));
+			return (ft::make_pair(lower_bound(k), upper_bound(k)));
 		}
 
 		pair<const_iterator, const_iterator> equal_range(const Key& k) const
@@ -308,7 +312,7 @@ namespace ft
 
 		Allocator get_allocator() const
 		{
-			return Allocator();
+			return (Allocator());
 		}
 
 	};
