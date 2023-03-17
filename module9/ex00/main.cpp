@@ -13,6 +13,8 @@ int	main(int c, char **v)
 	std::string		s, res;
 	std::map<std::string, float>	dict;
 
+	// std::string	L, R;
+
 	if (!_check_params_(c, v))
 		return (printerr("could not open input."), 1);
 
@@ -28,7 +30,10 @@ int	main(int c, char **v)
 	getline(ifs, s); // jettison the headline
 	while (!ifs.eof() && getline(ifs, s))
 	{
-		dict[s.substr(0, s.find(","))] = atof((s.substr(s.find(",") + 1)).c_str());
+		std::string L = s.substr(0, s.find(","));
+		std::string R = s.substr(s.find(",") + 1);
+
+		dict[L] = atof(R.c_str());
 	}
 
 
@@ -65,7 +70,6 @@ int	main(int c, char **v)
 
 			if (dict.count(key))
 			{
-				// std::cout <<"(1) : "<< dict[key]<<" * "<< val<<" = "<< dict[key]*val<<nl;
 				res = to_string(to_float_round_2(dict[key] * val));
 				float R = to_float_round_2(dict[key] * val);
 				if (res[res.length() - 1] == '0')
@@ -73,7 +77,6 @@ int	main(int c, char **v)
 
 				std::cout << key << " => " << valstr << " = " YELLOW;
 				if (res.find("+") != std::string::npos)
-					//std::cout << std::setprecision(2) << R << nlreset;
 					std::cout << "(1) "<<std::setprecision(2) << R << std::defaultfloat << nlreset;
 				else
 					std::cout << res << nlreset;
@@ -89,14 +92,12 @@ int	main(int c, char **v)
 				else
 				{
 					it--;
-					// std::cout <<"(2) : "<< dict[key]<<" * "<< val<<" = "<< dict[key]*val<<nl;
 					float R = to_float_round_2(it->second * val);
 					res = to_string(to_float_round_2(it->second * val));
 					if (res[res.length() - 1] == '0')
 						res = res.substr(0, res.length() - 1);
 
 					std::cout << key << " => " << valstr << " = " YELLOW;
-					// std::cout << key << " => " << val << " = " YELLOW;
 					if (res.find("+") != std::string::npos)
 						std::cout << "(2) "<<std::setprecision(2) << R << std::defaultfloat << nlreset;
 					else
