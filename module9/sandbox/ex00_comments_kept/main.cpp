@@ -10,7 +10,6 @@
 template < typename T >
 	std::string to_string(const T &);
 
-static int stof(std::string &);
 float	to_float_round_2(float);
 float	to_float_floor_2(float);
 bool	_check_params_(int, char **);
@@ -62,7 +61,6 @@ int	main(int c, char **v)
 
 
 	// fill map
-	std::map<std::string, float>::iterator	it = dict.begin();
 
 
 	// open input.txt
@@ -162,11 +160,6 @@ std::string to_string(const T & value) {
     return oss.str();
 }
 
-static int stoi( std::string & s ) {
-    int i;
-    std::istringstream(s) >> i;
-    return i;
-}
 
 float to_float_floor_2(float f)
 {
