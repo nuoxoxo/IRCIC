@@ -17,9 +17,25 @@ void	test(std::string e, std::string compare)
 	}
 }
 
-void	test(std::string e, std::string compare, bool b)
+void	test(std::string e, int compare)
+{
+
+	std::string	res = calc(e);
+	std::string	cmp = to_string(compare);
+
+	std::cout
+	<< "expression: "
+	<< YELLOW << e << nlreset
+	<< "result: "
+	<< GREEN << res << nlreset;
+
+	assert(res == cmp);
+}
+
+void	test(std::string e, std::string compare, bool b) // overload trick
 {
 	std::string	res;
+
 	if (!b)
 		return ;
 	res = calc(e);
