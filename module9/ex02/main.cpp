@@ -23,10 +23,10 @@ int	main(int c, char *v[])
 	while (++i < c)
 	{
 		if ( !isnumeric(v[i]))
-			return (_usage_("Error"), 1);
+			return (_usage_("non numeric value detected. exit now."), 1);
 		std::stringstream(v[i]) >> n;
 		if ( !n)
-			return (_usage_("Error"), 1);
+			return (_usage_("we have a zero here. exit now."), 1);
 		a.push_back(n);
 		d.push_back(n);
 		dd.push_back(n);

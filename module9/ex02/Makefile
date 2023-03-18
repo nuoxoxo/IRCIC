@@ -18,12 +18,14 @@ $(name)	:	$(bud)
 		@ $(comp) $^ -o $@
 		@ printf "\n\t"
 		@ printf "\"are you using the right compiler? \"\n\n"
+		@ printf "you can do [ ./PmergeMe \`shuf -i 1-100000 -n 3000 | tr \"\\\\n\" \" \"\` ] \n"
+		@ printf "you can do [ ./PmergeMe \`jot -r 3000 1 1000 | tr \'\\\\n\' \' \'\` ] \n"
 		@ echo "you can do [ make test ] "
-		@ printf "you can do [ ./PmergeMe \`shuf -i 1-100000 -n 3000 | tr \"\\\\n\" \" \"\` ] "
-		@ echo ""
 		@ echo ""
 
 run	:	re
+
+test	:	re
 		@ echo "(misc.)"
 		@ ./$(name) 42 80 82 96 64 58 69 71 73 1000
 		@ echo ""
@@ -51,6 +53,7 @@ run	:	re
 		@ make clean
 
 r	:	run
+t	:	test
 
 all	:	$(name)
 
