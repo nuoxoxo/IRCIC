@@ -5,11 +5,9 @@
 # include "iostream"
 # include "sstream"
 # include "stack"
-
 # include "cassert"
+
 # define Error "Error"
-
-
 # define nl "\n"
 # define nl2 "\n\n"
 # define nlreset " \n" RESET
@@ -40,8 +38,7 @@ std::string	to_space_separated_string(std::string&);
 template<typename T>
     std::string to_string(const T &);
 
-bool	isnumeric(std::string &);
-
 
 #endif
+
 
