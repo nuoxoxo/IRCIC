@@ -2,12 +2,6 @@
 #include "PmergeMe.hpp"
 
 
-//need one more container
-void		print_deque(std::deque<int>, bool);
-void		print_vector(std::vector<int>, bool);
-std::deque<int>	merge_sort(std::deque<int> &);
-std::vector<int>	merge_sort(std::vector<int> &);
-
 int	main(int c, char *v[])
 {
 	std::vector<int>	a;

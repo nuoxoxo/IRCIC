@@ -69,6 +69,8 @@ void	print_vector(std::vector<int> a, bool option)
 	*/
 }
 
+
+
 std::deque<int>	merge_sort(std::deque<int> & a)
 {
 	std::deque<int>	res;
@@ -92,7 +94,8 @@ std::deque<int>	merge_sort(std::deque<int> & a)
 	return (res);
 }
 
-std::vector<int>	merge_sort(std::vector<int>& a)
+// std::vector<int>	merge_sort(std::vector<int>& a)
+void	merge_sort(std::vector<int>& a)
 {
 	if (a.size() > 1)
 	{
@@ -102,8 +105,10 @@ std::vector<int>	merge_sort(std::vector<int>& a)
 		std::vector<int>	L(a.begin(), a.begin() + mid);
 		std::vector<int>	R(a.begin() + mid, a.end());
 
-		L = merge_sort(L);
-		R = merge_sort(R);
+		merge_sort(L);
+		// L = merge_sort(L);
+		// R = merge_sort(R);
+		merge_sort(R);
 		i = j = k = 0;
 		while (i < (int) L.size() && j < (int) R.size())
 		{
@@ -132,7 +137,7 @@ std::vector<int>	merge_sort(std::vector<int>& a)
 			++k;
 		}
 	}
-	return (a);
+	// return (a);
 }
 
 
