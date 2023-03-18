@@ -23,23 +23,17 @@ def merge_sort(D):
     merge_sort(R)
 
     # compare & insert
-    a = [None] * size
-    i, j = 0, 0
-    while i < len(L) and j < len(R):
-        if L[i] > R[j]:
-            D.append(R[j])
-            j += 1
+    while L and R:
+        if L[0] > R[0]:
+            D.append(R.popleft())
         else:
-            D.append(L[i])
-            i += 1
+            D.append(L.popleft())
 
     # get the rest
-    while i < len(L):
-        D.append(L[i])
-        i += 1
-    while j < len(R):
-        D.append(R[j])
-        j += 1
+    while L:
+        D.append(L.popleft())
+    while R:
+        D.append(R.popleft())
 
 
 if __name__ == '__main__':
@@ -61,9 +55,9 @@ if __name__ == '__main__':
     if len(sys.argv) == 1:
         a = [3, 5, 9, 7, 4]
         debugger(a)
-        a = [2, 11, 1, 42, 21, 64, 6, 3, -42]
+        a = [2, 11, 1, 42, 21, 1000, 6, 3, -42]
         debugger(a)
-        a = [2, 11, 1, 42, 21, 64, 6, 3, -42, 21]
+        a = [2, 11, 1, 42, 21, 1000, 6, 3, -42, 21]
         debugger(a)
     # random test
     else:
