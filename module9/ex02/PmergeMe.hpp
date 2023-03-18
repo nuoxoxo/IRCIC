@@ -28,14 +28,13 @@
 # define TICK	GREEN " ✓" RESET
 # define CROSS	_RED_ " ✘" RESET
 
+void		_usage_(std::string);
+bool		isnumeric(std::string);
 void		print_deque(std::deque<int>, bool);
 void		print_vector(std::vector<int>, bool);
-std::deque<int>	merge_sort(std::deque<int> &);
-void	merge_sort(std::vector<int> &);
-//std::vector<int>	merge_sort(std::vector<int> &);
+void			merge_sort(std::vector<int> &);
+std::deque<int>		merge_sort(std::deque<int> &);
 
-bool	isnumeric(std::string);
-void	_usage_(std::string);
 
 #endif
 

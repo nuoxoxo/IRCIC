@@ -47,14 +47,8 @@ int	main(int c, char *v[])
 	if (gettimeofday( & tv_end, NULL))
 		return (1);
 	start = tv_start.tv_usec;// + tv_end.tv_sec * 1000000;
-	// start = tv_start.tv_sec * (long long)1000000.0;
 	end = tv_end.tv_usec;// + tv_end.tv_sec * 1000000;
-	// end = tv_end.tv_sec * (long long)1000000.0;
 	diff_1 += end - start;
-
-
-	// newline
-	// std::cout << nl;
 
 
 	// sort std::deque
@@ -64,10 +58,7 @@ int	main(int c, char *v[])
 	if (gettimeofday( & tv_end, NULL))
 		return (1);
 	start = tv_start.tv_usec;// + tv_end.tv_sec * 1000000;
-	// start = tv_start.tv_sec * 1000000.0;
 	end = tv_end.tv_usec;// + tv_end.tv_sec * 1000000;
-	// end = tv_end.tv_sec * 1000000.0;
-
 	diff_2 += end - start;
 
 
@@ -76,10 +67,12 @@ int	main(int c, char *v[])
 
 
 	// print delta time
-	std::cout << "Time to process a range of " << CYAN << a.size() << "\t" RESET
+	std::cout
+	<< "Time to process a range of " << CYAN << a.size() << "\t" RESET
 	<< " elements with std::vector :\t" << diff_1 << " us\n";
 
-	std::cout << "Time to process a range of " << CYAN << d.size() << "\t" RESET
+	std::cout
+	<< "Time to process a range of " << CYAN << d.size() << "\t" RESET
 	<< " elements with std::deque :\t" << diff_2 << " us\n";
 }
 
