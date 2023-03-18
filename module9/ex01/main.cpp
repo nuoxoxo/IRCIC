@@ -5,19 +5,14 @@
 
 int	main(int c, char **v)
 {
-	std::string	line;
-
 	if (c != 2)
 	{
 		return (0);
 	}
-	line = v[1];
-	if (line == "test")
+	if (std::string(v[1]) == "test")
 	{
-		default_debugger();
-		return (0);
+		return (default_debugger(), 0);
 	}
-
-	RPN(line);
+	calc(std::string(v[1]));
 }
 

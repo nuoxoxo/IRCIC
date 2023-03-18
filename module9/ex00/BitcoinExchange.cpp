@@ -32,21 +32,19 @@ std::string	remove_whitesp(std::string & line)
 
 double to_double_floor_2(double f)
 {
-    double L = (int) (f * 100);
-    double R = (double) L / 100;
-    return (R);
+	double L = (int) (f * 100);
+	double R = (double) L / 100;
+
+	return (R);
 }
 
 
 double to_double_round_2(double f)
 {
-    double L = (int) (f * 100 + .5);
-    double R = (double) L / 100;
-    /*
-    std::cout << f << "\n" ;
-    std::cout << L << " - " << R << "\n" ;
-    */
-    return (R);
+	double L = (int) (f * 100 + .5);
+	double R = (double) L / 100;
+
+	return (R);
 }
 
 
@@ -186,11 +184,9 @@ bool	_check_params_(int c, char *v[])
 	std::string	filename;
 
 	if (c ^ 2)
-		return (printerr(), false);
-	filename = std::string(v[1]);
-	if (filename == "")
-		return (printerr(), false);
-
+		return (printerr("could not open file."), false);
+	if (std::string(v[1]) == "")
+		return (printerr("could not open file."), false);
 	return true;
 }
 
