@@ -29,6 +29,7 @@ test	:	re
 		@ make clean
 
 r	:	run
+t	:	test
 
 all	:	$(name)
 

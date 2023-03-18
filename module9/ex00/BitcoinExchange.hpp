@@ -43,7 +43,6 @@ bool	_check_params_(int, char **);
 void	printerr(std::string s = "");
 bool	date_is_valid(std::string &);
 bool	query_is_valid(std::string &);
-bool	title_is_valid(std::string &);
 bool	isnumeric(std::string &);
 bool	number_check(std::string &);
 

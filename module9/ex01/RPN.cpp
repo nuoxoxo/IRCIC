@@ -2,7 +2,7 @@
 
 // creme 
 
-void	calc(std::string line)
+void	calculator(std::string line)
 {
 	std::cout << GREEN << RPN(line) << nlreset;
 }
@@ -61,9 +61,8 @@ std::string	RPN(std::string line)
 }
 
 
-void	calc(std::string expr, int compare)
+void	calculator(std::string expr, int compare)
 {
-
 	std::string	res = RPN(expr);
 	std::string	cmp = to_string(compare);
 
@@ -73,9 +72,8 @@ void	calc(std::string expr, int compare)
 	assert(res == cmp);
 }
 
-void	calc(std::string expr, std::string compare)
+void	calculator(std::string expr, std::string compare)
 {
-
 	std::string	res = RPN(expr);
 
 	std::cout << "expression: " << YELLOW << expr << nlreset;
@@ -105,44 +103,43 @@ std::string	to_space_separated_string(std::string& token)
 }
 
 
-void	default_debugger(void)
+void	debugger(void)
 {
 	std::cout << CYAN "::: misc. :::" nl2reset;
 
-	calc("3 4 +", 7);
-	calc("3 5 6 + *", 33);
-	calc("3 10 5 + *", 5);
-	calc("12 * 2 / 5 + 46 * 6 / 8 * 2 / + 2 * 2 -", 42);
-	calc("99 3 -4 + 2 - 6 + -2 +", -3);
-	calc("123 + -2 3 * 7 + -4 +", -13);
-	calc("4 12 -764 + 23 * 23 1 -", 2);
-	calc("3 -4 5 + -", Error);
+	calculator("3 4 +", 7);
+	calculator("3 5 6 + *", 33);
+	calculator("3 10 5 + *", 5);
+	calculator("12 * 2 / 5 + 46 * 6 / 8 * 2 / + 2 * 2 -", 42);
+	calculator("99 3 -4 + 2 - 6 + -2 +", -3);
+	calculator("123 + -2 3 * 7 + -4 +", -13);
+	calculator("4 12 -764 + 23 * 23 1 -", 2);
+	calculator("3 -4 5 + -", Error);
 
 	std::cout << CYAN "\n::: Subject tests :::" nl2reset;
 
-	calc("8 9 * 9 - 9 - 9 - 4 - 1 +", "42");
-	calc("7 7 * 7 -", "42");
-	calc("1 2 * 2 / 2 * 2 4 - +", "0");
-	calc("(1 + 1)", Error);
-	calc("(1 2 + 1)", "1");
-	calc("1 + (2 + 1)", Error);
+	calculator("8 9 * 9 - 9 - 9 - 4 - 1 +", "42");
+	calculator("7 7 * 7 -", "42");
+	calculator("1 2 * 2 / 2 * 2 4 - +", "0");
+	calculator("(1 + 1)", Error);
+	calculator("(1 2 + 1)", "1");
+	calculator("1 + (2 + 1)", Error);
 
 	std::cout << CYAN "\n::: GeeksforGeeks :::" nl2reset;
 
-	calc("1 + 0 6 9 3 + -11 * / * 17 + 5 +", Error);
-	calc("10 6 9 3 + -11 * / * 17 + 5 +", "13");
-	calc("2 1 + 3 *", "9");
-	calc("21 +3*", "9");
-	calc("4135/+", "1");
-	calc("4 13 5 / +", "1");
+	calculator("1 + 0 6 9 3 + -11 * / * 17 + 5 +", Error);
+	calculator("10 6 9 3 + -11 * / * 17 + 5 +", "13");
+	calculator("2 1 + 3 *", "9");
+	calculator("21 +3*", "9");
+	calculator("4135/+", "1");
+	calculator("4 13 5 / +", "1");
 
 	std::cout << CYAN "\n::: Eval :::" nl2reset;
 
-	calc("8 9 * 9 - 9 - 9 - 4 - 1 +", "42");
-	calc("9 8 * 4 * 4 / 2 + 9 - 8 - 8 - 1 - 6 -", "42");
-	calc("1 2 * 2 / 2 + 5 * 6 - 1 3 * - 4 5 * * 8 /", "15");
+	calculator("8 9 * 9 - 9 - 9 - 4 - 1 +", "42");
+	calculator("9 8 * 4 * 4 / 2 + 9 - 8 - 8 - 1 - 6 -", "42");
+	calculator("1 2 * 2 / 2 + 5 * 6 - 1 3 * - 4 5 * * 8 /", "15");
 }
-
 
 
 //to_string not include in c++98

@@ -1,8 +1,6 @@
 #include "iostream"
 #include "RPN.hpp"
 
-// drive
-
 int	main(int c, char **v)
 {
 	if (c != 2)
@@ -11,8 +9,8 @@ int	main(int c, char **v)
 	}
 	if (std::string(v[1]) == "test")
 	{
-		return (default_debugger(), 0);
+		return (debugger(), 0);
 	}
-	calc(std::string(v[1]));
+	calculator(std::string(v[1]));
 }
 
