@@ -3,68 +3,56 @@
 std::string	calc(std::string line)
 {
 	std::stack<std::string>	E;
-	std::string		s;
+	std::string		token;
+	int			a, b;
+
 	std::string		expr = to_space_separated_string(line);
 	std::stringstream	ss(expr);
 
-	while (!ss.eof() && ss >> s)
+	while (!ss.eof() && ss >> token)
 	{
-		if (s == "+" || s == "-" || s == "*" || s == "/")
-		{
-			int	r = 0, l = 0;
-
-			if (s == "*" || s == "/")
-			{
-				r = 1;
-				l = 1;
-			}
-			if (!E.size())
-				return Error;
-
-			std::stringstream(E.top()) >> r;
-			E.pop();
-
-			if (!E.size())
-				return Error;
-
-			std::stringstream(E.top()) >> l;
-			E.pop();
-
-			// dbg (to keep)
-			// std::cout << l << " . " << r << " . " << s << nl;
-
-			if (s == "+")
-				E.push(to_string(l + r));
-			else if (s == "-")
-				E.push(to_string(l - r));
-			else if (s == "*")
-				E.push(to_string(l * r));
-			else if (s == "/")
-				E.push(to_string(l / r));
-		}
-		else if (isnumeric(s))
-		{
-			E.push(s);
-		}
+		if (isnumeric(token))
+			E.push(token);
+		if (token != "+" && token != "-" && token != "*" && token != "/")
+			continue ;
+		a = b = 0;
+		if (token == "*" || token == "/")
+			a = b = 1;
+		if (!E.size())
+			return Error;
+		std::stringstream(E.top()) >> b;
+		E.pop();
+		if (!E.size())
+			return Error;
+		std::stringstream(E.top()) >> a;
+		E.pop();
+		if (token == "+")
+			E.push(to_string(a + b));
+		else if (token == "-")
+			E.push(to_string(a - b));
+		else if (token == "*")
+			E.push(to_string(a * b));
+		else if (token == "/")
+			E.push(to_string(a / b));
 	}
 	return (E.top());
 }
 
 
-std::string	to_space_separated_string(std::string& s)
+std::string	to_space_separated_string(std::string& token)
 {
-	std::string	r;
+	std::string	b;
 	int		i;
 
 	i = -1;
-	while (++i < (int) s.length())
+	while (++i < (int) token.length())
 	{
-		if (s[i] == ' ')
+		if (token[i] == ' ')
 			continue ;
-		r += s[i];
-		r += ' ';
+		b += token[i];
+		b += ' ';
 	}
-	return (r);
+	return (b);
 }
 
 
@@ -78,12 +66,12 @@ std::string to_string(const T & value)
 	return (oss.str());
 }
 
-bool	isnumeric(std::string & s)
+bool	isnumeric(std::string & token)
 {
 	size_t	i = -1;
-	while (++i < s.length())
+	while (++i < token.length())
 	{
-		if (s[i] < '0' || s[i] > '9')
+		if (token[i] < '0' || token[i] > '9')
 			return false;
 	}
 	return true;
