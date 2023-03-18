@@ -40,25 +40,28 @@ def merge_sort(D):
         D.append(R[j])
         j += 1
 
-def debugger()
+
+def debugger(a: list) -> None:
+    printlist(a)
+    d = deque(a)
+    merge_sort(d)
+    printlist(list(d), '(sorted)\n')
+
+def printlist(a: list, end: str = '') -> None:
+    if len(a) > 12:
+        print(a[:6], "[...]", len(a), end)
+    else:
+        print(a, len(a), end)
 
 
 if __name__ == '__main__':
 
     if len(sys.argv) ^ 1:
-        
+        exit()
 
-    # odd length
-    a = [2, 11, 1, 42, 21, 64, 6, 3, 21]
-    d = deque(a)
-    print(a, len(a))
-    merge_sort(d)
-    print("(sorted) ", list(d), end='\n\n')
+    a = [2, 11, 1, 42, 21, 64, 6, 3, -42]
+    debugger(a)
 
-    # even length
-    a = [2, 11, 1, 42, 21, 64, 6, 3, 21, -43]
-    d = deque(a)
-    print(a, len(a))
-    merge_sort(d)
-    print("(sorted) ", list(d))
+    a = [2, 11, 1, 42, 21, 64, 6, 3, -42, 21]
+    debugger(a)
 
