@@ -26,10 +26,10 @@
 
 // helpers
 
-void	calc(std::string, std::string);
-void	calc(std::string, int);
-void	calc(std::string);
-void	default_debugger();
+void	calculator(std::string, std::string);
+void	calculator(std::string, int);
+void	calculator(std::string);
+void	debugger();
 
 std::string	RPN(std::string line);
 std::string	to_space_separated_string(std::string&);
