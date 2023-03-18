@@ -1,16 +1,7 @@
 #include "PmergeMe.hpp"
 
-// using deque # 1 : library merge-insert
-// xD
-
-void	merge_sort(std::deque<int> & D, bool using_stl)
+void	Cmon_Lets_Use_STL_YEAH( std::deque<int> & D)
 {
-
-	if ( !using_stl)
-		return ;
-	if (D.size() < 1)
-		return ;
-
 	int			mid = D.size() / 2;
 	std::deque<int>		L (D.begin(), D.begin() + mid);
 	std::deque<int>		R (D.begin() + mid, D.end());
@@ -23,9 +14,74 @@ void	merge_sort(std::deque<int> & D, bool using_stl)
 	D = temp;
 }
 
+void	merge_sort(std::deque<int> & D, bool using_stl)
+{
+	if (D.size() < 1)
+		return ;
 
-// using deque # 2 : generic
-// :D
+	// Route : STL
+
+	if (using_stl)
+	{
+		Cmon_Lets_Use_STL_YEAH( D );
+		return ;
+	}
+
+	// Route : Generic
+
+	std::deque<int>	L, R;
+	int	i, mid, size;
+
+	// split
+	if (D.size() < 2)
+		return ;
+	size = (int) D.size();
+	mid = size / 2;
+	i = -1;
+	while (++i < mid)
+	{
+		L.push_back(D.back());
+		D.pop_back();
+	}
+	i = -1;
+	while (++i < size - mid)
+	{
+		R.push_back(D.back());
+		D.pop_back();
+	}
+
+	// recurse
+	merge_sort(L, true);
+	merge_sort(R, true);
+
+	// insert while comparing
+	while (!L.empty() && !R.empty())
+	{
+		if (L.front() < R.front())
+		{
+			D.push_back(L.front());
+			L.pop_front();
+		}
+		else
+		{
+			D.push_back(R.front());
+			R.pop_front();
+		}
+	}
+
+	// get the rest
+	while (!L.empty())
+	{
+		D.push_back(L.front());
+		L.pop_front();
+	}
+	while (!R.empty())
+	{
+		D.push_back(R.front());
+		R.pop_front();
+	}
+}
+
 
 void	merge_sort(std::deque<int> & D)
 {
@@ -163,17 +219,9 @@ void	print_deque(std::deque<int> a, bool option)
 			std::cout << *it << ' ';
 			it++;
 		}
-		std::cout << "[...]";
+		std::cout << RESET "[...]";
 	}
 	std::cout << nlreset;
-	/*
-	if (option == AFTER)
-	{
-		std::cout << "Time to process a range of\t"
-		<< CYAN << a.size() << RESET
-		<< " elements with std::deuqe :\t";// << print time //TODO
-	}
-	*/
 }
 
 
@@ -194,17 +242,9 @@ void	print_vector(std::vector<int> a, bool option)
 		int	i = -1;
 		while (++i < 4)
 			std::cout << a[i] << ' ';
-		std::cout << "[...]";
+		std::cout << RESET "[...]";
 	}
 	std::cout << nlreset;
-	/*
-	if (option == AFTER)
-	{
-		std::cout << "Time to process a range of\t"
-		<< CYAN << a.size() << RESET
-		<< " elements with std::vector :\t";// << print time //TODO
-	}
-	*/
 }
 
 
