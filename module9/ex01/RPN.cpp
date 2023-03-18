@@ -1,49 +1,5 @@
 #include "RPN.hpp"
 
-void	test(std::string e, std::string compare)
-{
-
-	std::string	res = calc(e);
-
-	std::cout
-	<< "expression: "
-	<< YELLOW << e << nlreset
-	<< "result: "
-	<< GREEN << res << nlreset;
-
-	if (compare != "")
-	{
-		assert(res == compare);
-	}
-}
-
-void	test(std::string e, int compare)
-{
-
-	std::string	res = calc(e);
-	std::string	cmp = to_string(compare);
-
-	std::cout
-	<< "expression: "
-	<< YELLOW << e << nlreset
-	<< "result: "
-	<< GREEN << res << nlreset;
-
-	assert(res == cmp);
-}
-
-void	test(std::string e, std::string compare, bool b) // overload trick
-{
-	std::string	res;
-
-	if (!b)
-		return ;
-	res = calc(e);
-
-	std::cout << GREEN << res << nlreset;
-}
-
-
 std::string	calc(std::string line)
 {
 	std::stack<std::string>	E;
@@ -98,8 +54,9 @@ std::string	calc(std::string line)
 std::string	to_space_separated_string(std::string& s)
 {
 	std::string	r;
+	int		i;
 
-	int	i = -1;
+	i = -1;
 	while (++i < (int) s.length())
 	{
 		if (s[i] == ' ')
@@ -113,10 +70,12 @@ std::string	to_space_separated_string(std::string& s)
 
 //to_string not include in c++98
 template<typename T>
-std::string to_string(const T & value) {
-    std::ostringstream oss;
-    oss << value;
-    return oss.str();
+std::string to_string(const T & value)
+{
+	std::ostringstream	oss;
+
+	oss << value;
+	return (oss.str());
 }
 
 bool	isnumeric(std::string & s)
@@ -128,6 +87,39 @@ bool	isnumeric(std::string & s)
 			return false;
 	}
 	return true;
+}
+
+
+void	test(std::string e, std::string compare)
+{
+	std::string	res = calc(e);
+
+	std::cout
+	<< "expression: "
+	<< YELLOW << e << nlreset
+	<< "result: "
+	<< GREEN << res << nlreset;
+
+	if (compare != "")
+	{
+		assert(res == compare);
+	}
+}
+
+void	test(std::string e, int compare)
+{
+	test(e, to_string(compare));
+}
+
+void	test(std::string e, std::string compare, bool b) // overload trick
+{
+	std::string	res;
+
+	if (!b)
+		return ;
+	res = calc(e);
+
+	std::cout << GREEN << res << nlreset;
 }
 
 
