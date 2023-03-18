@@ -17,12 +17,15 @@ $(name)	:	$(bud)
 		@ $(comp) $^ -o $@
 		@ printf "\n\t"
 		@ printf "\"are you using the right compiler? \"\n\n"
-		@ echo "you can do [make f] "
-		@ echo "you can do [make run] "
+		@ echo "you can do [make test] "
 		@ echo ""
 
 run	:	re
 		@ ./$(name)
+		@ make clean
+
+test	:	re
+		@ ./$(name) test
 		@ make clean
 
 r	:	run
