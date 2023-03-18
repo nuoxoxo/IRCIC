@@ -1,8 +1,5 @@
 #include "BitcoinExchange.hpp"
 
-
-//	helpers :: to be put in hpp
-
 template<typename T>
 std::string to_string(const T value) {
     std::ostringstream oss;
@@ -51,14 +48,13 @@ double to_double_round_2(double f)
 bool	number_check(std::string & s)
 {
 	std::string	number;
+	long long	i;
+	double		d;
 
 	if (!query_is_valid(s))
 		return (false);
-	number = s.substr(11, (int) s.length() - 11); // minur 2 sp
-	// number = s.substr(13, (int) s.length() - 13);
+	number = s.substr(11, (int) s.length() - 11);
 
-	double			d;
-	long long		i;
 	std::stringstream	ssd(number);
 	std::stringstream	ssi(number);
 
@@ -93,27 +89,11 @@ bool	query_is_valid(std::string & s)
 	if (s[10] != '|')
 		return (false);
 	date = s.substr(0, 10);
-	if ( ! date_is_valid(date))
+	if ( !date_is_valid(date))
 		return (false);
 
 	return (true);
 }
-
-
-bool	title_is_valid(std::string & s)
-{
-	std::string	title_input;
-
-	if ((int) s.length() > 12)
-	{
-		title_input = s.substr(0, 12);
-		if (title_input != "date | value")
-			return (false);
-	}
-
-	return (true);
-}
-
 
 bool	date_is_valid(std::string & s)
 {
@@ -173,9 +153,9 @@ bool	isnumeric(std::string & s)
 	while (++i < s.length())
 	{
 		if (s[i] < '0' || s[i] > '9')
-			return false;
+			return (false);
 	}
-	return true;
+	return (true);
 }
 
 
@@ -184,10 +164,10 @@ bool	_check_params_(int c, char *v[])
 	std::string	filename;
 
 	if (c ^ 2)
-		return (printerr("could not open file."), false);
+		return (false);
 	if (std::string(v[1]) == "")
-		return (printerr("could not open file."), false);
-	return true;
+		return (false);
+	return (true);
 }
 
 

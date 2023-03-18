@@ -32,7 +32,7 @@ run	:	re
 		@ ./$(name) $(path)input.txt
 		@ make clean
 
-r	:	run
+r	:	re
 
 all	:	$(name)
 
@@ -41,7 +41,7 @@ clean	:
 
 fclean	:	clean
 		@ $(rmv) $(name) a.out out
-
+t	:	test
 test	:	run
 f	:	fclean
 re	:	f all
