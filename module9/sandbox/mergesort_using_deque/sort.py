@@ -1,5 +1,6 @@
-import sys, typing, random
+import sys, typing
 from collections import deque
+from random import randint
 
 def merge_sort(D):
 
@@ -54,18 +55,22 @@ if __name__ == '__main__':
         else:
             print(a, len(a), end)
 
-    # DIY test
+    a = []
+
+    # pmergeme test
     if len(sys.argv) == 1:
+        a = [3, 5, 9, 7, 4]
+        debugger(a)
         a = [2, 11, 1, 42, 21, 64, 6, 3, -42]
         debugger(a)
         a = [2, 11, 1, 42, 21, 64, 6, 3, -42, 21]
         debugger(a)
-    # subject test
+    # random test
     else:
+        print(sys.argv[1])
         if sys.argv[1] == 'test':
+            a = [ randint(1, 100000) for _ in range(0, 3000) ]
+        else:
             a = [ int(_) for _ in sys.argv[1:] ]
-        print(f"will run with `jot -r 3000 1 100000 | tr '\\n' ' '`")
-        a = [ int(_) for _ in sys.argv[1:] ]
-        debugger(a)
-
+    debugger(a)
 
