@@ -1,5 +1,4 @@
 #include "iostream"
-
 #include "RPN.hpp"
 
 // drive
@@ -16,11 +15,9 @@ int	main(int c, char **v)
 	if (line == "test")
 	{
 		default_debugger();
+		return (0);
 	}
-	else
-	{
-		RPN(line, "", true);
-	}
-}
 
+	RPN(line);
+}
 

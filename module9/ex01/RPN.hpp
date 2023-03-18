@@ -26,10 +26,11 @@
 
 // helpers
 
-void	default_debugger(void);
-void	RPN(std::string, std::string, bool);
 void	RPN(std::string, std::string);
 void	RPN(std::string, int);
+void	RPN(std::string);
+void	default_debugger();
+bool	isnumeric(std::string &);
 
 std::string	calc(std::string line);
 std::string	to_space_separated_string(std::string&);

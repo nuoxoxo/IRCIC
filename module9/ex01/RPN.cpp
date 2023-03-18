@@ -39,84 +39,35 @@ std::string	calc(std::string line)
 }
 
 
-std::string	to_space_separated_string(std::string& token)
+void	RPN(std::string expr, std::string compare)
 {
-	std::string	b;
-	int		i;
 
-	i = -1;
-	while (++i < (int) token.length())
-	{
-		if (token[i] == ' ')
-			continue ;
-		b += token[i];
-		b += ' ';
-	}
-	return (b);
+	std::string	res = calc(expr);
+
+	std::cout << "expression: " << YELLOW << expr << nlreset;
+	std::cout << "result: " << GREEN << res << nlreset;
+	if (compare == "")
+		return ;
+	assert(res == compare);
 }
 
-
-//to_string not include in c++98
-template<typename T>
-std::string to_string(const T & value)
-{
-	std::ostringstream	oss;
-
-	oss << value;
-	return (oss.str());
-}
-
-bool	isnumeric(std::string & token)
-{
-	size_t	i = -1;
-	while (++i < token.length())
-	{
-		if (token[i] < '0' || token[i] > '9')
-			return false;
-	}
-	return true;
-}
-
-void	RPN(std::string e, std::string compare)
+void	RPN(std::string expr, int compare)
 {
 
-	std::string	res = calc(e);
-
-	std::cout
-	<< "expression: "
-	<< YELLOW << e << nlreset
-	<< "result: "
-	<< GREEN << res << nlreset;
-
-	if (compare != "")
-	{
-		assert(res == compare);
-	}
-}
-
-void	RPN(std::string e, int compare)
-{
-
-	std::string	res = calc(e);
+	std::string	res = calc(expr);
 	std::string	cmp = to_string(compare);
 
-	std::cout
-	<< "expression: "
-	<< YELLOW << e << nlreset
-	<< "result: "
-	<< GREEN << res << nlreset;
+	std::cout << "expression: " << YELLOW << expr << nlreset;
+	std::cout << "result: " << GREEN << res << nlreset;
 
 	assert(res == cmp);
 }
 
-void	RPN(std::string e, std::string compare, bool b) // overload trick
+void	RPN(std::string e)
 {
 	std::string	res;
 
-	if (!b)
-		return ;
 	res = calc(e);
-
 	std::cout << GREEN << res << nlreset;
 }
 
@@ -158,36 +109,42 @@ void	default_debugger(void)
 	RPN("1 2 * 2 / 2 + 5 * 6 - 1 3 * - 4 5 * * 8 /", "15");
 }
 
-void	test(std::string e, std::string compare)
+
+std::string	to_space_separated_string(std::string& token)
 {
-	std::string	res = calc(e);
+	std::string	b;
+	int		i;
 
-	std::cout
-	<< "expression: "
-	<< YELLOW << e << nlreset
-	<< "result: "
-	<< GREEN << res << nlreset;
-
-	if (compare != "")
+	i = -1;
+	while (++i < (int) token.length())
 	{
-		assert(res == compare);
+		if (token[i] == ' ')
+			continue ;
+		b += token[i];
+		b += ' ';
 	}
+	return (b);
 }
 
-void	test(std::string e, int compare)
+
+//to_string not include in c++98
+template<typename T>
+std::string to_string(const T & value)
 {
-	test(e, to_string(compare));
+	std::ostringstream	oss;
+
+	oss << value;
+	return (oss.str());
 }
 
-void	test(std::string e, std::string compare, bool b) // overload trick
+bool	isnumeric(std::string & token)
 {
-	std::string	res;
-
-	if (!b)
-		return ;
-	res = calc(e);
-
-	std::cout << GREEN << res << nlreset;
+	size_t	i = -1;
+	while (++i < token.length())
+	{
+		if (token[i] < '0' || token[i] > '9')
+			return (false);
+	}
+	return (true);
 }
-
 
