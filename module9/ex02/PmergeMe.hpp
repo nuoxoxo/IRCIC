@@ -11,6 +11,8 @@
 
 # define BEFORE 0
 # define AFTER 1
+# define USE_DIY 0
+# define USE_STL 1
 
 # define nl "\n"
 # define nl2 "\n\n"
@@ -26,15 +28,17 @@
 # define ITAL "\033[3m"
 
 # define TICK	GREEN " ✓" RESET
-# define CROSS	_RED_ " ✘" RESET
+# define TICK	GREEN " ✓" RESET
 
+
+void		_usage_(std::string);
+bool		isnumeric(std::string);
 void		print_deque(std::deque<int>, bool);
 void		print_vector(std::vector<int>, bool);
-std::deque<int>	merge_sort(std::deque<int> &);
-std::vector<int>	merge_sort(std::vector<int> &);
+void		merge_sort(std::vector<int> &);
+// void		merge_sort(std::deque<int> &);
+void		merge_sort(std::deque<int> &, bool);
 
-bool	isnumeric(std::string);
-void	_usage_(std::string);
 
 #endif
 

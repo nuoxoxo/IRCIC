@@ -1,98 +1,145 @@
 #include "PmergeMe.hpp"
 
-void	print_deque(std::deque<int> a, bool option)
+void	Cmon_Lets_Use_STL_YEAH( std::deque<int> & D)
 {
-	std::deque<int>::iterator	it;
+	int			mid = D.size() / 2;
+	std::deque<int>		L (D.begin(), D.begin() + mid);
+	std::deque<int>		R (D.begin() + mid, D.end());
+	std::deque<int>		temp;
 
-	if (option == BEFORE)
-		std::cout << "Before:\t" YELLOW;
-	if (option == AFTER)
-		std::cout << "After: \t" GREEN;
-	if (a.size() < 11)
+	sort(L.begin(), L.end());
+	sort(R.begin(), R.end());
+	merge(L.begin(), L.end(), R.begin(), R.end(),
+	 std::back_inserter<std::deque<int> >(temp));
+	D = temp;
+}
+
+void	merge_sort(std::deque<int> & D, bool using_stl)
+{
+	if (D.size() < 1)
+		return ;
+
+	// Route : STL
+
+	if (using_stl)
 	{
-		it = a.begin();
-		while (it != a.end())
+		Cmon_Lets_Use_STL_YEAH( D );
+		return ;
+	}
+
+	// Route : Generic
+
+	std::deque<int>	L, R;
+	int	i, mid, size;
+
+	// split
+	if (D.size() < 2)
+		return ;
+	size = (int) D.size();
+	mid = size / 2;
+	i = -1;
+	while (++i < mid)
+	{
+		L.push_back(D.back());
+		D.pop_back();
+	}
+	i = -1;
+	while (++i < size - mid)
+	{
+		R.push_back(D.back());
+		D.pop_back();
+	}
+
+	// recurse
+	merge_sort(L, true);
+	merge_sort(R, true);
+
+	// insert while comparing
+	while (!L.empty() && !R.empty())
+	{
+		if (L.front() < R.front())
 		{
-			std::cout << *it << ' ';
-			it++;
+			D.push_back(L.front());
+			L.pop_front();
+		}
+		else
+		{
+			D.push_back(R.front());
+			R.pop_front();
 		}
 	}
-	else
+
+	// get the rest
+	while (!L.empty())
 	{
-		it = a.begin();
-		while (it != a.begin() + 4)
+		D.push_back(L.front());
+		L.pop_front();
+	}
+	while (!R.empty())
+	{
+		D.push_back(R.front());
+		R.pop_front();
+	}
+}
+
+
+void	merge_sort(std::deque<int> & D)
+{
+	std::deque<int>	L, R;
+	int	i, mid, size;
+
+	// split
+	if (D.size() < 2)
+		return ;
+	size = (int) D.size();
+	mid = size / 2;
+	i = -1;
+	while (++i < mid)
+	{
+		L.push_back(D.back());
+		D.pop_back();
+	}
+	i = -1;
+	while (++i < size - mid)
+	{
+		R.push_back(D.back());
+		D.pop_back();
+	}
+
+	// recurse
+	merge_sort(L);
+	merge_sort(R);
+
+	// insert while comparing
+	while (!L.empty() && !R.empty())
+	{
+		if (L.front() < R.front())
 		{
-			std::cout << *it << ' ';
-			it++;
+			D.push_back(L.front());
+			L.pop_front();
 		}
-		std::cout << "[...]";
+		else
+		{
+			D.push_back(R.front());
+			R.pop_front();
+		}
 	}
-	std::cout << nlreset;
-	/*
-	if (option == AFTER)
+
+	// get the rest
+	while (!L.empty())
 	{
-		std::cout << "Time to process a range of\t"
-		<< CYAN << a.size() << RESET
-		<< " elements with std::deuqe :\t";// << print time //TODO
+		D.push_back(L.front());
+		L.pop_front();
 	}
-	*/
+	while (!R.empty())
+	{
+		D.push_back(R.front());
+		R.pop_front();
+	}
 }
 
 
-void	print_vector(std::vector<int> a, bool option)
-{
-	if (option == BEFORE)
-		std::cout << "Before:\t" YELLOW;
-	if (option == AFTER)
-		std::cout << "After: \t" GREEN;
-	if (a.size() < 11)
-	{
-		int	i = -1;
-		while (++i < (int) a.size())
-			std::cout << a[i] << ' ';
-	}
-	else
-	{
-		int	i = -1;
-		while (++i < 4)
-			std::cout << a[i] << ' ';
-		std::cout << "[...]";
-	}
-	std::cout << nlreset;
-	/*
-	if (option == AFTER)
-	{
-		std::cout << "Time to process a range of\t"
-		<< CYAN << a.size() << RESET
-		<< " elements with std::vector :\t";// << print time //TODO
-	}
-	*/
-}
-
-std::deque<int>	merge_sort(std::deque<int> & a)
-{
-	std::deque<int>	res;
-
-	if (a.size() > 1)
-	{
-		int		mid = a.size() / 2;
-		std::deque<int>	d1(a.begin(), a.begin() + mid);
-		std::deque<int>	d2(a.begin() + mid, a.end());
-
-		sort(d1.begin(), d1.end());
-		sort(d2.begin(), d2.end());
-		merge(d1.begin(), d1.end(), d2.begin(), d2.end(),
-			std::back_inserter<std::deque<int> >(res));
-	}
-	else
-	{
-		res = a;
-	}
-
-	return (res);
-}
-
-std::vector<int>	merge_sort(std::vector<int>& a)
+void	merge_sort(std::vector<int>& a)
 {
 	if (a.size() > 1)
 	{
@@ -102,8 +149,8 @@ std::vector<int>	merge_sort(std::vector<int>& a)
 		std::vector<int>	L(a.begin(), a.begin() + mid);
 		std::vector<int>	R(a.begin() + mid, a.end());
 
-		L = merge_sort(L);
-		R = merge_sort(R);
+		merge_sort(L);
+		merge_sort(R);
 		i = j = k = 0;
 		while (i < (int) L.size() && j < (int) R.size())
 		{
@@ -132,7 +179,6 @@ std::vector<int>	merge_sort(std::vector<int>& a)
 			++k;
 		}
 	}
-	return (a);
 }
 
 
@@ -146,6 +192,61 @@ bool	isnumeric(std::string s)
 	}
 	return true;
 }
+
+
+void	print_deque(std::deque<int> a, bool option)
+{
+	std::deque<int>::iterator	it;
+
+	if (option == BEFORE)
+		std::cout << "Before:\t" YELLOW;
+	if (option == AFTER)
+		std::cout << "After: \t" GREEN;
+	if (a.size() < 11)
+	{
+		it = a.begin();
+		while (it != a.end())
+		{
+			std::cout << *it << ' ';
+			it++;
+		}
+	}
+	else
+	{
+		it = a.begin();
+		while (it != a.begin() + 4)
+		{
+			std::cout << *it << ' ';
+			it++;
+		}
+		std::cout << RESET "[...]";
+	}
+	std::cout << nlreset;
+}
+
+
+void	print_vector(std::vector<int> a, bool option)
+{
+	if (option == BEFORE)
+		std::cout << "Before:\t" YELLOW;
+	if (option == AFTER)
+		std::cout << "After: \t" GREEN;
+	if (a.size() < 11)
+	{
+		int	i = -1;
+		while (++i < (int) a.size())
+			std::cout << a[i] << ' ';
+	}
+	else
+	{
+		int	i = -1;
+		while (++i < 4)
+			std::cout << a[i] << ' ';
+		std::cout << RESET "[...]";
+	}
+	std::cout << nlreset;
+}
+
 
 void	_usage_(std::string message)
 {

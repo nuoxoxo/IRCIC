@@ -2,27 +2,23 @@
 #include "PmergeMe.hpp"
 
 
-//need one more container
-void		print_deque(std::deque<int>, bool);
-void		print_vector(std::vector<int>, bool);
-std::deque<int>	merge_sort(std::deque<int> &);
-std::vector<int>	merge_sort(std::vector<int> &);
-
 int	main(int c, char *v[])
 {
 	std::vector<int>	a;
-	std::deque<int>	d;
-	int		i;
-	int		n;
-
-	long long		start, end, diff_1, diff_2;
+	std::deque<int>		d, dd;
 	struct timeval		tv_start, tv_end;
 
+	int		i;
+	int		n;
+	long long	start, end, diff_1, diff_2, diff_3;
 
-	if (gettimeofday( & tv_start, NULL)) // timing dt mgmt :: head
-		return (1);
+
 	if (c < 2)
 		return (_usage_("no number given. exit now."), 1);
+
+
+	if (gettimeofday( & tv_start, NULL)) // timing data mgmt :: head
+		return (1);
 	i = 0;
 	while (++i < c)
 	{
@@ -33,17 +29,19 @@ int	main(int c, char *v[])
 			return (_usage_("Error"), 1);
 		a.push_back(n);
 		d.push_back(n);
+		dd.push_back(n);
 	}
-	if (gettimeofday( & tv_end, NULL)) // timing dt mgmt :: tail
+	if (gettimeofday( & tv_end, NULL)) // timing data mgmt :: tail
 		return (1);
 
 	start = tv_start.tv_usec;
 	end = tv_end.tv_usec;
 	diff_1 = end - start;
 	diff_2 = diff_1;
+	diff_3 = diff_2;
 
-	// print unsorted list
-	print_vector(a, BEFORE);
+
+	print_vector(a, BEFORE);// print unsorted list
 
 
 	// sort std::vector
@@ -52,40 +50,48 @@ int	main(int c, char *v[])
 	merge_sort(a);
 	if (gettimeofday( & tv_end, NULL))
 		return (1);
-	start = tv_start.tv_usec;// + tv_end.tv_sec * 1000000;
-	// start = tv_start.tv_sec * (long long)1000000.0;
-	end = tv_end.tv_usec;// + tv_end.tv_sec * 1000000;
-	// end = tv_end.tv_sec * (long long)1000000.0;
+	start = tv_start.tv_usec;
+	end = tv_end.tv_usec;
 	diff_1 += end - start;
 
 
-	// newline
-	// std::cout << nl;
-
-
-	// sort std::deque
+	// sort std::deque - generic
 	if (gettimeofday( & tv_start, NULL))
 		return (1);
-	merge_sort(d);
+	merge_sort(d, USE_DIY);
 	if (gettimeofday( & tv_end, NULL))
 		return (1);
-	start = tv_start.tv_usec;// + tv_end.tv_sec * 1000000;
-	// start = tv_start.tv_sec * 1000000.0;
-	end = tv_end.tv_usec;// + tv_end.tv_sec * 1000000;
-	// end = tv_end.tv_sec * 1000000.0;
-
+	start = tv_start.tv_usec;
+	end = tv_end.tv_usec;
 	diff_2 += end - start;
 
 
-	// print sorted list
-	print_vector(a, AFTER);
+	// sort std::deque - STL
+	if (gettimeofday( & tv_start, NULL))
+		return (1);
+	merge_sort(dd, USE_STL);
+	if (gettimeofday( & tv_end, NULL))
+		return (1);
+	start = tv_start.tv_usec;
+	end = tv_end.tv_usec;
+	diff_3 += end - start;
 
 
-	// print delta time
-	std::cout << "Time to process a range of " << CYAN << a.size() << "\t" RESET
+	print_vector(a, AFTER);// print sorted list
+
+
+	// compare delta time
+	std::cout
+	<< "Time to process a range of " << CYAN << a.size() << "\t" RESET
 	<< " elements with std::vector :\t" << diff_1 << " us\n";
 
-	std::cout << "Time to process a range of " << CYAN << d.size() << "\t" RESET
-	<< " elements with std::deque :\t" << diff_2 << " us\n";
+	std::cout
+	<< "Time to process a range of " << CYAN << d.size() << "\t" RESET
+	<< " elements with std::deque :\t" << diff_2 << " us (generic)\n";
+
+	std::cout
+	<< "Time to process a range of " << CYAN << d.size() << "\t" RESET
+	<< " elements with std::deque :\t" << diff_3 << " us (STL)\n";
+
 }
 
