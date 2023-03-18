@@ -1,27 +1,32 @@
 #include "PmergeMe.hpp"
 
 // using deque # 1 : library merge-insert
-/*
-void	merge_sort(std::deque<int> & a)
+// xD
+
+void	merge_sort(std::deque<int> & D, bool using_stl)
 {
-	std::deque<int>	res;
 
-	if (a.size() > 1)
-	{
-		int		mid = a.size() / 2;
-		std::deque<int>	d1(a.begin(), a.begin() + mid);
-		std::deque<int>	d2(a.begin() + mid, a.end());
+	if ( !using_stl)
+		return ;
+	if (D.size() < 1)
+		return ;
 
-		sort(d1.begin(), d1.end());
-		sort(d2.begin(), d2.end());
-		merge(d1.begin(), d1.end(), d2.begin(), d2.end(),
-			std::back_inserter<std::deque<int> >(res));
-	}
-	a = res;
+	int			mid = D.size() / 2;
+	std::deque<int>		L (D.begin(), D.begin() + mid);
+	std::deque<int>		R (D.begin() + mid, D.end());
+	std::deque<int>		temp;
+
+	sort(L.begin(), L.end());
+	sort(R.begin(), R.end());
+	merge(L.begin(), L.end(), R.begin(), R.end(),
+	 std::back_inserter<std::deque<int> >(temp));
+	D = temp;
 }
-*/
 
-// using deque # 1 : library merge-insert
+
+// using deque # 2 : generic
+// :D
+
 void	merge_sort(std::deque<int> & D)
 {
 	std::deque<int>	L, R;
@@ -50,8 +55,31 @@ void	merge_sort(std::deque<int> & D)
 	merge_sort(R);
 
 	// insert while comparing
-	while (L.empty)
-		// XXX
+	while (!L.empty() && !R.empty())
+	{
+		if (L.front() < R.front())
+		{
+			D.push_back(L.front());
+			L.pop_front();
+		}
+		else
+		{
+			D.push_back(R.front());
+			R.pop_front();
+		}
+	}
+
+	// get the rest
+	while (!L.empty())
+	{
+		D.push_back(L.front());
+		L.pop_front();
+	}
+	while (!R.empty())
+	{
+		D.push_back(R.front());
+		R.pop_front();
+	}
 }
 
 

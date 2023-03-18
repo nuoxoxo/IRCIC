@@ -5,11 +5,11 @@
 int	main(int c, char *v[])
 {
 	std::vector<int>	a;
-	std::deque<int>	d;
-	int		i;
-	int		n;
+	std::deque<int>		d, dd;
+	int			i;
+	int			n;
 
-	long long		start, end, diff_1, diff_2;
+	long long		start, end, diff_1, diff_2, diff_3;
 	struct timeval		tv_start, tv_end;
 
 
@@ -27,6 +27,7 @@ int	main(int c, char *v[])
 			return (_usage_("Error"), 1);
 		a.push_back(n);
 		d.push_back(n);
+		dd.push_back(n);
 	}
 	if (gettimeofday( & tv_end, NULL)) // timing dt mgmt :: tail
 		return (1);
@@ -51,10 +52,21 @@ int	main(int c, char *v[])
 	diff_1 += end - start;
 
 
-	// sort std::deque
+	// sort std::deque - generic
 	if (gettimeofday( & tv_start, NULL))
 		return (1);
 	merge_sort(d);
+	if (gettimeofday( & tv_end, NULL))
+		return (1);
+	start = tv_start.tv_usec;// + tv_end.tv_sec * 1000000;
+	end = tv_end.tv_usec;// + tv_end.tv_sec * 1000000;
+	diff_2 += end - start;
+
+
+	// sort std::deque - STL
+	if (gettimeofday( & tv_start, NULL))
+		return (1);
+	merge_sort(dd, );
 	if (gettimeofday( & tv_end, NULL))
 		return (1);
 	start = tv_start.tv_usec;// + tv_end.tv_sec * 1000000;
@@ -73,6 +85,11 @@ int	main(int c, char *v[])
 
 	std::cout
 	<< "Time to process a range of " << CYAN << d.size() << "\t" RESET
-	<< " elements with std::deque :\t" << diff_2 << " us\n";
+	<< " elements with std::deque (generic) :\t" << diff_2 << " us\n";
+
+	std::cout
+	<< "Time to process a range of " << CYAN << d.size() << "\t" RESET
+	<< " elements with std::deque (STL) :\t" << diff_2 << " us\n";
+
 }
 

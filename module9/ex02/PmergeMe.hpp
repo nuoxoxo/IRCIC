@@ -26,7 +26,8 @@
 # define ITAL "\033[3m"
 
 # define TICK	GREEN " ✓" RESET
-# define CROSS	_RED_ " ✘" RESET
+# define TICK	GREEN " ✓" RESET
+# define YES 1
 
 void		_usage_(std::string);
 bool		isnumeric(std::string);
