@@ -32,8 +32,8 @@ void		_usage_(std::string);
 bool		isnumeric(std::string);
 void		print_deque(std::deque<int>, bool);
 void		print_vector(std::vector<int>, bool);
-void			merge_sort(std::vector<int> &);
-std::deque<int>		merge_sort(std::deque<int> &);
+void		merge_sort(std::vector<int> &);
+void		merge_sort(std::deque<int> &);
 
 
 #endif

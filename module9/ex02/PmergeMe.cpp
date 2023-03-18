@@ -1,6 +1,8 @@
 #include "PmergeMe.hpp"
 
-std::deque<int>	merge_sort(std::deque<int> & a)
+// using deque # 1 : library merge-insert
+
+void	merge_sort(std::deque<int> & a)
 {
 	std::deque<int>	res;
 
@@ -15,13 +17,13 @@ std::deque<int>	merge_sort(std::deque<int> & a)
 		merge(d1.begin(), d1.end(), d2.begin(), d2.end(),
 			std::back_inserter<std::deque<int> >(res));
 	}
-	else
-	{
-		res = a;
-	}
-
-	return (res);
+	a = res;
 }
+
+
+// using deque # 1 : library merge-insert
+//	TODO
+
 
 void	merge_sort(std::vector<int>& a)
 {
