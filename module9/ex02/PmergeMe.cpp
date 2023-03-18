@@ -1,7 +1,7 @@
 #include "PmergeMe.hpp"
 
 // using deque # 1 : library merge-insert
-
+/*
 void	merge_sort(std::deque<int> & a)
 {
 	std::deque<int>	res;
@@ -19,10 +19,40 @@ void	merge_sort(std::deque<int> & a)
 	}
 	a = res;
 }
-
+*/
 
 // using deque # 1 : library merge-insert
-//	TODO
+void	merge_sort(std::deque<int> & D)
+{
+	std::deque<int>	L, R;
+	int	i, mid, size;
+
+	// split
+	if (D.size() < 2)
+		return ;
+	size = (int) D.size();
+	mid = size / 2;
+	i = -1;
+	while (++i < mid)
+	{
+		L.push_back(D.back());
+		D.pop_back();
+	}
+	i = -1;
+	while (++i < size - mid)
+	{
+		R.push_back(D.back());
+		D.pop_back();
+	}
+
+	// recurse
+	merge_sort(L);
+	merge_sort(R);
+
+	// insert while comparing
+	while (L.empty)
+		// XXX
+}
 
 
 void	merge_sort(std::vector<int>& a)
