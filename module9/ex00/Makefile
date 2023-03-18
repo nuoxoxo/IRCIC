@@ -2,6 +2,8 @@ comp	:=	c++ -Wall -Werror -Wextra -pedantic -MMD -MP -std=c++98
 comp	:=	c++ -Wall -Werror -Wextra -std=c++98
 rmv	:=	rm -rf
 
+path	:=	"assets/"
+
 name	:=	btc
 src	:=	main.cpp BitcoinExchange.cpp
 
@@ -16,19 +18,18 @@ $(name)	:	$(bud)
 		@ $(comp) $^ -o $@
 		@ printf "\n\t"
 		@ printf "\"are you using the right compiler? \"\n\n"
-		@ echo "you can do [make f] "
-		@ echo "you can do [make run] "
+		@ echo "you can do [make test] "
 		@ echo ""
 
 run	:	re
 		@ echo ""
 		@ echo "::: EVAL input :::"
 		@ echo ""
-		@ ./$(name) assets/input.csv
+		@ ./$(name) $(path)input.csv
 		@ echo ""
 		@ echo "::: Subject input :::"
 		@ echo ""
-		@ ./$(name) assets/input.txt
+		@ ./$(name) $(path)/input.txt
 		@ make clean
 
 r	:	run

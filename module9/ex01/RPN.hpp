@@ -26,12 +26,12 @@
 
 // helpers
 
-void	default_debugger(void);
-void	RPN(std::string, std::string, bool);
-void	RPN(std::string, std::string);
-void	RPN(std::string, int);
+void	calc(std::string, std::string);
+void	calc(std::string, int);
+void	calc(std::string);
+void	default_debugger();
 
-std::string	calc(std::string line);
+std::string	RPN(std::string line);
 std::string	to_space_separated_string(std::string&);
 
 //to_string not include in c++98

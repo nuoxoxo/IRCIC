@@ -3,35 +3,30 @@
 
 int	main(int c, char **v)
 {
-	// bool			title_checked = false;
 	std::ifstream		ifs;
 	std::ofstream		ofs;
 	std::string		input, data;
 	std::string		s, res, line;
 	std::map<std::string, double>	dict;
 
-	// std::string	L, R;
-
 	if (!_check_params_(c, v))
-		return (printerr("could not open file."), 1);
-		// return (printerr("could not open input."), 1);
-
+		return (1);
 
 	// open data.csv
 
-	data = "./assets/data.csv";
-	// data = "data.csv"; // TODO . FIXME . XXX
+	// data = "./assets/data.csv";
+	data = "data.csv";
 
 	if (ifs.is_open())
 		ifs.close();
 	ifs.open(data.c_str());
 	if (ifs.fail())
-		return (printerr(), 1);
+		return (printerr("could not open file."), 1);
 
 
 	// read data
 	if (!ifs.eof())
-		getline(ifs, line); // jettison the headline
+		getline(ifs, line);
 	while (!ifs.eof() && getline(ifs, line))
 	{
 		std::string	lhs = line.substr(0, line.find(","));
@@ -47,12 +42,12 @@ int	main(int c, char **v)
 		ifs.close();
 	ifs.open(input.c_str());
 	if (ifs.fail())
-		return (printerr(), 1);
+		return (printerr("could not open file."), 1);
 
 
 	// read input
 	if (!ifs.eof())
-		getline(ifs, line); // jettison the headline
+		getline(ifs, line);
 	while (!ifs.eof() && getline(ifs, line))
 	{
 		s = remove_whitesp(line);
@@ -61,11 +56,7 @@ int	main(int c, char **v)
 		{
 			printerr("bad input => " + line /* original line */);
 		}
-		else if ( ! number_check(s))
-		{
-			;;
-		}
-		else
+		if (number_check(s))
 		{
 			std::string	key = s.substr(0, s.find("|"));
 			std::string	valstr = s.substr(s.find("|") + 1);
@@ -92,20 +83,19 @@ int	main(int c, char **v)
 				{
 					std::cout << key << " => " << valstr << " = 0" nl;
 				}
+				double R = to_double_round_2(it->second * val);
+				res = to_string(to_double_round_2(it->second * val));
+				if (res[res.length() - 1] == '0')
+					res = res.substr(0, res.length() - 1);
+
+				std::cout << key << " => " << valstr << " = " YELLOW;
+				if (res.find("+") != std::string::npos)
+				{
+					std::cout << std::setprecision(PRECISION) << R << std::defaultfloat << nlreset;
+				}
 				else
 				{
-					it--;
-					double R = to_double_round_2(it->second * val);
-					res = to_string(to_double_round_2(it->second * val));
-					if (res[res.length() - 1] == '0')
-						res = res.substr(0, res.length() - 1);
-
-					std::cout << key << " => " << valstr << " = " YELLOW;
-					if (res.find("+") != std::string::npos)
-						std::cout << std::setprecision(PRECISION) << R << std::defaultfloat << nlreset;
-					else
-						std::cout << res << nlreset;
-
+					std::cout << res << nlreset;
 				}
 
 			}

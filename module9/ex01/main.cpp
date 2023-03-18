@@ -1,26 +1,18 @@
 #include "iostream"
-
 #include "RPN.hpp"
 
 // drive
 
 int	main(int c, char **v)
 {
-	std::string	line;
-
 	if (c != 2)
 	{
 		return (0);
 	}
-	line = v[1];
-	if (line == "test")
+	if (std::string(v[1]) == "test")
 	{
-		default_debugger();
+		return (default_debugger(), 0);
 	}
-	else
-	{
-		RPN(line, "", true);
-	}
+	calc(std::string(v[1]));
 }
-
 
