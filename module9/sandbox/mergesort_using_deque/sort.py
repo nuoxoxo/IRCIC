@@ -1,4 +1,4 @@
-import sys, typing
+import sys, typing, random
 from collections import deque
 
 def merge_sort(D):
@@ -61,7 +61,9 @@ if __name__ == '__main__':
         a = [2, 11, 1, 42, 21, 64, 6, 3, -42, 21]
         debugger(a)
     # subject test
-    else: # subject test
+    else:
+        if sys.argv[1] == 'test':
+            a = [ int(_) for _ in sys.argv[1:] ]
         print(f"will run with `jot -r 3000 1 100000 | tr '\\n' ' '`")
         a = [ int(_) for _ in sys.argv[1:] ]
         debugger(a)
