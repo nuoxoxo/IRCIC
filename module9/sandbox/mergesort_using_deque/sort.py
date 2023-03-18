@@ -1,8 +1,12 @@
+import sys, typing
 from collections import deque
 
 def merge_sort(D):
+
+    # basecase
     if len(D) < 2:
         return
+
     # split
     size = len(D)
     mid = size // 2
@@ -36,8 +40,13 @@ def merge_sort(D):
         D.append(R[j])
         j += 1
 
+def debugger()
+
 
 if __name__ == '__main__':
+
+    if len(sys.argv) ^ 1:
+        
 
     # odd length
     a = [2, 11, 1, 42, 21, 64, 6, 3, 21]
