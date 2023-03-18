@@ -41,27 +41,29 @@ def merge_sort(D):
         j += 1
 
 
-def debugger(a: list) -> None:
-    printlist(a)
-    d = deque(a)
-    merge_sort(d)
-    printlist(list(d), '(sorted)\n')
-
-def printlist(a: list, end: str = '') -> None:
-    if len(a) > 12:
-        print(a[:6], "[...]", len(a), end)
-    else:
-        print(a, len(a), end)
-
-
 if __name__ == '__main__':
+    def debugger(a: list) -> None:
+        printlist(a)
+        d = deque(a)
+        merge_sort(d)
+        printlist(list(d), '(sorted)\n')
 
-    if len(sys.argv) ^ 1:
-        exit()
+    def printlist(a: list, end: str = '') -> None:
+        if len(a) > 12:
+            print(a[:6], '[...]', len(a), end)
+        else:
+            print(a, len(a), end)
 
-    a = [2, 11, 1, 42, 21, 64, 6, 3, -42]
-    debugger(a)
+    # DIY test
+    if len(sys.argv) == 1:
+        a = [2, 11, 1, 42, 21, 64, 6, 3, -42]
+        debugger(a)
+        a = [2, 11, 1, 42, 21, 64, 6, 3, -42, 21]
+        debugger(a)
+    # subject test
+    else: # subject test
+        print(f"will run with `jot -r 3000 1 100000 | tr '\\n' ' '`")
+        a = [ int(_) for _ in sys.argv[1:] ]
+        debugger(a)
 
-    a = [2, 11, 1, 42, 21, 64, 6, 3, -42, 21]
-    debugger(a)
 
