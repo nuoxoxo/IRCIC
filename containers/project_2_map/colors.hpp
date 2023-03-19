@@ -23,7 +23,11 @@
 
 // impl. restricted to >= c++std-11
 /*
-void	print() { std::cout << nl2reset; }
+void	print()
+{
+	std::cout << nl2reset;
+}
+
 template<typename T, typename... Types>
 void	print(T n1, Types... n2)
 {
