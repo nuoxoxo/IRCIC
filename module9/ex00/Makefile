@@ -18,6 +18,10 @@ $(name)	:	$(bud)
 		@ $(comp) $^ -o $@
 		@ printf "\n\t"
 		@ printf "\"are you using the right compiler? \"\n\n"
+		@ echo "you can do [curl -O ] "
+		@ echo "you can do [wget ] "
+		@ echo "you can do [tar -xvzf ] "
+		@ echo "-"
 		@ echo "you can do [make test] "
 		@ echo ""
 
