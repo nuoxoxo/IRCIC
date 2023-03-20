@@ -85,7 +85,7 @@ int	main(int c, char **v)
 			}
 			std::cout
 			<< std::setprecision(PRECISION) << val
-			<< std::defaultfloat
+			// << std::defaultfloat // c++11 & we don't need it
 			<< nlreset;
 		}
 		else
@@ -111,7 +111,7 @@ int	main(int c, char **v)
 			}
 			std::cout
 			<< std::setprecision(PRECISION) << val
-			<< std::defaultfloat
+			// << std::defaultfloat // c++11 & we don't need it
 			<< nlreset;
 		}
 	}

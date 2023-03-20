@@ -63,6 +63,7 @@ bool	number_check(std::string & s)
 	if ((!ssd.eof() || ssd.fail()) && (!ssi.eof() || ssi.fail()))
 	{
 		printerr("not a number.");
+		return (false);
 	}
 	if (d < 0 || i < 0)
 	{
