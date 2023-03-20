@@ -23,7 +23,6 @@ $(name)	:	$(bud)
 		@ echo "you can do [tar -xvzf ] "
 		@ echo "-"
 		@ echo "you can do [make test] "
-		@ echo "you can do [make t] "
 		@ echo ""
 
 run	:	re
