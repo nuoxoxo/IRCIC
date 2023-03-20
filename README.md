@@ -19,7 +19,7 @@
 ![](https://i.imgur.com/Op6BF0O.png)
 --->
 
-# ~~Containers~~
+# Containers (deprecated)
 
 ![](https://i.imgur.com/FWvWTev.jpg)
 
