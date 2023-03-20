@@ -30,10 +30,10 @@ void	calculator(std::string, std::string);
 void	calculator(std::string, int);
 void	calculator(std::string);
 void	debugger();
+bool	check_expression(std::string &);
 
-std::string	RPN(std::string line);
-std::string	to_space_separated_string(std::string&);
-
+std::string	RPN(std::string);
+std::string	to_space_separated_string(std::string);
 //to_string not include in c++98
 template<typename T>
     std::string to_string(const T &);

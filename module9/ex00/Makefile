@@ -30,6 +30,7 @@ run	:	re
 		@ echo "::: Subject input :::"
 		@ echo ""
 		@ ./$(name) $(path)input.txt
+		@ echo ""
 		@ make clean
 
 r	:	re

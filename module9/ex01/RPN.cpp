@@ -16,6 +16,9 @@ std::string	RPN(std::string line)
 	std::string		token;
 	int			a, b;
 
+	if (!check_expression(line))
+		return (Error);
+
 	std::string		expr = to_space_separated_string(line);
 	std::stringstream	ss(expr);
 
@@ -34,7 +37,7 @@ std::string	RPN(std::string line)
 		}
 		if (E.size() < 2)
 		{
-			return Error;
+			return (Error);
 		}
 		std::stringstream(E.top()) >> b;
 		E.pop();
@@ -86,20 +89,37 @@ void	calculator(std::string expr, std::string compare)
 
 // util
 
-std::string	to_space_separated_string(std::string& token)
+std::string	to_space_separated_string(std::string token)
 {
-	std::string	b;
+	std::string	res;
 	int		i;
 
 	i = -1;
 	while (++i < (int) token.length())
 	{
-		if (token[i] == ' ')
+		if (token[i] == ' ' || (token[i] < 14 && token[i] > 8))
 			continue ;
-		b += token[i];
-		b += ' ';
+		res += token[i];
+		res += ' ';
 	}
-	return (b);
+	return (res);
+}
+
+bool	check_expression(std::string & expr)
+{
+	int	i = -1;
+
+	while (++i < (int) expr.length())
+	{
+		if (expr[i] == ' ' || (expr[i] < 14 && expr[i] > 8)
+			|| expr[i] <= '9' && expr[i] >= '0'
+			|| expr[i] == '+'
+			|| expr[i] == '/'
+			|| expr[i] == '*' || expr[i] == '+')
+			continue ;
+		return (false);
+	}
+	return (true);
 }
 
 
@@ -136,6 +156,9 @@ void	debugger(void)
 
 	std::cout << CYAN "\n::: Eval :::" nl2reset;
 
+	calculator("", "Error");
+	calculator(" ", "Error");
+	calculator("\n", "Error");
 	calculator("8 9 * 9 - 9 - 9 - 4 - 1 +", "42");
 	calculator("9 8 * 4 * 4 / 2 + 9 - 8 - 8 - 1 - 6 -", "42");
 	calculator("1 2 * 2 / 2 + 5 * 6 - 1 3 * - 4 5 * * 8 /", "15");
