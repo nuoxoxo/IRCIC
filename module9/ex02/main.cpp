@@ -10,31 +10,35 @@ int	main(int c, char *v[])
 
 	int		i;
 	int		n;
+	long long	temp;
 	long long	start, end, diff_1, diff_2, diff_3;
-
 
 	if (c < 2)
 		return (_usage_("no number given. exit now."), 1);
 
-
-	if (gettimeofday( & tv_start, NULL)) // timing data mgmt :: head
+	if (gettimeofday( & tv_start, NULL)) // timing data mgmt :: start
 		return (1);
+
 	i = 0;
 	while (++i < c)
 	{
 		if ( !isnumeric(v[i]))
 			return (_usage_("non numeric value detected. exit now."), 1);
-		std::stringstream(v[i]) >> n;
-		if ( !n)
+		std::stringstream(v[i]) >> temp;
+		if (temp > 2147483647)
+			return (_usage_("\"long long? seriously?\" says the program."), 1);
+		if (!temp)
 			return (_usage_("we have a zero here. exit now."), 1);
+		n = (int) temp;
 		a.push_back(n);
 		d.push_back(n);
 		dd.push_back(n);
 	}
-	if (gettimeofday( & tv_end, NULL)) // timing data mgmt :: tail
+	if (gettimeofday( & tv_end, NULL)) // timing data mgmt :: end
 		return (1);
 
-	start = tv_start.tv_usec;
+
+	start = tv_start.tv_usec; // time spent on data mgmt
 	end = tv_end.tv_usec;
 	diff_1 = end - start;
 	diff_2 = diff_1;
@@ -80,7 +84,7 @@ int	main(int c, char *v[])
 	print_vector(a, AFTER);// print sorted list
 
 
-	// compare delta time
+	// delta time comparison
 	std::cout
 	<< "Time to process a range of " << CYAN << a.size() << "\t" RESET
 	<< " elements with std::vector :\t" << diff_1 << " us\n";
