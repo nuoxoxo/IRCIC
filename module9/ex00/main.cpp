@@ -14,10 +14,12 @@ int	main(int c, char **v)
 		return (printerr("could not open file."), 1);
 	}
 
+
 	// open data.csv //
 
-	data = "assets/data.csv"; // play
-	// data = "data.csv"; // eval
+	data = "data.csv"; // Eval
+	data = "assets/data.csv"; // Play
+
 	if (ifs.is_open())
 		ifs.close();
 	ifs.open(data.c_str());
@@ -25,6 +27,7 @@ int	main(int c, char **v)
 	{
 		return (printerr("could not open file."), 1);
 	}
+
 
 	// read data //
 
@@ -39,6 +42,7 @@ int	main(int c, char **v)
 		dict[L] = atof(R.c_str());
 	}
 
+
 	// open input.txt //
 
 	input = std::string(v[1]);
@@ -49,6 +53,7 @@ int	main(int c, char **v)
 	{
 		return (printerr("could not open file."), 1);
 	}
+
 
 	// read input
 
@@ -78,14 +83,13 @@ int	main(int c, char **v)
 				s = s.substr(0, s.length() - 1);
 			}
 			std::cout << key << " => " << valstr << " = " YELLOW;
-			if (s.find("+") == std::string::npos) // not found
+			if (s.find("+") == std::string::npos) // scientific notation not found
 			{
 				std::cout << s << nlreset;
 				continue ;
 			}
 			std::cout
 			<< std::setprecision(PRECISION) << val
-			// << std::defaultfloat // c++11 & we don't need it
 			<< nlreset;
 		}
 		else
@@ -99,7 +103,7 @@ int	main(int c, char **v)
 			it--;
 			val = to_double_round_2(it->second * val);
 			s = to_string(val);
-			if (s[s.length() - 1] == '0') // it end is 0, dont't show it
+			if (s[s.length() - 1] == '0') // dont't show the ending '0'
 			{
 				s = s.substr(0, s.length() - 1);
 			}
@@ -111,7 +115,6 @@ int	main(int c, char **v)
 			}
 			std::cout
 			<< std::setprecision(PRECISION) << val
-			// << std::defaultfloat // c++11 & we don't need it
 			<< nlreset;
 		}
 	}
