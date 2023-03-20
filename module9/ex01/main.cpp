@@ -3,7 +3,7 @@
 
 int	main(int c, char **v)
 {
-	if (c != 2)
+	if (c ^ 2)
 	{
 		return (0);
 	}
