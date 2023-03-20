@@ -26,7 +26,7 @@ int	main(int c, char *v[])
 			return (_usage_("non numeric value detected. exit now."), 1);
 		std::stringstream(v[i]) >> temp;
 		if (temp > 2147483647)
-			return (_usage_("\"long long? seriously?\" says the program."), 1);
+			return (_usage_("we have a long long here. exit now."), 1);
 		if (!temp)
 			return (_usage_("we have a zero here. exit now."), 1);
 		n = (int) temp;
