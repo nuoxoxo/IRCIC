@@ -1,49 +1,31 @@
 #include "RPN.hpp"
 
-// creme 
-
 void	calculator(std::string line)
 {
 	std::cout << GREEN << RPN(line) << nlreset;
 }
 
-
-// la creme de la creme
-
-std::string	RPN(std::string line)
+std::string	RPN(std::string expr)
 {
 	std::stack<std::string>	E;
-	std::string		token;
-	std::string		expr;
-	int			a, b;
+	char			token;
+	int			a, b, i;
 
-
-	// ERROR MGMT
-
-	if (!check_expression(line))
-	{
+	if (!check_expression(expr))
 		return (Error);
-	}
-	expr = to_space_separated_string(line);
 	if (expr == Error)
-	{
 		return (expr);
-	}
-
-
-	// Get 'em one by one
-
-	std::stringstream	ss(expr);
-
-	while (!ss.eof() && ss >> token)
+	i = -1;
+	while (++i < (int) expr.length())
 	{
-		if (token <= "9" && token >= "0")
+		token = expr[i];
+
+		if (token <= '9' && token >= '0')
 		{
-			E.push(token);
+			E.push(std::string(1, token));
 			continue ;
 		}
-
-		if (token != "+" && token != "-" && token != "*" && token != "/")
+		if (token != '+' && token != '-' && token != '*' && token != '/')
 		{
 			continue ;
 		}
@@ -55,24 +37,51 @@ std::string	RPN(std::string line)
 		E.pop();
 		std::stringstream(E.top()) >> a;
 		E.pop();
-		if (token == "+")
+		if (token == '+')
 		{
 			E.push(to_string(a + b));
 		}
-		else if (token == "-")
+		else if (token == '-')
 		{
 			E.push(to_string(a - b));
 		}
-		else if (token == "*")
+		else if (token == '*')
 		{
 			E.push(to_string(a * b));
 		}
-		else if (token == "/")
+		else if (token == '/')
 		{
+			if (!b)
+				return (Error);
 			E.push(to_string(a / b));
 		}
 	}
-	return (E.top());
+	if (!E.empty())
+	{
+		return (E.top());
+	}
+	return (Error);
+}
+
+bool	check_expression(std::string & expr)
+{
+	int	i = -1;
+
+	while (++i < (int) expr.length())
+	{
+		if (expr[i] == ' '
+			|| (expr[i] < 14 && expr[i] > 8)
+			|| (expr[i] <= '9' && expr[i] >= '0')
+			|| expr[i] == '+' || expr[i] == '-'
+			|| expr[i] == '*' || expr[i] == '/'
+			|| expr[i] == '(' || expr[i] == ')'
+		)
+		{
+			continue ;
+		}
+		return (false);
+	}
+	return (true);
 }
 
 
@@ -101,56 +110,39 @@ void	calculator(std::string expr, std::string compare)
 }
 
 
-// util
-
-std::string	to_space_separated_string(std::string token)
-{
-	std::string	res;
-	int		i;
-
-	i = -1;
-	while (++i < (int) token.length())
-	{
-		if (token[i] == ' ' || (token[i] < 14 && token[i] > 8))
-		{
-			continue ;
-		}
-		res += token[i];
-		res += ' ';
-	}
-	if (res == "" || res == " ")
-	{
-		return (Error);
-	}
-	return (res);
-}
-
-bool	check_expression(std::string & expr)
-{
-	int	i = -1;
-
-	while (++i < (int) expr.length())
-	{
-		if (expr[i] == ' '
-			|| (expr[i] < 14 && expr[i] > 8)
-			|| (expr[i] <= '9' && expr[i] >= '0')
-			|| expr[i] == '+' || expr[i] == '-'
-			|| expr[i] == '*' || expr[i] == '/'
-			|| expr[i] == '(' || expr[i] == ')'
-		)
-		{
-			continue ;
-		}
-		return (false);
-	}
-	return (true);
-}
-
-
 void	debugger(void)
 {
-	std::cout << CYAN "::: misc. :::" nl2reset;
+	std::cout << CYAN "\n::: Sanity :::" nl2reset;
 
+	calculator("", "Error");
+	calculator("(", "Error");
+	calculator("a", "Error");
+	calculator("[", "Error");
+	calculator("}", "Error");
+	calculator("((", "Error");
+	calculator("()", "Error");
+	calculator("{}", "Error");
+	calculator("[]", "Error");
+	calculator("~", "Error");
+	calculator("*", "Error");
+	calculator("&", "Error");
+	calculator(".", "Error");
+	calculator("@", "Error");
+	calculator(">", "Error");
+	calculator("<", "Error");
+	calculator(" ", "Error");
+	calculator("  ", "Error");
+	calculator("", "Error");
+	calculator("\b", "Error");
+	calculator("\t", "Error");
+	calculator("\n", "Error");
+	calculator("\v", "Error");
+	calculator("\f", "Error");
+	calculator("\r", "Error");
+
+	std::cout << CYAN "::: basic :::" nl2reset;
+
+	calculator("0 0 /", "Error");
 	calculator("3 4 +", 7);
 	calculator("3 5 6 + *", 33);
 	calculator("3 10 5 + *", 5);
@@ -180,21 +172,11 @@ void	debugger(void)
 
 	std::cout << CYAN "\n::: Eval :::" nl2reset;
 
-	calculator("", "Error");
-	calculator(" ", "Error");
-	calculator("  ", "Error");
-	calculator("", "Error");
-	calculator("\b", "Error");
-	calculator("\t", "Error");
-	calculator("\n", "Error");
-	calculator("\v", "Error");
-	calculator("\f", "Error");
-	calculator("\r", "Error");
 	calculator("8 9 * 9 - 9 - 9 - 4 - 1 +", "42");
 	calculator("9 8 * 4 * 4 / 2 + 9 - 8 - 8 - 1 - 6 -", "42");
 	calculator("1 2 * 2 / 2 + 5 * 6 - 1 3 * - 4 5 * * 8 /", "15");
-}
 
+}
 
 //to_string not include in c++98
 template<typename T>

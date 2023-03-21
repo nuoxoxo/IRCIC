@@ -33,11 +33,10 @@ void	debugger();
 bool	check_expression(std::string &);
 
 std::string	RPN(std::string);
-std::string	to_space_separated_string(std::string);
+
 //to_string not include in c++98
 template<typename T>
-    std::string to_string(const T &);
-
+	std::string to_string(const T &);
 
 #endif
 

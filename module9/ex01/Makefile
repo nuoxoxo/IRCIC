@@ -8,7 +8,7 @@ src	:=	main.cpp RPN.cpp
 
 bud	:=	$(src:%.cpp=%.o)
 
-%.o	:	%.cc
+%.o	:	%.cpp
 		@ echo "compiling [$^] "
 		@ $(comp) -c $^ -o $@
 
@@ -28,8 +28,8 @@ test	:	re
 		@ ./$(name) test
 		@ make clean
 
-r	:	run
 t	:	test
+r	:	run
 
 all	:	$(name)
 
