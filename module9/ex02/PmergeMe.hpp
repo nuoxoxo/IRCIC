@@ -38,10 +38,10 @@ void		_usage_(std::string);
 template<typename T>
 void	Cmon_Lets_Use_STL_Oh_YEAH( T & D)
 {
-	int			mid = D.size() / 2;
-	T		L (D.begin(), D.begin() + mid);
-	T		R (D.begin() + mid, D.end());
-	T		temp;
+	int	mid = D.size() / 2;
+	T	L (D.begin(), D.begin() + mid);
+	T	R (D.begin() + mid, D.end());
+	T	temp;
 
 	sort(L.begin(), L.end());
 	sort(R.begin(), R.end());
