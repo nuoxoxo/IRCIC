@@ -17,8 +17,8 @@ int	main(int c, char **v)
 
 	// open data.csv //
 
-	data = "data.csv"; // Eval
-	data = "assets/data.csv"; // Play
+	data = "data.csv"; // EVAL
+	data = "assets/data.csv"; // PLAY
 
 	if (ifs.is_open())
 		ifs.close();
