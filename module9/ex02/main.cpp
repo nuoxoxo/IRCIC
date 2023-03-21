@@ -4,13 +4,13 @@
 
 int	main(int c, char *v[])
 {
-	std::vector<int>	a;
-	std::deque<int>		d, dd;
+	std::vector<long long>	a;
+	std::deque<long long>	d, dd;
 	struct timeval		tv_start, tv_end;
 
 	int		i;
-	int		n;
-	long long	temp;
+	long long		n;
+	unsigned long long		temp;
 	long long	start, end, diff_1, diff_2, diff_3;
 
 	if (c < 2)
@@ -25,11 +25,11 @@ int	main(int c, char *v[])
 		if ( !isnumeric(v[i]))
 			return (_usage_("non numeric value detected. exit now."), 1);
 		std::stringstream(v[i]) >> temp;
-		if (temp > 2147483647)
-			return (_usage_("we have a long long here. exit now."), 1);
+		if (temp > 9223372036854775807 /* 2147483647 */)
+			return (_usage_("integer too big. exit now."), 1);
 		if (!temp)
 			return (_usage_("we have a zero here. exit now."), 1);
-		n = (int) temp;
+		n = (long long) temp;
 		a.push_back(n);
 		d.push_back(n);
 		dd.push_back(n);

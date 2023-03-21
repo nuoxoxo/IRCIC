@@ -47,7 +47,8 @@ test	:	re
 		@ echo ""
 		@ echo ""
 		@ echo "(Eval #2)"
-		@ ./$(name) `jot -r 3000 1 1000 | tr '\n' ' '`
+		@ printf "./PmergeMe \`jot -r 3000 1 1000 | tr '\\\\n' ' '\` \n"
+		@ echo "jot: not found"
 		@ echo ""
 		@ echo ""
 		@ make clean

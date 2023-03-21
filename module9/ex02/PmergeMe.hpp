@@ -28,16 +28,17 @@
 # define ITAL "\033[3m"
 
 # define TICK	GREEN " ✓" RESET
-# define TICK	GREEN " ✓" RESET
+# define CROSS	_RED_ " ✘" RESET
+
 
 
 void		_usage_(std::string);
 bool		isnumeric(std::string);
-void		print_deque(std::deque<int>, bool);
-void		print_vector(std::vector<int>, bool);
-void		merge_sort(std::vector<int> &);
+void		print_deque(std::deque<long long>, bool);
+void		print_vector(std::vector<long long>, bool);
+void		merge_sort(std::vector<long long> &);
 // void		merge_sort(std::deque<int> &);
-void		merge_sort(std::deque<int> &, bool);
+void		merge_sort(std::deque<long long> &, bool);
 
 
 #endif

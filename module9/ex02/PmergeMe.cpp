@@ -1,20 +1,20 @@
 #include "PmergeMe.hpp"
 
-void	Cmon_Lets_Use_STL_YEAH( std::deque<int> & D)
+void	Cmon_Lets_Use_STL_YEAH( std::deque<long long> & D)
 {
 	int			mid = D.size() / 2;
-	std::deque<int>		L (D.begin(), D.begin() + mid);
-	std::deque<int>		R (D.begin() + mid, D.end());
-	std::deque<int>		temp;
+	std::deque<long long>		L (D.begin(), D.begin() + mid);
+	std::deque<long long>		R (D.begin() + mid, D.end());
+	std::deque<long long>		temp;
 
 	sort(L.begin(), L.end());
 	sort(R.begin(), R.end());
 	merge(L.begin(), L.end(), R.begin(), R.end(),
-	 std::back_inserter<std::deque<int> >(temp));
+	 std::back_inserter<std::deque<long long> >(temp));
 	D = temp;
 }
 
-void	merge_sort(std::deque<int> & D, bool using_stl)
+void	merge_sort(std::deque<long long> & D, bool using_stl)
 {
 	if (D.size() < 1)
 		return ;
@@ -29,10 +29,9 @@ void	merge_sort(std::deque<int> & D, bool using_stl)
 
 	// Route : Generic
 
-	std::deque<int>	L, R;
+	std::deque<long long>	L, R;
 	int	i, mid, size;
 
-	// split
 	if (D.size() < 2)
 		return ;
 	size = (int) D.size();
@@ -50,11 +49,9 @@ void	merge_sort(std::deque<int> & D, bool using_stl)
 		D.pop_back();
 	}
 
-	// recurse
 	merge_sort(L, true);
 	merge_sort(R, true);
 
-	// insert while comparing
 	while (!L.empty() && !R.empty())
 	{
 		if (L.front() < R.front())
@@ -69,7 +66,6 @@ void	merge_sort(std::deque<int> & D, bool using_stl)
 		}
 	}
 
-	// get the rest
 	while (!L.empty())
 	{
 		D.push_back(L.front());
@@ -83,12 +79,11 @@ void	merge_sort(std::deque<int> & D, bool using_stl)
 }
 
 
-void	merge_sort(std::deque<int> & D)
+void	merge_sort(std::deque<long long> & D)
 {
-	std::deque<int>	L, R;
+	std::deque<long long>	L, R;
 	int	i, mid, size;
 
-	// split
 	if (D.size() < 2)
 		return ;
 	size = (int) D.size();
@@ -106,11 +101,9 @@ void	merge_sort(std::deque<int> & D)
 		D.pop_back();
 	}
 
-	// recurse
 	merge_sort(L);
 	merge_sort(R);
 
-	// insert while comparing
 	while (!L.empty() && !R.empty())
 	{
 		if (L.front() < R.front())
@@ -125,7 +118,6 @@ void	merge_sort(std::deque<int> & D)
 		}
 	}
 
-	// get the rest
 	while (!L.empty())
 	{
 		D.push_back(L.front());
@@ -139,15 +131,15 @@ void	merge_sort(std::deque<int> & D)
 }
 
 
-void	merge_sort(std::vector<int>& a)
+void	merge_sort(std::vector<long long>& a)
 {
 	if (a.size() > 1)
 	{
 		int	mid = a.size() / 2;
 		int	i, j, k;
 
-		std::vector<int>	L(a.begin(), a.begin() + mid);
-		std::vector<int>	R(a.begin() + mid, a.end());
+		std::vector<long long>	L(a.begin(), a.begin() + mid);
+		std::vector<long long>	R(a.begin() + mid, a.end());
 
 		merge_sort(L);
 		merge_sort(R);
@@ -194,9 +186,9 @@ bool	isnumeric(std::string s)
 }
 
 
-void	print_deque(std::deque<int> a, bool option)
+void	print_deque(std::deque<long long> a, bool option)
 {
-	std::deque<int>::iterator	it;
+	std::deque<long long>::iterator	it;
 
 	if (option == BEFORE)
 		std::cout << "Before:\t" YELLOW;
@@ -225,7 +217,7 @@ void	print_deque(std::deque<int> a, bool option)
 }
 
 
-void	print_vector(std::vector<int> a, bool option)
+void	print_vector(std::vector<long long> a, bool option)
 {
 	if (option == BEFORE)
 		std::cout << "Before:\t" YELLOW;
