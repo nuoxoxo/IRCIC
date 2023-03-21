@@ -49,8 +49,8 @@ void	merge_sort(std::deque<long long> & D, bool using_stl)
 		D.pop_back();
 	}
 
-	merge_sort(L, true);
-	merge_sort(R, true);
+	merge_sort(L, false);
+	merge_sort(R, false);
 
 	while (!L.empty() && !R.empty())
 	{
