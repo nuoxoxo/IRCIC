@@ -31,6 +31,8 @@ void	calculator(std::string, int);
 void	calculator(std::string);
 void	debugger();
 bool	check_expression(std::string &);
+void	header(const char *);
+// void	header(std::string const);
 
 std::string	RPN(std::string);
 
