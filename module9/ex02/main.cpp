@@ -3,14 +3,14 @@
 
 int	main(int c, char *v[])
 {
-	std::vector<long long>	a;
+	std::vector<long long>	a, aa;
 	std::deque<long long>	d, dd;
 	struct timeval		tv_start, tv_end;
 
 	int		i;
 	long long		n;
 	unsigned long long		temp;
-	long long	start, end, diff_1, diff_2, diff_3;
+	long long	start, end, diff_1, diff_2, diff_3, diff_4;
 
 	if (c < 2)
 		return (_usage_("no number given. exit now."), 1);
@@ -30,6 +30,7 @@ int	main(int c, char *v[])
 			return (_usage_("we have a zero here. exit now."), 1);
 		n = (long long) temp;
 		a.push_back(n);
+		aa.push_back(n);
 		d.push_back(n);
 		dd.push_back(n);
 	}
@@ -42,17 +43,21 @@ int	main(int c, char *v[])
 	diff_1 = end - start;
 	diff_2 = diff_1;
 	diff_3 = diff_2;
+	diff_4 = diff_3;
 
 
 	print_container(a, BEFORE);// print unsorted list
 
 
-	// sort std::vector
+	// sort std::vector - generic
 	if (gettimeofday( & tv_start, NULL))
 		return (1);
-	merge_sort(a, USE_DIY);
+
+	merge_sort(a, DIY);
+
 	if (gettimeofday( & tv_end, NULL))
 		return (1);
+
 	start = tv_start.tv_usec;
 	end = tv_end.tv_usec;
 	diff_1 += end - start;
@@ -61,7 +66,7 @@ int	main(int c, char *v[])
 	// sort std::deque - generic
 	if (gettimeofday( & tv_start, NULL))
 		return (1);
-	merge_sort(d, USE_DIY);
+	merge_sort(d, DIY);
 	if (gettimeofday( & tv_end, NULL))
 		return (1);
 	start = tv_start.tv_usec;
@@ -69,15 +74,30 @@ int	main(int c, char *v[])
 	diff_2 += end - start;
 
 
+	// sort std::vector - STL
+	if (gettimeofday( & tv_start, NULL))
+		return (1);
+
+	merge_sort(aa, STL);
+
+	if (gettimeofday( & tv_end, NULL))
+		return (1);
+
+	start = tv_start.tv_usec;
+	end = tv_end.tv_usec;
+	diff_2 += end - start;
+
 	// sort std::deque - STL
 	if (gettimeofday( & tv_start, NULL))
 		return (1);
-	merge_sort(dd, USE_STL);
+
+	merge_sort(dd, STL);
+
 	if (gettimeofday( & tv_end, NULL))
 		return (1);
 	start = tv_start.tv_usec;
 	end = tv_end.tv_usec;
-	diff_3 += end - start;
+	diff_4 += end - start;
 
 
 	print_container(a, AFTER);// print sorted list
@@ -90,11 +110,17 @@ int	main(int c, char *v[])
 
 	std::cout
 	<< "Time to process a range of " << CYAN << d.size() << "\t" RESET
-	<< " elements with std::deque :\t" << diff_2 << " us (generic)\n";
+	<< " elements with std::deque :\t" << diff_2 << " us\n";
+
+	//std::cout << nl;
 
 	std::cout
-	<< "Time to process a range of " << CYAN << d.size() << "\t" RESET
-	<< " elements with std::deque :\t" << diff_3 << " us (STL)\n";
+	<< "Time to process a range of " << CYAN << aa.size() << "\t" RESET
+	<< " elements with std::vector :\t" << diff_3 << " us (STL)\n";
+
+	std::cout
+	<< "Time to process a range of " << CYAN << dd.size() << "\t" RESET
+	<< " elements with std::deque :\t" << diff_4 << " us (STL)\n";
 
 }
 

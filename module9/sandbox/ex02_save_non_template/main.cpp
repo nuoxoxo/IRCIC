@@ -62,7 +62,7 @@ int	main(int c, char *v[])
 	// sort std::deque - generic
 	if (gettimeofday( & tv_start, NULL))
 		return (1);
-	merge_sort(d, USE_DIY);
+	merge_sort(d, NOW_USING_DIY);
 	if (gettimeofday( & tv_end, NULL))
 		return (1);
 	start = tv_start.tv_usec;
@@ -73,7 +73,7 @@ int	main(int c, char *v[])
 	// sort std::deque - STL
 	if (gettimeofday( & tv_start, NULL))
 		return (1);
-	merge_sort(dd, USE_STL);
+	merge_sort(dd, NOW_USING_STL);
 	if (gettimeofday( & tv_end, NULL))
 		return (1);
 	start = tv_start.tv_usec;

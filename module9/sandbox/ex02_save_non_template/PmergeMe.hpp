@@ -11,8 +11,8 @@
 
 # define BEFORE 0
 # define AFTER 1
-# define USE_DIY 0
-# define USE_STL 1
+# define NOW_USING_DIY 0
+# define NOW_USING_STL 1
 
 # define nl "\n"
 # define nl2 "\n\n"
@@ -28,7 +28,7 @@
 # define ITAL "\033[3m"
 
 # define TICK	GREEN " ✓" RESET
-# define CROSS	_RED_ " ✘" RESET
+# define CROSS	RED " ✘" RESET
 
 
 
