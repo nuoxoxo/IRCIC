@@ -27,6 +27,9 @@ std::string	remove_whitesp(std::string & line)
 	return (res);
 }
 
+
+// ::: Deprecated :::
+/*
 double to_double_floor_2(double f)
 {
 	double L = (int) (f * 100);
@@ -34,7 +37,7 @@ double to_double_floor_2(double f)
 
 	return (R);
 }
-
+*/
 
 double to_double_round_2(double f)
 {

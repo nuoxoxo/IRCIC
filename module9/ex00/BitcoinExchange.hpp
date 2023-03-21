@@ -39,13 +39,16 @@ std::string to_string(double const);
 std::string remove_whitesp(std::string &);
 
 double	to_double_round_2(double);
-double	to_double_floor_2(double);
-bool	_check_params_(int, char **);
 void	printerr(std::string s = "");
-bool	date_is_valid(std::string &);
 bool	query_is_valid(std::string &);
+bool	date_is_valid(std::string &);
 bool	isnumeric(std::string &);
 bool	number_check(std::string &);
+bool	_check_params_(int, char **);
+
+
+// ::: Deprecated :::
+// double	to_double_floor_2(double);
 
 #endif
 
