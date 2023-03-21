@@ -31,15 +31,107 @@
 # define CROSS	_RED_ " ✘" RESET
 
 
-
-void		_usage_(std::string);
 bool		isnumeric(std::string);
-void		print_deque(std::deque<long long>, bool);
-void		print_vector(std::vector<long long>, bool);
-void		merge_sort(std::vector<long long> &);
-// void		merge_sort(std::deque<int> &);
-void		merge_sort(std::deque<long long> &, bool);
+void		_usage_(std::string);
+
+
+template<typename T>
+void	Cmon_Lets_Use_STL_Oh_YEAH( T & D)
+{
+	int			mid = D.size() / 2;
+	T		L (D.begin(), D.begin() + mid);
+	T		R (D.begin() + mid, D.end());
+	T		temp;
+
+	sort(L.begin(), L.end());
+	sort(R.begin(), R.end());
+	merge(L.begin(), L.end(), R.begin(), R.end(),
+	 std::back_inserter<T>(temp));
+	D = temp;
+}
+
+
+template<typename T> // T is either a deque or a vector
+void	merge_sort(T & a, bool Use_STL)
+{
+	if (a.size() < 1)
+		return ;
+
+	// Route : STL
+
+	if (Use_STL)
+	{
+		Cmon_Lets_Use_STL_Oh_YEAH( a );
+		return ;
+	}
+
+	// Route : Generic
+
+	if (a.size() > 1)
+	{
+		int	mid = a.size() / 2;
+		int	i, j, k;
+
+		T	L(a.begin(), a.begin() + mid);
+		T	R(a.begin() + mid, a.end());
+
+		merge_sort(L, ! Use_STL);
+		merge_sort(R, ! Use_STL);
+		i = j = k = 0;
+		while (i < (int) L.size() && j < (int) R.size())
+		{
+			if (L[i] < R[j])
+			{
+				a[k] = L[i];
+				++i;
+			}
+			else
+			{
+				a[k] = R[j];
+				++j;
+			}
+			++k;
+		}
+		while (i < (int) L.size())
+		{
+			a[k] = L[i];
+			++i;
+			++k;
+		}
+		while (j < (int) R.size())
+		{
+			a[k] = R[j];
+			++j;
+			++k;
+		}
+	}
+}
+
+
+template<typename T>
+void	print_container(T & a, bool option)
+{
+	int	i;
+
+	if (option == BEFORE)
+		std::cout << "Before:\t" YELLOW;
+	if (option == AFTER)
+		std::cout << "After: \t" GREEN;
+	if (a.size() < 11)
+	{
+		i = -1;
+		while (++i < (int) a.size())
+			std::cout << a[i] << ' ';
+	}
+	else
+	{
+		i = -1;
+		while (++i < 4)
+			std::cout << a[i] << ' ';
+		std::cout << RESET "[...]";
+	}
+	std::cout << nlreset;
+}
 
 
 #endif
-

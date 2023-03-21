@@ -1,7 +1,6 @@
 #include "iostream"
 #include "PmergeMe.hpp"
 
-
 int	main(int c, char *v[])
 {
 	std::vector<long long>	a;
@@ -45,13 +44,13 @@ int	main(int c, char *v[])
 	diff_3 = diff_2;
 
 
-	print_vector(a, BEFORE);// print unsorted list
+	print_container(a, BEFORE);// print unsorted list
 
 
 	// sort std::vector
 	if (gettimeofday( & tv_start, NULL))
 		return (1);
-	merge_sort(a);
+	merge_sort(a, USE_DIY);
 	if (gettimeofday( & tv_end, NULL))
 		return (1);
 	start = tv_start.tv_usec;
@@ -81,7 +80,7 @@ int	main(int c, char *v[])
 	diff_3 += end - start;
 
 
-	print_vector(a, AFTER);// print sorted list
+	print_container(a, AFTER);// print sorted list
 
 
 	// delta time comparison
