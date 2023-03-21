@@ -11,8 +11,8 @@
 
 # define BEFORE 0
 # define AFTER 1
-# define USE_DIY 0
-# define USE_STL 1
+# define DIY 0
+# define STL 1
 
 # define nl "\n"
 # define nl2 "\n\n"
@@ -28,7 +28,7 @@
 # define ITAL "\033[3m"
 
 # define TICK	GREEN " ✓" RESET
-# define CROSS	_RED_ " ✘" RESET
+# define CROSS	RED " ✘" RESET
 
 
 bool		isnumeric(std::string);
@@ -57,6 +57,7 @@ void	merge_sort(T & a, bool Use_STL)
 	if (a.size() < 1)
 		return ;
 
+
 	// Route : STL
 
 	if (Use_STL)
@@ -64,6 +65,7 @@ void	merge_sort(T & a, bool Use_STL)
 		Cmon_Lets_Use_STL_Oh_YEAH( a );
 		return ;
 	}
+
 
 	// Route : Generic
 

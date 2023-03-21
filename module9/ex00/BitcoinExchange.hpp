@@ -28,7 +28,7 @@
 #define COLOR CYAN
 
 # define TICK	GREEN " ✓" RESET
-# define CROSS	_RED_ " ✘" RESET
+# define CROSS	RED " ✘" RESET
 
 # define PRECISION 10
 

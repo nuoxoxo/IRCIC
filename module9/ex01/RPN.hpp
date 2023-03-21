@@ -22,7 +22,7 @@
 # define ITAL "\033[3m"
 
 # define TICK	GREEN " ✓" RESET
-# define CROSS	_RED_ " ✘" RESET
+# define CROSS	RED " ✘" RESET
 
 // helpers
 
