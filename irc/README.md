@@ -43,7 +43,8 @@
 
 
 [ Notes from Peers ] - [ircgod](https://ircgod.com/posts)  \
-[ Introduction ] - [harvard](https://cyber.harvard.edu/lawofcyberspace/irc.html)  \
-[ Guide w/ cmds ] - [fedora](https://fedoramagazine.org/beginners-guide-irc)  \
-[ Guide - basics ] - [libera](https://libera.chat/guides/basics)  \
-[ Guide - basics ] - [opensource](https://opensource.com/life/16/6/irc-quickstart-guide)
+[ IRC Introduction ] - [harvard](https://cyber.harvard.edu/lawofcyberspace/irc.html)  \
+[ IRC Guide w/ cmds ] - [fedora](https://fedoramagazine.org/beginners-guide-irc)  \
+[ IRC Guide - basics ] - [libera](https://libera.chat/guides/basics)  \
+[ IRC Guide - basics ] - [opensource](https://opensource.com/life/16/6/irc-quickstart-guide)
+[ Socket Programming ] - [gfg](https://www.geeksforgeeks.org/socket-programming-cc/)
