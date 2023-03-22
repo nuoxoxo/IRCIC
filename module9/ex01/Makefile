@@ -22,7 +22,7 @@ $(name)	:	$(bud)
 		@ printf "you can do [ ./RPN \"9 8 * 4 * 4 / 2 + 9 - 8 - 8 - 1 - 6 - \" ] \n"
 		@ printf "you can do [ ./RPN \"1 2 * 2 / 2 + 5 * 6 - 1 3 * - 4 5 * * 8 / \" ] \n"
 		@ echo ""
-		@ echo "you can do [ make test ] 👈  (some samplers to show that my works work)"
+		@ echo "you can do [ make test ] 👈  (some samplers to show that it work)"
 		@ echo ""
 
 run	:	re
