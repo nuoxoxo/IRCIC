@@ -42,6 +42,7 @@ fclean	:	clean
 		@ $(rmv) $(name) a.out out
 
 r	:	run
+t	:	run
 f	:	fclean
 re	:	f all
 

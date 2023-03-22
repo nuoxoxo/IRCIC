@@ -32,6 +32,13 @@
 # define nl2reset " \n\n" RESET
 
 
+
+void	_usage_()
+{
+	std::cout << "Usage: \n$> ./ircserv  _port_  _pass_ " nl;
+}
+
+
 #endif
 
 // 
