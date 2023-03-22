@@ -15,9 +15,14 @@ bud	:=	$(src:%.cpp=%.o)
 $(name)	:	$(bud)
 		@ echo "compiling [$@] "
 		@ $(comp) $^ -o $@
-		@ printf "\n\t"
-		@ printf "\"are you using the right compiler? \"\n\n"
-		@ echo "you can do [make test] "
+		@ printf "\n\n"
+		@ printf "\t[en] come on baby break my code\n"
+		@ printf "\t[fr] viens, brise mon code\n\n\n"
+		@ printf "you can do [ ./RPN \"8 9 * 9 - 9 - 9 - 4 - 1 + \" ] \n"
+		@ printf "you can do [ ./RPN \"9 8 * 4 * 4 / 2 + 9 - 8 - 8 - 1 - 6 - \" ] \n"
+		@ printf "you can do [ ./RPN \"1 2 * 2 / 2 + 5 * 6 - 1 3 * - 4 5 * * 8 / \" ] \n"
+		@ echo ""
+		@ echo "you can do [ make test ] 👈  (some samplers to show that my works work)"
 		@ echo ""
 
 run	:	re

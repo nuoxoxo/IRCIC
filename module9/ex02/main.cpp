@@ -106,21 +106,21 @@ int	main(int c, char *v[])
 	// delta time comparison
 	std::cout
 	<< "Time to process a range of " << CYAN << a.size() << "\t" RESET
-	<< " elements with std::vector :\t" << diff_1 << " us\n";
+	<< " elements with std::vector :\t"  << diff_1 <<  " us" nl;
 
 	std::cout
 	<< "Time to process a range of " << CYAN << d.size() << "\t" RESET
-	<< " elements with std::deque :\t" << diff_2 << " us\n";
+	<< " elements with std::deque :\t"  << diff_2 <<  " us" nl;
 
 	//std::cout << nl;
 
 	std::cout
 	<< "Time to process a range of " << CYAN << aa.size() << "\t" RESET
-	<< " elements with std::vector :\t" << diff_3 << " us (STL)\n";
+	<< " elements with std::vector :\t" GREEN << diff_3 << RESET " us (STL)" nl;
 
 	std::cout
 	<< "Time to process a range of " << CYAN << dd.size() << "\t" RESET
-	<< " elements with std::deque :\t" << diff_4 << " us (STL)\n";
+	<< " elements with std::deque :\t" GREEN << diff_4 << RESET " us (STL)" nl;
 
 }
 

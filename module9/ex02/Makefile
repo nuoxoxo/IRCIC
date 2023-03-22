@@ -16,11 +16,13 @@ bud		:=	$(src:%.cpp=%.o)
 $(name)	:	$(bud)
 		@ echo "compiling [$@] "
 		@ $(comp) $^ -o $@
-		@ printf "\n\t"
-		@ printf "\"are you using the right compiler? \"\n\n"
+		@ printf "\n\n"
+		@ printf "\t[en] come on baby break my code\n"
+		@ printf "\t[fr] viens, brise mon code\n\n\n"
 		@ printf "you can do [ ./PmergeMe \`shuf -i 1-100000 -n 3000 | tr \"\\\\n\" \" \"\` ] \n"
 		@ printf "you can do [ ./PmergeMe \`jot -r 3000 1 1000 | tr \'\\\\n\' \' \'\` ] \n"
-		@ echo "you can do [ make test ] "
+		@ echo ""
+		@ echo "you can do [ make test ] 👈  (some samplers to show that it works)"
 		@ echo ""
 
 run	:	re

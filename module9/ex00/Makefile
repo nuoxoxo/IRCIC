@@ -16,13 +16,16 @@ bud	:=	$(src:%.cpp=%.o)
 $(name)	:	$(bud)
 		@ echo "compiling [$@] "
 		@ $(comp) $^ -o $@
-		@ printf "\n"
-		@ printf "\t\"are you using the right compiler? \"\n\n"
-		@ printf "\t\"make sure you have downloaded  input._txt  &  data._tar \n\n"
+		@ printf "\n\n"
+		@ printf "\t[en] come on baby break my code\n"
+		@ printf "\t[fr] viens, brise mon code\n\n\n"
+		@ printf "\t\"make sure you have downloaded input._txt && data._tar \n\n"
 		@ echo "you can do [curl -O ] "
 		@ echo "you can do [wget ] "
 		@ echo "you can do [tar -xvzf ] "
-		@ echo "-"
+		@ echo ""
+		@ echo "[en] come on baby break my code"
+		@ echo "[fr] viens, brise mon code"
 		@ echo ""
 
 run	:	re
