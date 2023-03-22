@@ -85,7 +85,7 @@ int	main(int c, char *v[])
 
 	start = tv_start.tv_usec;
 	end = tv_end.tv_usec;
-	diff_2 += end - start;
+	diff_3 += end - start;
 
 	// sort std::deque - STL
 	if (gettimeofday( & tv_start, NULL))
