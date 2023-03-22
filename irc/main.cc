@@ -2,12 +2,14 @@
 
 int	main(int c, char **v)
 {
-	if (c ^ 2)
-		return (_usage_(), 0 /* 1 */);
+	if (c ^ 3 || argv_is_invalid(v[1]) || argv_is_invalid(v[2]))
+	{
+		return (_usage_(), 0 /*1*/);
+	}
 
 	std::string	arr[5] = {ITAL, CYAN, YELLOW, GREEN, LOWKEY};
+	int		i = -1;
 
-	int	i = -1;
 	while (++i < 6)
 	{
 		if (i < 5)
@@ -15,7 +17,7 @@ int	main(int c, char **v)
 		std::cout <<  "Hello, World! " nlreset;
 	}
 
-	(void) v;
 
+	(void) v;
 }
 
