@@ -31,6 +31,29 @@
 # define nlreset " \n" RESET
 # define nl2reset " \n\n" RESET
 
+bool	argv_is_invalid(char *v)
+{
+	int	i;
+
+	if (strlen(v) ^ 4)
+	{
+		return (true);
+	}
+	i = -1;
+	while (v[++i])
+	{
+		if (isdigit(v[i]))
+			continue ;
+		return (true);
+	}
+	return (false);
+}
+
+void	_usage_()
+{
+	std::cout << "Usage: \n$> ./ircserv  _port_  _pass_ " nl;
+}
+
 
 #endif
 
