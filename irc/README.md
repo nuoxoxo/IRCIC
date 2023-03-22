@@ -1,5 +1,8 @@
 [ Subject ] - [intra](https://cdn.intra.42.fr/pdf/pdf/72125/en.subject.pdf) 
 
+- Goal 
+  - Create our own **IRC server** 
+  - Use an IRC client to to test it ( irssi, nc, etc. )
 - Name
   - <kbd> ./ircserve </kbd>
 - Run
@@ -8,11 +11,9 @@
   - Makefile
   - *.hpp, *.cpp, *.tpp, *.ipp
   - *.conf (only one allowed)
-- Goal 
-  - Create our own **IRC server** 
-  - Use an IRC client to to test it ( irssi, nc, etc. )
 
-Things to know
+
+[ Things to know ]
 - socket
   - socket
   - setsockopt
