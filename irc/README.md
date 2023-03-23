@@ -62,7 +62,6 @@ Stuff   | setsockopt | socket
 &#8239; | send
 &#8239; | recv
 &#8239; | accept
-&#8239; | accept
 &#8239; | htons
 &#8239; | htonl
 &#8239; | ntohs
