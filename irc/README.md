@@ -11,22 +11,28 @@ The server forms the ***listener socket*** while the client reaches out to the s
 
 # Port 6667
 
-TCP port usage - [rfc-editor](https://www.rfc-editor.org/rfc/rfc7194)
+TCP port usage: [rfc-editor](https://www.rfc-editor.org/rfc/rfc7194)
 
 IRC networks have defaulted to listening on TCP port 6667 for plain text connections for a considerable time now.  \
 This is covered by the IRCU assignment of TCP/UDP ports 6665-6669. 
 
 
+# Notes from Peers
 
-# Subject - [intra](https://cdn.intra.42.fr/pdf/pdf/72125/en.subject.pdf) 
+ircgod: [link](https://ircgod.com/posts)  
 
 
 
-[ Notes from Peers ] - [ircgod](https://ircgod.com/posts)  \
+# Subject 
+
+- [intra](https://cdn.intra.42.fr/pdf/pdf/72125/en.subject.pdf) 
+
+
+
 [ IRC Introduction ] - [harvard](https://cyber.harvard.edu/lawofcyberspace/irc.html)  \
 [ IRC Guide w/ cmds ] - [fedora](https://fedoramagazine.org/beginners-guide-irc)  \
 [ IRC Guide - basics ] - [libera](https://libera.chat/guides/basics)  \
-[ IRC Guide - basics ] - [opensource](https://opensource.com/life/16/6/irc-quickstart-guide)  \
+[ IRC Guide - basics ] - [opensource](https://opensource.com/life/16/6/irc-quickstart-guide) 
 
 
 ![](https://i.imgur.com/CjhDkz2.png)
