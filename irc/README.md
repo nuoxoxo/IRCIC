@@ -1,3 +1,12 @@
+Socket Programming - [gfg](https://www.geeksforgeeks.org/socket-programming-cc/)
+
+Socket programming is a way of connecting *two nodes* on a network to communicate with each other.  \
+One socket (node) listens on a particular *port* at an IP, while the other socket reaches out to the other to form a connection.
+
+The server forms the *listener socket* while the client reaches out to the server.
+
+
+
 [ Subject ] - [intra](https://cdn.intra.42.fr/pdf/pdf/72125/en.subject.pdf) 
 
 IRC networks have defaulted to listening on TCP port 6667 for plain   \
@@ -12,7 +21,9 @@ IRC networks have defaulted to listening on TCP port 6667 for plain   \
 [ IRC Guide w/ cmds ] - [fedora](https://fedoramagazine.org/beginners-guide-irc)  \
 [ IRC Guide - basics ] - [libera](https://libera.chat/guides/basics)  \
 [ IRC Guide - basics ] - [opensource](https://opensource.com/life/16/6/irc-quickstart-guide)  \
-[ Socket Programming ] - [gfg](https://www.geeksforgeeks.org/socket-programming-cc/)
+
+
+![](https://i.imgur.com/CjhDkz2.png)
 
 |       |       |       |
 |-------|-------|-------|
