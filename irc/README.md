@@ -1,7 +1,7 @@
 # Socket Programming 
 
-sampler: [gfg](https://www.geeksforgeeks.org/socket-programming-cc/)
-sampler (python): [realpy](https://realpython.com/python-sockets/)
+sampler: [gfg](https://www.geeksforgeeks.org/socket-programming-cc/)  \
+server-client program in python: [realpy](https://realpython.com/python-sockets/) - [doc](https://docs.python.org/3/library/socket.html)
 
 Socket programming is a way of connecting ***two nodes*** on a network to communicate with each other.  \
 One socket (node) listens on a particular ***port*** at an IP, while the other socket reaches out to the other to form a connection.
