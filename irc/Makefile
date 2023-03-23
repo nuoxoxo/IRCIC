@@ -11,6 +11,9 @@ name	:=	ircserv
 src	:=	main.cc
 bud	:=	$(src:%.cc=%.o)
 
+rand	:=	$(shell bash -c 'echo $$(($$RANDOM%999+1000))')
+rand2	:=	$(shell bash -c 'echo $$(($$RANDOM%999+1000))')
+
 %.o	:	%.cc
 		@ echo "compiling [$^] "
 		@ $(comp) -c $^ -o $@
@@ -29,8 +32,8 @@ $(name)	:	$(bud)
 		@ echo ":::: (makefile ends) :::: "
 		@ echo ""
 
-run	:	re
-		@ ./$(name)
+test	:	re
+		./$(name) $(rand) $(rand2)
 		@ make f
 
 all	:	$(name)
@@ -41,9 +44,9 @@ clean	:
 fclean	:	clean
 		@ $(rmv) $(name) a.out out
 
-r	:	run
-t	:	run
+t	:	test
 f	:	fclean
+r	:	re
 re	:	f all
 
 .PHONY	:	fclean clean all re f
