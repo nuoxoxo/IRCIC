@@ -16,7 +16,7 @@ int	main()
 	int		opt = 1;
 	int		addrlen = sizeof(address);
 	char		buffer[1024] = { 0 };
-	const char	*msg = "server call to major tom";
+	const char *msg = "server call to major tom"; // doubt: keyword const
 
 	// SOCKET
 	//  generate a socker fd

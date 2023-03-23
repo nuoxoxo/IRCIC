@@ -19,8 +19,8 @@
 # define LOWKEY "\033[0;2m"
 # define RESET "\033[0;0m"
 
-# define TICK	GREEN " ✓" RESET
-# define CROSS	RED " ✘" RESET
+# define TICK	GREEN "✓" RESET
+# define CROSS	RED "✘" RESET
 
 # define POINT_R " 👉 "
 # define POINT_L " 👈 "
