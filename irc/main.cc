@@ -12,12 +12,11 @@ int	main(int c, char **v)
 
 	while (++i < 6)
 	{
-		if (i < 5)
-			std::cout << arr[i];
-		std::cout <<  "Hello, World! " nlreset;
+		std::cout << ( i < 5 ? arr[i] : "" ) << "Hello, World! " nlreset;
 	}
 
-
 	(void) v;
+
+
 }
 
