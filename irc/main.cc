@@ -15,6 +15,8 @@ int	main(int c, char **v)
 		std::cout << ( i < 5 ? arr[i] : "" ) << "Hello, World! " nlreset;
 	}
 
+	// Start server here
+
 	(void) v;
 
 
