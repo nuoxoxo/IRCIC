@@ -1,4 +1,5 @@
 #include "Fmt.hpp"
+#include "Server.hpp"
 
 int	main(int c, char **v)
 {
@@ -7,6 +8,8 @@ int	main(int c, char **v)
 		return (_usage_(), 0 /*1*/);
 	}
 
+	// Rainbow test
+
 	std::string	arr[5] = {ITAL, CYAN, YELLOW, GREEN, LOWKEY};
 	int		i = -1;
 
@@ -14,11 +17,17 @@ int	main(int c, char **v)
 	{
 		std::cout << ( i < 5 ? arr[i] : "" ) << "Hello, World! " nlreset;
 	}
+	std::cout << nl;
 
 	// Start server here
 
-	(void) v;
+	std::string	port(v[1]), pass(v[2]);
+	IRCServer	server(port, pass);
 
+	std::cout
+	<< "name: " << server.get_name() << nl
+	<< "port: " << server.get_port() << nl
+	<< "pass: " << RED << server.get_pass_might_delete() << nl2reset;
 
 }
 
