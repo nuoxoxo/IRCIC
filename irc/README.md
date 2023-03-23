@@ -1,5 +1,11 @@
 [ Subject ] - [intra](https://cdn.intra.42.fr/pdf/pdf/72125/en.subject.pdf) 
 
+IRC networks have defaulted to listening on TCP port 6667 for plain   \
+   text connections for a considerable time now.  This is covered by the  \
+   IRCU assignment of TCP/UDP ports 6665-6669. 
+   
+   More about TCP port 6667 - [rfc-editor](https://www.rfc-editor.org/rfc/rfc7194)
+
 |       |       |
 |-------|-------|
 Goal    | Create our own **IRC server** 
