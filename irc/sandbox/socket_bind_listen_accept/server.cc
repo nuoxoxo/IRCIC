@@ -1,6 +1,8 @@
 #include "iostream"
 #include "netinet/in.h"
 #include "sys/socket.h"
+#include "unistd.h" // read close
+#include "Fmt.hpp"
 
 #define PORT 8080
 
@@ -14,7 +16,7 @@ int	main()
 	int		opt = 1;
 	int		addrlen = sizeof(address);
 	char		buffer[1024] = { 0 };
-	char		*msg = "server call to major tom";
+	const char	*msg = "server call to major tom";
 
 	// SOCKET
 	//  generate a socker fd
@@ -51,7 +53,7 @@ int	main()
 		sizeof(address)
 	);
 	if (ret < 0)
-		return (perror("bind error", 1));
+		return (perror("bind error"), 1);
 
 	// LISTEN
 	ret = listen(
@@ -59,7 +61,7 @@ int	main()
 		3
 	);
 	if (ret < 0)
-		return (perror("listen failed"));
+		return (perror("listen failed"), 1);
 
 	// ACCEPT
 	new_socket = accept(
@@ -68,7 +70,7 @@ int	main()
 		(socklen_t *) & addrlen
 	);
 	if (new_socket < 0)
-		return (perror("accept failed"));
+		return (perror("accept failed"), 1);
 
 	// READ
 	valread = read(

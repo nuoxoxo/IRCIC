@@ -13,25 +13,25 @@ all	:	$(name)
 
 %.o	:	%.cc
 		@ echo "compiling [$^] "
-		$(comp) -c $< -o $@
+		@ $(comp) -c $< -o $@
 
 $(Server):	$(bud)
 		@ echo "compiling [$@] "
-		$(comp) $(Server).o -o ${Server}
+		@ $(comp) $(Server).o -o ${Server}
 
 $(Client):	$(bud)
 		@ echo "compiling [$@] "
-		$(comp) $(Client).o -o ${Client}
+		@ $(comp) $(Client).o -o ${Client}
 
 test	:	re
 		@ ./$(name)
-		make f
+		@ make f
 
 clean	:
-		@ $(rmv) $(bud)
+		$(rmv) $(bud)
 
 fclean	:	clean
-		@ $(rmv) $(name) a.out out
+		$(rmv) $(name)
 
 t	:	test
 f	:	fclean
