@@ -29,7 +29,8 @@ $(name)	:	$(bud)
 		@ echo "you can do [make r] "
 		@ echo "you can do [make f] "
 		@ echo ""
-		@ echo ":::: (makefile ends) :::: "
+		@ echo "-"
+		@#@ echo ":::: (makefile ends) :::: "
 		@ echo ""
 
 test	:	re

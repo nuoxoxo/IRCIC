@@ -10,7 +10,6 @@
 # include "algorithm" // merge
 # include "sys/time.h"
 
-
 # define GREEN "\033[0;32m"
 # define CYAN "\033[0;36m"
 # define YELLOW "\033[0;33m"
@@ -30,6 +29,8 @@
 # define nl2 "\n\n"
 # define nlreset " \n" RESET
 # define nl2reset " \n\n" RESET
+
+# define ANONSERV "(anonymous server)"
 
 bool	argv_is_invalid(char *v)
 {

@@ -15,10 +15,9 @@ public:
 	void		set_name(std::string name) { m_name = name; }
 	std::string	get_pass_might_delete() const { return (m_pass); }
 
-	IRCServer(std::string port, std::string pass)
-		: m_port(port), m_pass(pass)
+	IRCServer(const std::string &port, const std::string &pass)
+		: m_port(port), m_pass(pass), m_name(ANONSERV)
 	{
-		set_name("(anonymous server)");
 	}
 
 	~IRCServer() {}
