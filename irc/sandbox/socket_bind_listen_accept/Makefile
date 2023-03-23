@@ -1,41 +1,31 @@
-comp	:=	c++ -Wall -Werror -Wextra -pedantic -MMD -MP -std=c++98
-comp	:=	c++ -Wall -Werror -Wextra -std=c++98
+comp	:=	c++ -Wall -Werror -Wextra -I ../../project/ -std=c++98
 rmv	:=	rm -rf
 
-name	:=	btc
-name	:=	RPN
-name	:=	PmergeMe
-name	:=	ircserv
-name	:=	out
+name	=	${Server} ${Client}
 
-src	:=	main.cc
+Server	:=	server
+Client	:=	client
+
+src	:=	server.cc client.cc
 bud	:=	$(src:%.cc=%.o)
 
+all	:	$(name)
 
 %.o	:	%.cc
 		@ echo "compiling [$^] "
-		@ $(comp) -c $^ -o $@
+		$(comp) -c $< -o $@
 
-$(name)	:	$(bud)
+$(Server):	$(bud)
 		@ echo "compiling [$@] "
-		@ $(comp) $^ -o $@
-		@ printf "\n\n"
-		@#@ printf "\t[en] come on baby break my code\n"
-		@#@ printf "\t[fr] viens, brise mon code\n\n\n"
-		@ printf "\t\"are you using the right compiler? \"\n\n\n"
-		@ echo "you can do [make run] "
-		@ echo "you can do [make r] "
-		@ echo "you can do [make f] "
-		@ echo ""
-		@ echo "-"
-		@#@ echo ":::: (makefile ends) :::: "
-		@ echo ""
+		$(comp) $(Server).o -o ${Server}
+
+$(Client):	$(bud)
+		@ echo "compiling [$@] "
+		$(comp) $(Client).o -o ${Client}
 
 test	:	re
-		@ `for i in {1..10}; do echo "$i: " && ./$(name); done`
-		@ make f
-
-all	:	$(name)
+		@ ./$(name)
+		make f
 
 clean	:
 		@ $(rmv) $(bud)

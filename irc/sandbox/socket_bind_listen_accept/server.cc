@@ -16,20 +16,19 @@ int	main()
 	char		buffer[1024] = { 0 };
 	char		*msg = "server call to major tom";
 
-	// generate a socker fd
+	// SOCKET
+	//  generate a socker fd
 	Server_fd = socket(
 		AF_INET, /* domain */
 		SOCK_STREAM,
 		0
 	);
 	if ( Server_fd < 0 )
-	{
-		return (perror"socket sick");
-		exit(EXIT_FAILUER)
-	}
+		return (perror("socket error"), 1);
 
 
-	// attach socket to port 8080
+	// ATTACH
+	//  attach socket to port 8080
 	ret = setsockopt(
 		Server_fd,
 		SOL_SOCKET,
@@ -38,28 +37,54 @@ int	main()
 		sizeof(opt)
 	);
 	if (ret)
-	{
-		perror("setsockopt cold");
-		exit(EXIT_FAILUER);
-	}
+		return (perror("setsockopt error"), 1);
 	address.sin_family = AF_INET;
 	address.sin_addr.s_addr = INADDR_ANY;
 	address.sin_port = htons(PORT /* 8080 */);
 
 
-	// bind function:
+	// BIND
 	//  binds the socket to the address and port number specified in addr
-	red = bin(
+	ret = bind(
 		Server_fd,
 		(struct sockaddr *) & address,
 		sizeof(address)
 	);
 	if (ret < 0)
-	{
-		perror("ill bind");
-		exit(EXIT_FAILUER);
-	}
+		return (perror("bind error", 1));
 
+	// LISTEN
+	ret = listen(
+		Server_fd,
+		3
+	);
+	if (ret < 0)
+		return (perror("listen failed"));
+
+	// ACCEPT
+	new_socket = accept(
+		Server_fd,
+		(struct sockaddr *) & address,
+		(socklen_t *) & addrlen
+	);
+	if (new_socket < 0)
+		return (perror("accept failed"));
+
+	// READ
+	valread = read(
+		new_socket,
+		buffer,
+		1024
+	);
+	std::cout << YELLOW << buffer << nlreset;
+
+	// SEND
+	send(new_socket, msg, strlen(msg), 0);
+	std::cout << CYAN << "Message sent." nlreset;
+
+	// CLOSE Socket (client)
+	close(new_socket);
+	shutdown(Server_fd, SHUT_RDWR);
 }
 
 
