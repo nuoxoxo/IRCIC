@@ -18,8 +18,10 @@ $(name)	:	$(bud)
 		@ $(comp) $^ -o $@
 		@ printf "\n\n"
 		@ printf "\t[en] come on baby break my code\n"
-		@ printf "\t[fr] viens, brise mon code\n\n"
+		@ printf "\t[fr] viens, brise mon code\n"
+		@ echo ""
 		@ printf "\t\"make sure you have downloaded input._txt && data._tar \n\n"
+		@ echo ""
 		@ echo "you can do [curl -O ] "
 		@ echo "you can do [wget ] "
 		@ echo "you can do [tar -xvzf ] "

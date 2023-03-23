@@ -1,15 +1,16 @@
 comp	:=	c++ -Wall -Werror -Wextra -pedantic -MMD -MP -std=c++98
-comp	:=	c++ -Wall -Werror -Wextra -std=c++98
-comp	:=	c++ -Wall -Werror -Wextra -std=c++98 -I includes
+comp	:=	c++ -Wall -Werror -Wextra -I ../../project/ -std=c++98
 rmv	:=	rm -rf
 
 name	:=	btc
 name	:=	RPN
 name	:=	PmergeMe
 name	:=	ircserv
+name	:=	out
 
 src	:=	main.cc
 bud	:=	$(src:%.cc=%.o)
+
 
 %.o	:	%.cc
 		@ echo "compiling [$^] "
@@ -26,12 +27,14 @@ $(name)	:	$(bud)
 		@ echo "you can do [make r] "
 		@ echo "you can do [make f] "
 		@ echo ""
-		@ echo ":::: (makefile ends) :::: "
+		@ echo "-"
+		@#@ echo ":::: (makefile ends) :::: "
 		@ echo ""
 
-run	:	re
-		@ ./$(name)
-		@ make f
+test	:	re
+		@ for i in {1..6}; do echo $$i; ./$(name); done
+		@ echo ""
+		@ for a in A B C D E F; do echo $$a; ./$(name); done
 
 all	:	$(name)
 
@@ -41,9 +44,9 @@ clean	:
 fclean	:	clean
 		@ $(rmv) $(name) a.out out
 
-r	:	run
-t	:	run
+t	:	test
 f	:	fclean
+r	:	re
 re	:	f all
 
 .PHONY	:	fclean clean all re f

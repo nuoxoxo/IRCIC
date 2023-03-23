@@ -41,8 +41,6 @@ int	main(int c, char *v[])
 
 	if (gettimeofday( & tv_end, NULL))
 		return (1);
-	// ::: END - retriving time spent on Data Mgmt ::: //
-
 
 	start = tv_start.tv_usec; // time spent on data mgmt
 	end = tv_end.tv_usec;
@@ -50,6 +48,7 @@ int	main(int c, char *v[])
 	diff_2 = diff_1;
 	diff_3 = diff_2;
 	diff_4 = diff_3;
+	// ::: END - retriving time spent on Data Mgmt ::: //
 
 
 	print_container(a, BEFORE);// print unsorted list
