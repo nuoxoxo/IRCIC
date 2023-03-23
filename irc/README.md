@@ -1,4 +1,6 @@
-Socket Programming - [gfg](https://www.geeksforgeeks.org/socket-programming-cc/)
+# Socket Programming 
+
+sampler: [gfg](https://www.geeksforgeeks.org/socket-programming-cc/)
 
 Socket programming is a way of connecting ***two nodes*** on a network to communicate with each other.  \
 One socket (node) listens on a particular ***port*** at an IP, while the other socket reaches out to the other to form a connection.
@@ -7,13 +9,17 @@ The server forms the ***listener socket*** while the client reaches out to the s
 
 
 
-[ Subject ] - [intra](https://cdn.intra.42.fr/pdf/pdf/72125/en.subject.pdf) 
+# Port 6667
 
-IRC networks have defaulted to listening on TCP port 6667 for plain   \
-   text connections for a considerable time now.  This is covered by the  \
-   IRCU assignment of TCP/UDP ports 6665-6669. 
-   
-   More about TCP port 6667 - [rfc-editor](https://www.rfc-editor.org/rfc/rfc7194)
+TCP port usage - [rfc-editor](https://www.rfc-editor.org/rfc/rfc7194)
+
+IRC networks have defaulted to listening on TCP port 6667 for plain text connections for a considerable time now.  \
+This is covered by the IRCU assignment of TCP/UDP ports 6665-6669. 
+
+
+
+# Subject - [intra](https://cdn.intra.42.fr/pdf/pdf/72125/en.subject.pdf) 
+
 
 
 [ Notes from Peers ] - [ircgod](https://ircgod.com/posts)  \
