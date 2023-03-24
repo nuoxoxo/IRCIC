@@ -24,7 +24,7 @@ $(Client):	$(bud)
 		@ $(comp) $(Client).o -o ${Client}
 
 test	:	re
-		@ ./$(name)
+		@ ./server
 		@ make f
 
 clean	:

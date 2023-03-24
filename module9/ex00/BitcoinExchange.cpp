@@ -102,7 +102,6 @@ bool	query_is_valid(std::string & s)
 bool	date_is_valid(std::string & s)
 {
 	std::string	s1, s2, s3;
-	char		hyp1, hyp2;
 	int		year, month, day;
 
 	// length-10 check
@@ -110,9 +109,7 @@ bool	date_is_valid(std::string & s)
 		return (false);
 
 	// hyphens '-'
-	hyp1 = s[4];
-	hyp2 = s[7];
-	if (hyp1 != '-' || hyp2 != '-')
+	if (s[4] != '-' || s[7] != '-')
 		return (false);
 
 	// year
