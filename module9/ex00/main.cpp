@@ -78,7 +78,8 @@ int	main(int c, char **v)
 		{
 			val = to_double_round_2(dict[key] * val);
 			s = to_string(val);
-			if (s[s.length() - 1] == '0') // it end is 0, dont't show it
+			// std::cout << RED << " has key " << key << " : " << s << nlreset;
+			if (s.length() > 1 && s[s.length() - 1] == '0') // it end is 0, dont't show it
 			{
 				s = s.substr(0, s.length() - 1);
 			}
@@ -105,7 +106,8 @@ int	main(int c, char **v)
 			it--;
 			val = to_double_round_2(it->second * val);
 			s = to_string(val);
-			if (s[s.length() - 1] == '0') // dont't show the ending '0'
+			// std::cout << RED << " no key " << key << " : " << s << " : " << val << nlreset;
+			if (s.length() > 1 && s[s.length() - 1] == '0') // dont't show the ending '0'
 			{
 				s = s.substr(0, s.length() - 1);
 			}
