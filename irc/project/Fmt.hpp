@@ -3,12 +3,7 @@
 # define __FMT_HPP__
 
 # include "iostream"
-# include "sstream"
-# include "vector"
-# include "deque"
-# include "map"
-# include "algorithm" // merge
-# include "sys/time.h"
+# include "cstdio" // perror
 
 # define GREEN "\033[0;32m"
 # define CYAN "\033[0;36m"
