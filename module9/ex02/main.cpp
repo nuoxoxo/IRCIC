@@ -48,7 +48,7 @@ int	main(int c, char *v[])
 	diff_2 = diff_1;
 	diff_3 = diff_2;
 	diff_4 = diff_3;
-	// ::: END - retriving time spent on Data Mgmt ::: //
+	// ::: END ::: //
 
 
 	print_container(a, BEFORE);// print unsorted list
@@ -67,22 +67,19 @@ int	main(int c, char *v[])
 	end = tv_end.tv_usec;
 
 	diff_1 += end - start;
-	// ::: END - generic sort on Vector ::: //
+	// ::: END ::: //
 
 
 	// ::: START - generic sort on Deque ::: //
 	if (gettimeofday( & tv_start, NULL))
 		return (1);
-
 	merge_sort(d, DIY);
-
 	if (gettimeofday( & tv_end, NULL))
 		return (1);
 	start = tv_start.tv_usec;
 	end = tv_end.tv_usec;
-
 	diff_2 += end - start;
-	// ::: END - generic sort on Deque ::: //
+	// ::: END ::: //
 
 
 	// ::: START - STL sort on Vector ::: //
@@ -94,7 +91,7 @@ int	main(int c, char *v[])
 	start = tv_start.tv_usec;
 	end = tv_end.tv_usec;
 	diff_3 += end - start;
-	// ::: END - STL sort on vector ::: //
+	// ::: END ::: //
 
 
 	// ::: START - STL sort on Deque ::: //
@@ -106,13 +103,16 @@ int	main(int c, char *v[])
 	start = tv_start.tv_usec;
 	end = tv_end.tv_usec;
 	diff_4 += end - start;
-	// ::: START - STL sort on deque ::: //
+	// ::: END ::: //
 
 
 	print_container(a, AFTER);// print sorted list
+	// print_container(aa, AFTER);// print sorted list
+	// print_container(d, AFTER);// print sorted list
+	// print_container(dd, AFTER);// print sorted list
 
 
-	// delta time comparison
+	// Print delta time
 	std::cout
 	<< "Time to process a range of " << CYAN << a.size() << "\t" RESET
 	<< " elements with std::vector :\t" << diff_1 << " us" nl;
