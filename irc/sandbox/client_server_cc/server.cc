@@ -2,6 +2,8 @@
 #include "netinet/in.h"
 #include "sys/socket.h"
 #include "unistd.h" // read close
+#include "cstring" // strlen
+#include "cstdio" // perror
 #include "Fmt.hpp"
 
 #define PORT 8080
@@ -16,7 +18,7 @@ int	main()
 	int		opt = 1;
 	int		addrlen = sizeof(address);
 	char		buffer[1024] = { 0 };
-	const char *msg = "server call to major tom"; // doubt: keyword const
+	const char *msg = "this is ground control to major tom"; // doubt: keyword const
 
 	// SOCKET
 	//  generate a socker fd
@@ -26,7 +28,7 @@ int	main()
 		0
 	);
 	if ( Server_fd < 0 )
-		return (perror("socket error"), 1);
+		return (perror("failed to create socket"), -1);
 
 
 	// ATTACH
@@ -39,7 +41,7 @@ int	main()
 		sizeof(opt)
 	);
 	if (ret)
-		return (perror("setsockopt error"), 1);
+		return (perror("setsockopt error"), -1);
 	address.sin_family = AF_INET;
 	address.sin_addr.s_addr = INADDR_ANY;
 	address.sin_port = htons(PORT /* 8080 */);
@@ -53,7 +55,7 @@ int	main()
 		sizeof(address)
 	);
 	if (ret < 0)
-		return (perror("bind error"), 1);
+		return (perror("bind error"), -1);
 
 	// LISTEN
 	ret = listen(
@@ -61,7 +63,7 @@ int	main()
 		3
 	);
 	if (ret < 0)
-		return (perror("listen failed"), 1);
+		return (perror("listen failed"), -1);
 
 	// ACCEPT
 	new_socket = accept(
@@ -70,7 +72,7 @@ int	main()
 		(socklen_t *) & addrlen
 	);
 	if (new_socket < 0)
-		return (perror("accept failed"), 1);
+		return (perror("accept failed"), -1);
 
 	// READ
 	valread = read(
@@ -78,11 +80,11 @@ int	main()
 		buffer,
 		1024
 	);
-	std::cout << YELLOW << buffer << nlreset;
+	std::cout << CYAN << buffer << " (received by server)" << nlreset;
 
 	// SEND
 	send(new_socket, msg, strlen(msg), 0);
-	std::cout << CYAN << "Message sent." nlreset;
+	std::cout << CYAN << "Message sent. (server side)" nlreset;
 
 	// CLOSE Socket (client)
 	close(new_socket);
