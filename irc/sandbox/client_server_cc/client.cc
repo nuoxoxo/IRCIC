@@ -12,6 +12,10 @@
 
 int	main()
 {
+	// Stages for clients
+	//  1. Create socket
+	//  2. Use connect() system call to link sockfd to addr w/ port
+
 	struct sockaddr_in	Server_address;
 	int		Client_fd;
 	int		valread;
@@ -21,9 +25,9 @@ int	main()
 	const char *msg = "this is major tom to ground control";
 
 	Client_fd = socket(
-		AF_INET,
-		SOCK_STREAM,
-		0
+		AF_INET, /* domain */
+		SOCK_STREAM, /* communication type */
+		0 /* opt for IP */
 	);
 	if ( Client_fd < 0 )
 		return (perror("failed to create socket"), -1);
@@ -40,9 +44,9 @@ int	main()
 		return (perror("invalid address"), -1);
 
 	status = connect(
-		Client_fd,
-		(struct sockaddr *) & Server_address,
-		sizeof( Server_address )
+		Client_fd, /* sockfd */
+		(struct sockaddr *) &Server_address, /* const struct sockaddr * */
+		sizeof( Server_address ) /* socklen_t addrlen */
 	);
 	if (status < 0)
 		return (perror("failed to connect"), -1);
