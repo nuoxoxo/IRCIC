@@ -20,12 +20,16 @@ int	main()
 	char		buffer[1024] = { 0 };
 	const char *msg = "this is ground control to major tom"; // doubt: keyword const
 
-	// SOCKET
+	// SOCKET Creation
 	//  generate a socker fd
 	Server_fd = socket(
 		AF_INET, /* domain */
-		SOCK_STREAM,
-		0
+		// AF_INET or AF_INET6 - between procs on different hosts (IPV6)
+		// AF_LOCAL - between procs on the same host
+		SOCK_STREAM, /* communication type */
+		// SOCK_STREAM - TCP
+		// SOCK_DGRAM - UDP
+		0 /* protocol */
 	);
 	if ( Server_fd < 0 )
 		return (perror("failed to create socket"), -1);
