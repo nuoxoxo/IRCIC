@@ -1,37 +1,33 @@
+comp	:=	c++ -Wall -Werror -Wextra -pedantic -MMD -MP -std=c++98
 comp	:=	c++ -Wall -Werror -Wextra -I ../../project/ -std=c++98
 rmv	:=	rm -rf
 
-name	=	${Server} ${Client}
+name	:=	out
 
-Server	:=	server
-Client	:=	client
-
-src	:=	server.cc client.cc
+src	:=	main.cc
 bud	:=	$(src:%.cc=%.o)
-
-all	:	$(name)
 
 %.o	:	%.cc
 		@ echo "compiling [$^] "
-		@ $(comp) -c $< -o $@
+		@ $(comp) -c $^ -o $@
 
-$(Server):	$(bud)
+$(name)	:	$(bud)
 		@ echo "compiling [$@] "
-		@ $(comp) $(Server).o -o ${Server}
-
-$(Client):	$(bud)
-		@ echo "compiling [$@] "
-		@ $(comp) $(Client).o -o ${Client}
+		@ $(comp) $^ -o $@
+		@ printf "\n\n"
+		@ echo ""
+		@ echo ""
 
 test	:	re
-		@ ./server
-		@ make f
+		@ ./$(name)
+
+all	:	$(name)
 
 clean	:
-		$(rmv) $(bud)
+		@ $(rmv) $(bud)
 
 fclean	:	clean
-		$(rmv) $(name)
+		@ $(rmv) $(name) a.out out
 
 t	:	test
 f	:	fclean
@@ -39,4 +35,3 @@ r	:	re
 re	:	f all
 
 .PHONY	:	fclean clean all re f
-
