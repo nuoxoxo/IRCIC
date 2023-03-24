@@ -17,8 +17,8 @@ int	main(int c, char **v)
 
 	// open data.csv //
 
+//	data = "assets/data.csv"; // PLAY
 	data = "data.csv"; // EVAL
-	data = "assets/data.csv"; // PLAY
 
 	if (ifs.is_open())
 		ifs.close();
@@ -97,7 +97,9 @@ int	main(int c, char **v)
 			it = dict.upper_bound(key);
 			if (it == dict.begin())
 			{
-				std::cout << key << " => " << valstr << " = 0" nl;
+				std::cout
+				<< key << " => "
+				<< valstr << " = " YELLOW "0" nlreset;
 				continue ;
 			}
 			it--;

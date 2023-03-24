@@ -2,7 +2,7 @@ comp	:=	c++ -Wall -Werror -Wextra -pedantic -MMD -MP -std=c++98
 comp	:=	c++ -Wall -Werror -Wextra -std=c++98
 rmv	:=	rm -rf
 
-path	:=	"assets/"
+# path	:=	"assets/"
 
 name	:=	btc
 src	:=	main.cpp BitcoinExchange.cpp
@@ -31,11 +31,11 @@ run	:	re
 		@ echo ""
 		@ echo "::: EVAL input :::"
 		@ echo ""
-		@ ./$(name) $(path)input.csv
+		./$(name) $(path)input.csv
 		@ echo ""
 		@ echo "::: Subject input :::"
 		@ echo ""
-		@ ./$(name) $(path)input.txt
+		./$(name) $(path)input.txt
 		@ echo ""
 		@ make clean
 
