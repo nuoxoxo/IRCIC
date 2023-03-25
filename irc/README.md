@@ -1,6 +1,6 @@
 # Socket Programming 
 
-sampler: [server-client](https://www.geeksforgeeks.org/socket-programming-cc)  \
+sampler : [server-client](https://www.geeksforgeeks.org/socket-programming-cc)  \
 sampler: [server-clients](https://www.geeksforgeeks.org/socket-programming-in-cc-handling-multiple-clients-on-server-without-multi-threading)  \
 server-client program in python: [realpy](https://realpython.com/python-sockets/) - [doc](https://docs.python.org/3/library/socket.html)
 
