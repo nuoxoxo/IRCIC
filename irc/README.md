@@ -18,6 +18,7 @@ FD_ISSET | FD_ISSET(master_sock_fd, & readfds) | Server::connect_to_server
 |              | fd_set `* restrict writefds`
 |              | fd_set `* restrict errorfds`
 |              | struct timeval `* restrict timeout`
+|              | _Application_ 👇
 | activity = | select(max_fd + 1, & readfds, none, none, none) | gfg
 | activity = | select(maxSFD + 1, & readfds, none, none, none) | Server::connect_to_server
 
