@@ -9,7 +9,11 @@
 
 # IRC under construction :woman_farmer:
 
+![](https://i.imgur.com/8DifIFr.jpg)
+
+<!---
 ![](https://i.imgur.com/BdLTynx.jpg)
+--->
 
 # !nception passed on Feb 17 :elf_woman:
 
