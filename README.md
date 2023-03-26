@@ -9,7 +9,7 @@
 
 # IRC under construction :woman_farmer:
 
-![](https://i.imgur.com/Um5DuLr.jpg)
+![](https://i.imgur.com/plfUVpo.jpg)
 
 <!---
 ![](https://i.imgur.com/8DifIFr.jpg)
