@@ -1,6 +1,27 @@
 # Socket Programming 
 
-sampler: [gfg](https://www.geeksforgeeks.org/socket-programming-cc/)  \
+sampler: [server-client](https://www.geeksforgeeks.org/socket-programming-cc)  \
+sampler: [server-clients](https://www.geeksforgeeks.org/socket-programming-in-cc-handling-multiple-clients-on-server-without-multi-threading) 
+
+|   |   |   | 
+| - | - | - |
+| _fd_set_ 👉  | _Data structure for_ `select()`
+|              | _fd_set function (4) series_ 👇
+FD_ZERO  | FD_ZERO(& readfds) | Server::connect_to_server
+FD_SET   | FD_SET(master_sock_fd, & readfds)   | Server::connect_to_server
+FD_CLR   | FD_CLR(master_sock_fd, & readfds)   | -
+FD_ISSET | FD_ISSET(master_sock_fd, & readfds) | Server::connect_to_server
+|   |   |   | 
+| _select_ 👉  | Activate select with: |
+|              | int `total_fds_ie_1_plus_the_highest_fd`
+|              | fd_set `* restrict readfds`
+|              | fd_set `* restrict writefds`
+|              | fd_set `* restrict errorfds`
+|              | struct timeval `* restrict timeout`
+|              | _Application_ 👇
+| activity = | select(max_fd + 1, & readfds, none, none, none) | gfg
+| activity = | select(maxSFD + 1, & readfds, none, none, none) | Server::connect_to_server
+
 server-client program in python: [realpy](https://realpython.com/python-sockets/) - [doc](https://docs.python.org/3/library/socket.html)
 
 Socket programming is a way of connecting ***2 nodes*** on a network to communicate with each other.  \
