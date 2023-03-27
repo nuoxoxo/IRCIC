@@ -1,4 +1,4 @@
-[IRC / Chanop](https://wiki.ircnow.org/index.php?n=Irc.Chanop)
+[IRC / Chanop](https://wiki.ircnow.org/index.php?n=Irc.Chanop) \
 Basic IRC Cmds - [mIRC](https://www.mirc.com/help/html/index.html?basic_irc_commands.html)
 
 # Socket Programming 
