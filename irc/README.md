@@ -1,3 +1,20 @@
+# Logs 
+
+| | Questions and Todos |
+| :-- | :-- |
+| mar 27       | campus test _ok_
+|                    | night : fix all classes + makefile
+|                    | what are ___left_users___ ?
+| mar 26       | not much, prepare demo for qx
+| mar 25       | generate random date in c++
+|                    | server that handles mult clients
+| mar 24       | fi : socket minitalk 
+| *pending*  | what are user or channel ___modes___ ?
+| | ┗ USER_MODE "ior"
+| | ┗ CHANNEL_MODE "ovamntlkb" 
+
+# Some notes
+
 struct sockaddr_in (?)
 
 About Chanops: [IRC / Chanop](https://wiki.ircnow.org/index.php?n=Irc.Chanop)  \
