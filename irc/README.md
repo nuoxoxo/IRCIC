@@ -13,7 +13,7 @@
 | | ┗ USER_MODE "ior"
 | | ┗ CHANNEL_MODE "ovamntlkb" 
 
-# Some notes
+# Notes
 
 struct sockaddr_in (?)
 
