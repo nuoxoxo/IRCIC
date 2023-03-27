@@ -56,7 +56,8 @@ int	main(int c , char **v)
 	//type of socket created 
 	address.sin_family = AF_INET;  
 	address.sin_addr.s_addr = INADDR_ANY;  
-	address.sin_port = htons( PORT );  
+
+	address.sin_port = htons( PORT );
 
 	//bind the socket to localhost port 8888 
 	if (bind(master_socket, (struct sockaddr *)&address, sizeof(address))<0)  
