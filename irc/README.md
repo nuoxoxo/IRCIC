@@ -1,3 +1,5 @@
+struct sockaddr_in (?)
+
 About Chanops: [IRC / Chanop](https://wiki.ircnow.org/index.php?n=Irc.Chanop)  \
 Basic IRC Cmds: [mIRC](https://www.mirc.com/help/html/index.html?basic_irc_commands.html)  \
 IRC Cheatsheet: [xero](https://gist.github.com/xero/2d6e4b061b4ecbeb9f99)
