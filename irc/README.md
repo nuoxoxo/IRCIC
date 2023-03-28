@@ -9,11 +9,10 @@ IRC Cheatsheet: [xero](https://gist.github.com/xero/2d6e4b061b4ecbeb9f99)
 
 # Logs 
 
-| | Questions and Todos |
-| :----------- | :----- |
+|              | Dones & Todos                         | Status
+| :----------- | :------------------------------------ | :----- |
 | mar 28       | fi : proto 2-digit mult in JS
 |              | multiple connection via `/nick` 
-|              | |
 | _todo_       | know your connect to server fn
 |              | know all RPL (see doc above)
 |              | what is port at launch
@@ -30,7 +29,6 @@ IRC Cheatsheet: [xero](https://gist.github.com/xero/2d6e4b061b4ecbeb9f99)
 |              | server that handles mult clients
 |              | |
 | mar 24       | fi : socket minitalk 
-|              | |
 | *pending*    | what are user or channel ___modes___ ?
 |              | ┗ USER_MODE "ior"
 |              | ┗ CHANNEL_MODE "ovamntlkb" 
