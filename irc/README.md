@@ -13,7 +13,8 @@ IRC Cheatsheet: [xero](https://gist.github.com/xero/2d6e4b061b4ecbeb9f99)
 | :----------- | :------------------------------------ | :----- |
 | mar 28       | fi : proto 2-digit mult in JS
 |              | multiple connection via `/nick` 
-| _todo_       | know your connect to server fn
+| _todo_       | learn using `nc` in place of irssi
+|              | know your connect to server fn
 |              | know all RPL (see doc above)
 |              | what is port at launch
 |              | {__impl.__} server queuing mult cli
