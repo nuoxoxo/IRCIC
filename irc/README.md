@@ -10,17 +10,30 @@ IRC Cheatsheet: [xero](https://gist.github.com/xero/2d6e4b061b4ecbeb9f99)
 # Logs 
 
 | | Questions and Todos |
-| :-- | :-- |
+| :----------- | :----- |
+| mar 28       | fi : proto 2-digit mult in JS
+|              | multiple connection via `/nick` 
+|              | |
+| _todo_       | know your connect to server fn
+|              | know all RPL (see doc above)
+|              | what is port at launch
+|              | {__impl.__} server queuing mult cli
+|              | {__impl.__} MOTD w/ random fn choice
+|              | |
 | mar 27       | campus test _ok_
-|                    | night : fix all classes + makefile
-|                    | what are ___left_users___ ?
+|              | night : fix all classes + makefile
+|              | what are ___left_users___ ?
+|              | |
 | mar 26       | not much, prepare demo for qx
+|              | |
 | mar 25       | generate random date in c++
-|                    | server that handles mult clients
+|              | server that handles mult clients
+|              | |
 | mar 24       | fi : socket minitalk 
-| *pending*  | what are user or channel ___modes___ ?
-| | ┗ USER_MODE "ior"
-| | ┗ CHANNEL_MODE "ovamntlkb" 
+|              | |
+| *pending*    | what are user or channel ___modes___ ?
+|              | ┗ USER_MODE "ior"
+|              | ┗ CHANNEL_MODE "ovamntlkb" 
 
 
 # Socket Programming 
