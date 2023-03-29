@@ -90,7 +90,8 @@ int	main(int c, char **v)
 				continue ;
 			}
 			std::cout
-			<< std::setprecision(PRECISION) << val
+			<< val
+			// << std::setprecision(PRECISION) << val
 			<< nlreset;
 		}
 		else
@@ -118,7 +119,8 @@ int	main(int c, char **v)
 				continue ;
 			}
 			std::cout
-			<< std::setprecision(PRECISION) << val
+			<< val
+			// << std::setprecision(PRECISION) << val
 			<< nlreset;
 		}
 	}

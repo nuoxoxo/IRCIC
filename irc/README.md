@@ -2,24 +2,66 @@
 
 struct sockaddr_in (?)
 
+RPL: [doc](https://dd.ircdocs.horse/refs/numerics/001.html)  \
 About Chanops: [IRC / Chanop](https://wiki.ircnow.org/index.php?n=Irc.Chanop)  \
 Basic IRC Cmds: [mIRC](https://www.mirc.com/help/html/index.html?basic_irc_commands.html)  \
 IRC Cheatsheet: [xero](https://gist.github.com/xero/2d6e4b061b4ecbeb9f99)
 
+@qxqxia  \
+[RFC 2812](https://www.rfc-editor.org/rfc/rfc2812#section-1.1) 隨便看看 server client user 有哪些規定  \
+[execrate0/ft_irc](https://github.com/execrate0/ft_irc) 這個組建議參考"穩定 (not experimental)" 的備忘錄 (281x 系列) 
+
+```
+explain 
+
+:*.freenode.net NOTICE * :*** Looking up your ident...
+:*.freenode.net NOTICE * :*** Looking up your hostname...
+:*.freenode.net NOTICE * :*** Found your hostname (170.153.153.77.rev.sfr.net)
+ERROR :Closing link: (208AKAKO0@170.153.153.77.rev.sfr.net) [Registration timeout]
+
+try
+
+PRIVMSG qxia hi there xia how r u
+LIST
+JOIN #general
+PRIVMSG #general hi everyone
+WHO #general
+WHOIS qxia
+
+if received, do
+
+PING :irc.______.net
+PONG :irc.______.net
+```
+
 # Logs 
 
-| | Questions and Todos |
-| :-- | :-- |
+|              | Dones & Todos                         | Status
+| :----------- | :------------------------------------ | :----- |
+| mar 29       | fi : MOTD supports 4 variations
+| mar 28       | fi : proto 2-digit mult in JS
+|              | multiple connection via `/nick` 
+| _todo_       | learn using `nc` in place of irssi
+|              | know connect_to_server fn
+|              | know all RPL (see doc above)
+|              | what is port at launch                | ✓
+|              | ⮑ `tohs(server_core.sin_port)` 
+|              | {__impl.__} server queuing mult cli
+|              | {__impl.__} MOTD w/ random choice     | mar 29 ✓
+|              | |
 | mar 27       | campus test _ok_
-|                    | night : fix all classes + makefile
-|                    | what are ___left_users___ ?
+|              | night : fix all classes + makefile
+|              | what are ___left_users___ ?
+|              | |
 | mar 26       | not much, prepare demo for qx
+|              | |
 | mar 25       | generate random date in c++
-|                    | server that handles mult clients
+|              | server that handles mult clients
+|              | |
 | mar 24       | fi : socket minitalk 
-| *pending*  | what are user or channel ___modes___ ?
-| | ┗ USER_MODE "ior"
-| | ┗ CHANNEL_MODE "ovamntlkb" 
+| *pending*    | what are user or channel ___modes___ ?
+|              | ┗ USER_MODE "ior"
+|              | ┗ CHANNEL_MODE "ovamntlkb" 
 
 
 # Socket Programming 
