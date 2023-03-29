@@ -7,6 +7,15 @@ About Chanops: [IRC / Chanop](https://wiki.ircnow.org/index.php?n=Irc.Chanop)  \
 Basic IRC Cmds: [mIRC](https://www.mirc.com/help/html/index.html?basic_irc_commands.html)  \
 IRC Cheatsheet: [xero](https://gist.github.com/xero/2d6e4b061b4ecbeb9f99)
 
+```
+explain 
+
+:*.freenode.net NOTICE * :*** Looking up your ident...
+:*.freenode.net NOTICE * :*** Looking up your hostname...
+:*.freenode.net NOTICE * :*** Found your hostname (170.153.153.77.rev.sfr.net)
+ERROR :Closing link: (208AKAKO0@170.153.153.77.rev.sfr.net) [Registration timeout]
+```
+
 # Logs 
 
 |              | Dones & Todos                         | Status
