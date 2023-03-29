@@ -4,14 +4,14 @@
 int	main()
 {
 	srand(time(0));
-	if (rand() % 2)
+	if (rand() % 3)
 	{
-		std::cout << TICK << std::endl;
+		std::cout << TICK TICK TICK " :: ";
 		perror("funny & odd");
 	}
 	else
 	{
-		std::cout << CROSS << std::endl;
+		std::cout << CROSS CROSS CROSS " :: golden even \n";
 	}
 }
 

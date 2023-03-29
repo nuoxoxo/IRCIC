@@ -34,7 +34,7 @@ $(name)	:	$(bud)
 test	:	re
 		@ for i in {1..6}; do echo $$i; ./$(name); done
 		@ echo ""
-		@ for a in A B C D E F; do echo $$a; ./$(name); done
+		@ for a in A B C D E F; do echo $$a && ./$(name); done
 
 all	:	$(name)
 
