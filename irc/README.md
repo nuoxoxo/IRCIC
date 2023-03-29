@@ -19,7 +19,7 @@ IRC Cheatsheet: [xero](https://gist.github.com/xero/2d6e4b061b4ecbeb9f99)
 |              | what is port at launch                | _done_
 |              | ⮑ `tohs(server_core.sin_port)` 
 |              | {__impl.__} server queuing mult cli
-|              | {__impl.__} MOTD w/ random fn choice
+|              | {__impl.__} MOTD w/ random fn choice  | easy
 |              | |
 | mar 27       | campus test _ok_
 |              | night : fix all classes + makefile
