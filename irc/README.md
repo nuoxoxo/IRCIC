@@ -7,7 +7,7 @@ About Chanops: [IRC / Chanop](https://wiki.ircnow.org/index.php?n=Irc.Chanop)  \
 Basic IRC Cmds: [mIRC](https://www.mirc.com/help/html/index.html?basic_irc_commands.html)  \
 IRC Cheatsheet: [xero](https://gist.github.com/xero/2d6e4b061b4ecbeb9f99)
 
-@qxqxia 
+@qxqxia  \
 [RFC 2812](https://www.rfc-editor.org/rfc/rfc2812#section-1.1) 隨便看看 server client user 有哪些規定  \
 [execrate0/ft_irc](https://github.com/execrate0/ft_irc) 這個組建議參考"穩定 (not experimental)" 的備忘錄 (281x 系列) 
 
