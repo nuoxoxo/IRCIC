@@ -11,15 +11,16 @@ IRC Cheatsheet: [xero](https://gist.github.com/xero/2d6e4b061b4ecbeb9f99)
 
 |              | Dones & Todos                         | Status
 | :----------- | :------------------------------------ | :----- |
+| mar 29       | fi : MOTD supports 4 variations
 | mar 28       | fi : proto 2-digit mult in JS
 |              | multiple connection via `/nick` 
 | _todo_       | learn using `nc` in place of irssi
 |              | know connect_to_server fn
 |              | know all RPL (see doc above)
-|              | what is port at launch                | _done_
+|              | what is port at launch                | ✓
 |              | ⮑ `tohs(server_core.sin_port)` 
 |              | {__impl.__} server queuing mult cli
-|              | {__impl.__} MOTD w/ random fn choice  | easy
+|              | {__impl.__} MOTD w/ random choice     | mar 29 ✓
 |              | |
 | mar 27       | campus test _ok_
 |              | night : fix all classes + makefile
