@@ -14,6 +14,20 @@ explain
 :*.freenode.net NOTICE * :*** Looking up your hostname...
 :*.freenode.net NOTICE * :*** Found your hostname (170.153.153.77.rev.sfr.net)
 ERROR :Closing link: (208AKAKO0@170.153.153.77.rev.sfr.net) [Registration timeout]
+
+try
+
+PRIVMSG qxia hi there xia how r u
+LIST
+JOIN #general
+PRIVMSG #general hi everyone
+WHO #general
+WHOIS qxia
+
+if received, do
+
+PING :irc.______.net
+PONG :irc.______.net
 ```
 
 # Logs 
