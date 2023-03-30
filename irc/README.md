@@ -1,5 +1,15 @@
 # Notes
 
+things to try out:
+```
+$ /connect irc.blackened.com
+$ /join #testchannel1
+$ hello!
+[ Alt. + num ] to change windows
+$ /n ... [ show channel participants ]
+$ /part ... [ leave the channel ]
+```
+
 struct sockaddr_in (?)
 
 RPL: [doc](https://dd.ircdocs.horse/refs/numerics/001.html)  \
