@@ -72,8 +72,8 @@ PONG :irc.______.net
 |              | |
 | mar 24       | fi : socket minitalk 
 | *pending*    | what are user or channel ___modes___ ?
-|              | ┗ USER_MODE "ior"
-|              | ┗ CHANNEL_MODE "ovamntlkb" 
+|              | ⮑ USER_MODE "ior"
+|              | ⮑ CHANNEL_MODE "ovamntlkb" 
 
 
 # Socket Programming 
