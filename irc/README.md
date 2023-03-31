@@ -58,8 +58,9 @@ PONG :irc.______.net
 |              | know all RPL (see doc above)
 |              | what is port at launch                | ✓
 |              | ⮑ `tohs(server_core.sin_port)` 
-|              | {__impl.__} server queuing mult cli
-|              | {__impl.__} MOTD w/ random choice     | mar 29 ✓
+|              | _to implement_
+|              | ⮑ server queuing mult cli
+|              | ⮑ MOTD w/ random choice     | mar 29 ✓
 |              | |
 | mar 27       | campus test _ok_
 |              | night : fix all classes + makefile
