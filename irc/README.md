@@ -57,7 +57,7 @@ PONG :irc.______.net
 |              | know connect_to_server fn
 |              | know all RPL (see doc above)
 |              | what is port at launch                | ✓
-|              | ⮑ `tohs(server_core.sin_port)` 
+|              | ⮑ `tohs(_server.sin_port)` 
 |              | _to implement_
 |              | ⮑ server queuing mult cli
 |              | ⮑ MOTD w/ random choice     | mar 29 ✓
