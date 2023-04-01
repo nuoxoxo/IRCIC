@@ -11,12 +11,10 @@
 #include "netinet/in.h" 
 #include "sys/time.h" // FD_SET fn series
 
+#define Backlog_Len 3
 #define msg "ECHO Daemon v1.0 \r\n"
 
 #define	PORT 6669
-
-
-// need a cf. with single-client-call sandbox ...... TODO
 
 
 // footnote ...... XXX
@@ -52,19 +50,19 @@ int	main()
 	// char	buffer[1025]; // data buffer of 1K
 	char	buffer[1024] = { 0 }; // both styles
 
+	int	addrlen = sizeof(address);
 	int	opt = true;
 
 	int	Server_fd;
 	int	new_socket;
 	int	activity;
 	int	valread;
-	int	addrlen;
 	int	max_sd;
 	int	sd;
 	int	i;
 
-	long	longret;
 	int	ret;
+	long	lret;
 
 
 	// initialise all client_socket[] to 0  
@@ -107,15 +105,17 @@ int	main()
 	}
 
 
-	// type of socket created 
-	// then start binding
+	// setting type of socket created 
 
 	address.sin_family = AF_INET;
-	address.sin_addr.s_addr = INADDR_ANY;
+	address.sin_addr.s_addr = INADDR_ANY; // INADDR_ANY specifies the IP address
 	address.sin_port = htons( PORT );
 
 
 	// bind the socket to localhost port
+	//  def. :
+	//   bind() binds socket to the 
+	//   address & port specified in a struct sockaddr
 
 	ret = bind(
 		Server_fd,
@@ -132,9 +132,23 @@ int	main()
 
 
 	// specify max length of pending queue
-	// set to 3 pending connections max for master socket 
+	// set to MAX_Backlog_Len pending connections max for master socket
 
-	ret = listen( Server_fd, 3 );
+	// 
+	// ** original notes **
+	// 
+	// LISTEN
+	//  listen(sockfd, backlog_len) puts Socket in passive/listening mode
+	//  	ie. waiting for client to approach
+	//
+	//  backlog_len : the max length of the pending connections queue
+	//  	ECONNREFUSED beyond backlog_len
+	//
+
+	ret = listen(
+		Server_fd,
+		Backlog_Len /* 3 */
+	);
 	if (ret < 0)
 	{
 		return (perror("listen"), 1);
@@ -143,6 +157,15 @@ int	main()
 
 
 	// accept incoming connection(s)
+
+	// 
+	// ** original notes **
+	//
+	// ACCEPT
+	//  extracts the first request on the queue of pending
+	//  creates a new socket connection
+	//  returns a fd to that socket
+	//
 
 	addrlen = sizeof(address);
 	std::cout << "Waiting for connections ..." << std::endl;
@@ -235,13 +258,13 @@ int	main()
 
 			// send new connection greeting msg
 
-			longret = send(
+			lret = send(
 				new_socket,
 				msg,
 				strlen(msg),
 				0
 			);
-			if( longret != (long) strlen(msg) )
+			if( lret != (long) strlen(msg) )
 			{
 				return (perror("send failed"), 1);
 			}
