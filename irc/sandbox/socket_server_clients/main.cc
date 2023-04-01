@@ -2,8 +2,8 @@
 #include "cstdio"
 #include "cstring" // strlen
 #include "cstdlib"
-#include "unistd.h" //close 
 #include "errno.h"
+#include "unistd.h" //close 
 
 #include "arpa/inet.h" //close 
 #include "sys/types.h"
@@ -179,7 +179,11 @@ int	main()
 
 
 		// we monitor master socket
-		// if something happened it means a connection is incoming
+		//  if something happened on the master socket
+		//  it could be either one of 2 possibilities
+
+		// (1/2) :: incoming connection
+		//  in this case we check fd with fd_is_set
 
 		ret = FD_ISSET(
 			master_socket,
@@ -243,38 +247,53 @@ int	main()
 			}
 		}
 
-		//else its some IO operation on some other socket
-		for (i = 0; i < max_clients; i++)
-		{
-		sd = client_socket[i];
 
-		if (FD_ISSET( sd , &readfds))
-		{
-		//Check if it was for closing , and also read the 
-		//incoming msg 
-		if ((valread = read( sd , buffer, 1024)) == 0)
-		{
-		//Somebody disconnected , get his details and print 
-		getpeername(sd , (struct sockaddr*)&address , \
-		(socklen_t*)&addrlen);
-		printf("Host disconnected , ip %s , port %d \n" , 
-		inet_ntoa(address.sin_addr) , ntohs(address.sin_port));
+		// (2/2) :: if not incoming connection
+		//  then it is I/O operation on some other socket (?)
 
-		//Close the socket and mark as 0 in list for reuse 
-		close( sd );
-		client_socket[i] = 0;
-		}
-		//Echo back the msg that came in 
-		else 
+
+		i = -1;
+		while (++i < max_cliens)
 		{
-		//set the string terminating NULL byte on the end 
-		//of the data read 
-		buffer[valread] = '\0';
-		send(sd , buffer , strlen(buffer) , 0 );
-		}
-		}
-		}
+			sd = client_socket[i];
+			ret = FD_ISSET( sd, & readfds );
+			if (ret)
+			{
+				// check if it was for closing
+				// read incoming msg
+
+				valread = read( sd , buffer, 1024 );
+
+
+				// 2 possibilities
+				//  (1/2) :: either someone is disconnected
+				//  (2/2) :: or we got a msg we can just echo back
+
+				if (!valread) // someone is disconnected
+				{
+					// get details and print info
+					getpeername(
+						sd,
+						(struct sockaddr *) & address,
+						(socklen_t * ) & addrlen
+					);
+					std::cout << "Host disconnected , ip "
+					<< inet_ntoa(address.sin_addr) << ", port "
+					<< ntohs(address.sin_port);
+
+					// close socket
+					close( sd );
+
+					// mark as 0 in list for reuse
+					client_socket[ i ] = 0;
+				}
+				else // otherwise it's a msg, we echo back
+				{
+					// term the buffer to null byte
+					buffer[valread] = '\0';
+					send( sd, buffer, strlen(buffer), 0 );
+				}
 			}
-
-	return 0;
+		}
 	}
+}
