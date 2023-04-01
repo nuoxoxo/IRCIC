@@ -23,7 +23,19 @@ run	:	re
 		@ make clean
 
 test	:	re
-		@ ./$(name) test
+		@ ./$(name) "Hello World in a frame"
+		@ echo ""
+		@ ./$(name) "Hello World in a"
+		@ echo ""
+		@ ./$(name) "Hello World in"
+		@ echo ""
+		@ ./$(name) "Hello    World"
+		@ echo ""
+		@ ./$(name) "Hello World"
+		@ echo ""
+		@ ./$(name) "Hello"
+		@ echo ""
+		@ ./$(name) ""
 		@ make clean
 
 t	:	test

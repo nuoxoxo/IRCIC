@@ -12,7 +12,7 @@ int	main(int c, char **v)
 {
 	size_t		len, max = 0;
 	size_t		trail;
-	char		*tok;
+//	char		*tok;
 	char		**G;
 	int	i;
 
@@ -37,7 +37,7 @@ int	main(int c, char **v)
 	char	shangxia[max];
 
 	i = -1;
-	while (++i < max) shangxia[i] = (i ^ max - 1) ? '*' : '\0';
+	while (++i < (int) max) shangxia[i] = (i ^ max - 1) ? '*' : '\0';
 
 	printf("%s\n", shangxia);
 	i = -1;
