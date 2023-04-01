@@ -8,6 +8,8 @@
 
 #define PORT 8080
 
+#define msg "this is server to client"
+
 int	main()
 {
 	// Stages for server
@@ -25,7 +27,6 @@ int	main()
 	int		opt = 1;
 	int		addrlen = sizeof(address);
 	char		buffer[1024] = { 0 };
-	const char *msg = "this is server to client"; // doubt: keyword const
 
 
 	// SOCKET Creation
