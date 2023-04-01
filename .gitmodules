@@ -1,0 +1,3 @@
+[submodule "irc/ft_irc"]
+	path = irc/ft_irc
+	url = https://github.com/nuoxoxo/ft_irc.git

@@ -32,9 +32,9 @@ $(name)	:	$(bud)
 		@ echo ""
 
 test	:	re
-		@ for i in {1..6}; do echo $$i; ./$(name); done
+		@ for i in {1..6}; do ./$(name); done
 		@ echo ""
-		@ for a in A B C D E F; do echo $$a && ./$(name); done
+		@ for a in A B C D E F; do ./$(name); done
 
 all	:	$(name)
 
