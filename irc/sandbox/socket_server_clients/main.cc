@@ -142,13 +142,13 @@ int	main()
 	}
 
 
-	// Accept incoming connection(s)
+	// accept incoming connection(s)
 
 	addrlen = sizeof(address);
 	std::cout << "Waiting for connections ..." << std::endl;
 
 
-	// Enter the Listener while lopp
+	// enter the "listener while loop"
 
 	while (1)
 	{
