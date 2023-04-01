@@ -1,9 +1,5 @@
-# Event April 2O23
 
-![](https://i.imgur.com/osIK4xz.jpg)
-
-
-# Module 9 発展中... :woman_astronaut:
+# Module 9 _Eval Pending ..._ :woman_astronaut:
 ![](https://i.imgur.com/IYQ9WYt.jpg)
 &nbsp;
 
