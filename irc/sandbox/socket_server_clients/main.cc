@@ -15,7 +15,11 @@
 
 #define	PORT 6669
 
-// footnote ....... XXX
+
+// need a cf. with single-client-call sandbox ...... TODO
+
+
+// footnote ...... XXX
 //  
 //  FD_ISSET() 
 //   is a macro fn that says whether a given socket descriptor
@@ -28,18 +32,29 @@
 //   lets you clear a bit.
 //
 
+
 int	main()
 {
-	struct	sockaddr_in address;
+	// Stages
+	//
+	//  1. Create socket
+	//  2. setsockopt
+	//  3. bind
+	//  4. listen
+	//  5. accept
+
+	struct sockaddr_in	address;
 	fd_set	readfds; //set of socket descriptors
 
 	int	client_socket[30];
 	int	max_clients = 30;
-	char	buffer[1025]; // data buffer of 1K
+
+	// char	buffer[1025]; // data buffer of 1K
+	char	buffer[1024] = { 0 }; // both styles
 
 	int	opt = true;
 
-	int	master_socket;
+	int	Server_fd;
 	int	new_socket;
 	int	activity;
 	int	valread;
@@ -61,10 +76,14 @@ int	main()
 	}
 
 
-	// create a master socket 
+	// SOCKET Creation
 
-	master_socket = socket(AF_INET , SOCK_STREAM , 0);
-	if (master_socket < 0)
+	Server_fd = socket(
+		AF_INET,
+		SOCK_STREAM,
+		0
+	);
+	if (Server_fd < 0)
 	{
 		return (perror("socket failed"), 1);
 		// exit(EXIT_FAILURE);
@@ -75,7 +94,7 @@ int	main()
 	// * this is just a good pratice, it will work without this
 
 	ret = setsockopt(
-		master_socket,
+		Server_fd,
 		SOL_SOCKET,
 		SO_REUSEADDR,
 		(char *) & opt,
@@ -99,7 +118,7 @@ int	main()
 	// bind the socket to localhost port
 
 	ret = bind(
-		master_socket,
+		Server_fd,
 		(struct sockaddr *) & address,
 		sizeof(address)
 	);
@@ -115,7 +134,7 @@ int	main()
 	// specify max length of pending queue
 	// set to 3 pending connections max for master socket 
 
-	ret = listen( master_socket, 3 );
+	ret = listen( Server_fd, 3 );
 	if (ret < 0)
 	{
 		return (perror("listen"), 1);
@@ -140,8 +159,8 @@ int	main()
 
 		// add master socket to set 
 
-		FD_SET(master_socket, &readfds);
-		max_sd = master_socket;
+		FD_SET(Server_fd, &readfds);
+		max_sd = Server_fd;
 
 
 		// add child sockets to set 
@@ -187,14 +206,14 @@ int	main()
 		//  in this case we check fd with fd_is_set
 
 		ret = FD_ISSET(
-			master_socket,
+			Server_fd,
 			& readfds
 		);
 		if (ret)
 		{
 			
 			new_socket = accept(
-				master_socket,
+				Server_fd,
 				(struct sockaddr *) & address,
 				(socklen_t *) & addrlen
 			);
