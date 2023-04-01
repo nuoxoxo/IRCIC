@@ -9,6 +9,7 @@
 #define PORT 8080
 
 #define msg "this is server to client"
+#define Backlog_Len 3
 
 int	main()
 {
@@ -103,7 +104,7 @@ int	main()
 
 	ret = listen(
 		Server_fd, 
-		3 /* backlog_len */
+		Backlog_Len /* backlog_len */
 	);
 
 	if (ret < 0)
