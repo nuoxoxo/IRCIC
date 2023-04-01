@@ -15,7 +15,7 @@
 
 #define	PORT 6669
 
-// footnote
+// footnote ....... XXX
 //  
 //  FD_ISSET() 
 //   is a macro fn that says whether a given socket descriptor
@@ -45,11 +45,12 @@ int	main()
 	int	valread;
 	int	addrlen;
 	int	max_sd;
-	int	ret;
 	int	sd;
 	int	i;
 
 	long	longret;
+	int	ret;
+
 
 	// initialise all client_socket[] to 0  
 
@@ -225,7 +226,7 @@ int	main()
 			{
 				return (perror("send failed"), 1);
 			}
-			std::cout << "Welcome msg sent successfully \n";
+			std::cout << "Welcome message sent successfully \n";
 
 
 			// add new socket to array of sockets
@@ -233,14 +234,11 @@ int	main()
 			i = -1;
 			while (++i < max_clients)
 			{
-				// 2 possible situations
-
-				// (1/2) :: if position is empty 
-
-				if( client_socket[i] == 0 )
+				// use first empty slot found
+				if ( client_socket[i] == 0 )
 				{
 					client_socket[i] = new_socket;
-					std::cout << "Adding to list of sockets as "
+					std::cout << "Added to list of sockets as "
 					<< i;
 					break ;
 				}
@@ -251,9 +249,8 @@ int	main()
 		// (2/2) :: if not incoming connection
 		//  then it is I/O operation on some other socket (?)
 
-
 		i = -1;
-		while (++i < max_cliens)
+		while (++i < max_clients)
 		{
 			sd = client_socket[i];
 			ret = FD_ISSET( sd, & readfds );
@@ -287,7 +284,7 @@ int	main()
 					// mark as 0 in list for reuse
 					client_socket[ i ] = 0;
 				}
-				else // otherwise it's a msg, we echo back
+				else // a message, we echo back
 				{
 					// term the buffer to null byte
 					buffer[valread] = '\0';
