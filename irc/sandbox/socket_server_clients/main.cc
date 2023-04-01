@@ -14,7 +14,10 @@
 #define	PORT 6669
 
 int	main(int c , char **v)  
-{  
+{
+	(void) c;
+	(void) v;
+	
 	int	master_socket;
 	int	new_socket;
 	int	client_socket[30];
@@ -130,7 +133,7 @@ int	main(int c , char **v)
 			);  
 
 			//send new connection greeting msg 
-			if( send(new_socket, msg, strlen(msg), 0) != strlen(msg) )  
+			if( send(new_socket, msg, strlen(msg), 0) != (long) strlen(msg) )  
 			{  
 				perror("send");  
 			}  

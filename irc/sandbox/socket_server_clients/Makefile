@@ -1,5 +1,5 @@
-comp	:=	c++ -Wall -Werror -Wextra -pedantic -MMD -MP -std=c++98
-comp	:=	c++ -Wall -Werror -Wextra -I ../../project/ -std=c++98
+comp	:=	c++ -std=c++98 -Wall -Werror -Wextra -pedantic -MMD -MP
+comp	:=	c++ -std=c++17 -Wall -Werror -Wextra -I ../../project/
 rmv	:=	rm -rf
 
 name	:=	out
