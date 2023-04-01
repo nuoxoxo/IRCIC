@@ -6,6 +6,17 @@ btc
 RPN
 PmergeMe
 
+*.png
+game_linux
+sastantua_linux
+game_macos
+sastantua_macos
+frame
+blackjack
+smallest
+
+
+
 .vscode
 *.gch
 

@@ -1,13 +1,12 @@
-comp	:=	c++ -std=c++98 -Wall -Werror -Wextra -pedantic -MMD -MP
-comp	:=	c++ -std=c++17 -Wall -Werror -Wextra -I ../../project/
+comp	:=	c++ -std=c++17
 rmv	:=	rm -rf
 
 name	:=	out
+src	:=	main.c
 
-src	:=	main.cc
-bud	:=	$(src:%.cc=%.o)
+bud	:=	$(src:%.c=%.o)
 
-%.o	:	%.cc
+%.o	:	%.c
 		@ echo "compiling [$^] "
 		@ $(comp) -c $^ -o $@
 
@@ -15,11 +14,20 @@ $(name)	:	$(bud)
 		@ echo "compiling [$@] "
 		@ $(comp) $^ -o $@
 		@ printf "\n\n"
+		@ printf "\t[en] come on baby break my code\n"
+		@ printf "\t[fr] viens, brise mon code\n\n"
 		@ echo ""
-		@ echo ""
+		@ echo "[$@] is ready"
+
+run	:	re
+		@ ./$(name)
+		@ make clean
 
 test	:	re
-		@ ./$(name)
+		@ make clean
+
+t	:	test
+r	:	run
 
 all	:	$(name)
 
@@ -29,9 +37,8 @@ clean	:
 fclean	:	clean
 		@ $(rmv) $(name) a.out out
 
-t	:	test
+test	:	run
 f	:	fclean
-r	:	re
 re	:	f all
 
 .PHONY	:	fclean clean all re f

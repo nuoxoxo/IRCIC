@@ -10,6 +10,8 @@
 
 #define PORT 8080
 
+#define msg "this is major tom to ground control"
+
 int	main()
 {
 	// Stages for clients
@@ -22,7 +24,6 @@ int	main()
 	int		status;
 	int		ret;
 	char		buffer[1024] = { 0 };
-	const char *msg = "this is major tom to ground control";
 
 	Client_fd = socket(
 		AF_INET, /* domain */
