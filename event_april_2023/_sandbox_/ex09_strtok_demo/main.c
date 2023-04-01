@@ -2,8 +2,8 @@
 #include <stdio.h>
 
 int main () {
-   char str[22] = "Hello World in a frame";
-   const char s[2] = "-";
+   char str[24] = "Hello World in a   frame";
+   const char s[2] = " ";
    char *token;
    
    /* get the first token */
