@@ -95,9 +95,9 @@ int	main()
 
 	ret = setsockopt(
 		Server_fd,
-		SOL_SOCKET,
-		SO_REUSEADDR,
-		(char *) & opt,
+		SOL_SOCKET, /* level */
+	SO_REUSEADDR | SO_REUSEPORT,
+		(char *) & opt, /* const void *optVal */
 		sizeof(opt)
 	);
 	if (ret < 0)
