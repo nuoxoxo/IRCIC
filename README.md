@@ -35,4 +35,4 @@
 
 # Containers (deprecated)
 
-![](https://i.imgur.com/FWvWTev.jpg)
+![](https://i.imgur.com/TC2rniI.jpg)
