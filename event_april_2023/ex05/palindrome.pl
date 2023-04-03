@@ -12,10 +12,14 @@ if ($s eq "")  {
 } else {
 
 	my $is_palin = 1;
+
 	my @all = split //, $s;
+	# my @all = split('', $s); # same op
+
 	my $half = $#all / 2;
 
-	# print "$half $#all $s"
+	# print "$half - $#all - $s \n";
+	# foreach (@all) { print "$_\n"; }
 
 	foreach my $i ( 0 .. $half ) {
 	    my $count = 0;
