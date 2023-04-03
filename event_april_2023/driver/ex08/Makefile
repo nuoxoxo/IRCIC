@@ -1,8 +1,8 @@
-comp	:=	cc -D P=printf -D M=main -D C=char -D F=if -D I=int -w
+comp	:=	gcc -Wall -Werror -Wextra 
 rmv	:=	rm -rf
 
-name	:=	smallest
-src	:=	smallest.c
+name	:=	blackjack
+src	:=	blackjack.c
 
 bud	:=	$(src:%.c=%.o)
 
@@ -15,14 +15,31 @@ $(name)	:	$(bud)
 		@ $(comp) $^ -o $@
 		@ printf "\n\n"
 		@ printf "\t[en] come on baby break my code\n"
-		@ printf "\t[fr] viens, brise mon code\n\n\n"
+		@ printf "\t[fr] viens, brise mon code\n\n"
 		@ echo ""
+		@ echo "[$@] is ready"
 
 run	:	re
+		@ ./$(name)
 		@ make clean
 
 test	:	re
-		./$(name) 1 2
+		@ ./$(name) "D8"
+		@ echo "expected: 18"
+		@ echo ""
+		@ ./$(name) "A4"
+		@ echo "expected: 15"
+		@ echo ""
+		@ ./$(name) "AA8"
+		@ echo "expected: 20"
+		@ echo ""
+		@ ./$(name) "339A6"
+		@ echo "expected: 22"
+		@ echo ""
+		@ ./$(name) "AA8A"
+		@ echo "expected: Blackjack!"
+		@ echo ""
+		@ ./$(name) ""
 		@ make clean
 
 t	:	test
