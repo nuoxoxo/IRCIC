@@ -48,8 +48,8 @@ PONG :irc.______.net
 
 |              | Dones & Todos                         | Status
 | :----------- | :------------------------------------ | :----- |
-| mar 31       | -
-| mar 30       | -
+| apr 3        | 
+|              | mar 30 - apr 2
 | mar 29       | fi : MOTD supports 4 variations
 | mar 28       | fi : proto 2-digit mult in JS
 |              | multiple connection via `/nick` 
