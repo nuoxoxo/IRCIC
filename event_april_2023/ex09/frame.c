@@ -37,7 +37,7 @@ int	main(int c, char **v)
 	char	shangxia[max];
 
 	i = -1;
-	while (++i < (int) max) shangxia[i] = (i ^ max - 1) ? '*' : '\0';
+	while (++i < (int) max) shangxia[i] = (i ^ (max - 1)) ? '*' : '\0';
 
 	printf("%s\n", shangxia);
 	i = -1;

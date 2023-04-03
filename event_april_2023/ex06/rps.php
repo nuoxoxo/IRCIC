@@ -18,7 +18,8 @@ if ( in_array($my_choice, $pool, true) ) {
 
 #	echo "$my_choice, $me, $pc_choice, $pc \n";
 
-	if ( ($pc != 0 && $me > $pc) || ($pc == 0 && $me == 2) ) {
+	# if ( ($pc != 0 && $me > $pc) || ($pc == 0 && $me == 2) ) {
+	if ( ($pc != 0 && $me > $pc) ) {
 		echo "Congratulations! You won! The computer chose $pc_choice.";
 	} else if ($pc == $me) {
 		echo "Tie!";
