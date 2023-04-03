@@ -13,8 +13,9 @@ if response.status_code == 404:
 res = response.json()
 #print(type(res))
 
+print('Name:', p.capitalize())
 print('Abilities:')
 for key in res['abilities']:
-    print('-', key['ability']['name'])
+    print('-', key['ability']['name'].capitalize())
 
 
