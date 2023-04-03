@@ -1,27 +1,20 @@
 import json
-from unicodedata import name
 import requests
 
 
 p = input('Enter the name of a Pokemon: ')
-print(p)
 
-url = ('https://pokeapi.co/api/v2/pokemon/')
+response = requests.get(f'https://pokeapi.co/api/v2/pokemon/{p.lower()}')
+# print(response.status_code)
 
-def main(): 
-    r = requests.get(url + p)
-    status = r.status_code 
-    if status != 200: 
-        quit()
-    else: 
-        get_pokedex(status)
-        
+if response.status_code == 404:
+    print('connection error. please verify your choice of pokemon. ')
+    exit()
+res = response.json()
+#print(type(res))
 
-def get_pokedex(x): 
-    print("status code: ", + x)
-    response = requests.get(url).json()
-    print(response)
+print('Abilities:')
+for key in res['abilities']:
+    print('-', key['ability']['name'])
 
-if __name__ == '__main__':
-    main() 
 
