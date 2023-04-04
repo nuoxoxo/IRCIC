@@ -19,3 +19,4 @@ for key in res['abilities']:
     print('-', key['ability']['name'].capitalize())
 
 
+
