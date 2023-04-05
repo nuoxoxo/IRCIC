@@ -48,7 +48,7 @@ PONG :irc.______.net
 
 |              | Dones & Todos                         | Status
 | :----------- | :------------------------------------ | :----- |
-| apr 5        | 
+| apr 4        | bot draft
 |              | -
 | mar 29       | fi : MOTD supports 4 variations
 | mar 28       | fi : proto 2-digit mult in JS
@@ -56,8 +56,8 @@ PONG :irc.______.net
 | _todo_       | learn using `nc` in place of irssi
 |              | know connect_to_server fn
 |              | know all RPL (see doc above)
-|              | what is port at launch                | ✓
-|              | ⮑ `tohs(_server.sin_port)` 
+|              | what is port at launch 
+|              | ⮑ `tohs(_server.sin_port)`           | ✓
 |              | _to implement_
 |              | ⮑ server queuing mult cli
 |              | ⮑ MOTD w/ random choice     | mar 29 ✓
