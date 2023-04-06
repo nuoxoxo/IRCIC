@@ -48,9 +48,12 @@ PONG :irc.______.net
 
 |              | Dones & Todos                         | Status
 | :----------- | :------------------------------------ | :----- |
-| apr 4        | bot draft
-|              | ⮑ fixed weekday algo
-|              | -
+| apr 6        | sanbox : runs a line of python code
+| apr 5        | (work on ft_irc)
+| apr 4        | game rework (date algo is broken)
+| apr 3        | <kbd> :yellow_circle: to implement </kbd>
+|              | ⮑ fixed weekday algo                 | apr 5 ✓
+|              | ⮑ run python interpreter in bot      | apr 6 ✓
 | mar 29       | fi : MOTD supports 4 variations
 | mar 28       | fi : proto 2-digit mult in JS
 |              | multiple connection via `/nick` 
@@ -59,7 +62,7 @@ PONG :irc.______.net
 |              | know all RPL (see doc above)
 |              | what is port at launch 
 |              | ⮑ `tohs(_server.sin_port)`           | ✓
-|              | _to implement_
+|              | <kbd> :yellow_circle: to implement </kbd>
 |              | ⮑ server queuing mult cli
 |              | ⮑ MOTD w/ random choice     | mar 29 ✓
 |              | |
