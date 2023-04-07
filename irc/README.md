@@ -48,6 +48,8 @@ PONG :irc.______.net
 
 |              | Dones & Todos                         | Status
 | :----------- | :------------------------------------ | :----- |
+| apr 7        | <kbd> :yellow_circle: to implement </kbd>
+|              | ⮑ add `\names`
 | apr 6        | sanbox : runs a line of python code
 | apr 5        | (work on ft_irc)
 | apr 4        | game rework (date algo is broken)
