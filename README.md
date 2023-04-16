@@ -8,7 +8,7 @@
 --->
 
 
-# IRC under construction :woman_farmer:
+# IRC (under construction) :woman_farmer:
 
 ![](https://i.imgur.com/plfUVpo.jpg)
 
