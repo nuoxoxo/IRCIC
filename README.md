@@ -8,7 +8,8 @@
 --->
 
 
-# IRC (under construction) :woman_farmer:
+# IRC :woman_farmer:
+_under construction_
 
 ![](https://i.imgur.com/plfUVpo.jpg)
 
@@ -17,7 +18,8 @@
 ![](https://i.imgur.com/BdLTynx.jpg)
 --->
 
-
+# Printf ver.2 :woman_cook:
+![](https://i.imgur.com/XHOhKMl.jpg)
 
 # !nception :elf_woman:
 
@@ -33,6 +35,7 @@
 ![](https://i.imgur.com/TC2rniI.jpg)
 
 
-# Containers (deprecated) :woman_teacher:
+# Containers :woman_teacher:
+_deprecated_
 
 ![](https://i.imgur.com/FWvWTev.jpg)
