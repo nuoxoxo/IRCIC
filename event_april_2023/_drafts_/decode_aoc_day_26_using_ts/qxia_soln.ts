@@ -15,7 +15,6 @@ const solve = (l, regex) => {
 }
 
 console.log('test:')
-
 console.log(solve(test, regex_p1))
 console.log(solve(test, regex_p2), '\n')
 
