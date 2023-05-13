@@ -1,55 +1,62 @@
-comp	:=	c++ -Wall -Werror -Wextra -pedantic -MMD -MP -std=c++98
-comp	:=	c++ -Wall -Werror -Wextra -std=c++98
-comp	:=	c++ -Wall -Werror -Wextra -std=c++98 -I includes
-rmv	:=	rm -rf
+srcs	=	Freenode.cpp  \
+		User.cpp  \
+		Channel.cpp  \
+		Server.cpp   \
+		forward_rpl_err.cpp   \
+		forward_outputs.cpp   \
+		commands/restart.cpp  \
+		commands/privmsg.cpp  \
+		commands/join.cpp  \
+		commands/topic.cpp  \
+		commands/quit.cpp  \
+		commands/nick.cpp  \
+		commands/part.cpp  \
+		commands/ping.cpp  \
+		commands/mode.cpp  \
+		commands/kill.cpp  \
+		commands/kick.cpp  \
+		commands/oper.cpp  \
+		bot/Bot.cpp
 
-name	:=	btc
-name	:=	RPN
-name	:=	PmergeMe
-name	:=	ircserv
+obj	=	$(srcs:.cpp=.o)
 
-src	:=	main.cc
-bud	:=	$(src:%.cc=%.o)
+inc	=	-I includes
+inc	=	-I ./ -I ./bot/
 
-rand	:=	$(shell bash -c 'echo $$(($$RANDOM%999+1000))')
-rand2	:=	$(shell bash -c 'echo $$(($$RANDOM%999+1000))')
+comp	=	c++ -Wall -Wextra -Werror -std=c++98 -g3
 
-%.o	:	%.cc
+name	=	ircserv
+
+rm	=	rm -rf
+
+%.o	:	%.cpp
 		@ echo "compiling [$^] "
-		@ $(comp) -c $^ -o $@
+		@ $(comp) $(inc) -c $< -o $@
 
-$(name)	:	$(bud)
-		@ echo "compiling [$@] "
-		@ $(comp) $^ -o $@
-		@ printf "\n\n"
-		@#@ printf "\t[en] come on baby break my code\n"
-		@#@ printf "\t[fr] viens, brise mon code\n\n\n"
-		@ printf "\t\"are you using the right compiler? \"\n\n\n"
-		@ echo "you can do [make run] "
-		@ echo "you can do [make r] "
-		@ echo "you can do [make f] "
-		@ echo ""
-		@ echo "-"
-		@#@ echo ":::: (makefile ends) :::: "
-		@ echo ""
-
-test	:	re
-		./$(name) $(rand) $(rand2)
-		@ make f
 
 all	:	$(name)
 
-clean	:
-		@ $(rmv) $(bud)
+$(name)	:	$(obj)
+		@ echo "compiling [$@] "
+		@ $(comp) $(inc) $(obj) -o $(name)
+		@ printf "\n\n"
+		@ echo ""
+		@ printf "\t\"Are you using the right compiler? \n\n"
+		@ echo ""
+		@ echo ""
+		@ echo "[$@] is ready "
 
-fclean	:	clean
-		@ $(rmv) $(name) a.out out
+clean:
+		@ $(rm) $(obj)
 
-t	:	test
+fclean:		clean
+		@ $(rm) $(name)
+
 f	:	fclean
+fo	:	clean
+
 r	:	re
-re	:	f all
+re	:	fclean all
 
-.PHONY	:	fclean clean all re f
-
+.PHONY:		all clean fclean re
 
