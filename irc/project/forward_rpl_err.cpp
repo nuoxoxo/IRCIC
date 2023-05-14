@@ -43,12 +43,6 @@ std::string get_RPL_ERR(int code, Server *serv, User *user, std::string arg1, st
         case 324:
             res += RPL_CHANNELMODEIS(arg1, arg2);
 			break ;
-        case 331:
-            res += RPL_NOTOPIC(arg1);
-			break ;
-        case 332:
-            res += RPL_TOPIC(arg1, arg2);
-			break ;
         case 353:
             res += RPL_NAMREPLY(arg1, arg2);
 			break ;
@@ -103,9 +97,6 @@ std::string get_RPL_ERR(int code, Server *serv, User *user, std::string arg1, st
         case 472:
             res += ERR_UNKNOWNMODE(arg1, arg2);
             break ;
-        case 473:
-            res += ERR_INVITEONLYCHAN(arg1);
-			break ;
         case 474:
             res += ERR_BANNEDFROMCHAN(arg1);
 			break ;
@@ -127,7 +118,19 @@ std::string get_RPL_ERR(int code, Server *serv, User *user, std::string arg1, st
         case 669:
             res += BOT_NOCOMMAMD(arg1);
             break;
-		default:
+        ////    draft :: Topic
+        // case 331:
+        //     res += RPL_NOTOPIC(arg1);
+        // break ;
+        // case 332:
+        //     res += RPL_TOPIC(arg1, arg2);
+		// break ;
+        ////    Invited related :: Never used
+        // case 473:
+        //     res += ERR_INVITEONLYCHAN(arg1);
+		// break ;
+        //
+        default:
 		    /**/;
     }
 
