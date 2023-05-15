@@ -49,19 +49,19 @@ void privmsg(Server *serv, std::string buffer, int sd)
     {
         if (serv->get_channels().find(msgtarget) == serv->get_channels().end())
         {
-            Broadcast(get_RPL_ERR(401, serv, FIND_USER(sd), msgtarget, ""), sd);
+            Broadcast(Get_RPL_ERR(401, serv, FIND_USER(sd), msgtarget, ""), sd);
         }
         else if ((FIND_CHANNEL(msgtarget)->get_mode().find("n") != std::string::npos) && (FIND_CHANNEL(msgtarget)->search_user_by_nickname(FIND_USER(sd)->get_nickname()) == -1))
         {
-            Broadcast(get_RPL_ERR(404, serv, FIND_USER(sd), msgtarget, ""), sd);
+            Broadcast(Get_RPL_ERR(404, serv, FIND_USER(sd), msgtarget, ""), sd);
         }
         else if ((FIND_CHANNEL(msgtarget)->get_mode().find("m") != std::string::npos) && (!FIND_CHANNEL(msgtarget)->is_chanop(sd)) && (!FIND_CHANNEL(msgtarget)->is_voice(sd)))
         {
-            Broadcast(get_RPL_ERR(404, serv, FIND_USER(sd), msgtarget, ""), sd);
+            Broadcast(Get_RPL_ERR(404, serv, FIND_USER(sd), msgtarget, ""), sd);
         }
         else if (FIND_CHANNEL(msgtarget)->is_banned(FIND_USER(sd)->get_nickname()) == true)
         {
-            Broadcast(get_RPL_ERR(404, serv, FIND_USER(sd), msgtarget, ""), sd);
+            Broadcast(Get_RPL_ERR(404, serv, FIND_USER(sd), msgtarget, ""), sd);
         }
         /// Added following session for bot
         else if ( is_bot_command(buffer))
@@ -115,7 +115,7 @@ void privmsg(Server *serv, std::string buffer, int sd)
         {
             ////    +/- a :: anonymous mode (draft)
             // Broadcast(RED "HERE" RESET, sd);
-            Broadcast(get_RPL_ERR(401, serv, FIND_USER(sd), msgtarget, ""), sd);
+            Broadcast(Get_RPL_ERR(401, serv, FIND_USER(sd), msgtarget, ""), sd);
         }
         else
         {

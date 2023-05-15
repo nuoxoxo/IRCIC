@@ -164,19 +164,48 @@ void Server::connect_to_server()
 						buf[0] != '\t'
 					)
 					{
-						std::cout << CYAN "Input : " RESET << buf;
+						// TODO :: Delete the following DBG
+
+						/*
+						std::cout << CYAN "(dgb)(input):\t" RESET << buf;
+						*/
 
 						std::string		command(buf);
 
 						int	L = buf.find_first_not_of(SEP_CHARSET, 0);
 
-						// std::cout << CYAN "Echo : " RESET << buf << nl;
+						// std::cout << CYAN "(dbg)(echo 0): " RESET << buf << nl;
 
 						buf = command.substr(L, buf.length() - L);
 						command = buf.substr(0, buf.find_first_of(SEP_CHARSET, 0));
 
-						std::cout << CYAN "Echo 1: " RESET << buf;
-						std::cout << CYAN "Echo 2: " RESET << command << nl2;
+						// TODO :: Delete the following DBG
+						/*
+						std::cout << CYAN "(dbg)(echo 1):\t" RESET << (
+							(buf.empty()) ? "(None)" : buf
+						);
+						*/
+
+						// Deprecated draft
+						// if (buf.empty())
+						// 	std::cout << CYAN "(dbg)(echo 1): " RESET << "(None)";
+						// else
+						// 	std::cout << CYAN "(dbg)(echo 1): " RESET << buf;
+
+
+						// TODO :: Delete the following DBG
+						/*
+						std::cout << CYAN "(dbg)(echo 2):\t" RESET << (
+							(command.empty()) ? "(None)" : command
+						) << nl2;
+						*/
+
+						// Deprecated draft
+						// if (command.empty())	
+						// 	std::cout << CYAN "(dbg)(echo 2): " RESET << "(None)" << nl2;
+						// else
+						// 	std::cout << CYAN "(dbg)(echo 2): " RESET << command << nl2;
+
 
 						if (m_commands.find(command) != m_commands.end())
 						{
@@ -256,7 +285,7 @@ void Server::new_connection()
 	{
 		if ((first_occurrence = ret.find_first_not_of(SEP_CHARSET, occ + 5)) == std::string::npos)
 		{
-			Broadcast(get_RPL_ERR(461, this, NULL, "PASS", ""), this->m_sock_coming);
+			Broadcast(Get_RPL_ERR(461, this, NULL, "PASS", ""), this->m_sock_coming);
 			close(this->m_sock_coming);
 		}
 		else
@@ -270,7 +299,7 @@ void Server::new_connection()
 			}
 			if (pass.empty())
 			{
-				Broadcast(get_RPL_ERR(461, this, NULL, "PASS", ""), this->m_sock_coming);
+				Broadcast(Get_RPL_ERR(461, this, NULL, "PASS", ""), this->m_sock_coming);
 				close(this->m_sock_coming);
 			}
 			else if (pass != this->m_pass)
@@ -295,7 +324,7 @@ void Server::new_connection()
 		{
 			if ((first_occurrence = ret.find_first_not_of(SEP_CHARSET, occ + 5)) == std::string::npos)
 			{
-				Broadcast(get_RPL_ERR(432, this, NULL, nick, ""), this->m_sock_coming);
+				Broadcast(Get_RPL_ERR(432, this, NULL, nick, ""), this->m_sock_coming);
 				close(this->m_sock_coming);
 			}
 			else
@@ -304,12 +333,12 @@ void Server::new_connection()
 				nick = nick.substr(0, nick.find_last_not_of(SEP_CHARSET, nick.size()) + 1);
 				if (!nickname_is_validated(nick))
 				{
-					Broadcast(get_RPL_ERR(432, this, NULL, nick, ""), this->m_sock_coming);
+					Broadcast(Get_RPL_ERR(432, this, NULL, nick, ""), this->m_sock_coming);
 					close(this->m_sock_coming);	
 				}
 				else if (nickname_is_in_use(this, nick))
 				{
-					Broadcast(get_RPL_ERR(433, this, NULL, nick, ""), this->m_sock_coming);
+					Broadcast(Get_RPL_ERR(433, this, NULL, nick, ""), this->m_sock_coming);
 					Broadcast("Please try reconnect with an available nickname.", this->m_sock_coming);
 					close(this->m_sock_coming);
 				}
@@ -335,7 +364,7 @@ void Server::new_connection()
 				//username
 
 				if ((first_occurrence = ret.find_first_not_of(SEP_CHARSET, occ + 5)) == std::string::npos)
-					Broadcast(get_RPL_ERR(461, this, NULL, "USER", ""), this->m_sock_coming);
+					Broadcast(Get_RPL_ERR(461, this, NULL, "USER", ""), this->m_sock_coming);
 				else
 				{
 					user = ret.substr(first_occurrence, (i = ret.find_first_of(SEP_CHARSET, first_occurrence)) - first_occurrence);
@@ -343,7 +372,7 @@ void Server::new_connection()
 					//	hostname
 
 					if ((first_occurrence = ret.find_first_not_of(SEP_CHARSET, i)) == std::string::npos)
-						Broadcast(get_RPL_ERR(461, this, NULL, "USER", ""), this->m_sock_coming);
+						Broadcast(Get_RPL_ERR(461, this, NULL, "USER", ""), this->m_sock_coming);
 					else
 					{
 						host = ret.substr(first_occurrence, (i = ret.find_first_of(SEP_CHARSET, first_occurrence)) - first_occurrence);
@@ -351,7 +380,7 @@ void Server::new_connection()
 						//	server_name
 
 						if ((first_occurrence = ret.find_first_not_of(SEP_CHARSET, i)) == std::string::npos)
-							Broadcast(get_RPL_ERR(461, this, NULL, "USER", ""), this->m_sock_coming);
+							Broadcast(Get_RPL_ERR(461, this, NULL, "USER", ""), this->m_sock_coming);
 						else
 						{
 							server_name = ret.substr(first_occurrence, (i = ret.find_first_of(SEP_CHARSET, first_occurrence)) - first_occurrence);
@@ -359,7 +388,7 @@ void Server::new_connection()
 							//	real_name
 
 							if ((first_occurrence = ret.find_first_not_of(SEP_CHARSET, i)) == std::string::npos)
-								Broadcast(get_RPL_ERR(461, this, NULL, "USER", ""), this->m_sock_coming);
+								Broadcast(Get_RPL_ERR(461, this, NULL, "USER", ""), this->m_sock_coming);
 							else
 							{
 								real_name = ret.substr(first_occurrence, (i = ret.find_first_of(SEP_CHARSET, first_occurrence)) - first_occurrence);
@@ -379,16 +408,22 @@ void Server::new_connection()
 		}
 	}
 	// if (password_is_valid == true && m_users.size() < 10 && nickname_is_valid == true && username_is_valid == true && g_server_is_alive == true)
-	if (password_is_valid == true && m_users.size() < 4 && nickname_is_valid == true && username_is_valid == true && g_server_is_alive == true)
+	// if (password_is_valid == true && m_users.size() < 4 && nickname_is_valid == true && username_is_valid == true && g_server_is_alive == true)
+	if (
+		password_is_valid == true && 
+		m_users.size() < 4 && nickname_is_valid == true && 
+		username_is_valid == true && 
+		g_server_is_alive == true
+	)
 	{
 		this->m_server_name = server_name;
 		User *newUser = new User(nick, user, host, real_name);
 		this->set_users(this->m_sock_coming, newUser);
 		std::cout << "Number of user connected on the server: " << this->m_users.size() << std::endl;
-		Broadcast(get_RPL_ERR(001, this, newUser, "", ""), this->m_sock_coming);
-		Broadcast(get_RPL_ERR(002, this, newUser, "", ""), this->m_sock_coming);
-		Broadcast(get_RPL_ERR(003, this, newUser, "", ""), this->m_sock_coming);
-		Broadcast(get_RPL_ERR(004, this, newUser, "", ""), this->m_sock_coming);
+		Broadcast(Get_RPL_ERR(001, this, newUser, "", ""), this->m_sock_coming);
+		Broadcast(Get_RPL_ERR(002, this, newUser, "", ""), this->m_sock_coming);
+		Broadcast(Get_RPL_ERR(003, this, newUser, "", ""), this->m_sock_coming);
+		Broadcast(Get_RPL_ERR(004, this, newUser, "", ""), this->m_sock_coming);
 		Forward_MOTD(this->m_sock_coming);
 
 		//add new socket to array of sockets
@@ -407,7 +442,7 @@ void Server::new_connection()
 		}
 	}
 	else if (password_is_valid == true && nickname_is_valid == true && g_server_is_alive == true && username_is_valid == true)
-		Broadcast(get_RPL_ERR(005, this, NULL, nick, ""), this->m_sock_coming);
+		Broadcast(Get_RPL_ERR(005, this, NULL, nick, ""), this->m_sock_coming);
 }
 
 int Server::new_socket()

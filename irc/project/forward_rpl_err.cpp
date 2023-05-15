@@ -1,6 +1,6 @@
 #include "Freenode.hpp"
 
-std::string get_RPL_ERR(int code, Server *serv, User *user, std::string arg1, std::string arg2)
+std::string Get_RPL_ERR(int code, Server *serv, User *user, std::string arg1, std::string arg2)
 {
     std::stringstream ss;
     ss << code;

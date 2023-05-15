@@ -42,7 +42,7 @@ void Bot::find_command(Server * serv, Channel *chan, int socket_fd, std::string 
     }
     else
     {
-        Broadcast(get_RPL_ERR(669, serv, FIND_USER(socket_fd), cmd, ""), socket_fd);
+        Broadcast(Get_RPL_ERR(669, serv, FIND_USER(socket_fd), cmd, ""), socket_fd);
     }
 }
 
@@ -59,7 +59,7 @@ void summon(Server *serv, Channel *chan, int socket_fd)
             Broadcast(":" + serv->get_bot()->get_name() + " PRIVMSG " + chan->get_channelname() + " :I am already awake.", socket_fd);
     }
     else
-        Broadcast(get_RPL_ERR(482, serv, FIND_USER(socket_fd), chan->get_channelname(), ""), socket_fd);
+        Broadcast(Get_RPL_ERR(482, serv, FIND_USER(socket_fd), chan->get_channelname(), ""), socket_fd);
 }
 
 void dismiss(Server *serv, Channel *chan, int socket_fd)
@@ -75,7 +75,7 @@ void dismiss(Server *serv, Channel *chan, int socket_fd)
             Broadcast(":" + serv->get_bot()->get_name() + " PRIVMSG " + chan->get_channelname() + " :I am sleeping right now, wake me up to play with me.", socket_fd);
     }
     else
-        Broadcast(get_RPL_ERR(482, serv, FIND_USER(socket_fd), chan->get_channelname(), ""), socket_fd);
+        Broadcast(Get_RPL_ERR(482, serv, FIND_USER(socket_fd), chan->get_channelname(), ""), socket_fd);
 }
 
 

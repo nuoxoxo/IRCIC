@@ -186,7 +186,7 @@ std::string Get_RPL_ERR(int code, Server *serv, User *user, std::string arg, std
 
 # include "Freenode.hpp"
 
-std::string get_RPL_ERR(int code, Server *serv, User *user, std::string args, std::string args2);
+std::string Get_RPL_ERR(int code, Server *serv, User *user, std::string args, std::string args2);
 
 //RPL
 
