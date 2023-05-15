@@ -4,29 +4,27 @@
 
 # include "Freenode.hpp"
 
-std::string Get_RPL_ERR(int code, Server *serv, User *user, std::string arg, std::string arg2);
+std::string get_RPL_ERR(int code, Server *serv, User *user, std::string args, std::string args2);
 
 //RPL
 
 //001
-# define RPL_WELCOME(n, u, h) \
-    (":" GREEN "Welcome to the <FreeNode/Discord> Network " + n + "[!" + u + "@" + h + "]" RESET)
-//    "<client> :Welcome to the <networkname> Network, <nick>[!<user>@<host>]"
+# define RPL_WELCOME(nick, user, host) \
+    (":Welcome to the <FreeNode/Discord> Network " + nick + "!" + user + "@" + host)
 //    :server 001 <nick> :Welcome to the <network> Network, <nick>[!<user>@<host>]
 
 
 //002
 # define RPL_YOURHOST \
-    (":" GREEN "Your host is " SERVER_NAME ", running version " ver nl RESET)
-    //"<client> :Your host is <servername>, running version <version>"
+    ("Your host is " SERVER_NAME ", running version " ver)
 
 //003
 # define RPL_CREATED \
-    (":" GREEN "This server was created on May 12, 2023")
+    ("This server was created May 9, 2023")
 
 //004
 # define RPL_MYINFO \
-    (":" GREEN SERVER_NAME " ver. " ver nl RESET)
+    (SERVER_NAME " ver. " ver)
     // (SERVER_NAME " ver. " ver " " USER_MODE " " CHANNEL_MODE)
 
 //005
@@ -34,22 +32,20 @@ std::string Get_RPL_ERR(int code, Server *serv, User *user, std::string arg, std
     ("Try server " SERVER_NAME ", port " + port)
 
 //221
-# define RPL_UMODEIS(arg) (arg)
-//  "<user mode string>"
-//  DOC ::
-
-/*
-221     RPL_UMODEIS
-        "<user mode string>"
-
-        - To answer a query about a client's own mode,
-            RPL_UMODEIS is sent back.
-*/
-
+# define RPL_UMODEIS(args) \
+    (args)
 
 //324
 # define RPL_CHANNELMODEIS(channel, modes) \
     (channel + " " + modes)
+
+//331
+# define RPL_NOTOPIC(channel) \
+    (channel + " :No topic is set")
+
+//332
+# define RPL_TOPIC(channel, topic) \
+    (channel + " :" + topic)
 
 //353
 # define RPL_NAMREPLY(channel, listOfUsers) \
@@ -162,14 +158,3 @@ std::string Get_RPL_ERR(int code, Server *serv, User *user, std::string arg, std
     (cmd + " :No such command.")
 
 #endif
-
-
-//	Topic draft :: related RPL
-
-// //331
-// # define RPL_NOTOPIC(channel) \
-//     (channel + " :No topic is set")
-
-// //332
-// # define RPL_TOPIC(channel, topic) \
-//     (channel + " :" + topic)
