@@ -3,7 +3,7 @@
 Bot::Bot() : m_name("Chat")
 {
 	this->m_command_handler.insert(
-        std::pair<std::string, command>("wakeup", & connect)
+        std::pair<std::string, command>("wakeup", & summon)
     );
 
     this->m_command_handler.insert(
@@ -19,7 +19,7 @@ Bot::Bot() : m_name("Chat")
     );
 
     this->m_command_handler.insert(
-        std::pair<std::string, command>("sleep", & quit)
+        std::pair<std::string, command>("sleep", & dismiss)
     );
 }
 
@@ -46,7 +46,7 @@ void Bot::find_command(Server * serv, Channel *chan, int socket_fd, std::string 
     }
 }
 
-void connect(Server *serv, Channel *chan, int socket_fd)
+void summon(Server *serv, Channel *chan, int socket_fd)
 {
     if (chan->is_chanop(socket_fd))
     {
@@ -62,7 +62,7 @@ void connect(Server *serv, Channel *chan, int socket_fd)
         Broadcast(get_RPL_ERR(482, serv, FIND_USER(socket_fd), chan->get_channelname(), ""), socket_fd);
 }
 
-void quit(Server *serv, Channel *chan, int socket_fd)
+void dismiss(Server *serv, Channel *chan, int socket_fd)
 {
     if (chan->is_chanop(socket_fd))
     {
@@ -127,6 +127,7 @@ void tell_date(Server *serv, Channel *chan, int socket_fd)
 void help(Server *serv, Channel *chan, int socket_fd)
 {
     std::string line = "!wakeup  - Connect the bot to the channel.";
+
     Broadcast(":" + serv->get_bot()->get_name() + " PRIVMSG " + chan->get_channelname() + " :" + line, socket_fd);
 
     line = "!date    - Give today's date.";
@@ -140,7 +141,7 @@ void help(Server *serv, Channel *chan, int socket_fd)
 }
 
 
-Channel *userInChanBot(Server *serv, User *user)
+Channel *is_user_with_bot_in_chan(Server *serv, User *user)
 {
     for (std::set<std::string>::iterator it = user->get_channels().begin(); it != user->get_channels().end(); it++)
         if (FIND_CHANNEL(*it)->get_bot() == true)
