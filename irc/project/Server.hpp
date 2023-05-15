@@ -28,7 +28,7 @@ private:
 
 	int		new_socket();
 	void	new_connection();
-	bool	m_is_restarting;
+	bool	m_server_is_restarting;
 	// void    handle_sigint(int signum);
 
 

@@ -11,7 +11,7 @@ void    handle_sigint(int signum)
 }
 
 Server::Server(const std::string & port, const std::string & password)
- : m_port(port), m_pass(password), m_server_name(), m_is_restarting(false)
+ : m_port(port), m_pass(password), m_server_name(), m_server_is_restarting(false)
  {
 	this->m_commands["NICK"] = & nick;
 	this->m_commands["JOIN"] = & join;
@@ -69,7 +69,7 @@ void Server::connect_to_server()
 
 	std::cout << "listening..." << std::endl;
 
-	while (this->m_is_restarting == false && g_server_is_alive == true)
+	while (this->m_server_is_restarting == false && g_server_is_alive == true)
 	{
 		// Can we make a separate handler function?
 
@@ -234,9 +234,9 @@ void Server::connect_to_server()
 		}
 	}
 	close(this->m_server_socket);
-	if (this->m_is_restarting == true && g_server_is_alive == true)
+	if (this->m_server_is_restarting == true && g_server_is_alive == true)
 	{
-		this->m_is_restarting = false;
+		this->m_server_is_restarting = false;
 		std::cout << "SERVER RESTARTING..." << std::endl;
 
 		Server::connect_to_server();
@@ -535,7 +535,7 @@ void Server::set_users(int socket_fd, User *user)
 
 void Server::set_is_restarting()
 {
-	this->m_is_restarting = !this->m_is_restarting;
+	this->m_server_is_restarting = !this->m_server_is_restarting;
 }
 
 int Server::search_user_by_nickname(std::string nickname)
