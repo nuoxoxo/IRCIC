@@ -186,6 +186,7 @@ void mode_b(Server *serv, Channel *channel, std::string mode, std::string buffer
 	}
 }
 
+/*
 void mode_k(Server *serv, Channel *channel, std::string mode, std::string buffer, int sd)
 {
     (void)  mode;
@@ -227,6 +228,7 @@ void mode_k(Server *serv, Channel *channel, std::string mode, std::string buffer
         }
     }
 }
+*/
 
 void mode_l(Server *serv, Channel *channel, std::string mode, std::string buffer, int sd)
 {

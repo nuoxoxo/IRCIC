@@ -56,10 +56,10 @@ std::string Channel::get_mode() const
     return this->m_mode;
 }
 
-std::string Channel::get_key() const
-{
-    return (this->m_key);
-}
+// std::string Channel::get_key() const
+// {
+//     return (this->m_key);
+// }
 
 int Channel::get_maximum_users() const
 {
@@ -76,10 +76,10 @@ void Channel::set_mode(std::string mode)
     this->m_mode = mode;
 }
 
-void Channel::set_key(std::string key)
-{
-    this->m_key = key;
-}
+// void Channel::set_key(std::string key)
+// {
+//     this->m_key = key;
+// }
 
 void Channel::set_maximum_users(int maxUser)
 {
