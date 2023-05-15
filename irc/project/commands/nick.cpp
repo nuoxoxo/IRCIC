@@ -5,15 +5,15 @@
 
 bool nickname_is_validated(std::string nick)
 {
-    std::string letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    std::string special = "[]\\`_^{|}";
+    std::string alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    std::string nonalnum = "[]\\`_^{|}";
     std::string digit = "0123456789";
     std::string minus = "-";
-    std::string firstChar = letter + special;
-    std::string all = letter + special + digit + minus;
+    std::string first_char = alpha + nonalnum;
+    std::string all = alpha + nonalnum + digit + minus;
     if (nick.size() > 9)
         return (false);
-    if (firstChar.find(nick[0]) == std::string::npos)
+    if (first_char.find(nick[0]) == std::string::npos)
         return (false);
 
 
