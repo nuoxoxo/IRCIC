@@ -2,7 +2,7 @@
 
 Channel::Channel(std::string channel_name) : 
     m_channelname(channel_name),
-    m_topic(""),
+    // m_topic(""),
     m_bot_in_channel(false) /* added for Bot*/
 {
     // ... 
@@ -21,10 +21,10 @@ int Channel::get_user_number() const
     return (this->m_users.size() + this->m_chanops.size() + this->m_voices.size());
 }
 
-std::string Channel::get_topic() const
-{
-    return this->m_topic;
-}
+// std::string Channel::get_topic() const
+// {
+//     return this->m_topic;
+// }
 
 std::string Channel::get_channelname() const
 {
@@ -66,10 +66,10 @@ int Channel::get_maximum_users() const
     return (this->m_maximum_users);
 }
 
-void Channel::set_topic(std::string topic)
-{
-    this->m_topic = topic;
-}
+// void Channel::set_topic(std::string topic)
+// {
+//     this->m_topic = topic;
+// }
 
 void Channel::set_mode(std::string mode)
 {
